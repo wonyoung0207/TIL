@@ -68,7 +68,9 @@
         3. commit 진행
         4. git remote add origin url 로 연결된다. 
            - **깃허브가 버전을 받을 때 자동으로 origin으로 변수를 설정한다. **
+      
    2. **git pull origin master**
+      
       + 저장된 버전이 있는경우 버전을 업데이트해서 가져오는 방법
       + 이미 한번 clone으로 Local에 버전을 복사했을 경우 사용된다. 
       + 따라서 다른 사람이 github의 commit버전을 수정했을 경우 pull로 받아오면 된다. 
@@ -76,7 +78,8 @@
         + 이때 사용하는 명령어가 merge와 branch 이다. 
       + 여기서 master는 branch를 뜻한다. 
       + git pull 명령 사용하면 git fetch 가 일어나고, git merge가 일어난다. 
-      + [](img)
+      
+      ![작동원리](./images/git_pull.png)
 
 9. **branch**
 
@@ -98,7 +101,7 @@
 
           **이때 4가지의 v2는 각각 하나의 branch 라고 할 수 있다. **
 
-   [](img)
+   <img src="./images/git_branch.png" width="500" height="200">
 
 10. master 
 
@@ -120,30 +123,28 @@
 12. **merge**
 
     + 병합을 뜻하며 ,하나의 v1 버전으로 부터 파생된 v2 버전들을 하나의 새로운 버전 v3로 합친다. 
+
     + 종류
+
       1. Fast-forward
          + git merge feature
            + 단계가 높은 버전(feature) 을 버전이 느린 master와 병합한다. 
            + 주의할점은 단계가 높은 버전에서 merge하면 안된다. 
-             + 왜냐하면 feature은 이미 master를 지나왔기 때문에 최신버전으로 인식한다. 
-         + [img]()
+             + 왜냐하면 feature은 이미 master를 지나왔기 때문에 최신버전으로 인식한다
       2. Auto-merging
          + 서로 다른 버전으로 나뉘어진 것이 자동으로 합쳐지는 것 
-         + 버전의 단계가 다른 버전을 합치는 것을 말한다. 
-         + [](img)
-      3. conflict
+         + 버전의 단계가 다른 버전을 합치는 것을 말한다.
+
+       ![branch_merge](./images/merge02.png) ![branch_merge](./images/merge01.png)
+
+      1. conflict
          + 서로 다른 버전이 부자연스럽게 합쳐지는 것을 말한다. 
          + 내가 수동으로 합치는 것을 conflict이라고 한다. 
          + 하나의 파일을 공유하는 두개의 branch가 있는 경우, 해당 파일에 내용을 변경하면 수동으로 merge하라고 conflict가 나온다. 
-         + [img]()
 
-13. 
+      ![branch_merge](./images/branch_merge.png)
 
-14. sdfsdf
-
-15. sdf
-
-16. pull Request
+13. pull Request
 
     + 회사에서 업무를 하는 순서
 
@@ -159,5 +160,4 @@
 
       1. 원격 저장소의 추가된 branch 확인 후 pull request
 
-17. 
-
+    
