@@ -1,4 +1,4 @@
-# \깃허브 특강 Day01
+# 깃허브 특강 Day01
 
 > [특강 질문 주소](https://hphk.notion.site/hphk/Git-22-04-07-22-04-08-AI-14-83024d717d9b41a7b76636858f95a21b)
 >
@@ -131,9 +131,9 @@
        - 버전을 최종적 생성한다.
        - git log 명령어를 통해 볼 수 있다.
 
-11.  [](img)
+     ![작동원리](./images/git_add_commit2.png)
 
-12.  Staging Area를 사용하는 이유
+11.  Staging Area를 사용하는 이유
 
      - commit을 입력하면 working Directory의 모든 내용을 버전으로 저장한다.
 
@@ -145,7 +145,7 @@
 
        - 따라서 버전은 하나의 기능을 수정하고 업데이트 하는 것이 원칙이다.
 
-13.  GitHub
+12.  GitHub
 
      - 원격 저장소로 Repository 라고 한다.
 
@@ -174,9 +174,9 @@
            2. commit
            3. push
               - 의 순서로 원격 저장소에 올릴 수 있다.
-     - [](img)
+     - ![작동원리](./images/github_push.png)
 
-14.  Git 사용시 주의사항
+13.  Git 사용시 주의사항
 
      1.  git init 을 중첩해서 사용하면 안된다.
          - 하위 폴더 안에 폴더를 만들어 git init 하면 안됨
