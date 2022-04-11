@@ -3,8 +3,6 @@
 > [특강 질문 주소](https://hphk.notion.site/hphk/Git-22-04-07-22-04-08-AI-14-83024d717d9b41a7b76636858f95a21b)
 >
 > [강사님 이메일](kyle@hphk.kr)
->
-> 
 
 1.  1일차 : CLI, Vscode, Markdown, GIt, GitHub
 
@@ -74,17 +72,16 @@
 
 7.  **사용자 설정 **
 
-    + 이걸 설정해야 github에 6하원칙의  (누가) 부분을 git이 자동으로 작성해 줄 수 있다. 
+    - 이걸 설정해야 github에 6하원칙의 (누가) 부분을 git이 자동으로 작성해 줄 수 있다.
 
     1.  git config --global user.name "github userName"
     2.  git config --global user.email "github email"
-    3.  push 할때 로그인으로 권한을 얻는다. 
+    3.  push 할때 로그인으로 권한을 얻는다.
 
 8.  깃의 간단한 명령어
 
     1. **git log** : git의 저장 로그를 불러온다. -> 고유한 commit ID를 볼수 있고, 이것으로 버전을 관리한다.
        1. git log --online : 간단하게 log(버전정보, 고유한 ID)를 볼 수 있다.
-       
     2. **git status** : 현재 git이 관리하는 폴더의 상태를 나타낸다. ( 가장 많이 사용함 )
 
        1. 명령어 add와 commit 둘 중 어떤것을 해야할 지 알려준다.
@@ -99,92 +96,91 @@
 
     2. git은 **_누가, 왜_** 의 내용만 입력하면 "**_언저, 어디서, 무엇을_**" 을 자동으로 입력하고 관리해준다.
 
-10.  깃 작동 원리
+10. 깃 작동 원리
 
-     - Working Directory => Staging Area => commit 3가지의 단계를 거친다.
+    - Working Directory => Staging Area => commit 3가지의 단계를 거친다.
 
-       ![작동원리](./images/git_add_commit.png)
+      ![작동원리](../images/git_add_commit.png)
 
-     - git config를 사용해 누가 git을 사용하는지 사용자를 설정한다. => 처음 한번만 설정하면 된다.
+    - git config를 사용해 누가 git을 사용하는지 사용자를 설정한다. => 처음 한번만 설정하면 된다.
 
-     - **Working Directory**
+    - **Working Directory**
 
-       - 내 컴퓨터에 저장된 파일을 뜻한다.
-       - git status로 파일을 확인하면 add하라고 뜬다.
-         - git status쳤을때 글씨가 
-           - 빨간색일 경우 
-             - 현재 컴퓨터 디렉토리에는 있지만 Staging Area에는 올라가지 않음 
-           - 초록색일 경우 
-             - Staging Area에 있는 경우로, 아직 commit 전 단계임을 알 수 있다.  
-       - **git add a.txt** 를 통해 Staging Area에 파일을 올린다.
+      - 내 컴퓨터에 저장된 파일을 뜻한다.
+      - git status로 파일을 확인하면 add하라고 뜬다.
+        - git status쳤을때 글씨가
+          - 빨간색일 경우
+            - 현재 컴퓨터 디렉토리에는 있지만 Staging Area에는 올라가지 않음
+          - 초록색일 경우
+            - Staging Area에 있는 경우로, 아직 commit 전 단계임을 알 수 있다.
+      - **git add a.txt** 를 통해 Staging Area에 파일을 올린다.
 
-     - **Staging Area (준비)**
+    - **Staging Area (준비)**
 
-       - Working Directory 로부터 add된 파일을 받아 저장한다.
-       - **git commit -m "수정한 내용을 입력" **
-         - 해당 명령어를 통해 commit (버전) 을 만든다.
-         - commit 에 -m을 하지 않으면 vim이 나온다. 
-           - vim은 리눅스와 비슷하다. 
+      - Working Directory 로부터 add된 파일을 받아 저장한다.
+      - **git commit -m "수정한 내용을 입력" **
+        - 해당 명령어를 통해 commit (버전) 을 만든다.
+        - commit 에 -m을 하지 않으면 vim이 나온다.
+          - vim은 리눅스와 비슷하다.
 
-     - **commit(버전 생성 )**
+    - **commit(버전 생성 )**
 
-       - 버전을 최종적 생성한다.
-       - git log 명령어를 통해 볼 수 있다.
+      - 버전을 최종적 생성한다.
+      - git log 명령어를 통해 볼 수 있다.
 
-     ![작동원리](./images/git_add_commit2.png)
+    ![작동원리](../images/git_add_commit2.png)
 
-11.  Staging Area를 사용하는 이유
+11. Staging Area를 사용하는 이유
 
-     - commit을 입력하면 working Directory의 모든 내용을 버전으로 저장한다.
+    - commit을 입력하면 working Directory의 모든 내용을 버전으로 저장한다.
 
-     - 이때 Staging Area 가 없으면 버전관리를 하고싶지 않은 파일도 commit되어버린다.
+    - 이때 Staging Area 가 없으면 버전관리를 하고싶지 않은 파일도 commit되어버린다.
 
-     - 따라서 **내가 원하는 파일, 변경사항 만 commit 하기 위해** Staging Area를 사용한다.
+    - 따라서 **내가 원하는 파일, 변경사항 만 commit 하기 위해** Staging Area를 사용한다.
 
-       ex) 버전은 하나의 의미만 가져야 한다. login 기능과 회원가입 기능이 있을 떄, 두가지의 의미가 섞여 하나의 버전이 되면 관리가 어려워진다.
+      ex) 버전은 하나의 의미만 가져야 한다. login 기능과 회원가입 기능이 있을 떄, 두가지의 의미가 섞여 하나의 버전이 되면 관리가 어려워진다.
 
-       - 따라서 버전은 하나의 기능을 수정하고 업데이트 하는 것이 원칙이다.
+      - 따라서 버전은 하나의 기능을 수정하고 업데이트 하는 것이 원칙이다.
 
-12.  GitHub
+12. GitHub
 
-     - 원격 저장소로 Repository 라고 한다.
+    - 원격 저장소로 Repository 라고 한다.
 
-     - 원격 저장소에 자료 올리는 방법
+    - 원격 저장소에 자료 올리는 방법
 
-       1.  로컬과 원격으로 연결하기
+      1.  로컬과 원격으로 연결하기
 
-           - **git remote add origin (https://github.com/wonyoung0207/TIL.git)**
-             - origin 은 변수로, 다른 이름으로 변경해도 된다.
-             
-           - **git remote -v**
-             - origin으로 등록된 것을 확인한다.
-             
-           - git remote remove origin
-             - 설정된 origin을 삭제할 수 있다.
+          - **git remote add origin (https://github.com/wonyoung0207/TIL.git)**
+            - origin 은 변수로, 다른 이름으로 변경해도 된다.
+          - **git remote -v**
+            - origin으로 등록된 것을 확인한다.
+          - git remote remove origin
+            - 설정된 origin을 삭제할 수 있다.
 
-       2.  로컬의 버전을 원격에 보낸다.
+      2.  로컬의 버전을 원격에 보낸다.
 
-           - **git push origin master**
-             - origin이라는 master 에다가 넣는다는 의미이다.
-             - 이때 master는 깃허브에서 설정할 수 있다.
+          - **git push origin master**
+            - origin이라는 master 에다가 넣는다는 의미이다.
+            - 이때 master는 깃허브에서 설정할 수 있다.
 
-       3.  따라서
+      3.  따라서
 
-           1. add
-           2. commit
-           3. push
+          1.  add
+          2.  commit
+          3.  push
               - 의 순서로 원격 저장소에 올릴 수 있다.
-     - ![작동원리](./images/github_push.png)
 
-13.  Git 사용시 주의사항
+    - ![작동원리](../images/github_push.png)
 
-     1.  git init 을 중첩해서 사용하면 안된다.
-         - 하위 폴더 안에 폴더를 만들어 git init 하면 안됨
-     2.  상위 폴더 git init 하면 안됨
-         - 바탕화면이나 C드라이브 init 해 버리면 모든 파일을 git이 관리하는 것이 되어 관리가 어렵다.
-     3.  github에서 수동으로 글을 수정하면 안됨
-         - 깃허브에서 변경시 깃허브에만 version이 새로 하나 생성됨
-         - 이렇게 되면 local 에서 version을 추가할 때 충돌이 일어난다.
-     4.  commit해서 만든 버전은 되도록이면 삭제하지 않는 것이 좋다.
-         - 버전의 정보들이 꼬일 수 있기 때문에.
-         - 따라서 외부 저장소(github) 에 올린 경우라면 더더욱 삭제하지 않는것이 좋다.
+13. Git 사용시 주의사항
+
+    1.  git init 을 중첩해서 사용하면 안된다.
+        - 하위 폴더 안에 폴더를 만들어 git init 하면 안됨
+    2.  상위 폴더 git init 하면 안됨
+        - 바탕화면이나 C드라이브 init 해 버리면 모든 파일을 git이 관리하는 것이 되어 관리가 어렵다.
+    3.  github에서 수동으로 글을 수정하면 안됨
+        - 깃허브에서 변경시 깃허브에만 version이 새로 하나 생성됨
+        - 이렇게 되면 local 에서 version을 추가할 때 충돌이 일어난다.
+    4.  commit해서 만든 버전은 되도록이면 삭제하지 않는 것이 좋다.
+        - 버전의 정보들이 꼬일 수 있기 때문에.
+        - 따라서 외부 저장소(github) 에 올린 경우라면 더더욱 삭제하지 않는것이 좋다.
