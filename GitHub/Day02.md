@@ -146,14 +146,13 @@
     - 회사에서 업무를 하는 순서
 
       1. 먼저 회사가 관리하면 github 원격 저장소가 존재
-
-      1. 초보 개발자가 권한을 얻을 수 없어 내 github로 Fork 해서 저장
-
+    1. 초보 개발자가 권한을 얻을 수 없어 내 github로 Fork 해서 저장
       1. Fork한 버전을 clone을 이용해 로컬에 저장
-
-      1. 로컬에서 나만의 branch 를 만들어 기능 제작
-
+    1. 로컬에서 나만의 branch 를 만들어 기능 제작
       1. github로 psuh
+    1. 원격 저장소의 추가된 branch 확인 후 pull request
+    
+14. fetch
 
-      1. 원격 저장소의 추가된 branch 확인 후 pull request
-
+    + pull 과 차이점 
+      + pull은 merge를 해서 가져오고, fetch는 단지 소스를 그대로 가져온다. 
