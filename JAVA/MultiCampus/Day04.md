@@ -32,12 +32,13 @@
       + arr1[i] = (int)(Math.random() * 9) + 1 ; => 1~9까지에서 난수 발생 
       + 
    2. random 패키지 
-      + Random r = new Random()   => r.nextInt(a)
+      + Random r = new Random()   => r.nextInt(최대값)
       + 0 ~ a까지의 난수를 발생시킨다. 
+        + 즉, 0.0 ~ 9.9까지 출력하는것 같다. 
       + arr[i] = r.nextInt(9) + 1;  => (0~ 8) + 1까지 난수 생성 
-   3. 난수 생성시 **소수**로 출력
-      + arr[i] = r.nextDouble()*10; 
-      + 0.0 ~ 10.0 사이의 소수를 난수로 생성한다. 
+      + 난수 생성시 **소수**로 출력
+        + arr[i] = r.nextDouble()*10; 
+        + 0.0 ~ 10.0 사이의 소수를 난수로 생성한다. 
 
 5. Github와 eclipse 연동
 
