@@ -210,4 +210,4 @@ animals = ["dog", "cat", "bear"]
 animals = [len(i) for i in animals]
 print(animals)
 
-# 2: 22: 45
+# 2: 22: 45ddd
