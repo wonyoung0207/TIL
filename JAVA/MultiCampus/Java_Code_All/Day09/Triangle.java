@@ -4,6 +4,8 @@ public class Triangle extends Shape {
 
 	private int width;
 	private int height;
+	private String color;
+	
 	
 	public Triangle() {
 	}
@@ -49,6 +51,16 @@ public class Triangle extends Shape {
 	@Override
 	public double getCircum() {
 		return width + height + Math.hypot(width, height);
+	}
+	
+	public void setColor(String color) {
+		this.color = color;
+		
+	}
+	
+	public String getColor() {
+		return this.color;
+		
 	}
 
 }

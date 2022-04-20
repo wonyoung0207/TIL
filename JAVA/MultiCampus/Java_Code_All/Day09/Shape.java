@@ -29,6 +29,7 @@ public abstract class Shape {
 	// Abstract method
 	public abstract double getArea();
 	public abstract double getCircum();
+	public abstract void setColor(String color);
 }
 
 

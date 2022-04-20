@@ -3,6 +3,8 @@ public class Rectangle extends Shape {
 	
 	private int width;
 	private int height;
+	private String color;
+	
 	
 	public Rectangle() {
 	}
@@ -50,6 +52,16 @@ public class Rectangle extends Shape {
 	@Override
 	public double getCircum() {
 		return (width + height)*2;
+	}
+	
+	public void setColor(String color) {
+		this.color = color;
+		
+	}
+	
+	public String getColor() {
+		return this.color;
+		
 	}
 
 }
