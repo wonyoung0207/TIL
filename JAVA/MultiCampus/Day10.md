@@ -35,7 +35,7 @@
       + public default void connect() {} 
         + 인터페이스 안에 일반함수 넣으려면 **default **키워드를 붙인다. 
     + 인터페이스를 사용하기 위해서는 해당 클래스에서 **implement** 키워드로 불러와 사용한다. 
-    + 
+    + ![interface](../../images/interface.png)
 
 3.  추상클래스 vs   인터페이스
 
@@ -58,57 +58,61 @@
     + ArrayList<Customer>  list = new ArrayList<>();
       + list.add(c)
 
-6.  Map
+6. Map
 
-    + Key , value 로 저장되어있는 공간 
+   + Key , value 로 저장되어있는 공간 
 
-    + 순차적으로 검색하는것이 아닌 key를 검색해 찾아낸다. 
+   + 순차적으로 검색하는것이 아닌 key를 검색해 찾아낸다. 
 
-      + 따라서 list와는 다르게 값이 순차적으로 저장되어 있지 않다. 
+     + 따라서 list와는 다르게 값이 순차적으로 저장되어 있지 않다. 
 
-    + 값 넣기 
+   + 값 넣기 
 
-      + map.put("key","value") 
+     + map.put("key","value") 
 
-    + 값 가져오기
+   + 값 가져오기
 
-      + map.get("key")
+     + map.get("key")
 
-    + 값 삭제 
+   + 값 삭제 
 
-      + map.put("key")
+     + map.put("key")
 
-    + map에서 값 찾기 
+   + key가 있는지 확인
 
-      + keySet() 메소드는 Map의 모든 Key를 모아서 Set 자료형으로 리턴한다
+     + map.containsKey("key")
 
-      ```java
-      // 출력 방법 1
-      Collection<CustomerVO> col = map.values();
-      Iterator<CustomerVO> it = col.iterator();
-      ArrayList<CustomerVO> list = new ArrayList<>();
-      
-      while(it.hasNext()) {
-          CustomerVO has_c = it.next();
-          list.add(has_c);
-      }
-      
-      for(CustomerVO list_c : list) {
-          System.out.println(list_c);
-      }
-      
-      //출력 방법 2
-      Iterator<String> keys = map.keySet().iterator(); 
-      while(keys.hasNext()) {
-          String key = keys.next();
-          System.out.println("iterator hasNext 이용: " + map.get(key));
-      }
-      
-      //출력 방법 3
-      for(String keys2 : map.keySet()) {
-          System.out.println("향상된 for문 이용 : " + map.get(keys2));
-      }
-      ```
+   + map에서 값 찾기 
+
+     + keySet() 메소드는 Map의 모든 Key를 모아서 Set 자료형으로 리턴한다
+
+     ```java
+     // 출력 방법 1
+     Collection<CustomerVO> col = map.values();
+     Iterator<CustomerVO> it = col.iterator();
+     ArrayList<CustomerVO> list = new ArrayList<>();
+     
+     while(it.hasNext()) {
+         CustomerVO has_c = it.next();
+         list.add(has_c);
+     }
+     
+     for(CustomerVO list_c : list) {
+         System.out.println(list_c);
+     }
+     
+     //출력 방법 2
+     Iterator<String> keys = map.keySet().iterator(); 
+     while(keys.hasNext()) {
+         String key = keys.next();
+         System.out.println("iterator hasNext 이용: " + map.get(key));
+     }
+     
+     //출력 방법 3
+     for(String keys2 : map.keySet()) {
+         System.out.println("향상된 for문 이용 : " + map.get(keys2));
+     }
+     ```
 
 7.  문제 만들기
 
@@ -117,5 +121,4 @@
         1.  객체는 Map을 이용해 저장한다. 
 
     3.  생성, 읽기, 업데이트, 삭제 를 통해 Map을 익힌다. 
-
 
