@@ -3,6 +3,7 @@ package day13;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -16,15 +17,16 @@ import java.sql.SQLException;
 //conn = DriverManager.getConnection(url,user,password);
 /* 데이터베이스 연결 */
 
-public class DeleteCust {
+public class SelectCust {
 	public static void main(String[] args) {
 		//JDBC (Java Database Connectivity) Program
 		
 		// 변수선언
 		Connection con = null;//어떤 데이터베이스에 접속할 건지 
 		PreparedStatement ps = null;// SQL 문을 날릴때 사용 
-		String sql = "DELETE FROM CUST WHERE id=?";//sql 문장이 들어갈 변수 
-		String sql2 = "SELECT * FROM CUST WHERE id=?";
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM CUST WHERE id=?";//sql 문장이 들어갈 변수 
 		
 		
 		// MySQL JDBC Driver Loading
@@ -62,19 +64,35 @@ public class DeleteCust {
 		try {
 			ps = con.prepareStatement(sql);
 			//sql 변수의 ? 에 순차적으로 들어간다. 
-			ps.setString(1, "id66");//0이 아닌 1부터 시작한다. 
+			ps.setString(1, "id05");//0이 아닌 1부터 시작한다. 
 
 			
 			//요청 결과를 확인
-			int result = ps.executeUpdate();//테이블을 변경하고자 할때는executeUpdate 사용
-		
-			System.out.println(result);
+			//int result = ps.executeUpdate();//테이블을 변경하고자 할때는executeUpdate 사용
+			rs = ps.executeQuery();//테이블을 가져오기만 할 경우 executeQuery()
+			rs.next();//한칸을 이동하고 꺼내야 한다. 
+			
+			String id = rs.getString("id");
+			String pwd = rs.getString("pwd");
+			String name = rs.getString("name");
+			
+			System.out.println(id+ " " + pwd + " " + name);
+			
+//			System.out.println(rs);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {//무조건 실행되는 구간
 			// MySQL Close
 			//사용하고 나면 꼭 close로 닫아줘야 한다. 
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+			}
 			if(ps != null ) {
 				try {
 					ps.close();

@@ -1,4 +1,4 @@
-package day13;
+package day14;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,25 +6,14 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 
-//String url = "jdbc:mysql://localhost:3306/JSPBookDB";
-///* 사용할 jdbc의 diver를 가져올 주소와 프로토콜,사용할DB */
-//String user = "root";
-//String password = "0000";/* mysql 접속 패스워드 */
-//
-//Class.forName("com.mysql.jdbc.Driver");
-///* JDBC 드라이버 로드. 이때 DriverManager 사용할 수 있게 됨 */
-//conn = DriverManager.getConnection(url,user,password);
-/* 데이터베이스 연결 */
-
-public class DeleteCust {
+public class InsertCust {
 	public static void main(String[] args) {
 		//JDBC (Java Database Connectivity) Program
 		
 		// 변수선언
 		Connection con = null;//어떤 데이터베이스에 접속할 건지 
 		PreparedStatement ps = null;// SQL 문을 날릴때 사용 
-		String sql = "DELETE FROM CUST WHERE id=?";//sql 문장이 들어갈 변수 
-		String sql2 = "SELECT * FROM CUST WHERE id=?";
+		String sql = "INSERT INTO item VALUES (?,?,?)";//sql 문장이 들어갈 변수 
 		
 		
 		// MySQL JDBC Driver Loading
@@ -62,12 +51,12 @@ public class DeleteCust {
 		try {
 			ps = con.prepareStatement(sql);
 			//sql 변수의 ? 에 순차적으로 들어간다. 
-			ps.setString(1, "id66");//0이 아닌 1부터 시작한다. 
-
+			ps.setInt(1, 105);
+			ps.setString(2, "product05");
+			ps.setFloat(3, (float) 10000.0);
 			
 			//요청 결과를 확인
-			int result = ps.executeUpdate();//테이블을 변경하고자 할때는executeUpdate 사용
-		
+			int result = ps.executeUpdate();
 			System.out.println(result);
 			
 		} catch (SQLException e) {

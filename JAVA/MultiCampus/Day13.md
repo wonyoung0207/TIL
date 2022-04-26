@@ -105,7 +105,7 @@
          price FLOAT 
      );
      # sql 문은 대소문자를 구분하지 않는다. 하지만 SQL 문은 대문자로 쓰는것이 규칙이다. 
-     # 테이블 명은 대문자로 한다. 
+     # 테이블 명은 소문자로 한다. 
      # 필드는 소문자로 작성한다. 
      
      # Create
@@ -216,6 +216,11 @@
    			
    			// 5. 요청 결과를 확인
    			int result = ps.executeUpdate();
+               //int result = ps.executeUpdate();
+               //테이블을 변경하고자 할때는 executeUpdate 사용
+   			//ResultSet rs = ps.executeQuery();//테이블을 가져오기만 할 경우 executeQuery()
+   			//rs.next();//query 사용시 한칸을 이동하고 꺼내야 한다. 
+               	
    			System.out.println(result);//몇개가 업데이트 되는지 출력 
    			
    		} catch (SQLException e) {
@@ -243,7 +248,3 @@
    }
    
    ```
-
-   
-
-7. 

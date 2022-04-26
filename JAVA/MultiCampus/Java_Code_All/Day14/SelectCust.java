@@ -1,30 +1,22 @@
-package day13;
+package day14;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
-//String url = "jdbc:mysql://localhost:3306/JSPBookDB";
-///* 사용할 jdbc의 diver를 가져올 주소와 프로토콜,사용할DB */
-//String user = "root";
-//String password = "0000";/* mysql 접속 패스워드 */
-//
-//Class.forName("com.mysql.jdbc.Driver");
-///* JDBC 드라이버 로드. 이때 DriverManager 사용할 수 있게 됨 */
-//conn = DriverManager.getConnection(url,user,password);
-/* 데이터베이스 연결 */
-
-public class DeleteCust {
+public class SelectCust {
 	public static void main(String[] args) {
 		//JDBC (Java Database Connectivity) Program
 		
 		// 변수선언
 		Connection con = null;//어떤 데이터베이스에 접속할 건지 
 		PreparedStatement ps = null;// SQL 문을 날릴때 사용 
-		String sql = "DELETE FROM CUST WHERE id=?";//sql 문장이 들어갈 변수 
-		String sql2 = "SELECT * FROM CUST WHERE id=?";
+		ResultSet rs = null;
+		
+		String sql = "SELECT * FROM item WHERE id=?";//sql 문장이 들어갈 변수 
 		
 		
 		// MySQL JDBC Driver Loading
@@ -38,13 +30,6 @@ public class DeleteCust {
 			e.printStackTrace();
 		}
 		
-		
-		// MySQL Connect
-		//mysql에 접속할 때 필요한 id와 비밀번호 
-		// root , 0000
-//		String url = "jdbc:mysql://localhost:3306/shopdb?serverTimezone=Asia/Seoul";//"jdbc:mysql://192.168.0.8";
-//		String url = "jdbc:mysql://192.168.0.8:3306/shopdb?serverTimezone=Asia/Seoul";
-		//127.0.0.1 이 내 컴퓨터의 아이피이다.
 		
 		String url = "jdbc:mysql://192.168.0.8:3306/shopdb?serverTimezone=Asia/Seoul";
 		String mid = "admin1";//root로는 접속이 안된다. -> 사용자를 만들어줘야한다. 
@@ -62,19 +47,37 @@ public class DeleteCust {
 		try {
 			ps = con.prepareStatement(sql);
 			//sql 변수의 ? 에 순차적으로 들어간다. 
-			ps.setString(1, "id66");//0이 아닌 1부터 시작한다. 
+			ps.setInt(1, 105);//0이 아닌 1부터 시작한다. 
 
 			
 			//요청 결과를 확인
-			int result = ps.executeUpdate();//테이블을 변경하고자 할때는executeUpdate 사용
-		
-			System.out.println(result);
+			//int result = ps.executeUpdate();//테이블을 변경하고자 할때는executeUpdate 사용
+			rs = ps.executeQuery();//테이블을 가져오기만 할 경우 executeQuery()
+			rs.next();//한칸을 이동하고 꺼내야 한다. 
+			//next 를 통해 행을 바꿀 수 있다. 바로 사용할 경우, 아무것도 가르키지 않기 때문에 next를 해서 행을 이동시켜야 한다. 
+			
+			
+			String id = rs.getString("id");
+			String price = rs.getString("price");
+			String name = rs.getString("name");
+			
+			System.out.println(id+ " " + price + " " + name);
+			
+//			System.out.println(rs);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}finally {//무조건 실행되는 구간
 			// MySQL Close
 			//사용하고 나면 꼭 close로 닫아줘야 한다. 
+			if(rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
+				
+			}
 			if(ps != null ) {
 				try {
 					ps.close();
