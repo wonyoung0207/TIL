@@ -5,6 +5,7 @@ CREATE TABLE product(
     regdate DATE,
     rate FLOAT
 );
+ALTER TABLE meat CHANGE colname date abd;
 
 INSERT INTO product VALUES(NULL, 'pants', 10000, SYSDATE(),3.4);
 
