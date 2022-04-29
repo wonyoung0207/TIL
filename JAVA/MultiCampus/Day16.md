@@ -1,10 +1,12 @@
-# 15일차
+# 16일차
 ---
 
-> Frame 객체를 이용해 UI를 개발해본다. 
+> SQL 에 대해 학습한다. 
 
 1. SQL
 
+   + 데이터베이스는 schema (db) 로 되어있다. 
+   + 이러한 schema는 sql 문을 통해 제어할 수 있다. 
    + DDL 과 DML로 나뉜다. 
      + DDL : **Create, Drop, Alter **
        + 테이블 생성, 드랍 제약상황 
@@ -154,6 +156,8 @@
 
    7. LIKE
 
+      + 문자열을 검색하기 위해서 사용한다. 
+        
       + ```SQL	
         # LIKE는 검색할 때 많이 사용한다. 
         
@@ -167,11 +171,11 @@
         
         # 가운데에 '종' 이 들어가고 3글자인 사람 
         SELECT * FROM usertbl
-        WHERE name LIKE '_종_';
+     WHERE name LIKE '_종_';
         ```
 
    8. **서브쿼리 ( 쿼리 안에 쿼리 있는것 )**
-
+   
       + ```sql	
         #서브쿼리 이용
         # 윤종신 회원이 사는 동네의 회원 정보를 출력 
@@ -181,26 +185,26 @@
         
         # 윤종신의 키보다 큰 사람을 출력 
         SELECT * FROM usertbl
-        WHERE height > (SELECT height FROM usertbl WHERE name = '윤종신');
+     WHERE height > (SELECT height FROM usertbl WHERE name = '윤종신');
         ```
 
    9. 정렬 
 
       + 정렬은 모든것이 끝나고 맨 뒤에 들어간다. 
-
+   
         ```sql
         SELECT * FROM usertbl ORDER BY height;# ASC와 같음 
-        SELECT * FROM usertbl WHERE addr = '서울' AND birthYear < 1980 ORDER BY height DESC,name DESC;
+     SELECT * FROM usertbl WHERE addr = '서울' AND birthYear < 1980 ORDER BY height DESC,name DESC;
         ```
 
    10. 중복 제거 후 출력
-
+   
       + ```sql
-        SELECT DISTINCT addr FROM usertbl;#중복을 제거 
+     SELECT DISTINCT addr FROM usertbl;#중복을 제거 
         ```
 
    11. Limit
-
+   
        + ```sql
          SELECT * from usertbl
          ORDER BY height
@@ -208,7 +212,7 @@
          
          SELECT * from usertbl
          ORDER BY height
-         LIMIT 2,5;# 2에서부터 5개 출력
+      LIMIT 2,5;# 2에서부터 5개 출력
          ```
 
 7. mysql 에러

@@ -28,3 +28,4 @@ delete from cust where id='id02';
 
 
 
+
