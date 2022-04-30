@@ -3,7 +3,7 @@
 
 > Frame 객체를 이용해 UI를 개발해본다. 
 
-1. Frame
+1. **Frame**
    + java.awt 에 있는 기능으로, 사용자 UI 구성에 사용된다. 
    + 기능 구현
      1. inint()

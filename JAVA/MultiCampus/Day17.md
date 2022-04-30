@@ -6,7 +6,7 @@
 
 1. SELECT 문
 
-   1. Group By
+   1. **Group By**
 
       + 컬럼 데이터를 그룹화 할 수 있는 명령어 
 

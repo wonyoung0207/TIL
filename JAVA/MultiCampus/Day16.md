@@ -3,16 +3,16 @@
 
 > SQL 에 대해 학습한다. 
 
-1. SQL
+1. **SQL**
 
-   + 데이터베이스는 schema (db) 로 되어있다. 
+   + 데이터베이스는 **schema (db)** 로 되어있다. 
    + 이러한 schema는 sql 문을 통해 제어할 수 있다. 
-   + DDL 과 DML로 나뉜다. 
+   + **DDL** 과 **DML**로 나뉜다. 
      + DDL : **Create, Drop, Alter **
        + 테이블 생성, 드랍 제약상황 
      + DML : **Select, Insert, Delete, Update**
        + 테이블의 내용들을 다루는 명령어
-   + ERD
+   + **ERD**
      + 테이블의 설계를 하는 것. 
      + 요구사항 정의 
    + 따라서 **ERD**를 사용해 요구사항 정의와 함께 테이블을 설계하고, **DDL** 로 구축 후, **DML**을 이용해 데이터를 가공한다. 
@@ -25,22 +25,26 @@
       3. **show tables**
    2. 접속 후 domp.sql 가져오기
       1. **source** C:\Users\82102\Desktop\backup\domp.sql
+         + mysql 에러
+           1. **한글이 들어간 sql 파일을 import 하는 경우**
+              1. mysql 에서는 한글파일을 import하면 incorrect 에러가 난다. 
+              2. 파일의 인코딩 타입을 ANSI로 변경한다 . -> 다름이름으로 저장 -> 타입변경 
    3. 데이터베이스 변경
       1. use databaseName;
 
 3. SQL 사용이유
 
-   1. 데이터의 무결성 체크 
+   1. **데이터의 무결성 체크 **
       + 제약조건을 통해 데이터의 오류를 조기에 찾을 수 있다.  
       + ex) 학생의 학번을 제약조건으로 걸면, 학번 없는 학생이 들어오면 오류낸다. 
-   2. 데이터의 독립성
+   2. **데이터의 독립성**
       + 데이터베이스의 크기, 저장소 변경하더라도 기존에 작성된 응용프로그램은 전혀 영향받지 않음 
       + **따라서 데이터를 독립적으로 보관한다. **
-   3. 보안
-   4. 데이터 중복 최소화
+   3. **보안**
+   4. **데이터 중복 최소화**
       + 동일한 데이터가 여러개 중복저장되는 것을 방지한다. 
    5. 응용 프로그램 제작 및 수정 간단해짐
-   6. 데이터의 안전성 
+   6. **데이터의 안전성 **
       + DBMS가 제공하는 백업. 복원 기능을 이용하여 데이터가 깨지는 문제가 발생할경우 대처할 수 있다. 
 
 4. DBMS 와 RDBMS
@@ -171,11 +175,11 @@
         
         # 가운데에 '종' 이 들어가고 3글자인 사람 
         SELECT * FROM usertbl
-     WHERE name LIKE '_종_';
+       WHERE name LIKE '_종_';
         ```
 
    8. **서브쿼리 ( 쿼리 안에 쿼리 있는것 )**
-   
+
       + ```sql	
         #서브쿼리 이용
         # 윤종신 회원이 사는 동네의 회원 정보를 출력 
@@ -185,26 +189,26 @@
         
         # 윤종신의 키보다 큰 사람을 출력 
         SELECT * FROM usertbl
-     WHERE height > (SELECT height FROM usertbl WHERE name = '윤종신');
+       WHERE height > (SELECT height FROM usertbl WHERE name = '윤종신');
         ```
 
    9. 정렬 
 
       + 정렬은 모든것이 끝나고 맨 뒤에 들어간다. 
-   
+
         ```sql
         SELECT * FROM usertbl ORDER BY height;# ASC와 같음 
-     SELECT * FROM usertbl WHERE addr = '서울' AND birthYear < 1980 ORDER BY height DESC,name DESC;
+       SELECT * FROM usertbl WHERE addr = '서울' AND birthYear < 1980 ORDER BY height DESC,name DESC;
         ```
 
    10. 중복 제거 후 출력
-   
+
       + ```sql
-     SELECT DISTINCT addr FROM usertbl;#중복을 제거 
+       SELECT DISTINCT addr FROM usertbl;#중복을 제거 
         ```
 
    11. Limit
-   
+
        + ```sql
          SELECT * from usertbl
          ORDER BY height
@@ -212,11 +216,6 @@
          
          SELECT * from usertbl
          ORDER BY height
-      LIMIT 2,5;# 2에서부터 5개 출력
+         LIMIT 2,5;# 2에서부터 5개 출력
          ```
 
-7. mysql 에러
-
-   1. **한글이 들어간 sql 파일을 import 하는 경우**
-      1. mysql 에서는 한글파일을 import하면 incorrect 에러가 난다. 
-      2. 파일의 인코딩 타입을 ANSI로 변경한다 . -> 다름이름으로 저장 -> 타입변경 
