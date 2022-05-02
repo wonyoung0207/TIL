@@ -1,72 +1,3 @@
--- CREATE schema companydb;
-
--- DROP TABLE emp;
--- DROP TABLE dept;
--- DROP TABLE title;
-
-CREATE TABLE dept(
-deptno CHAR(2) PRIMARY KEY,
-deptname VARCHAR(20),
-deptloc VARCHAR(20) 
-);
-CREATE TABLE title(
-titleno CHAR(2) PRIMARY KEY,
-titlename VARCHAR(20) 
-);
-CREATE TABLE emp(
-empno CHAR(4) PRIMARY KEY,
-titleno CHAR(2), 
-deptno CHAR(2),
-empname VARCHAR(10),
-manager CHAR(4),
-salary INT(5),
-hdate DATE
-);
-INSERT INTO emp VALUES ('1001','40','10', '킹',NULL, 5000,'1997-01-01' );
-INSERT INTO emp VALUES ('1002','30','20', '이영업','1001', 4300,'1998-01-01' );
-INSERT INTO emp VALUES ('1003','30','30', '김생산','1001', 4800,'1999-01-01' );
-INSERT INTO emp VALUES ('1004','30','40', '홍연구','1001', 4500,'1999-12-01' );
-INSERT INTO emp VALUES ('1005','20','20', '이말숙','1002', 3300,'2000-01-01' );
-INSERT INTO emp VALUES ('1006','10','20', '김말숫','1002', 2800,'2001-01-01' );
-INSERT INTO emp VALUES ('1007','20','30', '홍영자','1003', 3500,'2000-12-01' );
-INSERT INTO emp VALUES ('1008','10','30', '이영자','1003', 2300,'2002-05-01' );
-INSERT INTO emp VALUES ('1009','20','40', '김강국','1004', 3800,'2001-01-01' );
-INSERT INTO emp VALUES ('1010','10','40', '홍정국','1004', 2500,'2002-12-01' );
-INSERT INTO dept VALUES ('10', '관리부', '서울');
-INSERT INTO dept VALUES ('20', '생산부', '부산');
-INSERT INTO dept VALUES ('30', '영업부', '대구');
-INSERT INTO dept VALUES ('40', '기술부', '대전');
-INSERT INTO title VALUES ('40','대표');
-INSERT INTO title VALUES ('30','팀장');
-INSERT INTO title VALUES ('20','대리');
-INSERT INTO title VALUES ('10','사원');
-
-
-SELECT * FROM emp;
-SELECT * FROM dept;
-
-CREATE VIEW v_emp
-AS 
-SELECT empno, empname FROM emp;
-
-SELECT * FROM v_emp;
-
-
-SELECT empno,empname,salary, salary*2 AS fee FROM emp;
-
-use martdb;
-
-use companydb;
-
-show table status;
-# 테이블의 현재 속성을 보두 보여준다. 
--- ㅇㅇ
-
-SHOW DATABASES;
-
-
-use sqldb;
-select * from usertbl;
 
 select * from emp;
 
@@ -248,3 +179,47 @@ WITH temp(sameManager)
 AS
 (SELECT salary AS sameManager FROM emp WHERE manager = (SELECT empno FROM emp WHERE empname= '킹'))
 SELECT AVG(sameManager) FROM temp;
+
+
+# 9. 입사일이 24년 지난 직원들의 연봉의 평균을 구하시오.
+SELECT * FROM emp;
+
+SELECT * FROM emp
+WHERE period_diff(date_format(NOW(), '%Y%m'),
+date_format(hdate,'%Y%m')) > (24 * 12);
+
+SELECT ROUND(AVG(a.salary),1) AS avg FROM
+(SELECT salary FROM emp 
+WHERE period_diff(date_format(NOW(), '%Y%m'),
+date_format(hdate,'%Y%m')) > (24 * 12)) a;
+
+
+# 10. 부서별 입사일이 제일 오래된 직원들 중 연봉이 제일 낮은 사람을 구하시오.
+SELECT * FROM 
+(SELECT deptno ,empname,salary, MAX(datediff(NOW(), hdate)) AS maxWorkDay FROM emp 
+GROUP BY deptno) A;
+
+SELECT MIN(salary) FROM emp;
+
+SELECT * ,datediff(NOW(),hdate) FROM emp;
+
+SELECT empname, salary  FROM emp
+WHERE salary = (SELECT MIN(A.salary) FROM 
+(SELECT deptno ,empname,salary, MAX(datediff(NOW(), hdate)) AS maxWorkDay FROM emp 
+GROUP BY deptno) A);
+
+
+
+# 11. 직급별 가장 높은 연봉의 직원들을 구하시오.
+SELECT * FROM 
+(SELECT titleno, MAX(salary), empname FROM emp
+GROUP BY titleno) A;
+
+SELECT titleno, empname, MAX(salary) FROM emp
+GROUP BY titleno;
+
+# 12. 이말숙 직원보다 늦게 입사한 직원들의 연봉의 합은 구하시오.
+
+
+
+

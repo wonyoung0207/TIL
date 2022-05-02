@@ -117,7 +117,7 @@
           # 오늘 날짜를 기준으로 몇일이 지났는지 날짜1- 날짜2 의 일수를 계산 
           SELECT mdate, DATEDIFF(NOW(), mDate) FROM usertbl;
           
-          # 오늘 날짜를 기준으로 몇일이 지났는지 날짜1- 날짜2 의 개월 수를 구한다. 
+          # 오늘 날짜를 기준으로 몇달이 지났는지 날짜1- 날짜2 의 개월 수를 구한다. 
           # 이 함수를 사용하려면 형태가 YYYYmm 이여야 한다. 
           SELECT mdate,DATE_FORMAT(mdate,'%Y%m')  FROM usertbl;
           SELECT mdate, 
@@ -160,8 +160,6 @@
        SELECT char_length('가나다'), length('가나다');
        
        ```
-
-     + 
 
      + varchar 가 더 많은 글자를 담을 수 있다. 
 
