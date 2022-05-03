@@ -31,6 +31,8 @@
               2. 파일의 인코딩 타입을 ANSI로 변경한다 . -> 다름이름으로 저장 -> 타입변경 
    3. 데이터베이스 변경
       1. use databaseName;
+   4. jdk 환경변수 설정
+      1. 시스템 고급 -> 환경 변수 -> 시스템 변수 편집 -> path에 경로 붙여넣기 
 
 3. SQL 사용이유
 
@@ -175,7 +177,7 @@
         
         # 가운데에 '종' 이 들어가고 3글자인 사람 
         SELECT * FROM usertbl
-       WHERE name LIKE '_종_';
+         WHERE name LIKE '_종_';
         ```
 
    8. **서브쿼리 ( 쿼리 안에 쿼리 있는것 )**
@@ -189,7 +191,7 @@
         
         # 윤종신의 키보다 큰 사람을 출력 
         SELECT * FROM usertbl
-       WHERE height > (SELECT height FROM usertbl WHERE name = '윤종신');
+         WHERE height > (SELECT height FROM usertbl WHERE name = '윤종신');
         ```
 
    9. 정렬 
@@ -198,17 +200,18 @@
 
         ```sql
         SELECT * FROM usertbl ORDER BY height;# ASC와 같음 
-       SELECT * FROM usertbl WHERE addr = '서울' AND birthYear < 1980 ORDER BY height DESC,name DESC;
+         SELECT * FROM usertbl WHERE addr = '서울' AND birthYear < 1980 ORDER BY height DESC,name DESC;
         ```
 
    10. 중복 제거 후 출력
-
-      + ```sql
-       SELECT DISTINCT addr FROM usertbl;#중복을 제거 
-        ```
-
+   
+       + ```sql
+         SELECT DISTINCT addr FROM usertbl;
+         #중복을 제거 
+         ```
+   
    11. Limit
-
+   
        + ```sql
          SELECT * from usertbl
          ORDER BY height

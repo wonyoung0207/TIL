@@ -57,10 +57,15 @@
    
         + 테이블 하나를 이용해 자기 자신과 조인하는 것
    
+        + 자기 자신을 가리키게 해서 상위 카테고리(어떤 부류인지)가 무엇인지 알게할 수있다.
+   
         + ```sql
           # 사원 이름과 매니저 이름을 출력 단, 모든 직원을 출력
           SELECT e1.empname, e2.empname FROM emp e1
           LEFT OUTER JOIN emp e2 ON e1.manager = e2.empno;
+          
+          
+          
           ```
    
    + **ALTER**

@@ -177,3 +177,6 @@ SELECT empname, deptname, titlename, ROUND(period_diff(DATE_FORMAT(NOW(),'%Y%m')
 INNER JOIN title t ON e.titleno = t.titleno
 INNER JOIN dept d ON e.deptno = d.deptno
 ORDER BY date_format(hdate, '%Y');
+
+
+SELECT * FROM emp;
