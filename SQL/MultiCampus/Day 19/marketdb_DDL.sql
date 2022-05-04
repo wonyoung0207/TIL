@@ -1,4 +1,3 @@
-
 DROP DATABASE IF EXISTS marketdb;
 CREATE SCHEMA marketdb;
 USE marketdb;

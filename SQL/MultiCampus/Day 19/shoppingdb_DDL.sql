@@ -9,7 +9,6 @@ DROP TABLE IF EXISTS product;
 DROP TABLE IF EXISTS cate;
 
 
-
 # cust table
 CREATE TABLE cust(
 	id VARCHAR(10),

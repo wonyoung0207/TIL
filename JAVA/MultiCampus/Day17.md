@@ -98,6 +98,8 @@
 
       + ADDDATE, SUBDATE
 
+      + **DATE 자료형**으로 저장시 YYYY-MM-DD의 형태로 저장된다. 따라서 **시,분,초** 까지 저장하기 위해서는 **DATETIME 자료형**을 사용해야 한다. 
+      
         ```sql
         SELECT mDate,adddate(mdate, interval 30 DAY),
         subdate(mDate, INTERVAL 30 DAY)
@@ -112,7 +114,7 @@
         ```
 
       + datediff() 와  period_diff
-
+      
         + ```sql
           # 오늘 날짜를 기준으로 몇일이 지났는지 날짜1- 날짜2 의 일수를 계산 
           SELECT mdate, DATEDIFF(NOW(), mDate) FROM usertbl;
