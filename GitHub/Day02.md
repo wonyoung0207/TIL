@@ -76,7 +76,7 @@
       - 여기서 master는 branch를 뜻한다.
       - git pull 명령 사용하면 git fetch 가 일어나고, git merge가 일어난다.
 
-      ![작동원리](../images/git_pull.png)
+      ![작동원리](images/git_pull.png)
 
 9. **branch**
 
@@ -98,7 +98,7 @@
 
         **이때 4가지의 v2는 각각 하나의 branch 라고 할 수 있다. **
 
-   <img src="../images/git_branch.png" width="500" height="200">
+   <img src="images/git_branch.png" width="500" height="200">
 
 10. master
 
@@ -132,14 +132,14 @@
          - 서로 다른 버전으로 나뉘어진 것이 자동으로 합쳐지는 것
          - 버전의 단계가 다른 버전을 합치는 것을 말한다.
 
-      ![branch_merge](../images/merge02.png) ![branch_merge](../images/merge01.png)
+      ![branch_merge](images/merge02.png) ![branch_merge](images/merge01.png)
 
       1. conflict
          - 서로 다른 버전이 부자연스럽게 합쳐지는 것을 말한다.
          - 내가 수동으로 합치는 것을 conflict이라고 한다.
          - 하나의 파일을 공유하는 두개의 branch가 있는 경우, 해당 파일에 내용을 변경하면 수동으로 merge하라고 conflict가 나온다.
 
-      ![branch_merge](../images/branch_merge.png)
+      ![branch_merge](images/branch_merge.png)
 
 13. pull Request
 

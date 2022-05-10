@@ -100,7 +100,7 @@
 
     - Working Directory => Staging Area => commit 3가지의 단계를 거친다.
 
-      ![작동원리](../images/git_add_commit.png)
+      ![작동원리](images/git_add_commit.png)
 
     - git config를 사용해 누가 git을 사용하는지 사용자를 설정한다. => 처음 한번만 설정하면 된다.
 
@@ -128,7 +128,7 @@
       - 버전을 최종적 생성한다.
       - git log 명령어를 통해 볼 수 있다.
 
-    ![작동원리](../images/git_add_commit2.png)
+    ![작동원리](images/git_add_commit2.png)
 
 11. Staging Area를 사용하는 이유
 
@@ -170,7 +170,7 @@
           3.  push
               - 의 순서로 원격 저장소에 올릴 수 있다.
 
-    - ![작동원리](../images/github_push.png)
+    - ![작동원리](images/github_push.png)
 
 13. Git 사용시 주의사항
 
