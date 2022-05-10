@@ -38,9 +38,9 @@
 
 3. 구현 화면
 
-   4. | 1    | ![ui1](../images/Project_Mysql_ui1.png) |
-      | ---- | --------------------------------------- |
-      | 2    | ![ui2](../images/project_Mysql_ui2.png) |
-      | 3    | ![ui3](../images/project_Mysql_ui3.png) |
+| 1    | ![ui1](../images/Project_Mysql_ui1.png) |
+| ---- | --------------------------------------- |
+| 2    | ![ui2](../images/project_Mysql_ui2.png) |
+| 3    | ![ui3](../images/project_Mysql_ui3.png) |
 
    
