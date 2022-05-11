@@ -87,7 +87,9 @@
    // 서버가 80포트를 사용할 수 있도록 만든다. 
    server.port=80
    spring.mvc.view.prefix=/WEB-INF/views/
+   //화면을 해당 폴더 밑에 만든다. 
    spring.mvc.view.suffix=.jsp
+   //화면을 jsp로 만든다. 
    
    10. 80 port 문제 시 
    제어판 > 시스템 및 보안 > 관리도구 > 서비스 > World Wide Web Publishibg  서비스 
@@ -95,9 +97,10 @@
    중시 및 수동으로 전환
    
    ```
-
-   | <img src="images/springbootProject.png" width="500px" height="500px" title="px(픽셀) 크기 설정" alt="Java"> | <img src="images/springbootProject.png" width="500px" height="500px" title="px(픽셀) 크기 설정" alt="Java"> |
+   
+   | <img src="images/springbootProject.png" width="500px" height="500px" title="px(픽셀) 크기 설정" alt="Java"> | <img src="images/springbootProject2.png" width="500px" height="500px"> |
    | :----------------------------------------------------------: | :----------------------------------------------------------: |
+   | JDK8 버전을 사용할 것이기 때문에 버전을 마맞춰줘야 하고, War로 packing을 할 것이다. 여기서 중요한것은 Package이름이다. | JDK가 제공하는 도구들로는 부족해서 Maven으로부터 추가적인 도구들을 불러오기 위해 사용한다. |
    
    
    
@@ -145,6 +148,7 @@
 
 ## 5. 이클립스 Spring 폴더구조
 
+1. 
 1. src
    + 실질적인 저장공간이다. 
    + 모든 것들은 여기에 저장된다. 

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
+
+
+</style>
+</head>
+<body>
+<h1>form Tag</h1>
+<hr>
+
+
+<form action="register2" mathod="POST">
+<!-- post는 보안에 좋다.  -->
+	<fieldset>
+		<legend> 회원가입 </legend>
+		ID <input type="text" name="id"><br> 
+		PWD <input type="text" name="pwd"><br> 
+		age <input type="number" name="age"><br> 
+		BIRTH <input type="date" name="birth"><br> 
+		GENDER<br> 
+		<input type="radio" name="gender" value="f"> Female<br>
+		<input type="radio" name="gender" value="m"> Male<br>
+		Hobby<br>
+		<input type="checkbox" name="hobby" value="s"> Study <br>
+		<input type="checkbox" name="hobby" value="t"> Train <br>
+		<input type="checkbox" name="hobby" value="e"> Eat <br>
+		
+		Car<br>
+		<select name="car">
+			<option value="k1"> k1 </option>
+			<option value="k2"> k2 </option>
+			<option value="k3"> k3 </option>
+		</select><br>
+		
+		<textarea name="resume" rows="10" cols="100">Textarea</textarea><br>
+		<input type="hidden" name="loginid" value="leejan"><br>
+		<!-- 화면에는 보이지 않지만 서버로 전송할 수있다.  -->
+		<input type="range" name="range" size="10" step="1"> <br>
+		<!-- 게이지 형태로 숫자를 보낼 수 있다.  -->
+		
+	</fieldset>
+	<input type="submit" value="register2">
+	<input type="reset" value="RESET">
+</form>
+
+
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html><!-- html5 라는 것을 나타냄 -->
+<html lang="ko"><!-- 아무 기능을 하지 않지만, 한글이라고 알려주는 역할을 한다. -->
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+<script>
+	function go(){
+		var c = confirm('Are You Go.. Naver?');
+		if(c == true){
+			location.href='http://www.naver.com';
+		}
+	}
+</script>
+
+
+</head>
+<body>
+<h1>
+Main Pages
+</h1>
+<a href="www.naver.com" >naver.com</a>
+<h2>
+header2 &nbsp;&nbsp;&nbsp; use nbsp
+</h2>
+<a href="#" onclick="go()">click</a>
+<!-- 사용하지 않는 링크는 # 를 이용헤 막아준다.  -->
+</body>
+</html>
