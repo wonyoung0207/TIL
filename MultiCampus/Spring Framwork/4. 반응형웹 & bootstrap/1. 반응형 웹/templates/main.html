@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="css/global.css">
+</head>
+<body>
+
+<h1>Main page</h1>
+
+
+<header>
+<h1><a href="/"> Shopping Mall </a></h1>
+</header>
+
+
+<nav>
+<ul>
+	<li><a href="home">home</a>
+	<li><a href="food">food</a>
+	<li><a href="wear">wear</a>
+	<li><a href="media">Media</a>
+	
+
+</ul>
+</nav>
+
+
+<!-- center가 있으면 {center}를, 없으면 center를 출력  -->
+<section th:include="${center} ? ${center} : center">
+
+</section>
+
+<footer></footer>
+
+</body>
+</html>
