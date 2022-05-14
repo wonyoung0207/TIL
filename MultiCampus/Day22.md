@@ -203,11 +203,15 @@
    2. 서버가 **Controller** 에서 해당 url에 맞는 RequestMapping을 찾아 호출한다. 
 
       - ```java
-        @RequestMapping("/")//root로 들어오면 실행되는 곳 
+        @RequestMapping("/")
+        //root로 들어오면 실행되는 곳 
         public ModelAndView main(ModelAndView mv) {
-            mv.addObject("w","Welcome!!");//w 라는 객체를 생성하여 welcome 을 넣는다. 
-            mv.setViewName("main");//main이라는 이름을 가진 view로 보낸다. 
-            return mv;//mv에 설정되어있는 main.jsp 를 호출한다. 
+            mv.addObject("w","Welcome!!");
+            //mv 객체에 w 라는 객체를 생성하여 welcome 을 넣는다. 
+            mv.setViewName("main");
+            //mv 객체에 뷰(화면내용) 속성을 main으로 설정한다. 
+            return mv;
+            //mv에 설정되어있는 view가 호출된다. 
         }
         
         @RequestMapping("/product_view") //127.0.0.1/product_view 로 들어오면 호출됨
@@ -217,7 +221,7 @@
         }
         ```
 
-   3. ModelAndView 의 객체로 RequestMapping에서 일을 처리하고 ModelAndView의 객체에 설정되어있는 view.jsp를 호출하고 jsp 파일을 html 로 변환하여 클라이언트에게 보여준다. 
+   3. **ModelAndView** 의 객체로 **RequestMapping**에서 일을 처리하고 ModelAndView의 객체에 설정되어있는 **view.jsp**를 호출하고 jsp 파일을 **html 로 변환**하여 클라이언트에게 보여준다. 
 
       - 서버는 main.jsp를 html 파일로 변경하여 클라이언트에게 보여준다. 
 

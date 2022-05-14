@@ -157,15 +157,15 @@
 
    ### 3. MyProject
 
-         1. bootstrap 을 이용하여 반응형 웹을 만들어본다. 
-         2. 총 5가지의 기능을 이용했다. 
-               1. thyemleaf -> 반응형 웹을 사용할 수 있도록 도와줌 
-               2. Table
-               3. Taps / Pills
-               4. Carousel
-               5. Login
+1. bootstrap 을 이용하여 반응형 웹을 만들어본다. 
+2. 총 5가지의 기능을 이용했다. 
+    1. thyemleaf -> 반응형 웹을 사용할 수 있도록 도와줌 
+    2. Table
+    3. Taps / Pills
+    4. Carousel
+    5. Login
 
-   4. | main & Taps / Pills | <img src="images/bootstrap/Day24/main.png" style="width:400px; height:400px" ><img src="images/bootstrap/Day24/tap.png" style="width:400px; height:400px"> |
+   4. | main & Taps / Pills | <img src="images/bootstrap/Day24/main.png" style="width:400px; height:400px" ><img src="images/bootstrap/Day24/tab.png" style="width:400px; height:400px"> |
       | ------------------- | ------------------------------------------------------------ |
-      | Table & Carousel    | <img src="Day241.assets/table-16524341887171.png" style="width:400px; height:400px"><img src="Day241.assets/carousel.png" style="width:400px; height:400px"> |
+      | Table & Carousel    | <img src="images/bootstrap/Day24/table.png" style="width:400px; height:400px"><img src="images/bootstrap/Day24/carousel.png" style="width:400px; height:400px"> |
       | Login               | <img src="images/bootstrap/Day24/login.png" style="width:400px; height:400px"> |

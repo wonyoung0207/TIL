@@ -55,7 +55,7 @@
    4. 자손, 후손
 
       1. 자손선택자
-         - 직계 자신만들 포함한다. 
+         - 직계 자신만 포함한다. 
          - ' > ' 를 사용한다. 
          - header > h1
       2. 후손선택자
@@ -124,7 +124,7 @@
           /* 투명도를 나타낸다. 0~1 사이값 설정가능  */
       }
       
-      .box:nth-child(1){
+      .box:nth-child(1){/* class=box 중에서 1번째에 적용  */
       	background:red;
       	left:10px;
       	top:10px;
@@ -154,32 +154,65 @@
       5. height
          - 콘텐츠 영역의 세로 크기
 
-      - 인라인 vs block
+      - ### **인라인 vs block**
 
-        1. inline 
+        1. #### inline 
+        
            1. 영역이 아닌 하나의 콘텐츠로 만들어져서 **가로,세로 길이를 사용하지 못한다. **
-        2. block
+           2. 속성
+              1. 새 라인에서 시작 못함
+              2. 모든 박스 내부에 위치 가능
+              3. 옆에 다른 요소 배치 가능
+              4. width, height로 크기 조절 불가능
+              5. margin 조절 불가 
+        
+        2. #### block
+        
            1. 영역으로 잡혀 콘텐츠와 콘텐츠를 구분할 수 있다. 
-           2. 가로, 세로 길이를 조절할 수 있다. 
-           3. **_block 으로 설정해도 글자의 높이를 따라간다. 따라서 line-height 라는 것으로 글자가 차이하는 공간을 늘려줘야한다._**
-
+           2. **_block 으로 설정해도 글자의 높이를 따라간다. 따라서 line-height 라는 것으로 글자가 차이하는 공간을 늘려줘야한다._**
+           3. 속성
+              1. 항상 새 라인에서 시작
+              2. 블록박스 안에서만 배치 가능
+              3. 옆에 다른 요소 배치 불가능
+              4. width, height 으로 크기 조절 가능 
+              5. padding, margin,border 조절가능
+        
+        3. #### inline-block
+        
+           1. inline의 속성과 block의 속성을 합쳐놓은 것
+           2. 속성
+              1. inline속성
+                 1. 새 라인 시작 못함
+                 2. 모든 박스 내에 배치 가능
+                 3. 옆에 다른 요소 배치 가능 
+        
+              2. block 속성
+                 1. width, height 사용가능
+                 2. padding, margin,border 조절 가능 
+        
+        
         ```CSS
         div{
             width:200px;
             height: 200px;
             border: 3px solid red;
             border-radius : 10px 50px;
-            margin:150px;/* 상하좌우 모두 margin으로 250을 지정한다.  */
+            margin:150px;
+            /* 상하좌우 모두 margin으로 250을 지정한다.  */
             padding:10px;
             box-shadow: 5px 5px 5px #A9A9A9;
             /* 가로, 세로 5씩, 그림자를 5px, 색상을 #A9로  */
         }
         
         p{
-            display: none;/* 영역까지 없애서 화면에서 안보이게 만든다.  */
-            visiblity: hidden;/* 영역은 유지하면서 안보이게 만든다.  */
-            display:inline;/* 가로 세로를 설정할 수 없다. */
-            display:inline-block;/* 가로 세로를 설정할 수 있다.  */
+            display: none;
+            /* 영역까지 없애서 화면에서 안보이게 만든다.  */
+            visiblity: hidden;
+            /* 영역은 유지하면서 안보이게 만든다.  */
+            display:inline;
+            /* 가로 세로를 설정할 수 없다. */
+            display:inline-block;
+            /* 가로 세로를 설정할 수 있다.  */
             display:block;
             
             line-height: 70px;
@@ -187,7 +220,7 @@
         
         }
         ```
-
+        
         
 
 ## 3. 폰트 추가하기
@@ -203,10 +236,11 @@
       <link href="https://fonts.googleapis.com/css2?family=Koulen&family=Oleo+Script+Swash+Caps&display=swap" rel="stylesheet">
       
       span{
-      		font-family: 'Oleo Script Swash Caps', cursive;/* 만약 앞에께 없으면 디폴트로 cursive를 적용한다.  */
+          font-family: 'Oleo Script Swash Caps', cursive;
+          /* 만약 앞에적힌 폰트가 없으면 디폴트로 cursive를 적용한다.  */
       	}
       ```
-
+      
       
 
    ## tip.콘텐츠 무조건 정 중앙부터 배치하고 싶다면 사용

@@ -9,4 +9,4 @@
    - ERD 에는 흐름이 존재하지 않는다.
      - 흐름은 화면상에 존재한다.
      - 외래키를 연결하는 것은 반드시 들어가야 하는 값을 의미하는 것이다. 즉, 관계가 있는 것이지 흐름을 의미하는 것이 아니다.
-     - ![marketdbERD](Day20.assets/marketdb_erd-16518206265241.png)
+     - ![marketdbERD](images/marketdb_erd.png)

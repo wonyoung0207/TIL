@@ -6,8 +6,6 @@
 >
 > Scanner 에 대해 배운다. 
 
-
-
 ## 1. class가 자바 머신(JVM)에 의해 실행되면 메모리에 자바 영역이 잡힌다. 
    + 메모리 영역은 크게 **code, Stack, Heap** 으로 나뉜다. 
    + **Code **
@@ -31,7 +29,6 @@
    + 가비지 컬랙터 : stack 영역과 heap 영역의 연결이 끊어진 데이터를 heap 영역에서 자동으로 삭제해준다. 
    + Heap 영역에 저장된 값은 변경할 수 없다. 따라서 해당 값을 바꾸기 위해서는 값을 삭제시키고 다시 공간을 할당받는다. 이때 바뀌기 전 주소의 데이터는 가비지 컬렉터에 의해 삭제된다. 
    + ![memory_stack_heap](images/memory_heap_stack.png)
-   + 
 ## 2. 메모리 주소 얻는 방법
    + String s1 = “ABC”  와 String s2 = “ABC” 는 같은 주소를 가진다. -> ABC의 주소에 있는 값을 바꾸면 s1과 s2 둘다 바뀐다. 
    + String s3 = new String(“ABC”) -> 이렇게 하면 다른 주소를 가지는 ABC를 만들 수 있다. 

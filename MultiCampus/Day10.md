@@ -25,38 +25,37 @@
 
 ![interface](images/Interface.png)
 
-    + 동일한 목적을 가지고 동일한 기능을 수행하는 것으로 ,클래스의 기본 틀이 된다.
-    + 특징
-      1. **다중상속**을 지원한다. 
-    + 인터페이스의 모든 필드는 **public static final** 이여야 한다. 
-    + 인터페이스의 모든 메소드는 **abstract** 이여야 한다. 
-      + 묵시적으로 abstract가 생략된다. 
-    + 인터페이스의 일반함수 구현 
-      + public default void connect() {} 
-        + 인터페이스 안에 일반함수 넣으려면 **default **키워드를 붙인다. 
-    + 인터페이스를 사용하기 위해서는 해당 클래스에서 **implement** 키워드로 불러와 사용한다. 
-    + ![interface](../../images/interface.png)
+1. 동일한 목적을 가지고 동일한 기능을 수행하는 것으로 ,클래스의 기본 틀이 된다.
++ 특징
+  1. **다중상속**을 지원한다. 
+  2. 인터페이스의 모든 필드는 **public static final** 이여야 한다. 
+  3. 인터페이스의 모든 메소드는 **abstract** 이여야 한다. 
+     1. 묵시적으로 abstract가 생략된다. 
+3. 인터페이스의 일반함수 구현 
+  + public default void connect() {} 
+    + 인터페이스 안에 일반함수 넣으려면 **default **키워드를 붙인다. 
+4. 인터페이스를 사용하기 위해서는 해당 클래스에서 **implement** 키워드로 불러와 사용한다. 
 
 ## 3.  추상클래스 vs   인터페이스
 
-    1.  추상클래스를 상속받으면 generalize
-    2.  인터페이스를 상속 받으면 Realization
+1. 추상클래스를 상속받으면 generalize
+2.  인터페이스를 상속 받으면 Realization
 
 ## 4.  OracleDAO
 
-    1.  오라클 데이터베이스에 연결하기 위해 사용 
-    2.  User 라는 키워드는 이름으로 사용하지 않는것이 좋다 .
-        + 왜냐하면, oracle의 예약어이기 때문이다. 
-    3.  데이터베이스와 connect작업을 한 후 , close 를 해야한다. 
+1. 오라클 데이터베이스에 연결하기 위해 사용 
+2.  User 라는 키워드는 이름으로 사용하지 않는것이 좋다 .
+    + 왜냐하면, oracle의 예약어이기 때문이다. 
+3.  데이터베이스와 connect작업을 한 후 , close 를 해야한다. 
 
 ## 5.  ArrayList
 
-    + 배열을 대체한다. 
-    + 배열은 생성시 길이를 정해줘야 생성할 수 있다. 
-      + 따라서 현업에서는 거의 사용되지 않는다. 
-    + 배열과는 다르게 크기가 자동으로 조절된다. 
-    + ArrayList<Customer>  list = new ArrayList<>();
-      + list.add(c)
+1. 배열을 대체한다. 
++ 배열은 생성시 길이를 정해줘야 생성할 수 있다. 
+  + 따라서 현업에서는 거의 사용되지 않는다. 
++ 배열과는 다르게 크기가 자동으로 조절된다. 
++ ArrayList<Customer>  list = new ArrayList<>();
+  + list.add(c)
 
 ## 6. Map
 

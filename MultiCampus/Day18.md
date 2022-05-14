@@ -25,40 +25,40 @@
        INNER JOIN item i ON c.itemid = i.id;
        ```
 
+- **OUTER JOIN**
 
-      + **OUTER JOIN**
-       
-        + 어느 한쪽에만 데이터가 존재할 떄 사용한다. 
-       
-        + 기준을 정해 출력할 수 있다. 
-       
-        + ```sql
-          # outer join -> 한쪽에 있는 것을 꺼낼때 사용한다. 
-          SELECT * FROM emp e
-          RIGHT OUTER JOIN title t ON e.titleno = t.titleno;# 오른쪽 title을 기준으로 출력한다. 
-          
-          SELECT * FROM emp e
-          LEFT OUTER JOIN title t ON e.titleno = t.titleno;# 왼쪽 emp 기준으로 출력한다. 
-          
-          # FULL OUTER : 첫번째 결과와 두번째 결과를 합친다. 
-          SELECT * FROM emp e
-          LEFT OUTER JOIN title t ON e.titleno = t.titleno
-          UNION
-          SELECT * FROM emp e
-          RIGHT OUTER JOIN title t ON e.titleno = t.titleno;
-          ```
-       
-      + CROSS JOIN 
-       
-        + 한쪽 테이블의 모든 행들과 다른쪽 테이블의 모든 행을 조인시키는 것 
-        + 잘 사용하지 않는다. 
+  + 어느 한쪽에만 데이터가 존재할 떄 사용한다. 
+    
+  + 기준을 정해 출력할 수 있다. 
+    
+  + ```sql
+    # outer join -> 한쪽에 있는 것을 꺼낼때 사용한다. 
+    SELECT * FROM emp e
+    RIGHT OUTER JOIN title t ON e.titleno = t.titleno;# 오른쪽 title을 기준으로 출력한다. 
+    
+    SELECT * FROM emp e
+    LEFT OUTER JOIN title t ON e.titleno = t.titleno;# 왼쪽 emp 기준으로 출력한다. 
+    
+    # FULL OUTER : 첫번째 결과와 두번째 결과를 합친다. 
+    SELECT * FROM emp e
+    LEFT OUTER JOIN title t ON e.titleno = t.titleno
+    UNION
+    SELECT * FROM emp e
+    RIGHT OUTER JOIN title t ON e.titleno = t.titleno;
+    ```
+    
+
+- **CROSS JOIN **
+
+  + 한쪽 테이블의 모든 행들과 다른쪽 테이블의 모든 행을 조인시키는 것 
+  + 잘 사용하지 않는다. 
 
    + **SELF JOIN**
    
         + 테이블 하나를 이용해 자기 자신과 조인하는 것
-     
+         
         + 자기 자신을 가리키게 해서 상위 카테고리(어떤 부류인지)가 무엇인지 알게할 수있다.
-     
+         
         + ```sql
           # 사원 이름과 매니저 이름을 출력 단, 모든 직원을 출력
           SELECT e1.empname, e2.empname FROM emp e1
@@ -86,5 +86,5 @@
              # 제약조건을 주는데, itemid를 추가하는데 이것을 item테이블의 id로 만든다. 
              ALTER TABLE cart ADD CONSTRAINT FOREIGN KEY (itemid) REFERENCES item(id);
              ```
-      
+           
              
