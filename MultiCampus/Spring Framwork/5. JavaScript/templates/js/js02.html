@@ -1,0 +1,51 @@
+<meta charset="UTF-8">
+<script>
+window.onload = function(){
+	var h2 = document.querySelector('#hh2')
+	
+	//1. number
+	var num = 10;
+	
+	//2. character
+	var str = '100';
+	
+	//3. undefined
+	var v;
+	
+	//4. boolean
+	var b = true;
+	
+	//5. 배열
+	var arr = [1,2,3,4,5];	 
+	
+	//6. JSON( Java Script Object Notaion)
+	var obj = {id:'id01', pwd:'pwd01',name:'lee', age:10}; //object
+	
+	//7. 함수 
+	var f = function(){
+		return 333;
+	};
+	
+	
+	var type = typeof(num);/* typeof() : 현재 선언한 변수의 타입을 가져온다.  */
+	h2.innerHTML = num + ' = ' + type;
+	h2.innerHTML += '<br>' + str + ' = '  + typeof(str);
+	h2.innerHTML += '<br>' + arr + ' = '  + typeof(arr);// 배열그냥 출력 가능 
+	h2.innerHTML += '<br>' + obj.name + ' = '  + typeof(obj);
+	
+	
+	
+	
+}
+
+
+</script>
+
+
+<h1>JS02 </h1>
+<p> Js02의 내용을 불러옵니다. .</p>
+<hr>
+<h3>JS02 자바 스크립트의 데이터 타입에 대해 학습한다. </h3>
+<p>Learn JS...</p>
+
+<h2 id= "hh2"> </h2>

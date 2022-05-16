@@ -1,0 +1,35 @@
+<meta charset="UTF-8">
+<script>
+	function calc(){
+		var str = document.querySelector('#data').value;
+		var r = document.querySelector('#result');
+		//input 타입의 값을 가져오는 방법이다. 
+		if(str == '' || str == null){
+			r.innerHTML = 'Error (input value is null or "")';
+			r.style = 'color:red';
+			return ;
+			
+		}else{
+			document.querySelector('#result').innerHTML = eval(str);
+			r.style = 'color:black';
+			document.querySelector('#data').value = '';
+		};
+		
+		if(isFinite(result)){
+			result = 'Input Error...';
+		}
+		
+		
+		
+		
+	}
+
+</script>
+
+<h1>JS06 페이지 입니다.</h1>
+<p> Js06의 내용을 불러옵니다. .</p>
+<hr>
+<h3>계산기 </h3>
+<input type="text" id="data">
+<button onclick="calc()"> Calc </button>
+<h3 id="result"> </h3>

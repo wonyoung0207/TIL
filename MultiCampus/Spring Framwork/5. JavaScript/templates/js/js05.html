@@ -1,0 +1,54 @@
+<meta charset="UTF-8">
+
+<script>
+	function a(n){
+		var result = n * 100;//지역변수 
+		return 'A' + n;
+	};
+	
+	var b = function(){
+		return 'B';	
+	};
+	
+	var result = a(100);//전역변수 
+	//alert(result);
+	
+	function c(){
+		// javascript는 데이터 타입으로 함수를 가지고 있어 함수를 리턴할 수 있다. 
+		return function(){
+			return 100;
+		};
+		//함수를 리턴 
+		
+	};
+	
+	var r1 = c();//r1은 데이터타입이 함수이다. 
+	var result2 = r1();
+
+	
+	function display(){
+		
+		setInterval(function(){
+			var d = new Date();
+			var result = d.getHours() + ' ' + d.getMinutes() + ' ' + d.getSeconds();
+			document.querySelector('#time').innerHTML = result;
+			
+		}, 1000);//1초에 한번씩 tf함수를 호출 
+		
+	};
+	
+	window.onload = function(){
+		display();
+		
+	};
+
+	
+</script>
+
+
+<h1>JS05 페이지 입니다.</h1>
+<p>Js05의 내용을 불러옵니다. .</p>
+<hr>
+<h3>함수에 대해 학습합니다.</h3>
+
+<h2 id="time"></h2>
