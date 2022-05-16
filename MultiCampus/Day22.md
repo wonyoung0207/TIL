@@ -204,6 +204,7 @@
 
       - ```java
         @RequestMapping("/")
+        //어떤 요청이 들어왔는지를 기입한다.
         //root로 들어오면 실행되는 곳 
         public ModelAndView main(ModelAndView mv) {
             mv.addObject("w","Welcome!!");
