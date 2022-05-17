@@ -1,27 +1,23 @@
 <meta charset="UTF-8">
 <style>
-	#result{
-		width:200px;
-		border: 2px solid red;
-		
-	}
-	
-	#result > table{
-		width:200px;
-		border: 2px solid blue;
-	
-	}
-	
-	th, td{
-		text-align : center;
-	}
-	
+#result {
+	width: 200px;
+	border: 2px solid red;
+}
 
+#result>table {
+	width: 200px;
+	border: 2px solid blue;
+}
 
+th, td {
+	text-align: center;
+}
 </style>
 <script>
 
 function getdata(){
+		//JSON 방식 
 		var a = [
 			{id:'id01', name:'lee', age:10},
 			{id:'id02', name:'kim', age:11},
@@ -53,8 +49,10 @@ function getdata(){
 </script>
 
 <h1>JS04 페이지 입니다.</h1>
-<p> Js04의 내용을 불러옵니다. .</p>
+<p>Js04의 내용을 불러옵니다. .</p>
 <hr>
-<h3> JSON 형식으로 테이블에 데이터 추가하기 </h3>
-<h2><a href="#" onclick="getdata()">click</a></h2>
+<h3>JSON 형식으로 테이블에 데이터 추가하기</h3>
+<h2>
+	<a href="#" onclick="getdata()">click</a>
+</h2>
 <div id="result"></div>

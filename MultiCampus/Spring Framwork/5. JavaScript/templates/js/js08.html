@@ -1,7 +1,46 @@
 <meta charset="UTF-8">
+<style>
+	#result{
+		width: 300px;
+		border: 2px solid red;
+		
+	}
+
+</style>
+<script>
+function display(d){// 데이터를 화면에 보여주는 함수
+	
+	for(var i in d){
+		var text = '';
+		text += '<h2>';		
+		text += d[i].id + ', ' + d[i].name + ', ' + d[i].age;
+		text += '</h2>';
+		document.querySelector('#result').innerHTML += text;
+	}
+	
+}
+
+
+function getData(){// 데이터를 가져오는 함수 
+	var a = [
+		{id:'id01', name:'lee', age:10},
+		{id:'id02', name:'kim', age:11},
+		{id:'id03', name:'park', age:12},
+		{id:'id04', name:'ahn', age:13}
+		
+	];// 서버에서 가져온 데이터라고 가정
+	
+	
+	display(a);
+	
+	
+};
+
+</script>
 
 <h1>JS08 페이지 입니다.</h1>
 <p> Js08의 내용을 불러옵니다. .</p>
 <hr>
-<h3>JS08 Text</h3>
-<p>Learn JS...</p>
+<h3>GET DATA</h3>
+<button onclick="getData()">Get Data</button>
+<div id="result"></div>

@@ -97,10 +97,12 @@
       - 배열, 다양한 타입을 포함할 수 있다. 데이터 타입은 Object으로 표현.
       - \[ ] 를 사용
 
-   6. object = JSON(Java Script Object Notation)
+   6. **object = JSON(Java Script Object Notation)**
 
-      - 객체 타입을 의미
+      - 객체 타입을 의미.
+      - 배열안에 객체가 있는 형태이다. 
       - { }  로 사용
+      - ex ) a  = [ { id:'id01', name: 'name01'}];
 
    7. function
 

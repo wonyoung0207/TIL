@@ -1,0 +1,76 @@
+<meta charset="UTF-8">
+
+<script>
+$(document).ready(function(){
+	
+	$('input[name="id"]').blur(function(){//포커스 벗어나면 실행
+		var id = $('input[name="id"]').val();
+		var id = $(this).val();
+		if(id == ''){
+			$('#sid').text('ID는 필수 항목 입니다. ');
+			$(this).focus();
+		}
+		
+	});
+	
+	$('input[name="pwd"]').blur(function(){//포커스 벗어나면 실행
+		var id = $('input[name="pwd"]').val();
+		var id = $(this).val();
+		if(id == ''){
+			$('#spwd').text('pwd는 필수 항목 입니다. ');
+			$(this).focus();
+		}
+		
+	});
+	
+	$('button').click(function(){
+		var id = $('input[name="id"]').val();
+		var pwd = $('input[name="pwd"]').val();
+		// Login 버튼 클릭시
+		// id 와 pwd가 공란인지 확인 후
+		// focus 이동 및 span메시지 출력 
+		if(id == ''){
+			$('#sid').text('ID는 필수 항목 입니다. ');
+			$('input[name="id"]').focus();
+			return ;
+		}else if(pwd == ''){
+			$('#spwd').text('pwd는 필수 항목 입니다. ');
+			$('input[name="pwd"]').focus();
+			return ;
+		}
+		
+		
+		$('#login_form').attr({
+			'action':'loginimpl',
+			'method':'post'
+		});
+		
+		$('#login_form').submit();//submit : form 에있는 input 들을 전송한다는 것이다.
+		
+	});
+});
+
+</script>
+
+<h1>Jq03</h1>
+<p>Jq03의 내용을 불러옵니다. .</p>
+<hr>
+<div class="container col-sm-6">
+	<form id="login_form">
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="id">id:</label>
+			<input type="text" class="form-control" id="id" placeholder="Enter id"
+				name="id">
+			<span id="sid"></span>
+
+		</div>
+		<div class="form-group">
+			<label class="control-label col-sm-2" for="pwd">Password:</label> 
+			<input type="password" class="form-control" id="pwd"
+				placeholder="Enter password" name="pwd">
+			<span id="spwd"></span>
+			<button class="btn btn-default">LOGIN</button>
+	</form>
+
+</div>
+
