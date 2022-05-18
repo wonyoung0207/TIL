@@ -37,7 +37,7 @@
          }
          ```
 
-## 3. thymeleaf 사용
+## 3. thymeleaf  서버 사용
 
    1. pom.xml 에 다음 코드 추가 
 
@@ -56,7 +56,7 @@
 
       1. 리턴전에 Model 객체에 값을 설정할 수 있다.
          1.  Model에 담긴 객체를 이용해서 main.html의 section태그안에 들어갈 파일명을 자유롭게 변경할 수 있다. 
-         2. .html 을 쓰지 않아도 thymeleaf 에서는 자동으로 파일명.html 로 찾아서 보여준다. 
+         2. .html 을 쓰지 않아도 thymeleaf 서버에서는 자동으로 파일명.html 로 찾아서 보여준다. 
 
       ```java
       // Controller.java
@@ -139,7 +139,7 @@
       
       ```
 
-   4. thymeleaf의 특징은 jsp파일을 사용하지 않는다는 것이다. 
+   4. thymeleaf 서버의 특징은 jsp파일을 사용하지 않는다는 것이다. 
 
 ## 4. Bootstrap 템플릿 이용해서 반응형 웹 만들기 
 

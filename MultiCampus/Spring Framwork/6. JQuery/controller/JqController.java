@@ -25,6 +25,18 @@ public class JqController {
 
 	}
 	
+	@RequestMapping("/registerimpl")
+	public String registerimpl(Model m, 
+			String name, String pwd, String ch, String optradio, int sel
+			) {
+		System.out.printf("%s %s %s %s %d", name, pwd, ch, optradio, sel);
+		m.addAttribute("rname", name);
+		m.addAttribute("center","jq/registerok");
+		m.addAttribute("left","jq/left");
+		return "main";
+
+	}
+	
 	
 	@RequestMapping("/jq")
 	public String jq(Model m) {
@@ -119,6 +131,42 @@ public class JqController {
 		return "main";
 
 	}
+	@RequestMapping("/jq11")
+	public String jq11(Model m) {
+		m.addAttribute("center","jq/jq11");
+		m.addAttribute("left","jq/left");
+		return "main";
+		
+	}
+	@RequestMapping("/jq12")
+	public String jq12(Model m) {
+		m.addAttribute("center","jq/jq12");
+		m.addAttribute("left","jq/left");
+		return "main";
+		
+	}
+	@RequestMapping("/jq13")
+	public String jq13(Model m) {
+		m.addAttribute("center","jq/jq13");
+		m.addAttribute("left","jq/left");
+		return "main";
+		
+	}
+	@RequestMapping("/jq14")
+	public String jq14(Model m) {
+		m.addAttribute("center","jq/jq14");
+		m.addAttribute("left","jq/left");
+		return "main";
+		
+	}
+	@RequestMapping("/jq15")
+	public String jq15(Model m) {
+		m.addAttribute("center","jq/jq15");
+		m.addAttribute("left","jq/left");
+		return "main";
+		
+	}
+	
 	
 	
 }

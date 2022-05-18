@@ -1,0 +1,18 @@
+<meta charset="UTF-8">
+
+<script>
+$(document).ready(function(){
+	$('#n1').keydown(function(){
+		if($(this).val().length > 6 ){
+			// 입력된 길이가 6자리면 다음 input 으로 포커스 이동 
+			$('#n2').focus();
+		}
+	});
+});
+</script>
+
+<h1>Jq11 </h1>
+<p> Jq11의 내용을 불러옵니다. .</p>
+<hr>
+<h3>길이를 제한하고 길이가 넘어가면 다음input으로 넘어갑니다. </h3>
+<input type="number" id="n1" maxlength="7">-<input type="number" id="n2"  maxlength="7">

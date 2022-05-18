@@ -8,7 +8,7 @@
 >
 > JQuery 에대해 학습한다. 
 
-1. DOM
+## 1. DOM
 
    1. DOM 이란?
       1. **HTML 문서에 사용되는 태그들을 DOM 이라고 한다. **
@@ -24,17 +24,6 @@
       2. html
       3. head body 등...
    3. 구성요소
-      1. 프로퍼티
-         - HTML 태그의 속성 반영
-      2. 메소드
-         - DOM 객체의 멤버 함수로, HTML 태그 제어 가능. 
-      3. 컬렉션
-         - 자식 DOM 객체들의 주소를 가지는 등 배열과 비슷한 종합적 정보
-      4. 이벤트 리스너
-         - HTML 태그에 작성된 이벤트 리스너 반영. 총 70개 이벤트 리스너가 존재함
-      5. css3 스타일
-         - HTML태그에 스타일 시트 정보 반영
-         - DOM 객체의 style프로퍼티를 통해 모양 제어 
    4. this 키워드
       1. 객체 자신을 가리키는 자바스크립트 키워드
       2. DOM 객체에서 자신을 가리키는 용도로 사용 
@@ -44,7 +33,7 @@
       3. html 태그들을 document 객체에 담아 간다. 
       4. \<html> 태그 만나면 document 객체를 완성하고 닫는다. 
 
-2. BOM
+## 2. BOM
 
    1. BOM이란?
       1. **브라우저를 제어하기 위해 지원되는 객체 **
@@ -65,7 +54,7 @@
          - 다양한 Timer를 사용할 수 있다. 
    3. <img src="images/DOM.jpg" width=400px; height=400px;>
 
-3. JQuery
+## 3. JQuery
 
    1. Jquery란?
 
@@ -87,6 +76,26 @@
 
          1. 추가
             - $('h1').attr(width, 200)
+            
+            - ```javascript
+              /* 내용을 고치지 못한다. */
+              $('#name').attr('disabled', 'disabled')
+              
+              
+              $('form').attr({
+                  'action':'/registerimpl',
+                  'method':'get'
+              });
+              
+              
+              // checkbox 와 radio , selelct 의 초기선택값을 지정함 
+              $('input[name="ch"]:checkbox[value="op3"]').val('op3').attr('checked', true);
+              
+              $('input[name="optradio"]:radio[value="op3"]').val('op2').attr('checked',true);
+              
+              $('#sel').val('2').attr('selected','selected');
+              ```
+            
          2. 제거
             - $('h1').removeattr('width')
 
@@ -140,4 +149,127 @@
       1. innerHTML 
          - 태그 내에 포함된 text의 내용을 뜻한다. 
       2. val()
-         - 입력 태그에 입력된 값을 뜻한다
+         - fome에서 입력된 값을 뜻한다. 
+
+## 4. Project
+
+1. 기능 설명
+
+   1. BootStrap을 이용해 회원가입 화면을  만들어 본다. 
+   2. 네이버 회원가입 화면과 최대한 똑같이 만든 후 나만의 스타일로 꾸며본다. 
+
+2. 사용한 기능
+
+   1. BootStrap 에서 사용하는 class 와 col-sm-x 로 너비 맞추기 
+      1. col-sm-3 : 화면의 가로를 12로 나눈 것 중 3칸의 너비로 설정
+      2. form-control , form-group 클래스를 이용해 콘텐츠 묶기 
+   2. input
+      1. text
+      2. password
+      3. date
+      4. email
+      5. select
+   3. placeholder 와 button animation 적용
+
+3. 코드
+
+   1. ```html
+      <style>
+      #div_logo{
+      	text-align:center;
+      	
+      }
+      #logo{
+      	color: #228B22;
+      }
+      
+      #mybtn{
+      	background: #4CAF50;
+      	color : white;	
+      	border : 2px solid #4CAF50; 
+      	transition-duration : 0.4s;
+       	text-decoration: none;
+      }
+      
+      #mybtn:hover{
+      	background : lightgreen;
+      	color : gray;
+      }
+      
+      </style>
+      
+      <h1>Jq04 </h1>
+      <p> Jq04의 내용을 불러옵니다. .</p>
+      <hr>
+      
+      <div class="container col-sm-3">
+      
+      </div>
+      <div class="container col-sm-6">
+      <div id="div_logo">
+      <h3>회원 가입 화면 </h3>
+      <h1><div id="logo">NAVER</div></h1>
+      </div>
+      <form>
+      	<div class="form-group">
+      		<label for="name">ID:</label>
+      		<input type="text" class="form-control" name="id" id="id" placeholder="Input ID">
+      	</div>
+      	
+      	<div class="form-group">
+      		<label for="pwd">Password:</label>
+      		<input type="password" class="form-control"  name="pwd" id="pwd" placeholder="Input Password">
+      	</div>
+      	
+      	<div class="form-group">
+      		<label for="samepwd">비밀번호 재확인:</label>
+      		<input type="password" class="form-control"  name="samePwd" id="samePwd" placeholder="Same Password">
+      	</div>
+      	
+      	<div class="form-group">
+      		<label for="name">이름:</label>
+      		<input type="text" class="form-control"  name="name" id="name" placeholder="Input Name">
+      	</div>
+      	
+      	<div class="form-group">
+      		<label for="birthday">생년 월일:</label>
+      		<input type="date" class="form-control"  id="birthday" name="birthday">
+      	</div>
+      	
+      	<div class="form-group">	
+      		<label for="gender">성별:</label>
+      		<select name="gender"  class="form-control" >
+      			<option value="남자"> 남자 </option>
+      			<option value="여자"> 여자 </option>
+      		</select>
+      	</div>
+      	
+      	<div class="form-group">
+      		<label for="email" >email:</label>
+      		<input type="email" class="form-control"  name="email" id="email" placeholder="abc@naver.com">
+      	</div>
+      	
+      	<div class="form-group">
+      		<label for="contry">휴대전화 </label>
+      		<select name="contry" class="form-control" >
+      			<option value="+82"> 한국 (+82) </option>
+      			<option value="+1"> 미국 (+1) </option>	
+      		</select>
+      		<input type="tel" name="telphone" id="telphone"  class="form-control" placeholder="010-1234-5678" >
+      		<button onclick="" class="form-control" id="mybtn"> 인증 번호 전송 </button>
+      	</div>
+      	
+      	<div class="form-group">
+      	<button onclick="" class="form-control" id="mybtn"> 가입하기 </button>
+      	</div>
+      	
+      </form>
+      </div>
+      ```
+
+4. 결과물
+
+   1. | 네이버 회원가입 화면      | <img src="images/naver_JoinMember.png">  |
+      | :------------------------ | ---------------------------------------- |
+      | 내가 만든 회원가입 화면 1 | <img src="images/naver_JoinMember2.png"> |
+      | 내가 만든 회원가입 화면 2 | <img src="images/naver_JoinMember3.png"> |

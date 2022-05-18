@@ -1,16 +1,86 @@
 <meta charset="UTF-8">
 <style>
-
+	#result{
+		border: 2px solid red;
+	}
+	
+	.myclass{
+		color:red;
+		background:black;
+		
+	}
+	
 </style>
 
 <script>
+
+
+$(document).ready(function(){
+	
+	$('h1').hover(function(){
+		$(this).addClass('myclass');
+	}, function(){
+		$(this).removeClass('myclass');
+	});
+	
+	
+	
+	var i = 0;
+	//객체 삽입
+	$('#append').click(function(){//맨 뒤에 추가 
+		$('#result').append('<h4> Add Element' + i + '</h4>');
+		i++;
+		$('button').addClass('myclass');
+		$('button').not($(this)).removeClass('myclass');//선택된 태그만 뺴고 remove함 
+	});
+	$('#prepend').click(function(){// 맨앞에 추가
+		$('#result').prepend('<h4> Add Element' + i + '</h4>');
+		i++;
+		$('button').addClass('myclass');
+		$('button').not($(this)).removeClass('myclass');//선택된 태그만 뺴고 remove함
+		
+	});
+	$('#after').click(function(){// 해당 태그 뒤에 추가 
+		$('#result').after('<h4> Add Element' + i + '</h4>');
+		i++;
+		$('button').addClass('myclass');
+		$('button').not($(this)).removeClass('myclass');//선택된 태그만 뺴고 remove함
+	});
+	$('#before').click(function(){// 해당 태그 전에 추가 
+		$('#result').before('<h4> Add Element' + i + '</h4>');
+		i++;
+		$('button').addClass('myclass');
+		$('button').not($(this)).removeClass('myclass');//선택된 태그만 뺴고 remove함
+	});
+	
+	
+	//객체 삭제
+	$('#remove').click(function(){
+		$('#result').remove();//태그자체를 삭제
+		$('button').addClass('myclass');
+		$('button').not($(this)).removeClass('myclass');//선택된 태그만 뺴고 remove함
+	});
+	$('#empty').click(function(){
+		$('#result').empty();//내용물만 삭제 
+		$('button').addClass('myclass');
+		$('button').not($(this)).removeClass('myclass');//선택된 태그만 뺴고 remove함
+	});
+	
+});
 
 </script>
 
 <h1>Jq9 </h1>
 <p> Jq9의 내용을 불러옵니다. .</p>
+<h1> 버튼의 속성을 알아본다. </h1>
 <hr>
-<h3></h3>
-<p></p>
+<button id="append">append</button>
+<button id="prepend">prepend</button>
+<button id="after">after</button>
+<button id="before">before</button>
+<button id="remove">remove</button>
+<button id="empty">empty</button>
+<hr>
 
+<div id="result"></div>
 

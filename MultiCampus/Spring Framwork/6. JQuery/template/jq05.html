@@ -1,16 +1,92 @@
 <meta charset="UTF-8">
 <style>
-
+	#result {
+		width:300px;
+		border: 2px solid red;
+	}
+	
 </style>
 
 <script>
+
+function display(d){
+	var txt='';
+	$(d).each(function(index,item){
+		//index와 item이 자동으로 들어간다. 
+		//index는 몇번째인지, item에는 value 가 들어간다. 
+		txt += '<h3>';
+		txt += item.id + ' ' + item.name + ' ' + item.age;
+		txt += '</h3>';
+	});//각각의 배열만큼 func 을 실행한다. 
+	
+	
+	
+	/* 	
+	for(var i in d){
+		txt += '<h3>';
+		txt += d[i].id + ' ' + d[i].name + ' ' + d[i].age;
+		txt += '</h3>';
+	}
+ */	
+	$('#result').html(txt);
+	
+}
+
+
+function getdata(){
+	var data = [
+		{id:'id01', name:'lee', age:10},
+		{id:'id02', name:'kim', age:11},
+		{id:'id03', name:'park', age:12},
+		{id:'id04', name:'ahn', age:13}
+		
+	];
+	//alert(data);
+	
+	display(data);
+	
+	
+	
+}
+
+$(document).ready(function(){
+	$('#getdata').click(function(){
+		getdata();
+	});
+	
+/* 	$('#show').click(function(){
+	    $('#result').show();
+	});
+	$('#hide').click(function(){
+	    $('#result').hide();
+	}); */
+	
+/* 	
+	$('#show').click(function(){
+		$('#result').fadeIn();
+	});
+	$('#hide').click(function(){
+		$('#result').fadeOut();
+	});
+	 */
+	
+	$('#show').click(function(){
+		$('#result').slideDown();
+	});
+	$('#hide').click(function(){
+		$('#result').slideUp();
+	});
+	
+});
 
 </script>
 
 <h1>Jq05 </h1>
 <p> Jq05의 내용을 불러옵니다. .</p>
 <hr>
-<h3></h3>
-<p></p>
 
+<button id="getdata">Get DATA </button>
+<button id="show"> Show</button>
+<button id="hide"> Hide</button>
+<div id="result"></div>
 

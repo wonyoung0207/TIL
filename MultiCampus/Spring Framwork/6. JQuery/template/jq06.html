@@ -4,13 +4,21 @@
 </style>
 
 <script>
-
+$(document).ready(function(){
+	var txt = $('#hh1').text();
+	txt += ':New';
+	$('#hh1').text(txt);
+	
+	$('h2 > a').attr('href','http://www.naver.com');/* href속성에 해당 내용을 추가  */
+	
+});
 </script>
 
 <h1>Jq06 </h1>
 <p> Jq06의 내용을 불러옵니다. .</p>
 <hr>
-<h3></h3>
-<p></p>
+<h1> attr 을 사용해본다. </h1>
+<h1 id="hh1"> Header1</h1>
+<h2><a href="#" > Click</a></h2>
 
 
