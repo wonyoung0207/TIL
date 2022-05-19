@@ -10,7 +10,7 @@
 
    ## 1. 메소드
 
-      1. for문과 each문 비교
+      1. ### for문과 each문 비교
 
          1. ```javascript
             $(d).each(function(index,item){
@@ -30,7 +30,7 @@
             
             ```
 
-      2. show() , hide(), fadeIn(), fadeOut()
+      2. ### show() , hide(), fadeIn(), fadeOut()
 
          - ```javascript
            //해당 컨텐츠를 화면에서 보여주거나 숨긴다. 
@@ -60,7 +60,7 @@
            
            ```
 
-      3. keyup(), keydown()
+      3. ### keyup(), keydown()
 
          - 키가 눌리거나 키를 땠을 떄 실행
 
@@ -83,7 +83,7 @@
            });
            ```
    
-      4. addClass() , removeClass
+      4. ### addClass() , removeClass
 
          1. 태그에 클래스를 추가 삭제할 수 있다. 
 
@@ -95,7 +95,7 @@
             });
             ```
 
-      5. first(), last(), eq()
+      5. ### first(), last(), eq()
 
          1. first
 
@@ -115,7 +115,7 @@
             $('td').eq(2)// td의 2번째 태그만 가져옴
             ```
    
-      6. TimeOut vs setInterval
+      6. ### TimeOut vs setInterval
    
          1. timeout()
          
@@ -136,7 +136,7 @@
          
             1. clearInterval()로 제거가능 
          
-      7. 이미지 무한 돌리기 
+      7. ### 이미지 무한 돌리기 
    
          1. ```javascript
             $(document).ready(function(){
@@ -153,7 +153,7 @@
             });
             ```
    
-      8. 무한 스크롤 기능
+      8. ### 무한 스크롤 기능
    
          1. ```javascript
             $(document).ready(function(){
@@ -174,7 +174,7 @@
             });
             ```
    
-      9. not
+      9. ### not
    
          1. ```javascript
             $('button').not($(this)).removeClass('myclass');
@@ -196,14 +196,14 @@
    
    ## 3. 객체의 삽입 삭제 
    
-      1. 삽입
+      1. ### 삽입
 
          1. append
          2. prepend
          3. after
          4. before
    
-      2. 삭제
+      2. ### 삭제
    
          1. remove
          2. empty
@@ -239,7 +239,7 @@
 
 # 2. Project
 
-   1. 기능 설명
+   1. ### 기능 설명
 
       - JQery를 이용해서 이미지의 순환을 왼쪽, 오른쪽, Auto로 변경될 수 있게 만든다. 
       - 1. 왼쪽 버튼을 누르면 이전의 이미지를 보여주고, 오른쪽 버튼을 누르면 이후의 이미지를 보여준다.
@@ -249,14 +249,14 @@
         2. iphone1.png
         3. tablet.png
 
-   2. 사용 메소드
+   2. ### 사용 메소드
 
       1. setInterval
       2. clearInterval
       3. click
       4. attr
 
-   3. 코드
+   3. ### 코드
 
       - ```html
         <style>
@@ -339,7 +339,7 @@
         </div>
         ```
 
-   4. 결과물
+   4. ### 결과물
 
       - | <img src="images/img_move1.png"> | <img src="images/img_move2.png"> |
         | :------------------------------: | :------------------------------: |
