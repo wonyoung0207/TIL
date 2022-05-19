@@ -149,7 +149,7 @@
       1. innerHTML 
          - 태그 내에 포함된 text의 내용을 뜻한다. 
       2. val()
-         - fome에서 입력된 값을 뜻한다. 
+         - form에서 입력된 값을 뜻한다. 
 
 ## 4. Project
 

@@ -71,8 +71,18 @@
                    $('#n2').focus();
                }
            });
+           
+           $('input[name="id"]').keyup(function(){
+               var txt = $(this).val();
+               // 길이가 3자리 미만이면 span 에 " 3자리 이상 이어야 합니다 " 출력
+               if(txt.length < 3){
+                   $('#id_ok').text("3자리 이상 이어야 합니다. ");
+               }else{
+                   $('#id_ok').text("");
+               }
+           });
            ```
-
+   
       4. addClass() , removeClass
 
          1. 태그에 클래스를 추가 삭제할 수 있다. 
@@ -90,23 +100,23 @@
          1. first
 
             - 해당 태그들 중 천번째 태그를 선택
-
+   
          2. last
-
+   
             - 해당 태그들 중 마지막 태그를 선택 
 
          3. eq
 
             - 태그들중 특정 위치에 있는 태그만 선택 
-
+   
          4. ```javascript
             $('td').first()// td태그의 첫번째만 가져옴 
             $('td').last()// td 태그의 마지막만 가져옴 
             $('td').eq(2)// td의 2번째 태그만 가져옴
             ```
-
+   
       6. TimeOut vs setInterval
-
+   
          1. timeout()
          
             1. setTimeout() : 시간을 지정하고 지정된 시간에 함수를 실행하게 만든다.
@@ -127,7 +137,7 @@
             1. clearInterval()로 제거가능 
          
       7. 이미지 무한 돌리기 
-
+   
          1. ```javascript
             $(document).ready(function(){
             	var imgs = ['img/imac.png','img/iphone1.png','img/tablet.png'];
@@ -142,9 +152,9 @@
             	
             });
             ```
-
+   
       8. 무한 스크롤 기능
-
+   
          1. ```javascript
             $(document).ready(function(){
             	$(window).scroll(function(){
@@ -163,16 +173,16 @@
             	});//scroll은 윈도우에 있다. 
             });
             ```
-
+   
       9. not
-
+   
          1. ```javascript
             $('button').not($(this)).removeClass('myclass');
             //선택된 태그(나 자신)만 뺴고 class를 remove함
             ```
-
+   
    ## 2. 애니매이션
-
+   
       1. ```javascript
          $('#box').css({
          'width':'100px',
@@ -183,21 +193,21 @@
          'opacity':'0.6'
          });	
          ```
-
+   
    ## 3. 객체의 삽입 삭제 
-
+   
       1. 삽입
 
          1. append
          2. prepend
          3. after
          4. before
-
+   
       2. 삭제
-
+   
          1. remove
          2. empty
-
+   
       3. ```javascript
          //객체 삽입
          $('#append').click(function(){// 내용물 맨 뒤에 추가 
@@ -233,7 +243,11 @@
 
       - JQery를 이용해서 이미지의 순환을 왼쪽, 오른쪽, Auto로 변경될 수 있게 만든다. 
       - 1. 왼쪽 버튼을 누르면 이전의 이미지를 보여주고, 오른쪽 버튼을 누르면 이후의 이미지를 보여준다.
-        2.  auto버튼을 누르면 자동으로 배열에 있는 이미지를 차례로 계속 순환하며 보여준다. STOP 버튼을 누르면 Auto의 기능을 멈춘다. 
+        2.  auto버튼을 누르면 자동으로 배열에 있는 이미지를 차례로 계속 순환하며 보여준다. STOP 버튼을 누르면 Auto의 기능을 멈춘다.
+      - image
+        1. imac.png
+        2. iphone1.png
+        3. tablet.png
 
    2. 사용 메소드
 
@@ -253,16 +267,16 @@
         <script>
         
         $(document).ready(function(){
-        	var cnt = 0;
+        	var cnt = 0;//이미지 증가 
         	var imgs = ['img/imac.png','img/iphone1.png','img/tablet.png'];
         	$('#images').attr('src',imgs[0]);
-        	var start;
-        	var stop;
+        	var start = null;//function()
+        	var stop = null;//function()
         	
         /* 	$('#img_before').addClass('left carousel-control');
         	$('#img_after').addClass('right carousel-control'); */
         	
-        	$('#auto_go').click(function(){
+        	$('#auto_go').click(function(){//AUTO 버튼 클릭시 동작
         		
         		start = setInterval(function(){
         			if(cnt == imgs.length-1){
@@ -274,12 +288,12 @@
         		},1000);//1초에 한번씩 함수 호출 
         	});
         	
-        	$('#auto_stop').click(function(){
+        	$('#auto_stop').click(function(){//STOP 버튼 클릭시 동작
         		stop = clearInterval(start);
         		
         	});
         	
-        	$('#img_before').click(function(){
+        	$('#img_before').click(function(){//<- 버튼 클릭시 동작
         		if(cnt == 0){
         			cnt = imgs.length;
         		}
@@ -288,7 +302,7 @@
         		$('#result').text(cnt);
         	});
         	
-        	$('#img_after').click(function(){
+        	$('#img_after').click(function(){//-> 버튼 클릭시 동작
         		if(cnt == imgs.length-1){
         			cnt = -1;
         		}
@@ -322,7 +336,6 @@
         	<div id="main_div">
         		<img id="images">
         	</div>
-        
         </div>
         ```
 

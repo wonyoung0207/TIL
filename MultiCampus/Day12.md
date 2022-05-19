@@ -62,6 +62,11 @@
        + a.format(date)
 
    + ```java
+     Date date = new Date();
+     SimpleDateFormat format1;
+     format1 = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+     out.print(format1.format(date));
+     
      Calendar now = Calendar.getInstance();
      //Calendar 추상클래스이기 때문에 객체 생성 못함 
      int year = now.get(Calendar.YEAR);
@@ -70,7 +75,7 @@
      int ampm = now.get(Calendar.AM_PM);//오전, 오후를 출력 
      int hour = now.get(Calendar.HOUR);//시간  
      ```
-
+     
    + Format 패턴 문자
 
      + Y  : 년
