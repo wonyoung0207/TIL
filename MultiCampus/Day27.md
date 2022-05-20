@@ -16,6 +16,7 @@
             $(d).each(function(index,item){
                 //index와 item이 자동으로 들어간다. 
                 //index는 몇번째인지, item에는 value 가 들어간다. 
+                // item 하나가 JSON 안에 있는 Object 를 가진다. 
                 txt += '<h3>';
                 txt += item.id + ' ' + item.name + ' ' + item.age;
                 txt += '</h3>';
@@ -29,9 +30,9 @@
             }
             
             ```
-
+   
       2. ### show() , hide(), fadeIn(), fadeOut()
-
+   
          - ```javascript
            //해당 컨텐츠를 화면에서 보여주거나 숨긴다. 
            $('#show').click(function(){
@@ -59,11 +60,11 @@
            });
            
            ```
-
+   
       3. ### keyup(), keydown()
-
+   
          - 키가 눌리거나 키를 땠을 떄 실행
-
+   
          - ```javascript
            $('#n1').keydown(function(){
                if($(this).val().length > 6 ){
@@ -84,9 +85,9 @@
            ```
    
       4. ### addClass() , removeClass
-
+   
          1. 태그에 클래스를 추가 삭제할 수 있다. 
-
+   
          2. ```javascript
             $('h1').hover(function(){
                 $(this).addClass('myclass');
@@ -94,19 +95,19 @@
                 $(this).removeClass('myclass');
             });
             ```
-
+   
       5. ### first(), last(), eq()
-
+   
          1. first
-
+   
             - 해당 태그들 중 천번째 태그를 선택
    
          2. last
    
             - 해당 태그들 중 마지막 태그를 선택 
-
+   
          3. eq
-
+   
             - 태그들중 특정 위치에 있는 태그만 선택 
    
          4. ```javascript
@@ -197,7 +198,7 @@
    ## 3. 객체의 삽입 삭제 
    
       1. ### 삽입
-
+   
          1. append
          2. prepend
          3. after

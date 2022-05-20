@@ -6,11 +6,11 @@
 >
 > 
 
-## 1. AJAX
+## 1. AJAX ( Asynchronous JavaScript And XML )
    1. ### AJAX 란?
       
-      1. **비동기 방식** 으로 통신하는 방법
-      2. AJAX( Asynchronous JavaScript And XML )
+      1. **비동기 방식** 으로 통신하는 방법으로, 현재 화면을 유지하면서 특정 부분만 데이터를 받아와서 변경해준다. 
+      2. 
       3. 2005년에 만들어진 비동기 통신을 지원하는 새로운 방식이다. 
       4. 새로운 언어가 아닌 JavaScript에 추가된 통신 방식이다. 
       5. **화면 전체 (html파일) 를 재로드 하지 않고도 서버에서 특정 데이터를 송수신 할 수 있다. **
@@ -43,8 +43,8 @@
         
         function getdata(txt){
         	$.ajax({
-        		url:'search',//서버에게 data 변수 s로 데이터를 보낸다. 
-        		data:{'s':txt,},
+        		url:'search',
+        		data:{'s':txt,},//서버에게 data 변수 s로 데이터를 보낸다. 
         		success:function(data){
         			//연결에 성공하면 실행 data에는 controller에서 리턴한 값이 들어간다. 
         			display(data);
@@ -62,7 +62,17 @@
         
         ```
       
-      - 
+      - ```java
+        @RestController//AJAX 통신에 적합한 애너테이션 -> @Controller와 다름 
+        public class AJAXController {
+        	@RequestMapping("/gettime")
+        	public Object gettime() {
+        		Date d = new Date();
+        		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        		return "서버시간 " + sdf.format(d);
+        	}
+        }
+        ```
 
 ## 2. Project
 
@@ -73,6 +83,7 @@
          1. AJAX 를 사용하여 Database에 있는 아이디와 중복되면 실시간으로 사용할 수 없다는 문구를 띄워준다. 
          2. keyup 기능을 이용해 5글자 이상 들어가도록 한다. 
       3. password 확인란과 password가 다르다면  알려주는 문구를 나타낸다. 
+         1. 초기 register 버튼을 비활성화 시키고, 이후에 비밀번호 조건을 만족하면 버튼을 활성화 한다. 
 
    2. ### 코드
 
@@ -125,6 +136,46 @@
          
          
          $(document).ready(function(){
+         	$('#register').attr('disabled','disabled');// 버튼 막기 
+         	
+         	$('#id').keyup(function(){
+         		var id = $('#id').val();
+         		if(id.length < 5){
+         			$('#id_span').text('ID는 5글자 이상 입력해주세요.');
+         			$('#id_span').css('color','red');
+         			
+         		}else{
+         			checkID(id);
+         			
+         		}
+         	});
+         	
+         	$('#pwd').keyup(function(){// 비밀번호가 10자리 이상이면 못하게 막기 
+         		var pwd = $('#pwd').val();
+         		if(pwd.length < 10){
+         			$('#pwd_span').text('');
+         		}else{
+         			$('#pwd_span').text('10자리 미만으로 입력해 주세요');
+         			$('#pwd_span').css({'color':'red'});
+         		}
+         	});
+         	
+         	$('#samepwd').keyup(function(){
+         		var pwd = $('#pwd').val();
+         		var samepwd = $('#samepwd').val();
+         		
+         		if(pwd != samepwd){
+         			$('#samepwd_span').text('비밀번호가 다릅니다. ');
+         			$('#samepwd_span').css('color','red');
+         			$('#register').attr('disabled','disabled');//버튼 막기 
+         		}else{
+         			$('#samepwd_span').text('일치합니다. ');
+         			$('#samepwd_span').css('color','green');
+         			$('#register').removeAttr('disabled');// 버튼 활성화 
+         			
+         		}
+         		
+         	});
          	
          	$('#register').click(function(){
          		var pwd	= $('#pwd').val();
@@ -153,43 +204,9 @@
          		});
          		$('#register_form').submit();
          	});
-         	
-         	
-         	$('#id').keyup(function(){
-         		var id = $('#id').val();
-         		if(id.length < 5){
-         			$('#id_span').text('ID는 5글자 이상 입력해주세요.');
-         			$('#id_span').css('color','red');
-         			
-         		}else{
-         			checkID(id);
-         		}
-         	});
-         	
-         	$('#pwd').keyup(function(){// 비밀번호가 10자리 이상이면 못하게 막기 
-         		var pwd = $('#pwd').val();
-         		if(pwd.length < 10){
-         			$('#pwd_span').text('');
-         		}else{
-         			$('#pwd_span').text('10자리 미만으로 입력해 주세요');
-         			$('#pwd_span').css({'color':'red'});
-         		}
-         	});
-         	
-         	$('#samepwd').keyup(function(){
-         		var pwd = $('#pwd').val();
-         		var samepwd = $('#samepwd').val();
-         		
-         		if(pwd != samepwd){
-         			$('#samepwd_span').text('비밀번호가 다릅니다. ');
-         			$('#samepwd_span').css('color','red');
-         			
-         		}else{
-         			$('#samepwd_span').text('일치합니다. ');
-         			$('#samepwd_span').css('color','green');
-         		}
-         	});
          });
+         
+         
          </script>
          
          <h1>AJAX04 </h1>
@@ -257,11 +274,26 @@
          	</div>
          	
          	<div class="form-group">
-         	<button class="form-control" id="register"> 가입하기 </button>
+         	<button type="button" class="btn btn-success" id="register"> 가입하기 </button>
          	</div>
          	
          </form>
          </div>
+         
+         <!-- 
+         아이디(사용가능 여부 확인 )
+         비밀번호
+         비밀번호 재확인
+         이름
+         생년 월일 (년4글자) (월 선택) (일 선택)
+         성별 (select)
+         본인 확인 이매일
+         휴대전화 (대한민국 +82, 미국 +1) (전화번호 입력 |인증번호 받기 버튼)
+         가입하기 
+          -->
+         
+         
+         
          ```
 
    3. ### 결과물

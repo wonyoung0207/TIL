@@ -50,7 +50,9 @@
 
       
 
-   2. main.html 파일에 \<html xmlns:th="http://www.thymeleaf.org"> 을 추가한다. 
+   2. thymeleaf 파일 만들기
+
+            1. .html 파일에 \<html xmlns:th="http://www.thymeleaf.org"> 을 추가한다. 
 
    3. controller가 String 형을 리턴하면 **templates 파일 바로 밑에있는 html파일**을 찾는다. 
 
