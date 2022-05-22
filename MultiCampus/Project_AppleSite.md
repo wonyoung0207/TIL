@@ -1,0 +1,179 @@
+# Project _ Apple Site 
+
+------
+
+> Apple Site 를 만들어본다  
+>
+> 
+
+1. qr 코드 생성기
+
+   1. 검색하던 중 qr코드를 쉽게 만들 수 있는 플러그인을 발견하였다. 해당 플러그인을 이용해서 qr코드 생성기를 만들어 본다. 
+
+   2. 참고 사이트
+
+      1. [사용법 정리](https://jh91.tistory.com/entry/JS-QR%EC%BD%94%EB%93%9C-%EB%A7%8C%EB%93%A4%EA%B8%B0)
+      2. [필요한 파일 ](https://github.com/davidshimjs/qrcodejs)
+
+   3. 사용 방법
+
+      1. input 태그에 입력된 값을 이용해 qrcode를 생성한다. 
+
+      2. 플러그인에 필요한 \<javascript> 2개를 사용하고자 하는 project 경로( Spring boot 기준 src/main/resources > static 파일 안) 에 넣어준다. 
+
+         1. jquery.min.js
+         2. qrcode.js
+
+      3. 사용할 html 파일에 script 파일을 추가해 qrcode 를 생성한다.  
+
+         1. ```html
+            <script type="text/javascript" src="qrcode/jquery.min.js"></script>
+            <script type="text/javascript" src="qrcode/qrcode.js"></script>
+            
+            <script type="text/javascript">
+            	window.onload = function() {
+            		
+            		var qrcode = new QRCode(document.getElementById("qrcode"), {
+            			width : 100,
+            			height : 100
+            		});
+            
+            		function makeCode() {
+            			var elText = document.getElementById("text");
+            
+            			if (!elText.value) {
+            				elText.focus();
+            				return;
+            			}
+            			console.log("Calculare QR");
+            			qrcode.makeCode(elText.value);
+            		}
+            
+            		makeCode();
+            
+            		$("#text").on("blur", function() {
+            			makeCode();
+            		}).on("keydown", function(e) {
+            			if (e.keyCode == 13) {
+            				console.log("Apasar ENTER");
+            				makeCode();
+            			}
+            		});
+            		
+            		$("#qrcode > img").css({"margin":"auto"});//qrcode 그림 중간에 오도록 하기 
+            	};
+            </script>
+            <!-- <script type="text/javascript">
+            window.onload = function() {
+            	new QRCode(document.getElementById("qrcode"), "http://naver.com");
+            	
+            }
+            
+            </script> -->
+            
+            
+            <body>   
+            <input type="text" id="text" value="https://www.apple.com/kr">
+            <h3>QR코드로 로그인 합니다.</h3>
+            <div id="qrcode"></div>
+            </body>
+            ```
+
+   4. 발생한 오류
+
+      1. javascript qrcode error Cannot read properties of null (reading 'appendChild')
+         1. 해당 오류는 qrcode 객체생성 순서로 인한 오류이다. 따라서 qrcode 객체를 DOM 객체가 생성된 후 만드는 것이 적절하다. 
+         2. 해결 방법
+            - window.onload = function() {}  안에서 qrcode 객체를 생성하여 사용한다. 
+
+   5. 결과 화면 
+
+      1. ![qrcode 생성화면](images/qrcode.png)
+
+2. 일회용번호
+
+   1. AJAX 통신을 이용해 3초 간격으로 8자리의 랜덤한 숫자를 출력해 준다. 
+
+   2. 사용법 
+
+      1. \$.ajax({ url : ' ', success : function(data){ } }) 형식으로 ajax 통신을 한다. 
+      2. url 에 적힌 주소와 같은 server 의 controller를 호출한다. 
+         1. controller 에서 JSONObject 형식이나 여러 데이터 타입으로 JSONArray에 데이터를 담는다. 
+         2. controller 에서 return 값으로 JSNOArray 를 리턴한다. 
+         3. 리턴한 값은 success 에 적힌 data 로 들어간다. 
+         4. data 는 Object 형식으로, 인덱스를 이용해 출력할 수 있다. 
+      3. 동일한 페이지에서 AJAX 통신을 이용한 값만 변경된다. 
+
+   3. 코드 
+
+      1. ```javascript
+         // 일회용 넘버 8자리를 랜덤으로 생성 
+         var start = setInterval(() => {
+         	getnumber();
+         }, 3000);
+         
+         function getnumber(){
+             $.ajax({
+                 url : '/getnumber',
+                 success : function(data){
+                     display(data);
+                 }
+             });
+         }
+         
+         function display(data){
+             /* 		$(data).each(function(index, item){
+         			$('#menu1 p').text(item +" : " + index);
+         		}); */
+         
+             //$('#menu1 p').text(typeof(data));
+         
+             $('#menu1 #disposable').text(data[1]);
+             $('#menu1 #time').text(data[0]);
+         
+         }
+         ```
+
+      2. ```java
+         
+         @RestController//AJAX 통신에 적합한 애너테이션 
+         public class AJAXController {
+         	@RequestMapping("/getnumber")
+         	public Object getdata() {//데이터를 JSON 형식으로 내려준다. 
+         		JSONArray ja = new JSONArray();
+         		JSONObject jo = new JSONObject();
+         		Date d = new Date();
+         		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+         		Random r = new Random();
+         		int random= 0;
+         		String txt = "";
+         		
+         		//JSON : [{},{},{}] 의 형태
+         		for(int i=0; i<8; i++) {
+         			txt += r.nextInt(10);
+         		}
+         		
+         		//현재 시간 
+         		String date = sdf.format(d);
+         		
+         		// JSNO Array에 객체 추가 
+         		ja.add(0, date);
+         		ja.add(1, txt);
+         		
+         //		ja.add(date);
+         //		ja.add(txt);
+         //		
+         //		System.out.println(ja.get(0));
+         //		System.out.println(ja.get(1));
+         		
+         		return ja;
+         	}
+         }
+         ```
+
+      3. 결과 화면
+
+         1. <img src="images/disposable.png">
+
+3. local Storage 이용해서 로그인 유지 하기 
+   1. [참고 사이트](https://hianna.tistory.com/697)

@@ -61,4 +61,12 @@
       2. 사용방법 
          1. Demos -> Highcharts JS Demos -> 원하는 차트 선택 -> EDIT IN JSFIDDLE -> \<script> 태그 복사 
          2. 
-   2. 
+
+3. JS 파일과 JSP 파일 차이점
+
+   1. js (JavaScript)
+      - js 파일은 클라이언트쪽 ( front-end ) 파일을 의미한다. 
+      - 따라서 \<script> 태그안에 포함되는 것을 의미한다. 
+   2. jsp (Java Server pages)
+      - jsp 파일은 서버측(Back-end) 파일을 의미한다. 
+      - HTML 내에 직접 자바 코드를 삽입하여 웹 서버에서 동적으로 웹 페이지를 생성하여 웹 브라우저에게 돌려주는 서버 측 프로그래밍 
