@@ -1,0 +1,18 @@
+<meta charset="UTF-8">
+<script>
+$(document).ready(function(){//로그인 성공시 key="id" 값으로 userName이 들어간다. 
+	if(window.localStorage.getItem('id') == null){
+		$('#user').html('<span class="glyphicon glyphicon-log-in">Login</span> ');
+	
+	}else{
+		$('#user').html('<span>' + window.localStorage.getItem("id") + ' 님 환영합니다!! </span>');
+		$('#user').attr({
+			'href' : '#',
+		});
+	}
+});
+
+</script>
+<a href="login" id="user">
+
+</a></li>

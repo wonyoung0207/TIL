@@ -1,0 +1,140 @@
+@charset "UTF-8";
+/* 2022.05.21  */
+
+
+#second-navbar-span {
+	color: black;
+}
+
+#mybutton{
+	border-radius: 30px;
+
+}
+
+#second-navbar-span:hover {
+	color: #6495ED;
+	
+}
+
+.image_shape {
+	width: 30px;
+	height: 30px;
+	display: block;
+	margin: auto;
+}
+span{
+	font-family: 'Oleo Script Swash Caps', cursive;
+
+}
+
+
+.mycontent h1 {
+	padding-top: 70px;
+}
+
+.mycontent img {
+	margin-top: 30px;
+}
+
+.div-margin {
+	margin: 100px;
+	
+}
+
+.image-text {
+	position: relative;
+}
+
+.image-text img {
+	width: 100%;
+	verticle-align: middle;
+	border-radius: 10px;
+	z-index: 1;
+}
+
+.image-text-text {
+	border-radius: 10px;
+	text-align: center;
+	color: white;
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	position: absolute;
+}
+
+.image-text-text-a {
+	border-radius: 10px;
+	text-align: center;
+	color: white;
+	position: absolute;
+	top: 90%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	position: absolute;
+}
+
+.thumbnail a{
+	text-decoration-line : none;
+	
+	
+}
+
+
+hr {
+	background-color: gray;
+	height: 1px;
+
+}
+
+.mylist{
+	list-style:none;
+
+}
+
+.mylist li{
+	display: inline-block;
+	margin-left : 40px;
+}
+
+.mylist li a{
+	padding : 15px;	
+}
+
+.mylist li span{
+	margin-left : 15px;	
+}
+
+.ad{
+	
+	color : #6495ED;
+	
+}
+
+
+
+#div_logo {
+	text-align: center;
+	padding-top : 100px;
+}
+
+#mybtn,#register {
+	background: #32CD32;
+	color: white;
+	transition-duration: 0.4s;
+	text-decoration: none;
+}
+
+#mybtn:hover,#register:hover {
+	background: #4CAF50;
+	font-weight: bold;
+}
+
+
+
+
+
+
+
+
+

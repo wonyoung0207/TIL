@@ -1,0 +1,190 @@
+<meta charset="UTF-8">
+
+<script type="text/javascript" src="qrcode/jquery.min.js"></script>
+<script type="text/javascript" src="qrcode/qrcode.js"></script>
+
+<script type="text/javascript">
+	window.onload = function() {
+		
+		var qrcode = new QRCode(document.getElementById("qrcode"), {
+			width : 100,
+			height : 100
+		});
+
+		function makeCode() {
+			var elText = document.getElementById("qrtext");
+
+			if (!elText.value) {
+				elText.focus();
+				return;
+			}
+			console.log("Calculare QR");
+			qrcode.makeCode(elText.value);
+		}
+
+		makeCode();
+
+		$("#qrtext").on("blur", function() {
+			makeCode();
+		}).on("keydown", function(e) {
+			if (e.keyCode == 13) {
+				makeCode();
+			}
+		});
+		
+		$("#qrcode > img").css({"margin":"auto"});//qrcode 그림 중간에 오도록 하기 
+		
+		// 일회용 넘버 6자리를 랜덤으로 생성 
+		var start = setInterval(() => {
+			getnumber();
+		}, 3000);
+		
+		// 로그인 버튼 클릭 시 실행 
+		$('#mybtn').click(function(){
+			loginCheck();//로그인 아이디 비번  확인
+		});
+		
+		
+		
+	};
+	
+	function getnumber(){
+		$.ajax({
+			url : '/getnumber',
+			success : function(data){
+				display(data);
+			}
+		});
+	}
+	
+	function display(data){
+/* 		$(data).each(function(index, item){
+			$('#menu1 p').text(item +" : " + index);
+		}); */
+		
+		//$('#menu1 p').text(typeof(data));
+		
+		
+		$('#menu1 #disposable').text(data[1]);
+		$('#menu1 #time').text(data[0]);
+
+	}
+	
+	function loginCheck(){
+		var id = $('#id').val();
+		var pwd = $('#pwd').val();
+		alert(id + ' : ' + pwd)
+		
+		//아이디 있는지 확인 ajax 통신으로 확인 
+		$.ajax({
+			url: '/loginCheck',
+			data : {
+				'id':id,
+				'pwd':pwd,
+				},
+			success : function(data){//자바스크립트는 object형식밖에 없어서 사용시 object형식으로 사용해야함 
+				loginOk(data,id);
+
+			},
+		});
+	}
+	
+	
+	function loginOk(data,id){
+		if(data.ok == "1"){// 로그인 성공 
+			window.localStorage.setItem('id', id);// localstorage에 id 저장 
+			
+			$('form').attr({
+				'action':'/',
+				'methode': 'post'
+			});
+			$('form').submit();
+			
+			//$('#id_check').text(window.localStorage.getItem('id'));
+
+		}else{
+			$('#id_check').text(" 오류 : " + data.message);
+			$('#id_check').css('color','red');
+		}
+	}
+	
+	
+</script>
+<!-- <script type="text/javascript">
+window.onload = function() {
+	new QRCode(document.getElementById("qrcode"), "http://naver.com");
+	
+}
+</script> -->
+
+
+<div class="container-fluid">
+	<div class="container col-sm-4"></div>
+
+
+	<div class="container col-sm-4">
+		<div id="div_logo">
+			<h1> Login </h1>
+			<img src="img/apple.png" class="image_shape">
+		</div>
+		
+		<div class="div-margin"></div>
+		<ul class="nav nav-tabs">
+			<li class="active"><a data-toggle="tab" href="#home">Home</a></li>
+			<li><a data-toggle="tab" href="#menu1">일회용 번호 </a></li>
+			<li><a data-toggle="tab" href="#menu2"> QR코드 </a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div id="home" class="tab-pane fade in active">
+				<form>
+					<div class="form-group">
+						<label for="name">ID:</label> 
+						<input type="text"
+							class="form-control" name="id" id="id" placeholder="Input ID">
+					</div>
+					<div class="form-group">
+						<label for="pwd">Password:</label> 
+						<input type="password"
+							class="form-control" name="pwd" id="pwd"
+							placeholder="Input Password">
+					</div>
+					<div class="form-check form-switch">
+						<input class="form-check-input" type="checkbox" role="switch"
+							id="flexSwitchCheckDefault"> <label
+							class="form-check-label" for="flexSwitchCheckDefault">
+							로그인 상태 유지 </label>
+					</div>
+				</form>
+				<span id="id_check"></span>
+				<div class="form-group">
+					<button class="form-control" id="mybtn">로그인</button>
+				</div>
+				
+				<div class="form-group text-center">
+					<a  href="register"> 회원가입 </a>
+				</div>
+			</div>
+
+
+			<div id="menu1" class="tab-pane fade">
+				<h3>일회용 번호로 로그인 합니다.</h3>
+				<h5>(3초마다 번호 변경 )</h5>
+				<h3> 일회용 번호 :  <span id="disposable"> </span></h3>
+				 Time : <span id="time"></span>
+			</div>
+			<div id="menu2" class="tab-pane fade">
+				<input type="text" id="qrtext" value="https://www.apple.com/kr">
+				<h3>QR코드로 로그인 합니다.</h3>
+				<div id="qrcode"></div>
+
+			</div>
+		</div>
+
+		<div class="div-margin"></div>
+	</div>
+</div>
+
+
+
+

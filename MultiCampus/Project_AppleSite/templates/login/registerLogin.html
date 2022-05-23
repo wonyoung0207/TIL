@@ -1,0 +1,46 @@
+<meta charset="UTF-8">
+<div class="container-fluid">
+	<div class="container col-sm-4"></div>
+
+
+	<div class="container col-sm-4">
+	<h1>회원가입에 성공하셨습니다.</h1>
+	<h3>가입자 정보를 출력합니다.</h3></div>
+</div>
+	
+
+
+<h2>
+	<span th:text="${user.name}"> 님 환영합니다. </span>
+</h2>
+<table class="table table-hover">
+	<thead>
+		<tr>
+			<th>ID</th>
+			<th>Password</th>
+			<th>name</th>
+			<th>birthday</th>
+			<th>gender</th>
+			<th>email</th>
+			<th>telphone</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><span th:text="${user.id}"></span></td>
+			<td><span th:text="${user.pwd}"></span></td>
+			<td><span th:text="${user.name}"></span></td>
+			<td><span th:text="${user.date}"></span></td>
+			<td><span th:text="${user.gender}"></span></td>
+			<td><span th:text="${user.email}"></span></td>
+			<td><span th:text="${user.telphone}"></span></td>
+
+		</tr>
+		<tr>
+	</tbody>
+
+
+
+</table>
+
+
