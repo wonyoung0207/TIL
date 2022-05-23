@@ -52,7 +52,77 @@
          	});
          ```
 
-      2. 
+   3. JSONArray 와 JSONObject 차이점 
+
+      - JSONArray
+
+        - 배열 형식으로 value를 다룰때 사용한다. 
+        - ja.add(0, data) 로 추가하고  data[0] 으로 사용한다. 
+
+      - JSONObject
+
+        - HashMap의 형태로 Key와 value로 이루어진다. 
+        - HashMap의 특징으로 순서가 없고 jo.put("id","id01") 로 추가하고 jo.get("id") 로 사용한다. 
+
+      - ```java
+        @RequestMapping("/loginCheck")
+        public Object loginCheck(String id, String pwd) {//데이터를 JSON 형식으로 내려준다. 
+            JSONArray ja = makeUser();
+            JSONObject result = new JSONObject();//결과 전송할 변수 
+            JSONObject check_user = new JSONObject();
+            check_user.put("id", id);
+            check_user.put("pwd", pwd);
+        
+            for(int i=0; i<ja.size(); i++) {
+                JSONObject user = (JSONObject) ja.get(i);
+                if(check_user.get("id").equals(user.get("id"))) {
+                    if(check_user.get("pwd").equals(user.get("pwd"))) {
+                        System.out.println("로그인 성공");
+                        result.put("ok", "1");
+                        result.put("message", "로그인 성공");
+                        
+                        return result;//아이디가 존재. 로그인 성공 
+                    }
+                    result.put("ok", "0");
+                    result.put("message", "비밀번호가 다릅니다. ");
+        
+                    System.out.println("비밀번호가 다릅니다. ");
+                    return result;//비밀번호 오류
+                }
+            }
+        
+            result.put("ok", "0");
+            result.put("message", "아이디가 존재하지 않습니다. ");
+            System.out.println("아이디 존재 안함 ");
+            return result;// 아이디 존재 오류
+        
+        }
+        ```
+
+      - ```javascript
+        function loginCheck(){
+            var id = $('#id').val();
+            var pwd = $('#pwd').val();
+            alert(id + ' : ' + pwd)
+        
+            //아이디 있는지 확인 ajax 통신으로 확인 
+            $.ajax({
+                url: '/loginCheck',
+                data : {
+                    'id':id,
+                    'pwd':pwd,
+                },
+                success : function(data){
+                    //data 는 JSONObject 형식으로 받았지만 JavaScript 타입에는 Object타입밖에 없어서 사용시에는 Object 형식으로 사용해야 된다. 
+        
+                    $('#id_check').text("오류번호 : " + data.ok + "("+ data.message + ")");
+                    $('#id_check').css('color','red');
+                },
+            });
+        }
+        ```
+
+      - 
 
 2. 유용한 사이트
 
