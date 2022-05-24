@@ -46,35 +46,7 @@ function checkID(id){// 데이터베이스에 있는 ID들과 중복 비교
 
 
 $(document).ready(function(){
-	
-	$('#register').click(function(){
-		var pwd	= $('#pwd').val();
-		var samepwd = $('#samepwd').val();
-		
-		
-		if(pwd.length >= 10){
-			alert('pwd error')
-			$('#pwd').focus();
-			return;
-		}else{
-			
-		}
-		
-		if(pwd != samepwd){
-			alert('samepwd error')
-			$('#samepwd').focus();
-			return;
-		}else{
-			
-		}
-		
-		$('#register_form').attr({
-			'action':'naver_loginOK',
-			'method':'post'
-		});
-		$('#register_form').submit();
-		
-	});
+	$('#register').attr('disabled','disabled');// 버튼 막기 
 	
 	
 	$('#id').keyup(function(){
@@ -106,15 +78,44 @@ $(document).ready(function(){
 		if(pwd != samepwd){
 			$('#samepwd_span').text('비밀번호가 다릅니다. ');
 			$('#samepwd_span').css('color','red');
-			
+			$('#register').attr('disabled','disabled');
 		}else{
 			$('#samepwd_span').text('일치합니다. ');
 			$('#samepwd_span').css('color','green');
+			$('#register').removeAttr('disabled');
 			
 		}
 		
 	});
 	
+	$('#register').click(function(){
+		var pwd	= $('#pwd').val();
+		var samepwd = $('#samepwd').val();
+		
+		
+		if(pwd.length >= 10){
+			alert('pwd error')
+			$('#pwd').focus();
+			return;
+		}else{
+			
+		}
+		
+		if(pwd != samepwd){
+			alert('samepwd error')
+			$('#samepwd').focus();
+			return;
+		}else{
+			
+		}
+		
+		$('#register_form').attr({
+			'action':'naver_loginOK',
+			'method':'post'
+		});
+		$('#register_form').submit();
+		
+	});
 	
 });
 
@@ -186,7 +187,7 @@ $(document).ready(function(){
 	</div>
 	
 	<div class="form-group">
-	<button class="form-control" id="register"> 가입하기 </button>
+	<button type="button" class="btn btn-success" id="register"> 가입하기 </button>
 	</div>
 	
 </form>

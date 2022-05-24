@@ -27,7 +27,7 @@ function checkid(id){
 
 
 $(document).ready(function(){
-	$('button').attr('disabled','disabled');
+	//$('button').attr('disabled','disabled');
 	
 	$('input[name="id"]').keyup(function(){//ID 값이 3글자 이상일경우 
 		var id = $(this).val();
@@ -74,7 +74,7 @@ $(document).ready(function(){
 		var pwd= $('#pwd').val();
 		
 		if(pwd == ''){
-			$(this).focus();
+			//$(this).focus();
 		}else{
 			
 		}
@@ -96,22 +96,24 @@ $(document).ready(function(){
 		var pwd = $('#pwd').val();
 		var pwd_check= $('#pwd_check').val();
 		
-		if(id == ''){
+		if(id == ''){// id 비어있으면 다시입력
+			alert('id is empy');
 			$('#id').focus();
 			return ;
 		}
 		
-		if(pwd == ''){
+		if(pwd == ''){// pwd 비어있으면 다시입력
+			alert('pwd is empy');
 			$('#pwd').focus();
 			return ;
 		}
 		
-		if(pwd.length > 10){
-			alert('pwd error' + pwd);
+		if(pwd.length > 10){// 10글자 이상이면 다시 입력 
+			alert('pwd length max 10');
 			$('#pwd').focus();
 			return ;
 		}
-		if(pwd != pwd_check){
+		if(pwd != pwd_check){// pwd와 pwd_check 가 다르면 다시입력 
 			alert('pwd2 error' + pwd_check);
 			$('#pwd_check').focus();
 			return;
@@ -140,7 +142,7 @@ $(document).ready(function(){
 ID<input type="text" name="id" id="id" class="form-control"><span id="id_ok"></span><br>
 PWD<input type="password" name="pwd" id="pwd" class="form-control" ><span id="pwd_ok"></span><br>
 PWD Check<input type="password" name="pwd_check" id="pwd_check" class="form-control"><span id="pwd_checktext"></span><br>
-<button id="register" class="btn btn-success">Register</button>
 
 </form>
+<button id="register" class="btn btn-success">Register</button>
 </div>

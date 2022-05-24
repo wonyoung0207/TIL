@@ -15,21 +15,6 @@ public class MainController {
 
 	}
 	
-
-	
-	@RequestMapping("/jq")
-	public String project(Model m) {
-		m.addAttribute("center","jq");
-		return "main";
-
-	}
-	
-	@RequestMapping("/ajax")
-	public String contact(Model m) {
-		m.addAttribute("center","ajax");
-		return "main";
-
-	}
 	
 	@RequestMapping("/login")
 	public String login(Model m) {

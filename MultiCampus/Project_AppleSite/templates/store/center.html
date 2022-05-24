@@ -1,0 +1,203 @@
+<meta charset="UTF-8">
+<style>
+.store-image-text {
+	position: relative;
+}
+
+.store-image-text img {
+	width: 50%;
+	verticle-align: middle;
+	border-radius: 10px;
+	z-index: 1;
+}
+
+.store-image-text-text-black {
+	border-radius: 10px;
+	text-align: center;
+	color: black;
+	position: absolute;
+	top: 20%;
+	left: 80%;
+	transform: translate(-50%, -50%);
+	position: absolute;
+}
+
+.store-image-text-text-a {
+	top: 40%;
+	left: 80%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	position: absolute;
+	left: 80%;
+}
+
+.store-image-text-left {
+	position: absolute;
+	top: 40%;
+	left: 0%;
+	font-size: 100px;
+}
+
+.store-image-text-right {
+	position: absolute;
+	top: 40%;
+	right: 0%;
+	font-size: 100px;
+}
+
+.store-image-text-bottom {
+	position: absolute;
+	bottom: 0%;
+	left: 80%;
+}
+
+#auto {
+	width: 80px;
+	border: 0px solid white;
+	background: white;
+}
+
+.store-image {
+	width: 300px;
+	height: 300px;
+	border-radius: 10px;
+}
+</style>
+
+
+<script>
+	$(document)
+			.ready(
+					function() {
+						var cnt = 0;//이미지 증가 
+						var imgs = [ 'img/mac/macstudio.png',
+								'img/iphone/iphone13pro.png',
+								'img/ipad/ipadair.png' ];
+						var imgs_link = [ 'Mac', 'iPhone', 'iPad' ];
+						var imgs_text = [
+								'<h1>Mac Studio</h1><h3> 창조의 원동력 </h3>',
+								'<h1>iPhone13 Pro </h1><h3>  이게 바로 프로.<br> ₩1,350,000 부터</h3>',
+								'<h1>iPad Air </h1><h3>가뿐하게. 색다르게. 강력하게 <br> ₩779,000 부터</h3>' ];
+
+						$('#images').attr('src', imgs[0]);
+						$('#store-image-link').attr('href', imgs_link[0]);
+						$('#store-image-text').html(imgs_text[0]);
+
+						var start = null;//function()
+						var toggle = 0;
+
+						/* 	$('#img_before').addClass('left carousel-control');
+						 $('#img_after').addClass('right carousel-control'); */
+
+						$('#auto')
+								.click(
+										function() {//AUTO 버튼 클릭시 동작
+											if (toggle == 0) {// 오토로 이미지 바뀌게 만듬 
+												start = setInterval(
+														function() {
+															if (cnt == imgs.length - 1) {
+																cnt = -1;
+															}
+															cnt++;
+															$('#images')
+																	.attr(
+																			'src',
+																			imgs[cnt
+																					% imgs.length]);
+															$(
+																	'#store-image-link')
+																	.attr(
+																			'href',
+																			imgs_link[cnt
+																					% imgs.length]);
+															$(
+																	'#store-image-text')
+																	.html(
+																			imgs_text[cnt
+																					% imgs.length]);
+
+															$('#result').text(
+																	cnt);
+														}, 1000);//1초에 한번씩 함수 호출 
+
+												$('#auto')
+														.html(
+																'<img src="img/store/stop.png" class="image_shape">')
+												toggle = 1;
+											} else {// 이미지 바뀌는거 멈추게 함 
+												start = clearInterval(start);
+
+												$('#auto')
+														.html(
+																'<img src="img/store/play.png" class="image_shape">')
+												toggle = 0;
+											}
+										});
+
+						$('#img_before').click(
+								function() {//<- 버튼 클릭시 동작
+									if (cnt == 0) {
+										cnt = imgs.length;
+									}
+									cnt--;
+									$('#images').attr('src',
+											imgs[cnt % imgs.length]);
+									$('#store-image-link').attr('href',
+											imgs_link[cnt % imgs.length]);
+									$('#store-image-text').html(
+											imgs_text[cnt % imgs.length]);
+									$('#result').text(cnt);
+								});
+
+						$('#img_after').click(
+								function() {//-> 버튼 클릭시 동작
+									if (cnt == imgs.length - 1) {
+										cnt = -1;
+									}
+									cnt++;
+									$('#images').attr('src',
+											imgs[cnt % imgs.length]);
+									$('#store-image-link').attr('href',
+											imgs_link[cnt % imgs.length]);
+									$('#store-image-text').html(
+											imgs_text[cnt % imgs.length]);
+									$('#result').text(cnt + '');
+								});
+
+					});
+</script>
+
+<div class="row content">
+	<div class="col-sm-12 text-center">
+
+		<div id="result">0</div>
+		<div class="store-image-text">
+			<a id="img_before" class="store-image-text-left"> <span
+				class="glyphicon glyphicon-chevron-left"></span></a>
+			<button id="auto" class="store-image-text-bottom">
+				<img src="img/store/play.png" class="image_shape">
+			</button>
+			<a id="img_after" class="store-image-text-right"><span
+				class="glyphicon glyphicon-chevron-right"></span></a> <a href="#"
+				id="store-image-link"><img id="images"></a>
+			<div class="store-image-text-text-black" id="store-image-text">
+				<h2>iPad Air</h2>
+				<h4>가뿐하게. 색다르게. 강력하게.</h4>
+			</div>
+			<div class="store-image-text-text-a">
+				<h3>
+					<a href="#"> 더 알아보기 > </a>
+				</h3>
+			</div>
+		</div>
+
+		<div class="div-margin"></div>
+
+		<div class="container" th:insert="store/storeMap">
+		
+		
+		</div>
+
+		
+		
+	</div>

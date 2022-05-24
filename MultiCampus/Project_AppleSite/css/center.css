@@ -132,7 +132,68 @@ hr {
 
 
 
+.store-image-text {
+	position: relative;
+}
 
+.store-image-text img {
+	width: 50%;
+	verticle-align: middle;
+	border-radius: 10px;
+	z-index: 1;
+}
+
+.store-image-text-text-black {
+	border-radius: 10px;
+	text-align: center;
+	color: black;
+	position: absolute;
+	top: 20%;
+	left: 80%;
+	transform: translate(-50%, -50%);
+	position: absolute;
+}
+
+.store-image-text-text-a {
+	top: 40%;
+	left: 80%;
+	position: absolute;
+	transform: translate(-50%, -50%);
+	position: absolute;
+	left: 80%;
+}
+
+.store-image-text-left {
+	position: absolute;
+	top: 40%;
+	left: 0%;
+	font-size: 100px;
+}
+
+.store-image-text-right {
+	position: absolute;
+	top: 40%;
+	right: 0%;
+	font-size: 100px;
+}
+
+.store-image-text-bottom {
+	position: absolute;
+	bottom: 0%;
+	left: 80%;
+}
+
+#auto {
+	width: 80px;
+	border: 0px solid white;
+	background: white;
+}
+
+.store-image {
+	width: 300px;
+	height: 300px;
+	border-radius: 10px;
+}
 
 
 

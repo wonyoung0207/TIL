@@ -4,7 +4,6 @@
 
 > AJAX 에대해 학습한다. 
 >
-> 
 
 ## 1. AJAX ( Asynchronous JavaScript And XML )
    1. ### AJAX 란?

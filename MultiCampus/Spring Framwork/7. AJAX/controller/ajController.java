@@ -70,7 +70,7 @@ public class ajController {
 	public String naver_loginOK(Model m,
 			String contry, String telphone,String id,String pwd,String name,
 			String email, String gender,String birthday) {
-		
+		//매개변수 순서 상관없고, 보내준 변수 이름을 맞춰줘야함 
 		String result = "";
 		String phoneNum = contry+telphone;
 		Date date = new Date();

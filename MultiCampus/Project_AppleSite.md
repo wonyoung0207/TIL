@@ -6,7 +6,7 @@
 >
 > 
 
-1. qr 코드 생성기
+## 1. qr 코드 생성기
 
    1. 검색하던 중 qr코드를 쉽게 만들 수 있는 플러그인을 발견하였다. 해당 플러그인을 이용해서 qr코드 생성기를 만들어 본다. 
 
@@ -90,7 +90,7 @@
 
       1. ![qrcode 생성화면](images/qrcode.png)
 
-2. 일회용번호
+## 2. 일회용번호
 
    1. AJAX 통신을 이용해 3초 간격으로 8자리의 랜덤한 숫자를 출력해 준다. 
 
@@ -175,7 +175,7 @@
 
          1. <img src="images/disposable.png">
 
-3. local Storage 이용해서 로그인 유지 하기 
+## 3. local Storage 이용해서 로그인 유지 하기 
    1. [참고 사이트](https://hianna.tistory.com/697)
 
    2. 사용 메소드 
@@ -203,16 +203,18 @@
       1. <img src="images/loginok1.png">
       2. <img src="images/loginok2.png">
 
-4. 회원가입 화면  
-   
+## 4. 회원가입 화면  
+
    1. 자세한 설명은 Day28.md의 Project 에서
       1. [Day28 바로가기](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Day28.md)
-   2. 기능
-      1. 만들었던 naver 회원가입 페이지를 AJAX 와 JQuery를 이용해 동적으로 만든다. 
-      2. ID 항목 입력시 조건을 준다. 
-         1. AJAX 를 사용하여 Database에 있는 아이디와 중복되면 실시간으로 사용할 수 없다는 문구를 띄워준다. 
-         2. keyup 기능을 이용해 5글자 이상 들어가도록 한다. 
-      3. password 확인란과 password가 다르다면  알려주는 문구를 나타낸다. 
-         1. 초기 register 버튼을 비활성화 시키고, 이후에 비밀번호 조건을 만족하면 버튼을 활성화 한다. 
+      
+      2. 기능
+         1. 만들었던 naver 회원가입 페이지를 AJAX 와 JQuery를 이용해 동적으로 만든다. 
+         2. ID 항목 입력시 조건을 준다. 
+            1. AJAX 를 사용하여 Database에 있는 아이디와 중복되면 실시간으로 사용할 수 없다는 문구를 띄워준다. 
+            2. keyup 기능을 이용해 5글자 이상 들어가도록 한다. 
+         3. password 확인란과 password가 다르다면  알려주는 문구를 나타낸다. 
+            1. 초기 register 버튼을 비활성화 시키고, 이후에 비밀번호 조건을 만족하면 버튼을 활성화 한다. 
+
    3. 결과창 
       1. <img src="images/registerok.png">

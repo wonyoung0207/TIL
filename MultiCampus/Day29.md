@@ -4,9 +4,8 @@
 
 > AJAX 에대해 학습한다. 
 >
-> 
 
-1. AJAX
+## 1. AJAX
 
    1. JSON 이용
 
@@ -124,7 +123,7 @@
 
       - 
 
-2. 유용한 사이트
+## 2. 유용한 사이트
 
    1. [highcharts](https://www.highcharts.com/)
       1. 차트 그리는 곳 

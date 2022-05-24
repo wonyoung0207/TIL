@@ -1,14 +1,13 @@
 package com.multi.controller;
 
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+
 import java.util.Date;
+import java.util.Random;
 
-import javax.servlet.http.HttpServletResponse;
-
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -17,7 +16,7 @@ public class AJAXController {
 	
 	
 	@RequestMapping("/search")
-	public Object search(String s) {//data 변수 s로 데이터를 받는다. 
+	public Object search(String s) {//aj02에서data 변수 s넘겨준 데이터를 받는다. 
 		String data ="";
 		if(s.equals("a")) {
 			data = "a 데이터가 들어왔어요";
@@ -86,7 +85,36 @@ public class AJAXController {
 	}
 	
 
+	@RequestMapping("/getdata")
+	public Object getdata() {//데이터를 JSON 형식으로 내려준다. 
+		JSONArray ja = new JSONArray();
+		Random r = new Random();
+		int random= 0;
+		//JSON : [{},{},{}] 의 형태
+		for(int i=0; i<6; i++) {
+			JSONObject jo = new JSONObject();
+			jo.put("id", "id01"+i);
+			random = r.nextInt(10) + 1;
+			jo.put("name", "james" + i);
+			jo.put("age", random);
+			ja.add(jo);
+		}
+		return ja;
+	}
 	
+	@RequestMapping("/getchart")
+	public Object getchart() {
+		JSONArray js = new JSONArray();
+		Random r = new Random();
+		
+		
+		for(int i=0; i<15; i++) {
+			js.add(r.nextInt(50) + 1);
+		}
+		
+		
+		return js;
+	}
 	
 	
 }
