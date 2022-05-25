@@ -88,7 +88,7 @@
 
    5. 결과 화면 
 
-      1. ![qrcode 생성화면](images/qrcode.png)
+      1. ![qrcode 생성화면](../images/qrcode.png)
 
 ## 2. 일회용번호
 
@@ -173,7 +173,7 @@
 
       3. 결과 화면
 
-         1. <img src="images/disposable.png">
+         1. <img src="../images/disposable.png">
 
 ## 3. local Storage 이용해서 로그인 유지 하기 
    1. [참고 사이트](https://hianna.tistory.com/697)
@@ -200,8 +200,8 @@
 
    4. 결과 화면 
 
-      1. <img src="images/loginok1.png">
-      2. <img src="images/loginok2.png">
+      1. <img src="../images/loginok1.png">
+      2. <img src="../images/loginok2.png">
 
 ## 4. 회원가입 화면  
 
@@ -217,4 +217,4 @@
             1. 초기 register 버튼을 비활성화 시키고, 이후에 비밀번호 조건을 만족하면 버튼을 활성화 한다. 
 
    3. 결과창 
-      1. <img src="images/registerok.png">
+      1. <img src="../images/registerok.png">

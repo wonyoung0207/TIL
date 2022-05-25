@@ -1,0 +1,35 @@
+<meta charset="UTF-8">
+<script>
+
+function display(data){
+	$('h3').text(data);
+	
+};
+
+function getdata(){
+	$.ajax({//ajax 를 호출 -> ajax는 비동기이다. 
+		url:'gettime', 
+		success: function(data){//성공했을 경우 함수 호출 
+			display(data);
+		},
+		error:function(e){//실패했을경우 해당 함수 호출
+			alert('MyError' + e.responseText);
+		}
+	});
+}
+
+
+$(document).ready(function(){
+	var start = setInterval(function(){
+		getdata();
+	},1000);
+});
+</script>
+
+
+<h1>AJAX 13 페이지 입니다.</h1>
+<p> AJAX 13의 내용을 불러옵니다. .</p>
+<hr>
+<h3></h3>
+
+

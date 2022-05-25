@@ -117,4 +117,82 @@ public class AJAXController {
 	}
 	
 	
+	@RequestMapping("/getmarkers")
+	public Object getmarkers(String loc) {
+		JSONArray ja = new JSONArray();
+		JSONObject jo1 = new JSONObject();
+		JSONObject jo2 = new JSONObject();
+		JSONObject jo3 = new JSONObject();
+		
+		
+		if(loc.equals("seoul")) {
+			jo1.put("content", "<div>서울1</div>");
+			jo1.put("lat", 37.55041692365908);
+			jo1.put("lng", 126.91037178013711);
+			jo1.put("target", "js01");
+			
+			jo2.put("content", "<div>서울2</div>");
+			jo2.put("lat", 37.56041692365908);
+			jo2.put("lng", 126.92037178013711);
+			jo2.put("target", "js02");
+			
+			jo3.put("content", "<div>서울3</div>");
+			jo3.put("lat", 37.57041692365908);
+			jo3.put("lng", 126.93037178013711);
+			jo3.put("target", "js03");
+
+			
+		}else if(loc.equals("busan")) {
+			jo1.put("content", "<div>부산1</div>");
+			jo1.put("lat", 35.17642453774257);
+			jo1.put("lng", 129.17669784099807);
+			jo1.put("target", "js01");
+			
+			jo2.put("content", "<div>부산2</div>");
+			jo2.put("lat", 35.18642453774257);
+			jo2.put("lng", 129.18669784099807);
+			jo2.put("target", "js02");
+			
+			jo3.put("content", "<div>부산3</div>");
+			jo3.put("lat", 35.19642453774257);
+			jo3.put("lng", 129.19669784099807);
+			jo3.put("target", "js03");
+			
+
+			
+		}else if(loc.equals("kwangju")) {
+			jo1.put("content", "<div>광주1</div>");
+			jo1.put("lat", 35.16173425533525);
+			jo1.put("lng", 126.88758871719189);
+			jo1.put("target", "js01");
+			
+			jo2.put("content", "<div>광주2</div>");
+			jo2.put("lat", 35.17173425533525);
+			jo2.put("lng",126.89758871719189);
+			jo2.put("target", "js02");
+			
+			jo3.put("content", "<div>광주3</div>");
+			jo3.put("lat", 35.18173425533525);
+			jo3.put("lng", 126.90758871719189);
+			jo3.put("target", "js03");
+		}
+		
+		
+		ja.add(jo1);
+		ja.add(jo2);
+		ja.add(jo3);
+		
+		
+		for(int i=0; i < 5; i++) {
+			
+			
+			
+		}
+
+		
+		
+		return ja;
+	}
+	
+	
 }

@@ -26,15 +26,20 @@
       
       - 브라우저 -> f12 -> 네트워크를 보면 ajax방식으로 통신하는 것을 알 수 있다. 
       
+      - **AJAX 는 @controller 가 아닌 @RestController 를 사용한다.** 
+      
       - ```java
-        @RequestMapping("/gettime")
-        public Object gettime() {
-            Date d = new Date();
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-            return "서버시간 " + sdf.format(d);
+        @RestController//AJAX 통신에 적합한 애너테이션 
+        public class AJAXController {
+            @RequestMapping("/gettime")
+            public Object gettime() {
+                Date d = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+                return "서버시간 " + sdf.format(d);
+            }
         }
         ```
-      
+        
       - ```javascript
         function display(data){
         	$('#result').text(data);
