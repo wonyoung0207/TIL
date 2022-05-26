@@ -121,16 +121,12 @@
         }
         ```
 
-      - 
-
 ## 2. 유용한 사이트
 
    1. [highcharts](https://www.highcharts.com/)
       1. 차트 그리는 곳 
       2. 사용방법 
          1. Demos -> Highcharts JS Demos -> 원하는 차트 선택 -> EDIT IN JSFIDDLE -> \<script> 태그 복사 
-         2. 
-
 3. JS 파일과 JSP 파일 차이점
 
    1. js (JavaScript)

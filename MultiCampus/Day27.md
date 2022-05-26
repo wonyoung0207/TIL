@@ -6,7 +6,7 @@
 >
 > project : JQuery를 이용해 이미지를 순환시킨다. 
 
-1. JQery
+1. # JQery
 
    ## 1. 메소드
 
