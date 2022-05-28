@@ -9,7 +9,9 @@
 >   2. [정원희](https://wonny.oopy.io/)
 >   3. [임수현](https://bit.ly/38TMT0T)
 >
-> [내 노션 정리 사이트](https://wonyoung-ahn.notion.site/Markdown-e2f10d232da1439dac26d9d308f2af94)
+> [노션 포트폴리오](https://wonyoung-ahn.notion.site/wonyoung-ahn/ee8943138f4a4d4b9c72567161fda5c9)
+>
+> [노션 문법정리](https://aboard-marimba-922.notion.site/Notion-7dd1f485b10744028e385e438496f6ac)
 
 # 포트폴리오
 
