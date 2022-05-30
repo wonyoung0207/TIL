@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+	<!-- uservice 객체에 user.UserService 객체를 넣어준다. -->
+	<!-- DI (Dependency Injection) : 의존성 주입 -->
+	<!-- 실제 객체를 생성하지 않고 spring을 이용해 객체를 주입한다. -->
+	<bean id="uservice" class="com.user.UserService">
+		<property name="dao" ref="udao"></property><!-- 주입할 이름  -->
+	</bean>
+	<bean id="udao" class="com.user.UserDao">
+	</bean>
+	
+	<bean id="pservice" class="com.product.ProductService">
+		<constructor-arg name="dao" ref="pdao"></constructor-arg>
+	</bean>
+	
+	<bean id="pdao" class="com.product.ProductDao">
+	</bean>
+	
+</beans>

@@ -6,7 +6,7 @@
 >
 > MyBatis Framework 를 사용해 Database와 연동해본다. 
 
-# **의존성 주입 ( DI : Dependency Injection ) **
+# 의존성 주입 ( DI : Dependency Injection ) 
 
    - 방법 2가지 
 

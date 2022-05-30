@@ -76,11 +76,11 @@
 
             1. 자동으로 스캔해서 해당하는 이름으로 넣어서 동작시킨다. 
 
-            2. ```xml
+               ```xml
                <context:component-scan base-package="com.*"/><!--com. 밑에 모든것을 자동으로 스캔   -->
                ```
 
-            3. ```java
+               ```java
                @org.springframework.stereotype.Service("pservice")
                public class ProductService implements Service<Integer, ProductVO>{
                    @Autowired
@@ -96,13 +96,11 @@
                }
                ```
 
-            4. 
-
       5. **관점 지향 (AOP : Aspect-Oriented Programming)** 기능을 지원
 
          - 애플리케이션 개발에서 비즈니스 로직과 시스템 서비스를 분리하여 개발 
-         - 개발자는 비즈니스 로직만을 구성하면 됨 
-
+   - 개발자는 비즈니스 로직만을 구성하면 됨 
+      
       6. POJO 방식 프레임워크 
 
    4. ### 장점
@@ -121,7 +119,7 @@
 
       2. Controller 는 화면상 사용자가 호출하는 기능을 담는다. 
 
-      3. ```java
+         ```java
          //1. controller -> 사용자가 제어하지 않고 spring 안에서 제어가 되게 한다. 
          // service 는 dao로 부터 받은 데이터를 전달하는 역할을 하고 ( 메소드 )
          // Dao는 데이터 베이스와 상호작용해 데이터를 가져오는 역할을 한다. 
@@ -158,8 +156,7 @@
          }
          ```
 
-      4. ```xml
-         
+         ```xml
          <!--3. Spring -->
          <!-- uservice 객체에 user.UserService 객체를 넣어준다. -->
          <!-- DI (Dependency Injection) : 의존성 주입 -->
@@ -194,251 +191,240 @@
 
    10. ### Spring 환경 구축
 
-            1. java Project 생성
+   10. java Project 생성
 
-            2. 해당 프로젝트에서 마우스 오른쪽 -> 
+ 2. 해당 프로젝트에서 마우스 오른쪽 -> 
 
-                     1. Spring -> Add Spring Project Nature : 해당 프로젝트를 Spring 으로 이용한다고 선언
-                     2. Configure ->  Convert To Maven Project : Spring에 필용한 외부 라이브러리를 Maven을 이용해 가져온다. 
+          1. Spring -> Add Spring Project Nature : 해당 프로젝트를 Spring 으로 이용한다고 선언
+          2. Configure ->  Convert To Maven Project : Spring에 필용한 외부 라이브러리를 Maven을 이용해 가져온다. 
 
-            3. pom.xml 파일에 해당 내용 추가 
+ 3. pom.xml 파일에 해당 내용 추가 
 
-                     1. ```xml
-                             	<!-- 버전을 선언하는 곳 -->
-                           	<properties>
-                           		<java-version>1.8</java-version>
-                           		<org.springframework-version>4.2.5.RELEASE</org.springframework-version>
-                           		<org.aspectj-version>1.6.5</org.aspectj-version>
-                           		<org.slf4j-version>1.7.18</org.slf4j-version>
-                           	</properties>
-                           
-                           
-                           	<dependencies>
-                           		<!-- Spring -->
-                           		<dependency>
-                           			<groupId>org.springframework</groupId>
-                           			<artifactId>spring-context</artifactId>
-                           			<version>${org.springframework-version}</version>
-                           			<exclusions>
-                           				<!-- Exclude Commons Logging in favor of SLF4j -->
-                           				<exclusion>
-                           					<groupId>commons-logging</groupId>
-                           					<artifactId>commons-logging</artifactId>
-                           				</exclusion>
-                           			</exclusions>
-                           		</dependency>
-                           		<dependency>
-                           			<groupId>org.springframework</groupId>
-                           			<artifactId>spring-webmvc</artifactId>
-                           			<version>${org.springframework-version}</version>
-                           		</dependency>
-                           		<dependency>
-                           			<groupId>org.springframework</groupId>
-                           			<artifactId>spring-aop</artifactId>
-                           			<version>${org.springframework-version}</version>
-                           		</dependency>
-                           		<dependency>
-                           			<groupId>org.springframework</groupId>
-                           			<artifactId>spring-beans</artifactId>
-                           			<version>${org.springframework-version}</version>
-                           		</dependency>
-                           		<dependency>
-                           			<groupId>org.springframework</groupId>
-                           			<artifactId>spring-core</artifactId>
-                           			<version>${org.springframework-version}</version>
-                           		</dependency>
-                           		<dependency>
-                           			<groupId>org.springframework</groupId>
-                           			<artifactId>spring-expression</artifactId>
-                           			<version>${org.springframework-version}</version>
-                           		</dependency>
-                           		<dependency>
-                           			<groupId>org.springframework</groupId>
-                           			<artifactId>spring-jdbc</artifactId>
-                           			<version>${org.springframework-version}</version>
-                           		</dependency>
-                           		<dependency>
-                           			<groupId>org.springframework</groupId>
-                           			<artifactId>spring-messaging</artifactId>
-                           			<version>${org.springframework-version}</version>
-                           		</dependency>
-                           		<dependency>
-                           			<groupId>org.springframework</groupId>
-                           			<artifactId>spring-tx</artifactId>
-                           			<version>${org.springframework-version}</version>
-                           		</dependency>
-                           		<!-- AspectJ -->
-                           		<dependency>
-                           			<groupId>org.aspectj</groupId>
-                           			<artifactId>aspectjrt</artifactId>
-                           			<version>${org.aspectj-version}</version>
-                           		</dependency>
-                           
-                           
-                           		<dependency>
-                           			<groupId>org.aspectj</groupId>
-                           			<artifactId>aspectjtools</artifactId>
-                           			<version>${org.aspectj-version}</version>
-                           		</dependency>
-                           
-                           		<dependency>
-                           			<groupId>org.aspectj</groupId>
-                           			<artifactId>aspectjweaver</artifactId>
-                           			<version>${org.aspectj-version}</version>
-                           		</dependency>
-                           
-                           
-                           
-                           
-                           		<!-- Logging -->
-                           		<dependency>
-                           			<groupId>org.slf4j</groupId>
-                           			<artifactId>slf4j-api</artifactId>
-                           			<version>${org.slf4j-version}</version>
-                           		</dependency>
-                           		<dependency>
-                           			<groupId>org.slf4j</groupId>
-                           			<artifactId>jcl-over-slf4j</artifactId>
-                           			<version>${org.slf4j-version}</version>
-                           			<scope>runtime</scope>
-                           		</dependency>
-                           		<dependency>
-                           			<groupId>org.slf4j</groupId>
-                           			<artifactId>slf4j-log4j12</artifactId>
-                           			<version>${org.slf4j-version}</version>
-                           		</dependency>
-                           		<dependency>
-                           			<groupId>log4j</groupId>
-                           			<artifactId>log4j</artifactId>
-                           			<version>1.2.15</version>
-                           			<exclusions>
-                           				<exclusion>
-                           					<groupId>javax.mail</groupId>
-                           					<artifactId>mail</artifactId>
-                           				</exclusion>
-                           				<exclusion>
-                           					<groupId>javax.jms</groupId>
-                           					<artifactId>jms</artifactId>
-                           				</exclusion>
-                           				<exclusion>
-                           					<groupId>com.sun.jdmk</groupId>
-                           					<artifactId>jmxtools</artifactId>
-                           				</exclusion>
-                           				<exclusion>
-                           					<groupId>com.sun.jmx</groupId>
-                           					<artifactId>jmxri</artifactId>
-                           				</exclusion>
-                           			</exclusions>
-                           			<scope>runtime</scope>
-                           		</dependency>
-                           
-                           		<!-- @Inject -->
-                           		<dependency>
-                           			<groupId>javax.inject</groupId>
-                           			<artifactId>javax.inject</artifactId>
-                           			<version>1</version>
-                           		</dependency>
-                           
-                           		<!-- Servlet -->
-                           		<dependency>
-                           			<groupId>javax.servlet</groupId>
-                           			<artifactId>javax.servlet-api</artifactId>
-                           			<version>3.0.1</version>
-                           			<scope>provided</scope>
-                           		</dependency>
-                           		<dependency>
-                           			<groupId>javax.servlet</groupId>
-                           			<artifactId>jstl</artifactId>
-                           			<version>1.2</version>
-                           		</dependency>
-                           		<!-- Tiles3 -->
-                           		<dependency>
-                           			<groupId>org.apache.tiles</groupId>
-                           			<artifactId>tiles-core</artifactId>
-                           			<version>3.0.3</version>
-                           		</dependency>
-                           		<dependency>
-                           			<groupId>org.apache.tiles</groupId>
-                           			<artifactId>tiles-extras</artifactId>
-                           			<version>3.0.3</version>
-                           		</dependency>
-                           
-                           		<!-- MyBatis -->
-                           		<dependency>
-                           			<groupId>org.mybatis</groupId>
-                           			<artifactId>mybatis</artifactId>
-                           			<version>3.2.3</version>
-                           		</dependency>
-                           
-                           		<dependency>
-                           			<groupId>org.mybatis</groupId>
-                           			<artifactId>mybatis-spring</artifactId>
-                           			<version>1.2.2</version>
-                           		</dependency>
-                           		<!-- DBCP -->
-                           
-                           		<dependency>
-                           			<groupId>commons-dbcp</groupId>
-                           			<artifactId>commons-dbcp</artifactId>
-                           			<version>1.2.2</version>
-                           		</dependency>
-                           		<!-- <dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc6</artifactId> 
-                           			<version>11.2.0</version> </dependency> -->
-                           		<!-- AOP Alliance -->
-                           		<!-- Test -->
-                           		<dependency>
-                           			<groupId>junit</groupId>
-                           			<artifactId>junit</artifactId>
-                           			<version>4.7</version>
-                           			<scope>test</scope>
-                           		</dependency>
-                           		<dependency>
-                           			<groupId>commons-fileupload</groupId>
-                           			<artifactId>commons-fileupload</artifactId>
-                           			<version>1.3.1</version>
-                           		</dependency>
-                           
-                           		<dependency>
-                           			<groupId>org.springframework</groupId>
-                           			<artifactId>spring-jms</artifactId>
-                           			<version>4.2.5.RELEASE</version>
-                           		</dependency>
-                           
-                           		<dependency>
-                           			<groupId>aopalliance</groupId>
-                           			<artifactId>aopalliance</artifactId>
-                           			<version>1.0</version>
-                           		</dependency>
-                           		<dependency>
-                           			<groupId>cglib</groupId>
-                           			<artifactId>cglib</artifactId>
-                           			<version>2.2</version>
-                           		</dependency>
-                           		<!-- json request -->
-                           		<dependency>
-                           			<groupId>com.fasterxml.jackson.core</groupId>
-                           			<artifactId>jackson-databind</artifactId>
-                           			<version>2.3.3</version>
-                           		</dependency>
-                           		<dependency>
-                           			<groupId>org.codehaus.jackson</groupId>
-                           			<artifactId>jackson-mapper-asl</artifactId>
-                           			<version>1.9.11</version>
-                           		</dependency>
-                           		<dependency>
-                           			<groupId>taglibs</groupId>
-                           			<artifactId>standard</artifactId>
-                           			<version>1.1.2</version>
-                           		</dependency>
-                           
-                           		<dependency>
-                           			<groupId>com.googlecode.json-simple</groupId>
-                           			<artifactId>json-simple</artifactId>
-                           			<version>1.1</version>
-                           		</dependency>
-                           	</dependencies>
-                             
-                           ```
-
-                     2. 
+       ```xml
+       <!-- 버전을 선언하는 곳 -->
+                	<properties>
+                		<java-version>1.8</java-version>
+                		<org.springframework-version>4.2.5.RELEASE</org.springframework-version>
+                		<org.aspectj-version>1.6.5</org.aspectj-version>
+                		<org.slf4j-version>1.7.18</org.slf4j-version>
+                	</properties>
+                       	<dependencies>
+                       		<!-- Spring -->
+                       		<dependency>
+                       			<groupId>org.springframework</groupId>
+                       			<artifactId>spring-context</artifactId>
+                       			<version>${org.springframework-version}</version>
+                       			<exclusions>
+                       				<!-- Exclude Commons Logging in favor of SLF4j -->
+                       				<exclusion>
+                       					<groupId>commons-logging</groupId>
+                       					<artifactId>commons-logging</artifactId>
+                       				</exclusion>
+                       			</exclusions>
+                       		</dependency>
+                       		<dependency>
+                       			<groupId>org.springframework</groupId>
+                       			<artifactId>spring-webmvc</artifactId>
+                       			<version>${org.springframework-version}</version>
+                       		</dependency>
+                       		<dependency>
+                       			<groupId>org.springframework</groupId>
+                       			<artifactId>spring-aop</artifactId>
+                       			<version>${org.springframework-version}</version>
+                       		</dependency>
+                       		<dependency>
+                       			<groupId>org.springframework</groupId>
+                       			<artifactId>spring-beans</artifactId>
+                       			<version>${org.springframework-version}</version>
+                       		</dependency>
+                       		<dependency>
+                       			<groupId>org.springframework</groupId>
+                       			<artifactId>spring-core</artifactId>
+                       			<version>${org.springframework-version}</version>
+                       		</dependency>
+                       		<dependency>
+                       			<groupId>org.springframework</groupId>
+                       			<artifactId>spring-expression</artifactId>
+                       			<version>${org.springframework-version}</version>
+                       		</dependency>
+                       		<dependency>
+                       			<groupId>org.springframework</groupId>
+                       			<artifactId>spring-jdbc</artifactId>
+                       			<version>${org.springframework-version}</version>
+                       		</dependency>
+                       		<dependency>
+                       			<groupId>org.springframework</groupId>
+                       			<artifactId>spring-messaging</artifactId>
+                       			<version>${org.springframework-version}</version>
+                       		</dependency>
+                       		<dependency>
+                       			<groupId>org.springframework</groupId>
+                       			<artifactId>spring-tx</artifactId>
+                       			<version>${org.springframework-version}</version>
+                       		</dependency>
+                       		<!-- AspectJ -->
+                       		<dependency>
+                       			<groupId>org.aspectj</groupId>
+                       			<artifactId>aspectjrt</artifactId>
+                       			<version>${org.aspectj-version}</version>
+                       		</dependency>
+                                               		<dependency>
+                       			<groupId>org.aspectj</groupId>
+                       			<artifactId>aspectjtools</artifactId>
+                       			<version>${org.aspectj-version}</version>
+                       		</dependency>
+                       
+                       		<dependency>
+                       			<groupId>org.aspectj</groupId>
+                       			<artifactId>aspectjweaver</artifactId>
+                       			<version>${org.aspectj-version}</version>
+                       		</dependency>
+                                               		<!-- Logging -->
+                       		<dependency>
+                       			<groupId>org.slf4j</groupId>
+                       			<artifactId>slf4j-api</artifactId>
+                       			<version>${org.slf4j-version}</version>
+                       		</dependency>
+                       		<dependency>
+                       			<groupId>org.slf4j</groupId>
+                       			<artifactId>jcl-over-slf4j</artifactId>
+                       			<version>${org.slf4j-version}</version>
+                       			<scope>runtime</scope>
+                       		</dependency>
+                       		<dependency>
+                       			<groupId>org.slf4j</groupId>
+                       			<artifactId>slf4j-log4j12</artifactId>
+                       			<version>${org.slf4j-version}</version>
+                       		</dependency>
+                       		<dependency>
+                       			<groupId>log4j</groupId>
+                       			<artifactId>log4j</artifactId>
+                       			<version>1.2.15</version>
+                       			<exclusions>
+                       				<exclusion>
+                       					<groupId>javax.mail</groupId>
+                       					<artifactId>mail</artifactId>
+                       				</exclusion>
+                       				<exclusion>
+                       					<groupId>javax.jms</groupId>
+                       					<artifactId>jms</artifactId>
+                       				</exclusion>
+                       				<exclusion>
+                       					<groupId>com.sun.jdmk</groupId>
+                       					<artifactId>jmxtools</artifactId>
+                       				</exclusion>
+                       				<exclusion>
+                       					<groupId>com.sun.jmx</groupId>
+                       					<artifactId>jmxri</artifactId>
+                       				</exclusion>
+                       			</exclusions>
+                       			<scope>runtime</scope>
+                       		</dependency>
+                       
+                       		<!-- @Inject -->
+                       		<dependency>
+                       			<groupId>javax.inject</groupId>
+                       			<artifactId>javax.inject</artifactId>
+                       			<version>1</version>
+                       		</dependency>
+                       
+                       		<!-- Servlet -->
+                       		<dependency>
+                       			<groupId>javax.servlet</groupId>
+                       			<artifactId>javax.servlet-api</artifactId>
+                       			<version>3.0.1</version>
+                       			<scope>provided</scope>
+                       		</dependency>
+                       		<dependency>
+                       			<groupId>javax.servlet</groupId>
+                       			<artifactId>jstl</artifactId>
+                       			<version>1.2</version>
+                       		</dependency>
+                       		<!-- Tiles3 -->
+                       		<dependency>
+                       			<groupId>org.apache.tiles</groupId>
+                       			<artifactId>tiles-core</artifactId>
+                       			<version>3.0.3</version>
+                       		</dependency>
+                       		<dependency>
+                       			<groupId>org.apache.tiles</groupId>
+                       			<artifactId>tiles-extras</artifactId>
+                       			<version>3.0.3</version>
+                       		</dependency>
+                       
+                       		<!-- MyBatis -->
+                       		<dependency>
+                       			<groupId>org.mybatis</groupId>
+                       			<artifactId>mybatis</artifactId>
+                       			<version>3.2.3</version>
+                       		</dependency>
+                       
+                       		<dependency>
+                       			<groupId>org.mybatis</groupId>
+                       			<artifactId>mybatis-spring</artifactId>
+                       			<version>1.2.2</version>
+                       		</dependency>
+                       		<!-- DBCP -->
+                       
+                       		<dependency>
+                       			<groupId>commons-dbcp</groupId>
+                       			<artifactId>commons-dbcp</artifactId>
+                       			<version>1.2.2</version>
+                       		</dependency>
+                       		<!-- <dependency> <groupId>com.oracle</groupId> <artifactId>ojdbc6</artifactId> 
+                       			<version>11.2.0</version> </dependency> -->
+                       		<!-- AOP Alliance -->
+                       		<!-- Test -->
+                       		<dependency>
+                       			<groupId>junit</groupId>
+                       			<artifactId>junit</artifactId>
+                       			<version>4.7</version>
+                       			<scope>test</scope>
+                       		</dependency>
+                       		<dependency>
+                       			<groupId>commons-fileupload</groupId>
+                       			<artifactId>commons-fileupload</artifactId>
+                       			<version>1.3.1</version>
+                       		</dependency>
+                       
+                       		<dependency>
+                       			<groupId>org.springframework</groupId>
+                       			<artifactId>spring-jms</artifactId>
+                       			<version>4.2.5.RELEASE</version>
+                       		</dependency>
+                       
+                       		<dependency>
+                       			<groupId>aopalliance</groupId>
+                       			<artifactId>aopalliance</artifactId>
+                       			<version>1.0</version>
+                       		</dependency>
+                       		<dependency>
+                       			<groupId>cglib</groupId>
+                       			<artifactId>cglib</artifactId>
+                       			<version>2.2</version>
+                       		</dependency>
+                       		<!-- json request -->
+                       		<dependency>
+                       			<groupId>com.fasterxml.jackson.core</groupId>
+                       			<artifactId>jackson-databind</artifactId>
+                       			<version>2.3.3</version>
+                       		</dependency>
+                       		<dependency>
+                       			<groupId>org.codehaus.jackson</groupId>
+                       			<artifactId>jackson-mapper-asl</artifactId>
+                       			<version>1.9.11</version>
+                       		</dependency>
+                       		<dependency>
+                       			<groupId>taglibs</groupId>
+                       			<artifactId>standard</artifactId>
+                       			<version>1.1.2</version>
+                       		</dependency>
+                       
+                       		<dependency>
+                       			<groupId>com.googlecode.json-simple</groupId>
+                       			<artifactId>json-simple</artifactId>
+                       			<version>1.1</version>
+                       		</dependency>
+                       	</dependencies>
+       ```
 
