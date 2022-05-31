@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.ProductMapper">
+	<!-- SELECT 문 -->
+	<!-- productMapper 라는 인터페이스가 호출되면 자동으로 이곳이 실행된다.  -->
+	<!-- 리턴 타입을 product로 한다.  -->
+	<select id="select" parameterType="String" resultType="product">
+		SELECT * FROM product WHERE ID=#{obj}
+	</select>
+	<!-- 리턴 타입을 product로 한다.  -->
+	<select id="selectAll" resultType="product">
+		SELECT * FROM product
+	</select>
+	<!-- 이름중 매개변수값이 포함된 모든 데이터 가져온다. -->
+	<!-- MyBatis에서는 특수문자 사용시 CONCAT으로 하나의 String으로 만들어서 보내줘야한다.  -->
+	<select id="searchName" parameterType="String" resultType="product">
+		SELECT * FROM product WHERE NAME LIKE CONCAT('%',#{name},'%')
+	</select>
+	<select id="getRate" parameterType="Double" resultType="product">
+		SELECT * FROM product WHERE RATE > #{rate}
+	</select>
+	
+	
+	<!-- INSERT 문 -->
+	<insert id="insert" parameterType="product">
+		INSERT INTO product VALUES (NULL,#{name},#{price},SYSDATE(),#{rate})
+	</insert>
+	
+	<!-- UPDATE 문 -->	
+	<update id="update" parameterType="product">
+		UPDATE product SET NAME=#{name},PRICE=#{price},REGDATE=SYSDATE(),RATE=#{rate} WHERE ID=#{id}
+	</update>
+	
+	<!-- DELETE 문 -->
+	<delete id="delete" parameterType="String">
+		DELETE FROM product WHERE ID=#{obj}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+

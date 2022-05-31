@@ -61,9 +61,8 @@
 
       + ```sql
         SELECT CONCAT(prodName, ' | ' ,groupName ) from buytbl;
-        
         ```
-
+      
    4. IF절
 
       1. IF(조건, 수식1, 수식2)
@@ -91,9 +90,8 @@
 
       + ```SQL
         SELECT FORMAT(123456.12345,4);
-        
         ```
-
+      
    7. DATE
 
       + ADDDATE, SUBDATE
@@ -101,10 +99,17 @@
       + **DATE 자료형**으로 저장시 YYYY-MM-DD의 형태로 저장된다. 따라서 **시,분,초** 까지 저장하기 위해서는 **DATETIME 자료형**을 사용해야 한다. 
       
         ```sql
+        # 방법 1
+        # DATEADD(시간 단위, 더할 수치, 기준 시간 )
+        # SELECT ADDDATE(DAY, 5, SYSDATE()) : 현재에다가 5일 더한다. 
+        # SELECT ADDDATE(YEAR, -5, SYSDATE()) : 현재에다가 5년 뺀다. 
+        # 방법 2
+        # DATE_ADD(날짜, INTERVAL 숫자 계산형식)
+        # SELECT DATE_ADD(SYSDATE, INTERVAL -3 MONTH) FROM TABLE; : 현재 일자로 부터 3개월을 뺀다. 
+        # date_add(current_date(), INTERVAL -2 MONTH)
         SELECT mDate,adddate(mdate, interval 30 DAY),
         subdate(mDate, INTERVAL 30 DAY)
          FROM usertbl;
-        
         
         SELECT CURDATE();# 날짜만
         SELECT CURTIME(); #시간만
@@ -112,7 +117,7 @@
         SELECT SYSDATE();#날짜 시간 둘다
         SELECT YEAR(sysdate());
         ```
-
+      
       + datediff() 와  period_diff
       
         + ```sql

@@ -25,7 +25,6 @@
 
 2. 프로젝트 생성 및 설정
 
-   ```java
    1. project 생성
    2. Spring Boot > Spring Starter Project 선택
    3. 프로젝트명 입력
@@ -34,22 +33,22 @@
    	1) Spring Boot DevTools
    	1) Spring Web
    6. pom.xml 추가
-    <!-- @Inject -->
+    
+   
+   
+   		<!-- @Inject -->
    		<dependency>
    			<groupId>javax.inject</groupId>
    			<artifactId>javax.inject</artifactId>
    			<version>1</version>
    		</dependency>
    		<!-- Servlet -->
-   
-   		<dependency>
-   			<groupId>org.apache.tomcat.embed</groupId>
-   			<artifactId>tomcat-embed-jasper</artifactId>
-   			<scope>provided</scope>
-   		</dependency>
-   
-   
-   		<dependency>
+   	    <dependency>
+   	        <groupId>org.apache.tomcat.embed</groupId>
+   	        <artifactId>tomcat-embed-jasper</artifactId>
+   	        <scope>provided</scope>
+   	    </dependency>
+   	    <dependency>
    			<groupId>javax.servlet</groupId>
    			<artifactId>javax.servlet-api</artifactId>
    			<version>3.0.1</version>
@@ -62,12 +61,12 @@
    		</dependency>
    		
    		<!-- json request -->   
-   
+   	
    		<dependency>
    			<groupId>com.googlecode.json-simple</groupId>
    			<artifactId>json-simple</artifactId>
    			<version>1.1</version>
-     		</dependency>
+   		</dependency>
    
    
    7. Directory 생성

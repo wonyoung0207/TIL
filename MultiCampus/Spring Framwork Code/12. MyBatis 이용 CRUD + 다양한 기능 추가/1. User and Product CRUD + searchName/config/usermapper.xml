@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.UserMapper">
+<!-- UserMapper 라는 인터페이스가 호출되면 자동으로 이곳이 실행된다.  -->
+	<select id="select" parameterType="String" resultType="user">
+		SELECT * FROM cust WHERE ID=#{obj}
+	</select>
+	<select id="selectAll" resultType="user">
+		SELECT * FROM cust
+	</select>
+	<select id="searchName" parameterType="String" resultType="user">
+		SELECT * FROM cust WHERE NAME LIKE CONCAT('%',#{name},'%')	
+	</select>
+	
+	
+	<insert id="insert" parameterType="user">
+		INSERT INTO cust VALUES (#{id},#{pwd},#{name})
+	</insert>
+	<update id="update" parameterType="user">
+		UPDATE cust SET PWD=#{pwd},NAME=#{name} WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="String">
+		DELETE FROM cust WHERE ID=#{obj}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+

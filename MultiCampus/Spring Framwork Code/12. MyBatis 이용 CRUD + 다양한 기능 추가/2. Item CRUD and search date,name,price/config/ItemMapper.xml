@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.ItemMapper">
+<!-- itemMapper 라는 인터페이스가 호출되면 자동으로 이곳이 실행된다.  -->
+	<select id="select" parameterType="int" resultType="item">
+		SELECT * FROM item WHERE ID=#{obj}
+	</select>
+	
+	<select id="selectAll" resultType="item">
+		SELECT * FROM item
+	</select>
+	
+	<select id="searchName" parameterType="String" resultType="item">
+		SELECT * FROM item WHERE NAME LIKE CONCAT('%',#{name},'%')	
+	</select>
+	
+	<select id="searchPrice" parameterType="Map" resultType="item">
+		SELECT * FROM item WHERE PRICE BETWEEN #{price1} AND #{price2} 	
+	</select>
+	
+<!-- 	<select id="searchPrice1" parameterType="int" resultType="item">
+		SELECT * FROM item WHERE PRICE BETWEEN #{param1} AND #{param1} 	
+	</select> -->
+	
+	<select id="searchDate" parameterType="Date" resultType="item">
+		SELECT * FROM item WHERE DATE_FORMAT(REGDATE,'%YYYY %mm %dd') > DATE_FORMAT(#{date},'%YYYY %mm %dd') 
+	</select>
+	
+	
+	
+	<insert id="insert" parameterType="item">
+		INSERT INTO item VALUES (NULL,#{name},#{price},#{imgname},CURRENT_DATE())
+	</insert>
+	<update id="update" parameterType="item">
+		UPDATE item SET NAME=#{name},PRICE=#{price},IMGNAME=#{imgname},REGDATE=CURRENT_DATE() WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM item WHERE ID=#{obj}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+

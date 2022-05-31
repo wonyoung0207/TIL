@@ -133,8 +133,6 @@
         WHERE height BETWEEN 180 AND 183;
         ```
 
-        
-
    6. **Date**
 
       + ```sql
@@ -156,10 +154,8 @@
         # 같은 풀이 
         SELECT * FROM usertbl
         WHERE date_format(mDate,'%Y') IN ('2007','2009');
-        
-        
         ```
-
+      
    7. LIKE
 
       + 문자열을 검색하기 위해서 사용한다. 

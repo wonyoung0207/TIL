@@ -123,26 +123,32 @@ public class ProductDao implements Dao<Integer, ProductVO> {
       </bean>
       
       <!-- 2. Transaction Setting -->
+      <!-- dataSource 를 참조하여 txManager를 실행한다.   -->
       <bean id="txManager"
             class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
           <property name="dataSource" ref="dataSource" />
       </bean>
       
       <!-- 3. MyBatis Setting -->
+      <!-- dataSource를 이용해서 Mybatis를 동작시키겠다.  -->
       <bean id="sqlSessionFactory"
             class="org.mybatis.spring.SqlSessionFactoryBean">
           <property name="dataSource" ref="dataSource" />
           <property name="configLocation"
                     value="classpath:com/config/mybatis.xml" />
+          <!-- mybatis 사용하려면 해당 xml파일이 꼭 필요하다.   -->
       </bean>
+      
+      <!-- 3-1. Mapper Setting -->
+      <!-- MyBatis에서 사용하는 Mapper들을 저장해놓은곳  -->
+      <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+          <property name="basePackage" value="com.mapper" /><!-- mapper를 설정한다.  -->
+      </bean>
+      
       <!-- 4. Spring Mybatis Connect -->
       <bean id="sqlSessionTemplate"
             class="org.mybatis.spring.SqlSessionTemplate">
           <constructor-arg ref="sqlSessionFactory" />
-      </bean>
-      <!-- 5. Mapper Setting -->
-      <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-          <property name="basePackage" value="com.mapper" /><!-- mapper를 설정한다.  -->
       </bean>
       ```
 
@@ -151,11 +157,11 @@ public class ProductDao implements Dao<Integer, ProductVO> {
       ```java
       service.remove("4");
       ```
-
+   
    4. ### 해당 기능들을 사용하기 위해 호출하면 인터페이스를 구현한 com.service 패키지의 *Service.java 가 호출된다. 
-
+   
       - 클래스별로 설정되어있는 Service 에는 Mapper 라는 dao가 설정되어있다. 
-
+   
       ```java
       @org.springframework.stereotype.Service("pservice")
       public class ProductService implements Service<String,ProductVO>{.
@@ -178,6 +184,7 @@ public class ProductDao implements Dao<Integer, ProductVO> {
            - 인터페이스 호출시 DB와 연결할 수 있도록 SQL문을 가진 곳 
    
       ```java
+      // ProductMapper.java 인터페이스 파일 
       public interface ProductMapper {//여기가 불리면 자동적으로 com.config 에 있는 usermapper가 호출된다
       	//com.config 에 있는 usermapper.xml 에서 작성한 id를 변수에 저장 
       	public void insert(ProductVO obj);
@@ -188,41 +195,36 @@ public class ProductDao implements Dao<Integer, ProductVO> {
       	public List&lt;ProductVO&gt; selectAll();
       }
       ```
-
+   
    6. ### Mybatis 설정에 의해 자동 호출된 mapper가 데이터베이스와 SQL문을 통해 상호작용 한다. 
    
       1. Mapper 인터페이스가 호출되면 Mybatis 에 의해 Spring.xml 에 설정되어 있는 com.config 패키지에있는 알맞은 mapper가 호출된다. 
          - **ProductMapper 인터페이스 호출**시 **\<mapper namespace="com.mapper.ProductMapper"> 로 설정되어있는 내용에 의해 CRUD가 실행**된다. 
       
       ```xml
-      <?xml version="1.0" encoding="UTF-8"?>
-      <!DOCTYPE mapper
-      PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
-      "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-      <mapper namespace="com.mapper.ProductMapper">
+      <!-- SELECT 문 -->
       <!-- productMapper 라는 인터페이스가 호출되면 자동으로 이곳이 실행된다.  -->
-          <!-- SELECT 문 -->
-      	<select id="select" parameterType="String" resultType="product">
-      		SELECT * FROM product WHERE ID=#{obj}
-      	</select>
-      	<select id="selectAll" resultType="product">
-      		SELECT * FROM product
-      	</select>
-      	
-          <!-- INSERT 문 -->
-      	<insert id="insert" parameterType="product">
-      		INSERT INTO product VALUES (NULL,#{name},#{price},sysdate(),#{rate})
-      	</insert>
-          
-          <!-- UPDATE 문 -->
-      	<update id="update" parameterType="product">
-      		UPDATE product SET NAME=#{name},PRICE=#{price},regdate=sysdate(),RATE=#{rate} WHERE ID=#{id}
-      	</update>
-          
-          <!-- DELETE 문 -->
-      	<delete id="delete" parameterType="String">
-      		DELETE FROM product WHERE ID=#{obj}
-      	</delete>
-      	
-      </mapper>
+      <!-- 리턴 타입을 product로 한다.  -->
+      <select id="select" parameterType="String" resultType="product">
+          SELECT * FROM product WHERE ID=#{obj}
+      </select>
+      <!-- 리턴 타입을 product로 한다.  -->
+      <select id="selectAll" resultType="product">
+          SELECT * FROM product
+      </select>
+      
+      <!-- INSERT 문 -->
+      <insert id="insert" parameterType="product">
+          INSERT INTO product VALUES (NULL,#{name},#{price},SYSDATE(),#{rate})
+      </insert>
+      
+      <!-- UPDATE 문 -->	
+      <update id="update" parameterType="product">
+          UPDATE product SET NAME=#{name},PRICE=#{price},REGDATE=SYSDATE(),RATE=#{rate} WHERE ID=#{id}
+      </update>
+      
+      <!-- DELETE 문 -->
+      <delete id="delete" parameterType="String">
+          DELETE FROM product WHERE ID=#{obj}
+      </delete>
       ```
