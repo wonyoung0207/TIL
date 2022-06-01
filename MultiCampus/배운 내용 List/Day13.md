@@ -84,7 +84,7 @@
 
 ## 5. MySQL 
 
-<img src="images/mysql.png" width="500" height="400" >
+<img src="../images/mysql.png" width="500" height="400" >
 
    + **스키마 (데이터 베이스 )**
 

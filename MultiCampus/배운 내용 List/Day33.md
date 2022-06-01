@@ -55,7 +55,7 @@ public class ProductDao implements Dao<Integer, ProductVO> {
 
 1. **데이터 베이스에 연동**할때 쉽게 사용할 수 있도록 도와주는 것 이다. 
 
-   <img src="images/MyBatis.png">
+   <img src="../images/MyBatis.png">
 
 2. 설정
 

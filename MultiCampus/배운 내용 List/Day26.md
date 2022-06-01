@@ -58,7 +58,7 @@
          - 다양한 popup box를 제공한다. 
       6. timing
          - 다양한 Timer를 사용할 수 있다. 
-   3. <img src="images/DOM.jpg" width=400px; height=400px;>
+   3. <img src="../images/DOM.jpg" width=400px; height=400px;>
 
 ## 3. JQuery
 
@@ -275,7 +275,7 @@
 
 4. ### 결과물
 
-   1. | 네이버 회원가입 화면      | <img src="images/naver_JoinMember.png">  |
-      | :------------------------ | ---------------------------------------- |
-      | 내가 만든 회원가입 화면 1 | <img src="images/naver_JoinMember2.png"> |
-      | 내가 만든 회원가입 화면 2 | <img src="images/naver_JoinMember3.png"> |
+   1. | 네이버 회원가입 화면      | <img src="../images/naver_JoinMember.png">  |
+      | :------------------------ | ------------------------------------------- |
+      | 내가 만든 회원가입 화면 1 | <img src="../images/naver_JoinMember2.png"> |
+      | 내가 만든 회원가입 화면 2 | <img src="../images/naver_JoinMember3.png"> |

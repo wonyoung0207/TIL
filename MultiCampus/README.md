@@ -36,7 +36,7 @@
   - [Mart](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Project_Mysql_Java_Connection)
 
 
-# [HTML5 & Spring Boot](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Spring%20Framwork%20Code)
+# [HTML5 & Spring Boot](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Spring%20Boot)
 
 - Day21 : Spring Tool 설치 방법 및 설정, 웹 프로그래밍 배경, Spring폴더 구조, html 문법 구조
 - Day22 : HTML 구조 ( 특수기호, 태그 종류), Spring 동작 구조
@@ -53,7 +53,7 @@
   - [Apple Site 만들기 ](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Project_AppleSite)
 
 
-# Spring Framework & MyBatis
+# [Spring Framework & MyBatis](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Spring%20Framework%20%26%20MyBatis)
 
 - Day32 : 배운 내용 정리 및 배울 내용 추가 , Spring Framework 개념 및 구조, 환경 구축 
 - Day33 : Spring Framework( DI )  개념, MyBatis Framework ( AOP )사용 방법 및 구조 

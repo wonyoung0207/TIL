@@ -302,7 +302,7 @@
 
    3. ### 결과물
 
-      1. | <img src="images/naver_JoinMember_AJAX2.png" width="300"><img src="images/naver_JoinMember_AJAX1.png" width="300"> |      |
+      1. | <img src="../images/naver_JoinMember_AJAX2.png" width="300"><img src="../images/naver_JoinMember_AJAX1.png" width="300"> |      |
          | ------------------------------------------------------------ | ---- |
-         | <img src="images/naver_JoinMember_AJAX3.png" width="300"><img src="images/naver_JoinMember_AJAX4.png" width="300"> |      |
-         | <img src="images/naver_JoinMember_AJAX5.png" width="500">    |      |
+         | <img src="../images/naver_JoinMember_AJAX3.png" width="300"><img src="../images/naver_JoinMember_AJAX4.png" width="300"> |      |
+         | <img src="../images/naver_JoinMember_AJAX5.png" width="500"> |      |

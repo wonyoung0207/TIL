@@ -326,7 +326,7 @@
    </table>
    ```
 
-4. | <img src="images/Calc1.png" width=400px; height=400px;> | <img src="images/Calc2.png" width=400px; height=400px;> |
-   | ------------------------------------------------------- | ------------------------------------------------------- |
-   | <img src="images/Calc3.png" width=400px; height=400px;> |                                                         |
+4. | <img src="../images/Calc1.png" width=400px; height=400px;> | <img src="../images/Calc2.png" width=400px; height=400px;> |
+   | ---------------------------------------------------------- | ---------------------------------------------------------- |
+   | <img src="../images/Calc3.png" width=400px; height=400px;> |                                                            |
 

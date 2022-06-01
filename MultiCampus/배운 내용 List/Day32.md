@@ -18,7 +18,7 @@
 
       4. thymeleaf 파일을 html파일로 변환하여 브라우저에 보냄 
 
-      5. <img src="images/SpringBootWork.png">
+      5. <img src="../images/SpringBootWork.png">
 
       6. 역할
 
@@ -37,7 +37,7 @@
       4. 클래스간 **결합**이 높으면 하나의 클래스가 변경되었을 때 모든 클래스가 영향을 받는다. 
          1. 이것을 '디펜던시( 클래스가 다른 클래스를 무조건적으로 필요로 하는 것 ) '라고 한다.  
          2. 따라서 이 **결합도**를 낮추기 위해 **Spring** 을 사용하게 된다. 
-      5. <img src="images/SpringContainerWork.png">
+      5. <img src="../images/SpringContainerWork.png">
 
 ## 2. Spring 프레임워크 
 
@@ -100,7 +100,7 @@
 
          - 애플리케이션 개발에서 비즈니스 로직과 시스템 서비스를 분리하여 개발 
    - 개발자는 비즈니스 로직만을 구성하면 됨 
-      
+     
       6. POJO 방식 프레임워크 
 
    4. ### 장점

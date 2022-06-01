@@ -151,7 +151,7 @@
          4. 변경된 html 파일을 사용자 화면에 뿌려줌.
             - **동기**일 경우 : 요청시 무조건 서버에서 html 을 새로 만들어서 사용자에게 뿌려주는 것임.
             - **비동기**일 경우 : 내려받은 html파일에서 특정 부분만 변경되도록 할 수 있다. 
-         5. <img src="images/thymeleaf.png" >
+         5. <img src="../images/thymeleaf.png" >
 
 
 ## 4. Bootstrap 템플릿 이용해서 반응형 웹 만들기 
@@ -178,7 +178,7 @@
     4. Carousel
     5. Login
 
-   4. | main & Taps / Pills | <img src="images/bootstrap/Day24/main.png" style="width:400px; height:400px" ><img src="images/bootstrap/Day24/tab.png" style="width:400px; height:400px"> |
+   4. | main & Taps / Pills | <img src="../images/bootstrap/Day24/main.png" style="width:400px; height:400px" ><img src="../images/bootstrap/Day24/tab.png" style="width:400px; height:400px"> |
       | ------------------- | ------------------------------------------------------------ |
-      | Table & Carousel    | <img src="images/bootstrap/Day24/table.png" style="width:400px; height:400px"><img src="images/bootstrap/Day24/carousel.png" style="width:400px; height:400px"> |
-      | Login               | <img src="images/bootstrap/Day24/login.png" style="width:400px; height:400px"> |
+      | Table & Carousel    | <img src="../images/bootstrap/Day24/table.png" style="width:400px; height:400px"><img src="../images/bootstrap/Day24/carousel.png" style="width:400px; height:400px"> |
+      | Login               | <img src="../images/bootstrap/Day24/login.png" style="width:400px; height:400px"> |

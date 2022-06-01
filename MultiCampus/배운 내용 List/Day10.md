@@ -23,7 +23,7 @@
 
 ## 2.  인터페이스 
 
-![interface](images/Interface.png)
+![interface](../images/Interface.png)
 
 1. 동일한 목적을 가지고 동일한 기능을 수행하는 것으로 ,클래스의 기본 틀이 된다.
 + 특징
