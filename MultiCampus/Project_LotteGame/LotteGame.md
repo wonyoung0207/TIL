@@ -1,4 +1,4 @@
-# LotteGame_WonYoung
+# LotteGame Project
 ---
 
 > 직접 로또 게임을 만들어 본다. 

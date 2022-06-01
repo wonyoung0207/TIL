@@ -30,43 +30,44 @@
    3. 프로젝트명 입력
    4. Group과 Package 명 선택, 반드시 두개 이상의 package 명으로 입력
    5. Dependencies 선택
-   	1) Spring Boot DevTools
-   	1) Spring Web
+      1. Spring Boot DevTools
+      2. Spring Web
+   
    6. pom.xml 추가
-    
    
-   
-   		<!-- @Inject -->
-   		<dependency>
-   			<groupId>javax.inject</groupId>
-   			<artifactId>javax.inject</artifactId>
-   			<version>1</version>
-   		</dependency>
-   		<!-- Servlet -->
-   	    <dependency>
-   	        <groupId>org.apache.tomcat.embed</groupId>
-   	        <artifactId>tomcat-embed-jasper</artifactId>
-   	        <scope>provided</scope>
-   	    </dependency>
-   	    <dependency>
-   			<groupId>javax.servlet</groupId>
-   			<artifactId>javax.servlet-api</artifactId>
-   			<version>3.0.1</version>
-   			<scope>provided</scope>
-   		</dependency>
-   		<dependency>
-   			<groupId>javax.servlet</groupId>
-   			<artifactId>jstl</artifactId>
-   			<version>1.2</version>
-   		</dependency>
-   		
-   		<!-- json request -->   
+   ```xml
+   	<!-- @Inject -->
+   	<dependency>
+   		<groupId>javax.inject</groupId>
+   		<artifactId>javax.inject</artifactId>
+   		<version>1</version>
+   	</dependency>
+   	<!-- Servlet -->
+       <dependency>
+           <groupId>org.apache.tomcat.embed</groupId>
+           <artifactId>tomcat-embed-jasper</artifactId>
+           <scope>provided</scope>
+       </dependency>
+       <dependency>
+   		<groupId>javax.servlet</groupId>
+   		<artifactId>javax.servlet-api</artifactId>
+   		<version>3.0.1</version>
+   		<scope>provided</scope>
+   	</dependency>
+   	<dependency>
+   		<groupId>javax.servlet</groupId>
+   		<artifactId>jstl</artifactId>
+   		<version>1.2</version>
+   	</dependency>
    	
-   		<dependency>
-   			<groupId>com.googlecode.json-simple</groupId>
-   			<artifactId>json-simple</artifactId>
-   			<version>1.1</version>
-   		</dependency>
+   	<!-- json request -->   
+   
+   	<dependency>
+   		<groupId>com.googlecode.json-simple</groupId>
+   		<artifactId>json-simple</artifactId>
+   		<version>1.1</version>
+   	</dependency>
+   ```
    
    
    7. Directory 생성
