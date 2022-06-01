@@ -6,11 +6,11 @@
 
 # [자바 ](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Java)
 
-- Day01 : 자바의 특장점과 규칙
-- Day02 : 자바의 기본 문법과 연산자, 변수 (소수점 찍기)
-- Day03 : 자바의 메모리 관리 (Stack, Heap) 
-- Day04 : 조건문과 반복문, 깃허브와 eclipse 연동 방법 , 
-- Day05 : 2중 for문, 변수와 객체 차이, 배열  , [Code 정리](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Java/Day05)
+- [Day01](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day01.md) : 자바의 특장점과 규칙
+- [Day02](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day02.md) : 자바의 기본 문법과 연산자, 변수 (소수점 찍기)
+- [Day03](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day03.md) : 자바의 메모리 관리 (Stack, Heap) 
+- [Day04](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day05.md) : 조건문과 반복문, 깃허브와 eclipse 연동 방법 , 
+- [Day05](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day05.md) : 2중 for문, 변수와 객체 차이, 배열 
 - Day06 : 2차원 배열 저장구조 , [문제 만들기( LotteGame, fruit, 숫자 추측)](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Java/Day06) 
 - Day07 : 객체지향 프로그래밍, [문제만들기 (Bank)](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Java/Day07/bank.java) 
 - Day08 : 객체간의 관계, 접근 지정자, 상속, 오버로딩, 오버라이딩 , 객체 타입 확인방법, [문제만들기 (Company)](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Java/Day08)
