@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>main Page</title>
+</head>
+<body>
+<h1> Main page</h1>
+<h3><a href="custadd"> Cust Add</a></h3>
+<h3><a href="custselect"> Cust Select</a></h3>
+<h3>
+
+</h3>
+<div id="center_div" th:include="${ccenter} ? ${ccenter} : center"></div>
+</body>
+</html>

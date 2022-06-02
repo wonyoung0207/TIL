@@ -92,7 +92,8 @@
 
       ```html
       <!-- home.html -->
-      
+      <html xmlns:th="http://www.thymeleaf.org">
+          
       <aside id="left_aside">
       	<ul>
       		<li><a href="home1">home1</a>

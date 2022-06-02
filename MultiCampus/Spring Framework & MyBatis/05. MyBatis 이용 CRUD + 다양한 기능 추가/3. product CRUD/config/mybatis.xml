@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org/DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+	<!-- MyBatis에서 user이름으로 사용 -->
+		<typeAlias type="com.vo.ProductVO" alias="product"/>
+	</typeAliases>
+	
+	<mappers>
+	<!-- 위에 사용한 user sql문을 어디에다가 사용하겠습니까?  -->
+		<mapper resource="com/config/ProductMapper.xml"/>
+	</mappers>
+</configuration>
+
+
+
+
+
+

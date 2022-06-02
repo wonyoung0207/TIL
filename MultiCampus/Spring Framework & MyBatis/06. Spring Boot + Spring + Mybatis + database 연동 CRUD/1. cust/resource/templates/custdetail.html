@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>cust detail Page</title>
+<script>
+
+</script>
+</head>
+<body>
+<h1> cust detail page</h1>
+<h3 th:text="${dcust.id}"></h3>
+<h3 th:text="${dcust.pwd}"></h3>
+<h3 th:text="${dcust.name}"></h3>
+
+
+<a href="#" th:href="@{/custDelete(id=${dcust.id})}">Delete</a>
+<a href="#" th:href="@{/custUpdate(id=${dcust.id})}">Update</a>
+</body>
+</html>

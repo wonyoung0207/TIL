@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>custadd Page</title>
+<script>
+	
+</script>
+</head>
+<body>
+	<h1>cust Update page</h1>
+	<form action="custUpdateimpl" method="post">
+		<table border=1>
+			<tr>
+				<th>ID</th>
+				<td><span th:text="${ucust.id}"></span></td>
+			</tr>
+			<input type="hidden" name="id" value="" th:value="${ucust.id}">
+			<!-- 눈에 보이지 않게해서 id값이 날아가게 한다 .-->
+
+			<tr>
+				<th>PWD</th>
+				<td><input type="password" name="pwd" th:value="${ucust.pwd}"></td>
+			</tr>
+			<tr>
+				<th>NAME</th>
+				<td><input type="text" name="name" th:value="${ucust.name}"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Update"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

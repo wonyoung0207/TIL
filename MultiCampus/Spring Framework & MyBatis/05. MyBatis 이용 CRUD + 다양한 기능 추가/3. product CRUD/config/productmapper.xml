@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mapper.ProductMapper">
+<!-- UserMapper 라는 인터페이스가 호출되면 자동으로 이곳이 실행된다.  -->
+	<select id="select" parameterType="int" resultType="product">
+		SELECT * FROM product WHERE ID=#{id}
+	</select>
+	<select id="selectAll" resultType="product">
+		SELECT p.id, p.name, p.price, p.regdate, p.cid, c.name AS catename
+		FROM product p 
+		INNER JOIN cate c ON p.cid = c.id;
+	</select>
+	<select id="searchName" parameterType="String" resultType="product">
+		SELECT * FROM product WHERE NAME LIKE CONCAT('%',#{name},'%')	
+	</select>
+	
+	
+	<insert id="insert" parameterType="product">
+		INSERT INTO product VALUES (NULL, #{name}, #{price},SYSDATE(),#{cid})
+	</insert>
+	<update id="update" parameterType="product">
+		UPDATE product SET NAME=#{name}, PRICE=#{price},cid=#{cid} WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM product WHERE ID=#{obj}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
