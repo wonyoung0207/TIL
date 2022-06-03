@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.ProductMapper">
+	
+	<select id="select" parameterType="int" resultType="productVO">
+		SELECT * FROM product WHERE id=#{id}
+	</select>
+	<select id="selectall" resultType="productVO">
+		SELECT * FROM product ORDER BY 1
+	</select>
+	<insert id="insert" parameterType="productVO">
+		INSERT INTO product VALUES (NULL, #{name},#{price},SYSDATE(), #{rate})
+	</insert>
+	<update id="update" parameterType="productVO">
+		UPDATE product SET name=#{name},price=#{price}, rate=#{rate} WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM product WHERE id=#{id}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+

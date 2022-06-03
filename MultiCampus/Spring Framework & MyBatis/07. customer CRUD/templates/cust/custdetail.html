@@ -1,0 +1,39 @@
+
+<meta charset="UTF-8">
+
+<h1>
+	<span th:text="${cust.name}"></span> 의 Detail Page 입니다.
+</h1>
+<hr>
+
+
+
+<div class="container-fluid text-center">
+
+	<div class="col-sm-3 text-left"></div>
+	<div class="col-sm-6 text-left">
+		<h3>
+			<span th:text="${cust.name} + ' 에 대한 정보 입니다.'"></span>
+		</h3>
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>PWD</th>
+					<th>NAME</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td th:text="${cust.id}"></td>
+					<td th:text="${cust.pwd}"></td>
+					<td th:text="${cust.name}"></td>
+				</tr>
+			</tbody>
+
+		</table>
+
+		<a href="#" th:href="@{remove(id=${cust.id})}" class="btn btn-success">Delete</a>
+		 <a href="#" th:href="@{update(id=${cust.id})}" class="btn btn-success">Update</a>
+	</div>
+</div>

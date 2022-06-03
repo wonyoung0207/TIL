@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.ProductMapper">
+<!-- productMapper 라는 인터페이스가 호출되면 자동으로 이곳이 실행된다.  -->
+	<select id="select" parameterType="int" resultType="ProductVO">
+		SELECT * FROM product WHERE ID=#{id}
+	</select>
+	<select id="selectAll" resultType="ProductVO">
+		SELECT * FROM product ORDER BY 1
+	</select>	
+	
+	<insert id="insert" parameterType="ProductVO">
+		INSERT INTO product VALUES (NULL,#{name},#{price},SYSDATE() ,#{rate})
+	</insert>
+	
+	<update id="update" parameterType="ProductVO">
+		UPDATE product SET NAME=#{name},PRICE=#{price},REGDATE=SYSDATE(),RATE=#{rate} WHERE ID=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		DELETE FROM product WHERE ID=#{id}
+	</delete>
+	
+</mapper>

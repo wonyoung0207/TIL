@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>product detail Page</title>
+<script>
+
+</script>
+</head>
+<body>
+<h1> product detail page</h1>
+<h3 th:text="${dproduct.id}"></h3>
+<h3 th:text="${dproduct.name}"></h3>
+<h3 th:text="${dproduct.price}"></h3>
+<h3 th:text="${#dates.format(dproduct.regdate, 'yyyy-MM-dd')}"></h3>
+<!-- <h3 th:text="${dproduct.regdate}"></h3> -->
+<h3 th:text="${dproduct.rate}"></h3>
+
+
+<a href="#" th:href="@{/productDelete(id=${dproduct.id})}">Delete</a>
+<a href="#" th:href="@{/productUpdate(id=${dproduct.id})}">Update</a>
+</body>
+</html>

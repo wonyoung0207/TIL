@@ -5,6 +5,8 @@
 > Spring 과 MyBatis를 이용해 데이터 베이스와 연결하여 데이터를 출력한다.
 >
 > CRUD 및 다양한 SQL문을 추가해본다. 
+>
+> code : 05
 
 # Product Class
 
@@ -124,3 +126,39 @@
          SELECT * FROM item WHERE DATE_FORMAT(REGDATE,'%YYYY %mm %dd') > DATE_FORMAT(#{date},'%YYYY %mm %dd') 
      </select>
      ```
+
+2. SQL에서 Date 가져올때 원하는 형태로 변경해서 가져오는 방법
+
+   1. thymeleaf 에서 제공하는 함수로 바꿔주기 
+
+      ```html
+      <h3 th:text="${#dates.format(dproduct.regdate, 'yyyy-MM-dd')}"></h3>
+      ```
+
+      
+
+   2. 가져올때 sql의 함수인 date_format() 을 이용한다. 
+
+      - 하지만 이렇게 가져와도 자바VO객체의 Date에 저장하기 때문에 형태가 변경되지 않고 들어간다. 
+      - 따라서 1번 방법으로 바꿔주는것이 좋다. 
+
+   ```xml
+   <select id="select" parameterType="int" resultType="ProductVO">
+       SELECT id, name, price, date_format(regdate,'%Y-%m-%d') AS regdate, rate FROM product WHERE ID=#{id}
+   </select>
+   ```
+
+   
+
+    3. Insert 할때 date_format()을 이용해 넣어주기 
+
+       - 하지만 이것도 자바에서 date형태로 받으면 지정한 형태로 출력되지 않는다. 
+
+       ```xml
+       <insert id="insert" parameterType="ProductVO">
+           INSERT INTO product VALUES(NULL,"test2",1002,date_format(SYSDATE(),'%Y-%m-%d'),3.3);
+       </insert>
+       ```
+
+       
+

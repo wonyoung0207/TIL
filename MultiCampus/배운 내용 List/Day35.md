@@ -3,6 +3,12 @@
 ------
 
 > Spring Boot 환경에서 Spring Framework와 MyBatis 이용해 Database에 CRUD를 해본다. 
+>
+> Lombok을 이용해본다. 
+>
+> thymeleaf 에서 제공하는 기능들을 살펴본다. 
+>
+> code : 06.Spring Boot + ...
 
 # 전날 내용 복습
 

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<style>
+div {
+	display: inline-block;
+}
+</style>
+<meta charset="UTF-8">
+<title>productselect Page</title>
+</head>
+<body>
+
+	<h1>productselect page</h1>
+<!-- 	<div>
+		<div th:each="cust : ${allcust}">
+			<h2 th:text="${cust.id} + ${cust.name}">
+				
+			</h2>
+		</div>
+		<br>
+	</div> -->
+	<div>
+		<table>
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>NAME</th>
+					<th>PRICE</th>
+					
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="p : ${allproduct}">
+				<!-- th:href 사용시 a 태그의 href는 무시된다.  -->
+					<td ><a href="productdetail" th:href="@{/productdetail(id=${p.id})}" th:text="${p.id}">ID</a></td>
+					<td th:text="${p.name}">NAME</td>
+					<td th:text="${p.price}">Price</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

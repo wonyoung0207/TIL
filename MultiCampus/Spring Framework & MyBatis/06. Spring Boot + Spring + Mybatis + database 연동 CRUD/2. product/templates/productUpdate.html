@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>productadd Page</title>
+<script>
+	
+</script>
+</head>
+<body>
+	<h1>product Update page</h1>
+	<form action="productUpdateimpl" method="post">
+		<table border=1>
+			<tr>
+				<th>ID</th>
+				<td><span th:text="${uproduct.id}"></span></td>
+			</tr>
+			<input type="hidden" name="id" value="" th:value="${uproduct.id}">
+			<!-- 눈에 보이지 않게해서 id값이 날아가게 한다 .-->
+			<tr>
+				<th>NAME</th>
+				<td><input type="text" name="name" th:value="${uproduct.name}"></td>
+			</tr>
+			<tr>
+				<th>PRICE</th>
+				<td><input type="number" name="price" th:value="${uproduct.price}"></td>
+			</tr>
+			<tr>
+				<th>REGDATE</th>
+				<td><span th:text="${uproduct.regdate}"> </span> 
+				
+				</td>
+			</tr>
+			
+			<tr>
+				<th>RATE</th>
+				<td><input type="text" name="rate" th:value="${uproduct.rate}"></td>
+			</tr>
+			<tr>
+				<td><input type="submit" value="Update"></td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>
