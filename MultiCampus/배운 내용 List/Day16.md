@@ -8,10 +8,14 @@
    + 데이터베이스는 **schema (db)** 로 되어있다. 
    + 이러한 schema는 sql 문을 통해 제어할 수 있다. 
    + **DDL** 과 **DML**로 나뉜다. 
-     + DDL : **Create, Drop, Alter **
+     + DDL (Data Define Language) 
+       + **Create, Drop, Alter **
        + 테이블 생성, 드랍 제약상황 
-     + DML : **Select, Insert, Delete, Update**
+       + 테이블 관리에 사용 
+     + DML (Data Manipulation Language) 
+       + **Select, Insert, Delete, Update**
        + 테이블의 내용들을 다루는 명령어
+       + 데이터 관리에 사용 
    + **ERD**
      + 테이블의 설계를 하는 것. 
      + 요구사항 정의 
