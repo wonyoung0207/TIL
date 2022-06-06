@@ -55,58 +55,58 @@
 
       3. 사용할 html 파일에 script 파일을 추가해 qrcode 를 생성한다.  
 
-         1. ```html
-            <script type="text/javascript" src="qrcode/jquery.min.js"></script>
-            <script type="text/javascript" src="qrcode/qrcode.js"></script>
-            
-            <script type="text/javascript">
-            	window.onload = function() {
-            		
-            		var qrcode = new QRCode(document.getElementById("qrcode"), {
-            			width : 100,
-            			height : 100
-            		});
-            
-            		function makeCode() {
-            			var elText = document.getElementById("text");
-            
-            			if (!elText.value) {
-            				elText.focus();
-            				return;
-            			}
-            			console.log("Calculare QR");
-            			qrcode.makeCode(elText.value);
-            		}
-            
-            		makeCode();
-            
-            		$("#text").on("blur", function() {
-            			makeCode();
-            		}).on("keydown", function(e) {
-            			if (e.keyCode == 13) {
-            				console.log("Apasar ENTER");
-            				makeCode();
-            			}
-            		});
-            		
-            		$("#qrcode > img").css({"margin":"auto"});//qrcode 그림 중간에 오도록 하기 
-            	};
-            </script>
-            <!-- <script type="text/javascript">
-            window.onload = function() {
-            	new QRCode(document.getElementById("qrcode"), "http://naver.com");
-            	
-            }
-            
-            </script> -->
-            
-            
-            <body>   
-            <input type="text" id="text" value="https://www.apple.com/kr">
-            <h3>QR코드로 로그인 합니다.</h3>
-            <div id="qrcode"></div>
-            </body>
-            ```
+         ```html
+         <script type="text/javascript" src="qrcode/jquery.min.js"></script>
+         <script type="text/javascript" src="qrcode/qrcode.js"></script>
+         
+         <script type="text/javascript">
+         	window.onload = function() {
+         		
+         		var qrcode = new QRCode(document.getElementById("qrcode"), {
+         			width : 100,
+         			height : 100
+         		});
+         
+         		function makeCode() {
+         			var elText = document.getElementById("text");
+         
+         			if (!elText.value) {
+         				elText.focus();
+         				return;
+         			}
+         			console.log("Calculare QR");
+         			qrcode.makeCode(elText.value);
+         		}
+         
+         		makeCode();
+         
+         		$("#text").on("blur", function() {
+         			makeCode();
+         		}).on("keydown", function(e) {
+         			if (e.keyCode == 13) {
+         				console.log("Apasar ENTER");
+         				makeCode();
+         			}
+         		});
+         		
+         		$("#qrcode > img").css({"margin":"auto"});//qrcode 그림 중간에 오도록 하기 
+         	};
+         </script>
+         <!-- <script type="text/javascript">
+         window.onload = function() {
+         	new QRCode(document.getElementById("qrcode"), "http://naver.com");
+         	
+         }
+         
+         </script> -->
+         
+         
+         <body>   
+         <input type="text" id="text" value="https://www.apple.com/kr">
+         <h3>QR코드로 로그인 합니다.</h3>
+         <div id="qrcode"></div>
+         </body>
+         ```
 
    4. 발생한 오류
 
@@ -117,7 +117,7 @@
 
    5. 결과 화면 
 
-      1. ![qrcode 생성화면](../images/qrcode.png)
+      ![qrcode 생성화면](../images/qrcode.png)
 
 ## 2. 일회용번호
 
@@ -135,74 +135,73 @@
 
    3. 코드 
 
-      1. ```javascript
-         // 일회용 넘버 8자리를 랜덤으로 생성 
-         var start = setInterval(() => {
-         	getnumber();
-         }, 3000);
-         
-         function getnumber(){
-             $.ajax({
-                 url : '/getnumber',
-                 success : function(data){
-                     display(data);
-                 }
-             });
-         }
-         
-         function display(data){
-             /* 		$(data).each(function(index, item){
-         			$('#menu1 p').text(item +" : " + index);
-         		}); */
-         
-             //$('#menu1 p').text(typeof(data));
-         
-             $('#menu1 #disposable').text(data[1]);
-             $('#menu1 #time').text(data[0]);
-         
-         }
-         ```
+      ```javascript
+      // 일회용 넘버 8자리를 랜덤으로 생성 
+      var start = setInterval(() => {
+      	getnumber();
+      }, 3000);
+      
+      function getnumber(){
+          $.ajax({
+              url : '/getnumber',
+              success : function(data){
+                  display(data);
+              }
+          });
+      }
+      
+      function display(data){
+          /* 		$(data).each(function(index, item){
+      			$('#menu1 p').text(item +" : " + index);
+      		}); */
+      
+          //$('#menu1 p').text(typeof(data));
+      
+          $('#menu1 #disposable').text(data[1]);
+          $('#menu1 #time').text(data[0]);
+      
+      }
+      ```
 
-      2. ```java
-         
-         @RestController//AJAX 통신에 적합한 애너테이션 
-         public class AJAXController {
-         	@RequestMapping("/getnumber")
-         	public Object getdata() {//데이터를 JSON 형식으로 내려준다. 
-         		JSONArray ja = new JSONArray();
-         		JSONObject jo = new JSONObject();
-         		Date d = new Date();
-         		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-         		Random r = new Random();
-         		int random= 0;
-         		String txt = "";
-         		
-         		//JSON : [{},{},{}] 의 형태
-         		for(int i=0; i<8; i++) {
-         			txt += r.nextInt(10);
-         		}
-         		
-         		//현재 시간 
-         		String date = sdf.format(d);
-         		
-         		// JSNO Array에 객체 추가 
-         		ja.add(0, date);
-         		ja.add(1, txt);
-         		
-         //		ja.add(date);
-         //		ja.add(txt);
-         //		
-         //		System.out.println(ja.get(0));
-         //		System.out.println(ja.get(1));
-         		
-         		return ja;
-         	}
-         }
-         ```
+      ```java
+      @RestController//AJAX 통신에 적합한 애너테이션 
+      public class AJAXController {
+      	@RequestMapping("/getnumber")
+      	public Object getdata() {//데이터를 JSON 형식으로 내려준다. 
+      		JSONArray ja = new JSONArray();
+      		JSONObject jo = new JSONObject();
+      		Date d = new Date();
+      		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+      		Random r = new Random();
+      		int random= 0;
+      		String txt = "";
+      		
+      		//JSON : [{},{},{}] 의 형태
+      		for(int i=0; i<8; i++) {
+      			txt += r.nextInt(10);
+      		}
+      		
+      		//현재 시간 
+      		String date = sdf.format(d);
+      		
+      		// JSNO Array에 객체 추가 
+      		ja.add(0, date);
+      		ja.add(1, txt);
+      		
+      //		ja.add(date);
+      //		ja.add(txt);
+      //		
+      //		System.out.println(ja.get(0));
+      //		System.out.println(ja.get(1));
+      		
+      		return ja;
+      	}
+      }
+      ```
 
-      3. 결과 화면
+   4. 결과 화면
 
-         1. <img src="../images/disposable.png">
+   <img src="../images/disposable.png">
 
 ## 3. local Storage 이용해서 로그인 유지 하기 
    1. [참고 사이트](https://hianna.tistory.com/697)
@@ -212,7 +211,7 @@
       1. window.localStorage.setItem('id', id);
       2. window.localStorage.getItem('id') 
 
-   3. ```javascript
+      ```javascript
       $(document).ready(function(){//로그인 성공시 key="id" 값으로 userName이 들어간다. 
       	if(window.localStorage.getItem('id') == null){// 로그인 하지 않았다면 
       		$('#user').html('<span class="glyphicon glyphicon-log-in">Login</span> ');
@@ -229,8 +228,9 @@
 
    4. 결과 화면 
 
-      1. <img src="../images/loginok1.png">
-      2. <img src="../images/loginok2.png">
+      <img src="../images/loginok1.png">
+      
+      <img src="../images/loginok2.png">
 
 ## 4. 회원가입 화면  
 
@@ -246,4 +246,5 @@
             1. 초기 register 버튼을 비활성화 시키고, 이후에 비밀번호 조건을 만족하면 버튼을 활성화 한다. 
 
    3. 결과창 
-      1. <img src="../images/registerok.png">
+      
+      <img src="../images/registerok.png">
