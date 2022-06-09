@@ -85,6 +85,7 @@
    - 일반계정(shop)과 관리자 계정(shop Admin)을 나눈다. 
    - 관리자 계정에서는 상품의 정보를 수정, 추가 할수 있다. 
    - <img src="../images/shopConstructor.png">
+   - <img src="../images/shoppingdbERD.png">
 2. Shop
    1. 포트번호를 80으로 설정 
 3. ShopAdmin
