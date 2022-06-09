@@ -4,6 +4,9 @@
 
 > shoppingdb를 이용해 shopAdmin을 만들어본다. 
 >
+> ajax, thyemleaf 함수, jquery를 사용해 구현한다. 
+>
+> Customer (Select, Add), Cate(Select, Add) 구현 
 
 # ShopAdmin
 

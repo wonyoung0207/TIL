@@ -1,0 +1,177 @@
+<meta charset="UTF-8">
+
+<script>
+
+
+	$(document).ready(function() {
+		var high_pid = $('#high-cate-form #pid').val();
+		if(high_pid == 0){// high-cate 를 active
+			// tap과 tap Container 둘다 active로 해줘야함 
+			$('#high-cate-menu').attr({
+				'class':'nav-link active',
+			});
+		
+			$('#high-cate').attr({
+				'class':'container tab-pane active',
+			});
+			
+			$('#low-cate-form').hide();
+		
+		}else{//low-cate 를 active
+			$('#low-cate-menu').attr({
+				'class':'nav-link active',  
+			});
+		
+			$('#low-cate').attr({
+				'class':'container tab-pane active',
+			});
+		
+			$('#high-cate-form').hide();
+		}
+		
+		
+		//high-cate
+		$('#high-cate-form #id').keyup(function(){
+			var high_id = $('#high-cate-form #id').val();
+			if(high_id.charAt(1) == 0){//2번째 자리가 0이여야 함 
+				$('#high-cate-form #span-id').text('상위 category 조건 만족');
+				$('#high-cate-form #span-id').css('color','green');
+				
+			}else{
+				$('#high-cate-form #span-id').text('2번째 자리 다시 입력');
+				$('#high-cate-form #span-id').css('color','red');
+			}
+		});
+		
+		$('#high-cate-btn').click(function() {
+			$('#high-cate-form').attr({
+				'action' : 'highupdate',/*/update 하면 root 인 127.0.0.1/update에서 찾는다.  */
+				'method' : 'post'
+			});
+
+			$('#high-cate-form').submit();
+		});
+		
+		//low-cate
+		// id값이 pid의 첫번쨰 값과 다르면 안됨 
+		$('#low-cate-form #id').keyup(function(){
+			var low_id = $('#low-cate-form #id').val();
+			var low_pid = $('#low-cate-form #pid').val();
+			
+			if(low_id.charAt(0) == low_pid.charAt(0)){
+				$('#low-cate-form #span-id').text('사용 가능');
+				$('#low-cate-form #span-id').css('color','green');
+			}else{
+				$('#low-cate-form #span-id').text('pid 첫번째 숫자와 같아야 합니다.');
+				$('#low-cate-form #span-id').css('color','red');
+				$('#low-cate-form #id').focus();
+			}
+		});
+		
+
+		$('#low-cate-btn').click(function() {
+			$('#low-cate-form').attr({
+				'action' : 'lowupdate',/*/update 하면 root 인 127.0.0.1/update에서 찾는다.  */
+				'method' : 'post'
+			});
+
+			$('#low-cate-form').submit();
+		});
+
+	});
+</script>
+
+
+<div class="col-lg-6">
+	<div class="p-5">
+		<div class="text-center">
+			<h1 class="h4 text-gray-900 mb-4">Category Info Modify</h1>
+		</div>
+
+		<ul class="nav nav-tabs" role="tablist">
+			<li class="nav-item"><a class="nav-link " data-toggle="tab"
+				href="#high-cate" id="high-cate-menu">high-cate</a></li>
+			<li class="nav-item"><a class="nav-link" data-toggle="tab"
+				href="#low-cate" id="low-cate-menu">low-cate</a></li>
+
+		</ul>
+		<div class="tab-content">
+			<div id="high-cate" class="container tab-pane fade">
+				<br>
+				<h3>high-category</h3>
+				<form class="user" id="high-cate-form">
+					<div class="form-group">
+						ID : <span id="span-id"></span> <input type="text"
+							class="form-control form-control-user" id="id" name="id"
+							th:value="${cate.id}" readonly="readonly" placeholder="Enter id">
+					</div>
+
+					<div class="form-group">
+						Name : <span id="span-name"></span> <input type="text"
+							class="form-control form-control-user" id="name" name="name"
+							th:value="${cate.name}" placeholder="Enter name">
+					</div>
+
+					<div class="form-group">
+						Pid : <span id="span-pid"></span> <input type="text"
+							class="form-control form-control-user" id="pid" name="pid"
+							th:value="${cate.pid}" readonly="readonly"
+							placeholder="Enter pid">
+					</div>
+
+					<div class="form-group">
+						Select : <span id="span-select"></span> <select name="select">
+							<option value>txt1</option>
+							<option value>txt2</option>
+							<option value>txt3</option>
+
+						</select>
+					</div>
+
+
+					<a href="#" id="high-cate-btn"
+						class="btn btn-primary btn-user btn-block"> Modify </a>
+
+				</form>
+
+			</div>
+			<div id="low-cate" class="container tab-pane active">
+				<br>
+				<h3>low-category</h3>
+				<form class="user" id="low-cate-form">
+					<div class="form-group">
+						ID : <span id="span-id"></span> <input type="text"
+							class="form-control form-control-user" id="id" name="id"
+							th:value="${cate.id}" placeholder="Enter id">
+					</div>
+
+					<div class="form-group">
+						Name : <span id="span-name"></span> <input type="text"
+							class="form-control form-control-user" id="name" name="name"
+							th:value="${cate.name}" placeholder="Enter name">
+					</div>
+
+					<div class="form-group">
+						Pid : <span id="span-pid"></span> <input type="text"
+							class="form-control form-control-user" id="pid" name="pid"
+							th:value="${cate.pid}" readonly="readonly"
+							placeholder="Enter pid">
+					</div>
+
+					<div class="form-group">
+						Select : <span id="span-select"></span> <select name="select">
+							<option value>txt1</option>
+							<option value>txt2</option>
+							<option value>txt3</option>
+
+						</select>
+					</div>
+
+
+					<a href="#" id="low-cate-btn"
+						class="btn btn-primary btn-user btn-block"> Modify </a>
+
+				</form>
+			</div>
+		</div>
+	</div>

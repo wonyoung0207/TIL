@@ -1,0 +1,85 @@
+<meta charset="UTF-8">
+<script>
+
+function sendId(id){
+	$.ajax({
+		url:'/checkid',
+		data:{'id':id},//매개변수 전송 
+		success:function(data){
+			if(data == '1'){
+				$('#ispan').text('사용 불가능한 ID 입니다. ');
+				$('#ispan').css('color','red');
+				
+			}else{
+				$('#ispan').text('사용 가능한 ID 입니다. ');
+				$('#ispan').css('color','green');
+				
+			}
+			
+		},
+	});
+};
+
+$(document).ready(function(){
+	
+	
+	$('input[name="id"]').keyup(function(){
+		var id = $(this).val()// keyup하면 해당 내용을 가져옴 
+		sendId(id);
+		//alert('id key up : ' + id);
+	});
+	
+	$('#register_btn').click(function(){
+		$('.user').attr({
+			'action':'addimpl',
+			'method':'post',
+		});
+		
+		var move = confirm("회원가입 하시겠습니까?");//확인=true
+		
+		if(move == true){//확인 누를경우만 submit됨 
+			$('.user').submit();
+		}
+
+	});
+});
+
+
+</script>
+
+
+<div class="col-lg-6">
+	<div class="p-5">
+		<div class="text-center">
+			<h1 class="h4 text-gray-900 mb-4">Customer Register</h1>
+		</div>
+		<form class="user">
+			<div class="form-group">
+				ID: <span id="ispan"></span><input type="text" class="form-control form-control-user"
+					name="id" placeholder="Enter id">
+			</div>
+
+			<div class="form-group">
+				Password: <input type="password"
+					class="form-control form-control-user" name="pwd"
+					placeholder="Enter pwd">
+			</div>
+
+			<div class="form-group">
+				Name: <input type="text" class="form-control form-control-user"
+					name="name" placeholder="Enter name">
+			</div>
+
+			<div class="form-group">
+				Address: <input type="text" class="form-control form-control-user"
+					name="addr" placeholder="Enter addr">
+			</div>
+
+
+			<a href="#" id="register_btn"
+				class="btn btn-primary btn-user btn-block"> Register </a>
+
+		</form>
+
+	</div>
+</div>
