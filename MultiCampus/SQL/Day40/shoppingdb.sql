@@ -150,5 +150,5 @@ SELECT * FROM cate;
 
 SELECT COUNT(*) FROM cust;
 
-UPDATE CUST SET name="lee01", addr="Seoul", pwd="pwd02" WHERE id="id02";
+UPDATE CUST SET name="lee", addr="Seoul", pwd="pwd01" WHERE id="id01";
 

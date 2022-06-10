@@ -29,17 +29,28 @@
 
 - thymeleaf 기능
 
-  - ```html
-    <tbody>
-        <tr th:each="cust : ${custlist}">
-            <td><a href="#" th:href="@{detail(id=${cust.id})}" th:text="${cust.id}">id02</a></td>
-            <td th:text="${cust.pwd}">pwd02</td>
-            <td th:text="${cust.name}">name</td>
-            <td th:text="${cust.addr}">Seoul</td>
-            <td th:text="${#dates.format(cust.regdate, 'yyyy/MM/dd')}">2011/04/25</td>
-        </tr>
-    </tbody>
-    ```
+  - script 안에 model객체 넣기 
+
+    - ```javascript
+      <script th:inline="javascript">
+      	var id = [[${c.id}]];
+      	alert(id);
+      </script>
+      ```
+
+  - thymeleaf 반복문 사용 
+
+    - ```html
+      <tbody>
+          <tr th:each="cust : ${custlist}">
+              <td><a href="#" th:href="@{detail(id=${cust.id})}" th:text="${cust.id}">id02</a></td>
+              <td th:text="${cust.pwd}">pwd02</td>
+              <td th:text="${cust.name}">name</td>
+              <td th:text="${cust.addr}">Seoul</td>
+              <td th:text="${#dates.format(cust.regdate, 'yyyy/MM/dd')}">2011/04/25</td>
+          </tr>
+      </tbody>
+      ```
 
 - Ajax 이용 
 

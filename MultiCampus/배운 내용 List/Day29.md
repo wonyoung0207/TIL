@@ -29,7 +29,7 @@
 
    2. 차트 이용
 
-      1. ```html
+      1. ```javascript
          function display(){
          	const chart = Highcharts.chart('container', {//container영역에 뿌린다. 
          	    title: {

@@ -57,7 +57,7 @@
 
 - [Day32](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day32.md) : 배운 내용 정리 및 배울 내용 추가 , Spring Framework 개념 및 구조, 환경 구축 
 - [Day33](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day33.md) : Spring Framework( DI )  개념, MyBatis Framework ( AOP )사용 방법 및 구조 
-- [Day34](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day34.md) : Spring 과 Mybatis 연동 후 CURD 및 다양한 SQL문 사용 
+- [Day34](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day34.md) : Spring 과 Mybatis 연동 후 CURD 및 다양한 SQL문 사용 ,parameterType 여러개 예시 
 - [Day35](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day35.md) : Spring Boot 와 mybatis 환경설정 , Lombok 이용 객체만들기, thymeleaf 제공 기능들 구현
 - [Day36](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day36.md) : ajax이용 chart 그리기, Controller url 자동 입력 및 redirect, [문제만들기 (Customer 이용 CRUD 구현)](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Spring%20Framework%20%26%20MyBatis/07.%20customer%20CRUD)
 - [Day37](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day37.md) : SQL 문 복습 
