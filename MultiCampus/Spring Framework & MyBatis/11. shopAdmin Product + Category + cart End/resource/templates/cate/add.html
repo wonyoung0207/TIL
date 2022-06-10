@@ -1,0 +1,107 @@
+<meta charset="UTF-8">
+<script>
+
+function sendId(id){
+	$.ajax({
+		url:'/cate_checkid',
+		data:{'id':id},//매개변수 전송 
+		success:function(data){
+			if(data == '1'){
+				$('#id_span').text('사용 불가능한 ID 입니다. ');
+				$('#id_span').css('color','red');
+				
+			}else{
+				$('#id_span').text('사용 가능한 ID 입니다. ');
+				$('#id_span').css('color','green');
+				
+			}
+			
+		},
+	});
+};
+
+$(document).ready(function(){
+	
+	$('input[name="id"]').blur(function(){//해당 input 에서 나갈때 실행
+		var id = $(this).val();
+		sendId(id);
+	});
+
+	$('#insert_btn').click(function(){
+		$('.user').attr({
+			'action':'addimpl',
+			'method':'post',
+		});
+		
+		// high-cate 의 앞글자와 id의 앞글자가 같아야함 
+		var pid = $('#pid').val();
+		var id = $('#id').val();
+		
+		if(pid != 0){//high cate는 id 그냥 들어가도 됨 
+			if(pid.charAt(0) == id.charAt(0)){//조건 충족. insert 가능 
+				var move = confirm("Category를 등록 하시겠습니까?");//확인=true
+				
+				if(move == true){//확인 누를경우만 submit됨 
+					$('.user').submit();
+				}
+					
+			}else{
+				$('#pid_span').text('ID의 첫글자와 동일한 Pid를 골라주세요. 현재 pid : ' + pid);
+				$('#pid_span').css('color','red');
+				$('#pid').focus();
+				
+			}
+				
+		}else{
+			var move = confirm("Category를 등록 하시겠습니까?");//확인=true
+			
+			if(move == true){//확인 누를경우만 submit됨 
+				$('.user').submit();
+			}
+		}
+	});
+ 
+ 
+
+});
+
+
+</script>
+
+
+<div class="col-lg-6">
+	<div class="p-5">
+		<div class="text-center">
+			<h1 class="h4 text-gray-900 mb-4">Category Insert</h1>
+		</div>
+		<form class="user">
+			<div class="form-group">
+				ID: <span id="id_span"></span><input type="text" class="form-control form-control-user"
+					name="id" id="id" placeholder="Enter id">
+			</div>
+
+
+			<div class="form-group">
+				Name: <input type="text" class="form-control form-control-user"
+					name="name" placeholder="Enter name">
+			</div>
+
+			<div class="form-group">
+				PID: <span id="pid_span"></span>
+				<select name="pid" class="form-control" id="pid">
+					<option value="0" class="form-control">Top</option>
+					<option th:each="cate : ${highlist}"
+					 		th:value="${cate.id}" 
+					 		th:text="${cate.name}"></option>
+					
+				</select>
+			</div>
+
+
+			<a href="#" id="insert_btn"
+				class="btn btn-primary btn-user btn-block"> Insert </a>
+
+		</form>
+
+	</div>
+</div>

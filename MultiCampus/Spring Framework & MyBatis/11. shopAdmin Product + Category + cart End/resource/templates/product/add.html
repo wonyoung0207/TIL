@@ -1,0 +1,66 @@
+<meta charset="UTF-8">
+<script>
+
+
+$(document).ready(function(){
+	
+	$('#register_btn').click(function(){
+		$('.user').attr({
+			'enctype':'multipart/form-data',//파일 전송에 필요한 요소 
+			'action':'addimpl',
+			'method':'post',
+		});
+		
+		$('.user').submit();
+
+	});
+});
+
+
+</script>
+
+
+<div class="col-lg-6">
+	<div class="p-5">
+		<div class="text-center">
+			<h1 class="h4 text-gray-900 mb-4">Product Add</h1>
+		</div>
+		<form class="user">
+
+			<div class="form-group">
+				Name: <input type="text" class="form-control form-control-user"
+					name="name" placeholder="Enter name">
+			</div>
+
+			<div class="form-group">
+				Price: <input type="number"
+					class="form-control form-control-user" name="price"
+					placeholder="Enter pirce">
+			</div>
+
+			<div class="form-group">
+				Category:
+				<select class="form-control" name="cid">
+					<option value="Top">Top</option>
+					<option
+					th:each="cate : ${catelist}"
+					th:if="${cate.pid != 0}"
+					th:value="${cate.id}" 
+					th:text="${cate.name}">name</option>
+				
+				</select>
+			</div>
+
+			<div class="form-group">
+				ImageName: <input type="file" class="form-control form-control-user"
+					name="mf" placeholder="Enter imgname">
+			</div>
+
+
+			<a href="#" id="register_btn"
+				class="btn btn-primary btn-user btn-block"> Insert </a>
+
+		</form>
+
+	</div>
+</div>

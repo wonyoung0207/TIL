@@ -1,0 +1,91 @@
+<script>
+	$(document).ready(function() {
+		$('#update_btn').click(function() {
+			$('.user').attr({
+				'action' : 'update',/*/update 하면 root 인 127.0.0.1/update에서 찾는다.  */
+				'method' : 'post'
+			});
+
+			$('.user').submit();
+		});
+
+		$('#delte_btn').click(function() {
+			$('.user').attr({
+				'action' : 'delete',
+				'method' : 'post'
+			});
+
+			$('.user').submit();
+		});
+	});
+</script>
+
+<div class="row">
+	<div class="col-sm-6">
+		<div class="p-5">
+			<div class="text-center">
+				<h1 class="h4 text-gray-900 mb-4">Product Info Modify</h1>
+			</div>
+			<form class="user">
+
+				<div class="form-group">
+					<input type="text" class="form-control form-control-user" name="id"
+						th:value="${product.id}" readonly="readonly"
+						placeholder="Enter id">
+				</div>
+
+
+				<div class="form-group">
+					<input type="text" class="form-control form-control-user"
+						name="name" th:value="${product.name}" placeholder="Enter name">
+				</div>
+
+
+				<div class="form-group">
+					<input type="text" class="form-control form-control-user"
+						name="price" th:value="${product.price}" placeholder="Enter price">
+				</div>
+
+
+				<div class="form-group">
+					<select id="cid" name="cid" class="form-control">
+						<option th:each="cate : ${catelist}" th:value="${cate.id}"
+							th:text="${cate.name}">imgname</option>
+					</select>
+				</div>
+
+
+				<div class="form-group">
+					<select id="imgname" name="imgname" class="form-control">
+						<option th:each="img : ${imglist}" th:value="${img}"
+							th:text="${img}">imgname</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+					<input type="text" class="form-control form-control-user"
+						name="regdate"
+						th:value="${#dates.format(product.regdate,'yyyy/MM/dd')}"
+						readonly="readonly" placeholder="Enter regdate">
+				</div>
+
+
+				<a href="#" id="update_btn"
+					class="btn btn-primary btn-user btn-block"> Update </a> <a href="#"
+					id="delte_btn" class="btn btn-primary btn-user btn-block">
+					Delete </a>
+
+
+			</form>
+
+		</div>
+	</div>
+	<div class="col-sm-6 text-center">
+		<div class="m-5 p-5">
+			<img th:src="@{'/img/'+${product.imgname}}" width="300px">
+		</div>
+
+	</div>
+
+</div>
+

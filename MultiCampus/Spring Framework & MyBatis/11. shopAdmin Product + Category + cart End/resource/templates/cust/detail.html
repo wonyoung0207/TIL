@@ -1,0 +1,55 @@
+<script>
+$(document).ready(function(){
+	$('#update_btn').click(function(){
+		$('.user').attr({
+			'action':'update',/*/update 하면 root 인 127.0.0.1/update에서 찾는다.  */
+			'method':'post'
+		});
+		
+		$('.user').submit();
+	});
+});
+
+
+</script>
+
+
+<div class="col-lg-6">
+	<div class="p-5">
+		<div class="text-center">
+			<h1 class="h4 text-gray-900 mb-4">Customer Info Modify</h1>
+		</div>
+		<form class="user">
+			<div class="form-group">
+				<input type="text" class="form-control form-control-user" name="id"
+					th:value="${cust.id}" readonly="readonly" placeholder="Enter id">
+			</div>
+	
+			<div class="form-group">
+				<input type="text" class="form-control form-control-user" name="pwd"
+					 th:value="${cust.pwd}" placeholder="Enter pwd">
+			</div>
+			
+			<div class="form-group">
+				<input type="text" class="form-control form-control-user" name="name"
+					 th:value="${cust.name}" placeholder="Enter name">
+			</div>
+			
+			<div class="form-group">
+				<input type="text" class="form-control form-control-user" name="addr"
+					 th:value="${cust.addr}" placeholder="Enter addr">
+			</div>
+		
+			<div class="form-group">
+				<input type="text" class="form-control form-control-user" name="regdate"
+					 th:value="${#dates.format(cust.regdate,'yyyy/MM/dd')}" readonly="readonly" placeholder="Enter regdate">
+			</div>
+
+
+			<a href="#" id="update_btn" class="btn btn-primary btn-user btn-block">
+				Modify </a>
+
+		</form>
+
+	</div>
+</div>
