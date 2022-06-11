@@ -60,7 +60,14 @@
 - [Day34](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day34.md) : Spring 과 Mybatis 연동 후 CURD 및 다양한 SQL문 사용 ,parameterType 여러개 예시 
 - [Day35](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day35.md) : Spring Boot 와 mybatis 환경설정 , Lombok 이용 객체만들기, thymeleaf 제공 기능들 구현
 - [Day36](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day36.md) : ajax이용 chart 그리기, Controller url 자동 입력 및 redirect, [문제만들기 (Customer 이용 CRUD 구현)](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Spring%20Framework%20%26%20MyBatis/07.%20customer%20CRUD)
-- [Day37](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day37.md) : SQL 문 복습 
+- [Day37](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day37.md) : SQL 문 복습 .
+- [Day38](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day38.md) : shopdb 의 cust 이용 login 기능 구현 , auto_increment 사용시 id값 가져오는 방법, 브라우저 다국어 처리 기능 
+- [Day39](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day39.md) : shoppingdb에 있는 4개의 테이블 (cust, product, cate, cart) 의 CRUD 구현 , 일반계정과 Admin 계정 나누기 시작 
+- [Day40](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day40.md) : shoppingdb 의 Customer (Select, Add), Cate(Select, Add) 구현 , ajax, thyemleaf 함수, jquery를 사용해 구현, **Thymeleaf 이용 javaScript 에서 model 객체 사용 방법**
+- [Day41](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day41.md) :  select 태그에 조건 걸어서 보이는 값과 보내지는 값을 다르게 설정, 서버 파일 올리는 방법, bootstrap padding margin 조절 방법
+- [Day42](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day42.md) :
+- [Day43](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day43.md) :
+- 
 
 # 특강
 
