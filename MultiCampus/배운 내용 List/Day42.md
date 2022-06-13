@@ -12,7 +12,7 @@
 
 - 저장시 shop Project의 img폴더에도 이미지가 저장될수 있도록 
 
-- ```java
+  ```java
   package com.multi.frame;
   
   import java.io.FileOutputStream;
@@ -54,28 +54,25 @@
    3. img 를 기존것이 아닌 다른 이미지를 삽입할 경우
 
       1. select 문에서 '기타' 를 선택하면 fileAdd.hide() 처리했던 것을 fileAdd.show() 를 이용해 보이게 한다. 
-
       2. mf로 설정된 filename을 controller에서 filename만 빼서 ProductVO 의 imgname으로 설정 
-
       3. code
 
-
       ```html
-      <script>
-      $('#imgname').click(function(){
-          if($('#imgname').val() == '기타'){
-              // 기타 선택시에만 파일 변경할 수 있도록 
-          	$('#fileAdd').show();
-          }else{
-          	$('#fileAdd').hide();
-          }
-      });
+      <script>  
+          $('#imgname').click(function(){
+              if($('#imgname').val() == '기타'){
+                  // 기타 선택시에만 파일 변경할 수 있도록 
+                  $('#fileAdd').show();
+              }else{
+                  $('#fileAdd').hide();
+              }
+          });
       </script>
       <div class="form-group" id="fileAdd">
           ImageName: <input type="file" class="form-control form-control-user" name="mf" placeholder="Enter imgname">
       </div>
       ```
-
+      
       ```java
       @RequestMapping("/update")
       public String update(ProductVO p, Model m) {
@@ -164,7 +161,7 @@
 
    <img src="../images/shoppingdb/search1.png" width="600">
 
-   <img src="../images/shoppingdb/search2.png" width="600"
+   <img src="../images/shoppingdb/search2.png" width="600">
 
 ## Chart 그리기
 
@@ -252,7 +249,7 @@
 
 - 결과 
 
-  <img src="../images/shoppingdb/chart.png" width="400"><img src="../images/shoppingdb/chart2.png" width="400"
+  <img src="../images/shoppingdb/chart.png" width="400"><img src="../images/shoppingdb/chart2.png" width="400">
 
 ## Login 기능
 
@@ -263,12 +260,69 @@
       1. login을 하지 않았을 경우 login을 할수있는 링크를 띄워준다. 
       2. 만약 login을 했다면 사용자 정보와 Logout을 띄워준다. 
 
-   2. login
+   2. login & logout
 
       1. 만약 작성한 id가 데이터베이스에 없을경우 "존재하지 않는 ID 입니다" 를 띄우고 페이지 리로드 함 
          - 페이지 리로드 시 작성된 id와 pwd 값을 그대로 유지 
+         
       2. 만약 작성한 pwd가 데이터베이스의 정보와 다르다면 "Password가 다릅니다. " 띄우고 페이지 리로드 
+
       3. id와 pwd가 같다면 session에 저장하고 main페이지 로드 
+
+         ```java
+         	@RequestMapping("/loginimpl")
+         	public String loginimpl(Model m,AdminVO ad, HttpSession session) {
+         		AdminVO admin = null;
+         		String next = "";
+         		
+         		try {
+         			admin = mbiz.getadmin(ad.getId());
+         			//입력된 user 정보 저장 
+         			m.addAttribute("userid", ad.getId());
+         			m.addAttribute("userpwd", ad.getPwd());
+         			
+         			if(admin == null) {//null 일경우 해당 ID가 없는것임 
+         				m.addAttribute("msg", "존재하지 않는 ID 입니다.");
+         				next = "/login";
+         				m.addAttribute("center", next);
+         				return "index"; 
+         			}
+         			
+         			//해당 id 존재시 실행 
+         			// pwd가 다를경우 실행 
+         			if(!admin.getPwd().equals(ad.getPwd())) {
+         				m.addAttribute("msg", "Password 가 다릅니다. ");
+         				next = "/login";
+         				m.addAttribute("center", next);
+         				return "index";
+         			}
+         			
+         			//로그인 성공시 실행
+         			session.setAttribute("loginadmin", admin);
+         			System.out.println("session : " + session.getAttribute("loginadmin"));
+         			m.addAttribute("user", admin);
+         			next = "/loginok";
+         			
+         		} catch (Exception e) {
+         			e.printStackTrace();
+         		}
+         		m.addAttribute("center", next);
+         		return "index";
+         	}
+         ```
+
+         ```java
+         @RequestMapping("/logout")
+         public String logout(Model m, HttpSession session) {
+             if(session != null) {
+                 session.invalidate();//서버에서 session을 제거한다. 
+             }
+         
+             m.addAttribute("center", "/");
+         
+             return "index";
+         }
+         ```
 
    3. Session 저장
 
