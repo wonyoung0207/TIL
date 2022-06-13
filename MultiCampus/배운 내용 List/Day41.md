@@ -9,6 +9,8 @@
 > Product (Add) : 서버에 파일 올리는 방법에 대해 학습한다. (Util.java 파일 필요 )
 >
 > bootstrap4 padding,margin  조절 방법 
+>
+> img 경로 설정 방법 
 
 # shopAdmin
 

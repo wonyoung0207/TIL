@@ -1,0 +1,9 @@
+CREATE TABLE admin(
+	ID VARCHAR(10) PRIMARY KEY,
+    PWD VARCHAR(20)
+);
+SELECT * FROM admin;
+
+
+INSERT INTO admin VALUES('admin','1111');
+
