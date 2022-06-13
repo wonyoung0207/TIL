@@ -1,0 +1,61 @@
+<meta charset="UTF-8">
+<style>
+#main {
+	width: 200px;
+}
+</style>
+
+<!-- Page Heading -->
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+	<h1 class="h3 mb-0 text-gray-800">Search Page</h1>
+</div>
+
+<!-- Content Row -->
+<div class="row" th:each="product : ${productlist}">
+
+	<!-- Earnings (Monthly) Card Example -->
+	<div class="col-xl-12 col-md-12 mb-12">
+		<div class="card border-left-primary shadow h-100 py-2">
+			<div class="card-body">
+				<div class="row no-gutters align-items-center">
+
+					<div class="col-xl-5 text-center">
+						
+						<div class="h5 font-weight-bold text-primary mb-0"
+							th:text="${product.imgname}"></div>
+						<a th:href="@{/product/detail(id=${product.id})}"> <img id="main" th:src="@{'/img/'+${product.imgname}}">
+						</a>
+
+					</div>
+					<div class="col-xl-7">
+						Product Id :
+						<div class="h5 font-weight-bold text-primary mb-0"
+							th:text="${product.cid}">Category</div>
+
+						Product Name :
+						<div class="h5 font-weight-bold text-primary mb-0"
+							th:text="${product.name}">CategoryName</div>
+
+						Price :
+						<div class="h6 mb-0 font-weight-bold text-primary mb-0"
+							th:text="'$' + ${product.price}">Price</div>
+						RegDate :
+						<div class="h6 mb-0 font-weight-bold text-primary mb-0"
+							th:text="${#dates.format(product.regdate,'yyyy-MM-dd')}">
+							2020-06-10</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+
+
+
+
+
+
+
+

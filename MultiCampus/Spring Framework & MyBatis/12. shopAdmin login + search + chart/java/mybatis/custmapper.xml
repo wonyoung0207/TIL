@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.CustMapper">
+	
+	<select id="select" parameterType="String" resultType="custVO">
+		SELECT * FROM Cust WHERE ID=#{id}
+	</select>
+	<select id="selectall" resultType="custVO">
+		SELECT * FROM Cust
+	</select>
+	<insert id="insert" parameterType="custVO">
+		INSERT INTO Cust VALUES (#{id},#{name},#{addr},SYSDATE(),#{pwd})
+	</insert>
+	<update id="update" parameterType="custVO">
+		UPDATE Cust SET NAME=#{name},ADDR=#{addr},PWD=#{pwd},REGDATE=SYSDATE() WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="String">
+		DELETE FROM Cust WHERE ID=#{id}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+
