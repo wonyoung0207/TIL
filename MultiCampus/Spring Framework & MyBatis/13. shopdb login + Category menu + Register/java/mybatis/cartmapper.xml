@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.CartMapper">
+	
+	<select id="select" parameterType="int" resultType="cartVO">
+		SELECT c.id, cu.id AS uid, ca.name AS catename, 
+		p.id AS pid, p.name AS pname, p.price as pprice, c.regdate, c.cnt FROM cart c
+		INNER JOIN cust cu ON c.uid = cu.id
+		INNER JOIN product p ON c.pid = p.id
+		INNER JOIN cate ca ON ca.id = p.cid
+		WHERE c.id = #{id}
+	</select>
+	<select id="selectall" resultType="cartVO">
+		SELECT c.id, cu.id AS uid, ca.name AS catename, 
+		p.id AS pid, p.name AS pname, p.price as pprice, c.regdate, c.cnt FROM cart c
+		INNER JOIN cust cu ON c.uid = cu.id
+		INNER JOIN product p ON c.pid = p.id
+		INNER JOIN cate ca ON ca.id = p.cid
+	</select>
+	<insert id="insert" parameterType="cartVO">
+		INSERT INTO CART VALUES (NULL, #{uid},#{pid},CURDATE(),#{cnt});
+	</insert>
+	<update id="update" parameterType="cartVO">
+		UPDATE CART SET CNT=#{cnt} WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM CART WHERE ID=#{id}
+	</delete>
+	
+</mapper>
+
+
+
+
+
+

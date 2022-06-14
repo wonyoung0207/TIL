@@ -110,6 +110,9 @@ public class MainController {
 	
 	@RequestMapping("/login")
 	public String login(Model m) {
+//		if(msg != null && msg.equals("f")) {
+//			m.addAttribute("msg", "login Fail...");
+//		}
 		m.addAttribute("center", "login");
 		
 		
@@ -131,9 +134,7 @@ public class MainController {
 			
 			if(admin == null) {//null 일경우 해당 ID가 없는것임 
 				m.addAttribute("msg", "존재하지 않는 ID 입니다.");
-				next = "/login";
-				m.addAttribute("center", next);
-				return "index"; 
+				throw new Exception();
 			}
 			
 			//해당 id 존재시 실행 
@@ -141,18 +142,19 @@ public class MainController {
 			if(!admin.getPwd().equals(ad.getPwd())) {
 				m.addAttribute("msg", "Password 가 다릅니다. ");
 				next = "/login";
-				m.addAttribute("center", next);
-				return "index";
+				throw new Exception();
 			}
 			
 			//로그인 성공시 실행
 			session.setAttribute("loginadmin", admin);
-			System.out.println("session : " + session.getAttribute("loginadmin"));
+//			System.out.println("session : " + session.getAttribute("loginadmin"));
 			m.addAttribute("user", admin);
 			next = "/loginok";
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			next = "/login";
+//			e.printStackTrace();
+//			return "redirect:/login?msg=";//이렇게 ? 이용해서 뒤에 값 보내는 것을 queryString 이라고 함 
 		}
 		
 		m.addAttribute("center", next);
@@ -166,7 +168,6 @@ public class MainController {
 			session.invalidate();//서버에서 session을 제거한다. 
 		}
 		
-		m.addAttribute("center", "/");
 		
 		return "index";
 	}

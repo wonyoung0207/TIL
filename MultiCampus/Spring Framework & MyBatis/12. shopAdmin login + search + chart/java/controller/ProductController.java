@@ -3,9 +3,9 @@ package com.multi.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.multi.biz.CateBiz;
@@ -14,9 +14,16 @@ import com.multi.frame.Util;
 import com.multi.vo.CateVO;
 import com.multi.vo.ProductVO;
 
+
 @Controller
 @RequestMapping("/product")
 public class ProductController {
+	
+	@Value("${admindir}")
+	String admindir;
+	
+	@Value("${userdir}")
+	String userdir;
 	
 	@Autowired
 	ProductBiz pbiz;
@@ -71,7 +78,7 @@ public class ProductController {
 			pbiz.register(obj);// 셋팅한 imgname으로 데이터를 추가 
 			System.out.println("product : " + obj);
 			//파일을 저장 
-			Util.saveFile(obj.getMf());//서버에 파일을 저장하는 모듈 
+			Util.saveFile(obj.getMf(),admindir,userdir);//서버에 파일을 저장하는 모듈 
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -119,7 +126,7 @@ public class ProductController {
 			String imgname = p.getMf().getOriginalFilename();
 			p.setImgname(imgname);
 					
-			Util.saveFile(p.getMf());
+			Util.saveFile(p.getMf(),admindir,userdir);
 		}
 
 		try {
