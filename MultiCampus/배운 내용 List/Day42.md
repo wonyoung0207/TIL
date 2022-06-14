@@ -333,6 +333,18 @@
              session.setAttribute("cust", cust);
          }
          ```
+      
+   4. msg 보내는 방법
+
+      1. Model 객체를 이용해 전송. Model 객체 이용해서 보내려면 redirect 사용하면 안됨
+
+      2. redirect이용 msg 보내기
+
+         - redirect하면 Model 객체를 이용할 수 없다. 따라서 msg 를 보내고자 한다면 QueryString을 이용해야한다. 
+
+         ```java
+         return "redirect:/login?msg=";//이렇게 ? 이용해서 뒤에 값 보내는 것을 queryString 이라고 함
+         ```
 
 2. 결과
 

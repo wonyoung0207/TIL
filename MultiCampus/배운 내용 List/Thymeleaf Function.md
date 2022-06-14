@@ -57,7 +57,15 @@
 <div th:insert="${center} ? ${center} : center"></div>
 ```
 
+## 반복문 each
 
+```html
+<!-- 반복할 태그에 each문을 사용한다.  -->
+<!-- 이때 catelist는 model 로 넘겨받은 List형태이다.  -->
+<li th:each="cate : ${catelist}">
+    <a href="/" th:href="@{getcate(id=${cate.id})}" th:text="${cate.name}">CateName</a>
+</li>
+```
 
 
 
