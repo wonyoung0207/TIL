@@ -24,6 +24,9 @@
 ```html
 <a th:href="@{/product/detail(id=${product.id})}"></a>
 <a href="/login" th:href="@{/login}"></a>
+<!-- 링크로 두개의 매개변수 날리기  -->
+<a href="#" th:href="@{/getproduct(id=${cate.id},name=${cate.name})}"
+   th:text="${cate.name}">main1</a>
 ```
 
 ## DateFormat
@@ -67,7 +70,17 @@
 </li>
 ```
 
+## Modal 사용 : data-target & id
 
+```html
+<!-- Modal : Day44.md -->
+<!-- th:data-target -->
+<button type="button" class="btn btn-info btn-lg" data-toggle="modal" th:data-target="'#'+${product.id}">
+    Order
+</button>
+<!-- th:id -->
+<div class="modal fade" th:id="${product.id}" role="dialog">
+```
 
 
 
