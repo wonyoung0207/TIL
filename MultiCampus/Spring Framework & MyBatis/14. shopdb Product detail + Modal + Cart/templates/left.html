@@ -1,0 +1,6 @@
+<meta charset="UTF-8">
+
+<p th:each="cate : ${leftcatelist}">
+	<a href="#" th:href="@{/getproduct(id=${cate.id},name=${cate.name})}"
+		th:text="${cate.name}">main1</a>
+</p>

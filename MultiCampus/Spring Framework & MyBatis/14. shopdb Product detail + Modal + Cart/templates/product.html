@@ -1,0 +1,99 @@
+<meta charset="UTF-8">
+<style>
+img {
+	width: 150px;
+	height: 250px;
+}
+</style>
+
+<script>
+
+function sendcart(uid, pid, cnt){
+	$.ajax({
+		url:'/addcart',
+		data : {'uid':uid, 'pid':pid, 'cnt':cnt},
+		success : function(data){
+			alert('Cart에 넣기 ');
+		}
+	});
+};
+
+$(document).ready(function(){
+	$('#inputcart').click(function(){
+		var uid = $('#uid').val();
+		var pid = $('#pid').val();
+		var cnt = $('#cnt').val();
+		
+		//alert(cid + ' ' + pid + ' ' + cnt)
+		
+		
+		sendcart(uid, pid, cnt);
+	});
+	
+	
+	
+});
+
+</script>
+
+
+<h1 th:text="${menu} + ' List'">product List</h1>
+<hr>
+<div th:each="product : ${plist}">
+	<div class="row row-no-gutters">
+		<div class="col-sm-3">
+			<img th:src="@{'/img/' + ${product.imgname}}">
+		</div>
+		<div class="col-sm-6 text-left">
+			<h2 th:text="${product.catename}"></h2>
+			<h4 th:text="${product.name}"></h4>
+			<h4 th:text="${product.price}"></h4>
+		</div>
+		<div class="col-sm-3 text-left">
+			<button type="button" class="btn btn-info btn-lg" data-toggle="modal"
+				th:data-target="'#'+${product.id}">Order</button>
+
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" th:id="${product.id}" role="dialog">
+			<div class="modal-dialog">
+
+				<!-- Modal content-->
+				<div class="modal-content text-center">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title" th:text="${product.name}">Modal
+							Header</h4>
+						<img th:src="@{'/img/' + ${product.imgname}}">
+					</div>
+					<div class="modal-body text-left">
+						<p th:text="${product.catename}"></p>
+						<p th:text="${product.price}"></p>
+
+					</div>
+					<div th:if="${session.logincust != null}" class="modal-body text-left">
+							<div class="form-group">
+								<input type="hidden" th:value="${product.id}" id="pid">
+								<input type="hidden" th:value="${session.logincust.id}" id="uid">
+								
+								<label for="sel1">Count : </label> <select class="form-control"
+									id="cnt">
+									<option value="1">1</option>
+									<option value="2">2</option>
+									<option value="3">3</option>
+									<option value="4">4</option>
+								</select>
+							</div>
+							<button type="button" id="inputcart" class="btn btn-default">CART</button>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- End Modal -->
+
+		<hr>
+	</div>
+</div>

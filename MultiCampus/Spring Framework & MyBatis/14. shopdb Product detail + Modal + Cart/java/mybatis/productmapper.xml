@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.ProductMapper">
+
+	<select id="select" parameterType="int" resultType="productVO">
+		SELECT p.id
+		as id, p.name as name, p.price, p.regdate, p.cid as cid,
+		p.imgname as
+		imgname, c.name as catename FROM product p
+		INNER JOIN cate c ON p.cid =
+		c.id
+		WHERE p.id = #{id}
+	</select>
+
+	<select id="selectall" resultType="productVO">
+		SELECT p.id as id, p.name as
+		name, p.price, p.regdate, p.cid as cid,
+		p.imgname as imgname, c.name as
+		catename FROM product p
+		INNER JOIN cate c ON p.cid = c.id
+	</select>
+
+	<!-- self Join 으로 상위 카테고리 이름 출력 -->
+	<select id="selectall2" resultType="productVO">
+		SELECT p.id as id, p.name as
+		name, p.price, p.regdate, p.cid as cid,
+		p.imgname as imgname, c.name as
+		catename, c2.name AS catemainname FROM
+		product p
+		INNER JOIN cate c ON
+		p.cid = c.id
+		INNER JOIN cate c2 ON c.pid = c2.id;
+	</select>
+
+	<!-- 카테고리 이름별 제품 가격의 평균 -->
+	<select id="selectAVG" resultType="productAVGVO">
+		SELECT ROUND(AVG(p.price)) AS avgprice, c.name as catename FROM
+		product p
+		INNER JOIN cate c ON p.cid = c.id
+		GROUP BY catename;
+	</select>
+	
+	<select id="selectproduct" parameterType="int" resultType="productVO">
+		SELECT p.id
+		as id, p.name as name, p.price, p.regdate, p.cid as cid,
+		p.imgname as
+		imgname, c.name as catename FROM product p
+		INNER JOIN cate c ON p.cid =
+		c.id
+		WHERE p.cid = #{id}
+	</select>
+
+	<insert id="insert" parameterType="productVO">
+		INSERT INTO PRODUCT VALUES
+		(NULL, #{name},#{price},curdate(),#{cid},#{imgname})
+	</insert>
+	<update id="update" parameterType="productVO">
+		UPDATE PRODUCT SET
+		NAME=#{name},PRICE=#{price},CID=#{cid},IMGNAME=#{imgname}
+		WHERE
+		ID=#{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM PRODUCT WHERE
+		ID=#{id}
+	</delete>
+
+</mapper>
+
+
+
+
+
+

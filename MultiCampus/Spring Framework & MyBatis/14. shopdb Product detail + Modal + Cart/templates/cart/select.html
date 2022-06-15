@@ -1,0 +1,56 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8">
+
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Cart Tables</h1>
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+	<div class="card-header py-3">
+		<h6 class="m-0 font-weight-bold text-primary" th:text="${session.logincust.id}+'의 Cart'"></h6>
+	</div>
+	<div class="card-body">
+		<div class="table-responsive">
+			<table class="table table-bordered" id="dataTable" width="100%"
+				cellspacing="0">
+				<thead>
+					<tr>
+						<th>ID</th>
+						<th>Cust ID</th>
+						<th>Produck ID</th>
+						<th>Produck NAME</th>
+						<th>Produck PRICE</th>
+						<th>Produck CATEGORY</th>
+						<th>REGDATE</th>
+						<th>COUNT</th>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<th>ID</th>
+						<th>Cust ID</th>
+						<th>Product ID</th>
+						<th>Product NAME</th>
+						<th>Product PRICE</th>
+						<th>Product CATEGORY</th>
+						<th>REGDATE</th>
+						<th>COUNT</th>
+					</tr>
+				</tfoot>
+				<tbody>
+					<tr th:each="cart : ${cartlist}">
+						<td th:text="${cart.id}">ID</td>
+						<td th:text="${cart.uid}">userid</td>
+						<td th:text="${cart.pid}">pid</td>
+						<td th:text="${cart.pname}">pname</td>
+						<td th:text="${cart.pprice}">pprice</td>
+						<td th:text="${cart.catename}">catename</td>
+						<td th:text="${#dates.format(cart.regdate,'yyyy/MM/dd')}">Regdate</td>
+						<td th:text="${cart.cnt}">count</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
