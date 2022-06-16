@@ -16,7 +16,11 @@
 ## Image
 
 ```html
-<img id="main" th:src="@{'/img/'+${product.imgname}}">
+<!-- 이렇게 작성하는 것이 더 좋다 . -->
+<img th:src="'/img/' + ${product.imgname}">
+
+<!-- 이 방법도 가능  --> 
+<img th:src="@{'/img/'+${product.imgname}}">
 ```
 
 ## 링크
@@ -24,9 +28,19 @@
 ```html
 <a th:href="@{/product/detail(id=${product.id})}"></a>
 <a href="/login" th:href="@{/login}"></a>
+
 <!-- 링크로 두개의 매개변수 날리기  -->
 <a href="#" th:href="@{/getproduct(id=${cate.id},name=${cate.name})}"
    th:text="${cate.name}">main1</a>
+
+<!-- 기본적인 링크 삽입-->
+<a th:href="@{/index}"/>
+
+<!--  고정된 url과 변수를 함께 사용할 때-->
+<a th:href="${'http://www.naver.com' + sports}" target="_blank">링크</a>
+
+<!-- 링크에 파라미터를 보낼 때-->
+<a th:href="@{/index(id=${id})}"/>
 ```
 
 ## DateFormat
@@ -43,7 +57,7 @@
 <div th:text="'$' + ${product.price}" th:value="${product.price}">Price</div>
 ```
 
-## Session 정보이용 if문
+##  if문 (Session 정보이용)
 
 ```html
 <!-- 자바의 if else와는 다르게 조건문이 동일해야 한다. -->
@@ -51,6 +65,9 @@
 
 <!-- else와 같은 의미. -->
 <li th:unless="${session.loginadmin == null}"></li>
+
+<!-- and 나 or 조건 추가 -->
+<span th:if="${sports['name'] != null and sports['name'] != ''}">
 ```
 
 ## 파일 Insert
@@ -82,5 +99,33 @@
 <div class="modal fade" th:id="${product.id}" role="dialog">
 ```
 
+## 함수 이용시 매개변수 전달 
 
+```html
+<!-- thymeleaf사용시 함수에 값을 넣어줄때 대괄호를 2개 사용한다.  -->
+<button th:onclick="addcart([[${p.id}]])" />
+```
+
+## utext ( 사용할 text가 태그형식일 경우 사용 )
+
+```html
+<!-- sports = "<span>TEST</span>"; -->
+<!-- html 태그가 들어있는 텍스트를 태그로 삽입하고 싶을 때 -->
+<p th:utext="${sports}"></p>
+```
+
+## 문자열 합치기
+
+```html
+<div th:text="'Hello, ' + ${name} + '!'"></div><div th:text="|Hello, ${name}!|"></div>
+```
+
+## Switch
+
+```html
+<!-- *주의 : 서로 다른 케이스별로 딱 한번씩만 적용이 됨. --> 
+<td th:switch="${join.gender}">
+<span th:case="'M'" th:text="Male"/>
+<span th:case="'F'" th:text="Female"/></td>
+```
 

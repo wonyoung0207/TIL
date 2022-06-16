@@ -39,7 +39,7 @@
                    <button type="button" class="close" data-dismiss="modal">&times;</button>
                    <h4 class="modal-title" th:text="${product.name}">Modal
                        Header</h4>
-                   <img th:src="@{'/img/' + ${product.imgname}}">
+                   <img th:src="'/img/' + ${product.imgname}">
                </div>
                <div class="modal-body text-left">
                    <p th:text="${product.catename}"></p>
@@ -52,14 +52,15 @@
                        <input type="hidden" th:value="${session.logincust.id}" id="uid">
    
                        <label for="sel1">Count : </label> <select class="form-control"
-                                                                  id="cnt">
+                                                                  th:id="${product.id}+'cnt'">
                        <option value="1">1</option>
                        <option value="2">2</option>
                        <option value="3">3</option>
                        <option value="4">4</option>
                        </select>
                    </div>
-                   <button type="button" id="inputcart" class="btn btn-default">CART</button>
+                   <!-- 함수에 값을 넣어줄때 thymeleaf에서는 대괄호를 2개 사용한다.  -->
+                   <button type="button" th:onclick="addcart([[${product.id}]])" id="inputcart" class="btn btn-default">CART</button>
                </div>
                <div class="modal-footer">
                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -69,11 +70,11 @@
    </div>
    <!-- End Modal -->
    ```
-
+   
    3. 결과 화면 
-
+   
    <img src="../images/shopdb/productlist1.png" width="800">
-
+   
    <img src="../images/shopdb/productlist2.png" width="800">
 
 ## 장바구니

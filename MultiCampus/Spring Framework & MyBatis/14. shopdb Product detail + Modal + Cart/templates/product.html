@@ -8,6 +8,14 @@ img {
 
 <script>
 
+function addcart(pid){
+	var uid = $('#uid').val();
+	var cnt = $('#'+pid+'cnt').val();
+	sendcart(uid,pid,cnt);
+	
+	
+}
+
 function sendcart(uid, pid, cnt){
 	$.ajax({
 		url:'/addcart',
@@ -18,7 +26,7 @@ function sendcart(uid, pid, cnt){
 	});
 };
 
-$(document).ready(function(){
+/* $(document).ready(function(){
 	$('#inputcart').click(function(){
 		var uid = $('#uid').val();
 		var pid = $('#pid').val();
@@ -32,7 +40,7 @@ $(document).ready(function(){
 	
 	
 	
-});
+}); */
 
 </script>
 
@@ -42,7 +50,7 @@ $(document).ready(function(){
 <div th:each="product : ${plist}">
 	<div class="row row-no-gutters">
 		<div class="col-sm-3">
-			<img th:src="@{'/img/' + ${product.imgname}}">
+			<img th:src="'/img/' + ${product.imgname}">
 		</div>
 		<div class="col-sm-6 text-left">
 			<h2 th:text="${product.catename}"></h2>
@@ -64,7 +72,7 @@ $(document).ready(function(){
 						<button type="button" class="close" data-dismiss="modal">&times;</button>
 						<h4 class="modal-title" th:text="${product.name}">Modal
 							Header</h4>
-						<img th:src="@{'/img/' + ${product.imgname}}">
+						<img th:src="'/img/' + ${product.imgname}">
 					</div>
 					<div class="modal-body text-left">
 						<p th:text="${product.catename}"></p>
@@ -77,14 +85,15 @@ $(document).ready(function(){
 								<input type="hidden" th:value="${session.logincust.id}" id="uid">
 								
 								<label for="sel1">Count : </label> <select class="form-control"
-									id="cnt">
+									th:id="${product.id}+'cnt'">
 									<option value="1">1</option>
 									<option value="2">2</option>
 									<option value="3">3</option>
 									<option value="4">4</option>
 								</select>
 							</div>
-							<button type="button" id="inputcart" class="btn btn-default">CART</button>
+							<!-- 함수에 값을 넣어줄때 thymeleaf에서는 대괄호를 2개 사용한다.  -->
+							<button type="button" th:onclick="addcart([[${product.id}]])" id="inputcart" class="btn btn-default">CART</button>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
