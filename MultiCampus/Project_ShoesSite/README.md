@@ -78,15 +78,15 @@ BootStrap으로 구현되어있는 무료 Templat 이용하여 Nike site 를 참
 
 - [사용 템플릿](https://www.templatebazaar.in/demo/fashion_shop/products.html)
 
-  <img src="../../../../깃허브/TIL/MultiCampus/images/SemiProject/fashion1.png" width="700">
+  <img src="../images/SemiProject/fashion1.png" width="700">
 
-  <img src="../../../../깃허브/TIL/MultiCampus/images/SemiProject/fashion2.png" width="700">
+  <img src="../images/SemiProject/fashion2.png" width="700">
 
-  <img src="../../../../깃허브/TIL/MultiCampus/images/SemiProject/fashion3.png" width="700">
+  <img src="../images/SemiProject/fashion3.png" width="700">
 
-  <img src="../../../../깃허브/TIL/MultiCampus/images/SemiProject/fashion4.png" width="700">
+  <img src="../images/SemiProject/fashion4.png" width="700">
 
-  <img src="../../../../깃허브/TIL/MultiCampus/images/SemiProject/fashion5.png" width="700">
+  <img src="../images/SemiProject/fashion5.png" width="700">
 
   
 
@@ -129,7 +129,7 @@ BootStrap으로 구현되어있는 무료 Templat 이용하여 Nike site 를 참
 
 - [ERD설계](https://www.erdcloud.com/d/tBFT5AzhSeSA2sXz7)
 
-  <img src="../../../../깃허브/TIL/MultiCampus/images/SemiProject/ERD.png">
+  <img src="../images/SemiProject/ERD.png">
 
 - 제품 성별 결정
 
