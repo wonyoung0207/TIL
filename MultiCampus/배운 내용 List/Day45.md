@@ -128,5 +128,5 @@
 
 ## SQL문 작성
 
-1. [DDL]()
-2. [DML]()
+1. [DDL](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Project_ShoesSite/SQL/ShoesSite_DDL.sql) : DataBase 생성
+2. [DML](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Project_ShoesSite/SQL/ShoesSite_DML.sql) : DataBase Data 생성
