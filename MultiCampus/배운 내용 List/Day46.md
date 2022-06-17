@@ -42,11 +42,11 @@
 
 - git 주소 : [Team2 Github](https://github.com/minsiks/Team2-Semi_Project)
 
-- [CRUD]()
+- [CRUD](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Spring%20Framework%20%26%20MyBatis/15.%20SemiProject_ShoesSite)
 
   
 
-## DDL  & DML  작성
+## [DDL  & DML  작성](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Project_ShoesSite/SQL)
 
 ### 담당 테이블
 

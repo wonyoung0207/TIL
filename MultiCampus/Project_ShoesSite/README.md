@@ -24,9 +24,9 @@
 
 ## 4. 프로젝트 환경 및 사용된 툴
 
-|     언어      |                      웹                      |                    개발도구                     | DataBase |                        협업도구                        |
-| :-----------: | :------------------------------------------: | :---------------------------------------------: | :------: | :----------------------------------------------------: |
-| java<br />SQL | HTML<br />CSS3<br />JS<br />JQuery<br />Ajax | Eclipse<br />Spring<br />MyBatis<br />BootStrap |  MySql   | Zoom<br />Github<br />ERDCloud<br />Padlet<br />Notion |
+|     언어      |                      웹                      |                    개발도구                     | DataBase |                           협업도구                           |
+| :-----------: | :------------------------------------------: | :---------------------------------------------: | :------: | :----------------------------------------------------------: |
+| java<br />SQL | HTML<br />CSS3<br />JS<br />JQuery<br />Ajax | Eclipse<br />Spring<br />MyBatis<br />BootStrap |  MySql   | Zoom<br />[Github](https://github.com/minsiks/Team2-Semi_Project)<br />[ERDCloud](https://www.erdcloud.com/d/tBFT5AzhSeSA2sXz7)<br />[Padlet](https://padlet.com/tidnjrk010/Bookmarks)<br />[Notion](https://www.notion.so/hi-syl/d9931d43fcd740328b8c45b34269994d) |
 
 ## 5. 가이드
 
@@ -127,7 +127,7 @@ BootStrap으로 구현되어있는 무료 Templat 이용하여 Nike site 를 참
 
 - [ERD설계](https://www.erdcloud.com/d/tBFT5AzhSeSA2sXz7)
 
-  <img src="../images/SemiProject/ERD.png">
+  <img src="../images/SemiProject/ERD2.png">
 
 - 제품 성별 결정
 
@@ -232,10 +232,19 @@ BootStrap으로 구현되어있는 무료 Templat 이용하여 Nike site 를 참
 
    - 전체선택, 개별선택
 
-### 9. SQL문 작성
+### 9. [SQL문 작성](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Project_ShoesSite/SQL)
 
-1. [DDL](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Project_ShoesSite/SQL/ShoesSite_DDL.sql) : DataBase 생성
-2. [DML](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Project_ShoesSite/SQL/ShoesSite_DML.sql) : DataBase Data 생성
+- DDL (Data Define Language) 
+  + **Create, Drop, Alter **
+  + 테이블 생성, 드랍 제약상황 
+  + 테이블 관리에 사용 
+
+- DML (Data Manipulation Language) 
+  + **Select, Insert, Delete, Update**
+  + 테이블의 내용들을 다루는 명령어
+  + 데이터 관리에 사용 
+
+
 
 
 
