@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.Shoes_cntMapper">
+	
+	<insert id="insert" parameterType="shoes_cntVO">
+		INSERT INTO shoes_cnt VALUES (NULL,#{pid},#{size},#{cnt})
+	</insert>
+	<update id="update" parameterType="shoes_cntVO">
+		UPDATE shoes_cnt SET PID=#{pid},SIZE=#{size},CNT=#{cnt} WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM shoes_cnt WHERE ID=#{id}
+	</delete>
+	<select id="select" parameterType="int" resultType="shoes_cntVO">
+		SELECT s.id, s.pid, p.name, s.size, s.cnt FROM shoes_cnt s 
+		INNER JOIN product p ON s.pid=p.id 
+		WHERE s.id=#{id}
+	</select>
+	<select id="selectall" resultType="shoes_cntVO">
+		SELECT s.id, s.pid, p.name AS productname, s.size, s.cnt FROM shoes_cnt s 
+		INNER JOIN product p ON s.pid=p.id
+	</select>
+</mapper>
+
+
+
+
+
+

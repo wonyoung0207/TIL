@@ -1,3 +1,4 @@
+
 -- DDL
 DROP DATABASE IF EXISTS shoessite;
 CREATE DATABASE shoessite;
@@ -17,7 +18,6 @@ CREATE TABLE cust(
 	id VARCHAR(100) PRIMARY KEY,
     pwd VARCHAR(100),
     name VARCHAR(100),
-    addr VARCHAR(100),
     regdate DATE
 );
 
@@ -42,7 +42,6 @@ CREATE TABLE CATE(
 CREATE TABLE buy(
 id INT PRIMARY KEY,
 uid VARCHAR(100),
-name VARCHAR(100),
 recipient VARCHAR(100),
 recipient_addr VARCHAR(100),
 recipient_phonenumber VARCHAR(50),
@@ -60,7 +59,8 @@ CREATE TABLE product(
     name VARCHAR(100),
     price INT,
     regdate DATE,
-    imgname VARCHAR(100),
+    imgname1 VARCHAR(100),
+    imgname2 VARCHAR(100),
     cid INT,
     color VARCHAR(100),
     gender VARCHAR(50)
@@ -82,16 +82,18 @@ ALTER TABLE buy_detail MODIFY id INT AUTO_INCREMENT;
 ALTER TABLE buy_detail AUTO_INCREMENT = 4000;
 
 CREATE TABLE shoes_cnt(
+id INT PRIMARY KEY,
 pid INT NOT NULL,
 size INT,
 cnt INT
 );
 ALTER TABLE shoes_cnt ADD CONSTRAINT
 FOREIGN KEY (pid) REFERENCES product (id);
+ALTER TABLE shoes_cnt MODIFY id INT AUTO_INCREMENT;
+ALTER TABLE shoes_cnt AUTO_INCREMENT = 7000;
 
 CREATE TABLE CART (
 ID INT PRIMARY KEY,
-NAME VARCHAR(100) ,
 COUNT INT ,
 uid VARCHAR(100),
 pid INT
@@ -118,3 +120,5 @@ ALTER TABLE REVIEW MODIFY id INT AUTO_INCREMENT;
 ALTER TABLE REVIEW AUTO_INCREMENT = 6000;
 
 
+
+    

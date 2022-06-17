@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.Addr_listMapper">
+	
+	<select id="select" parameterType="int" resultType="addr_listVO">
+		SELECT * FROM addr_list WHERE ID=#{id}
+	</select>
+	<select id="selectall" resultType="addr_listVO">
+		SELECT * FROM addr_list
+	</select>
+	<insert id="insert" parameterType="addr_listVO">
+		INSERT INTO addr_list VALUES (null, #{uid},#{addr},#{addr_detail},#{zip})
+	</insert>
+	<update id="update" parameterType="addr_listVO">
+		UPDATE addr_list SET UID=#{uid}, ADDR=#{addr}, ADDR_DETAIL=#{addr_detail},ZIP=#{zip} WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM addr_list WHERE ID=#{id}
+	</delete>
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.BuyMapper">
+	
+	<insert id="insert" parameterType="buyVO">
+		INSERT INTO buy VALUES (NULL,#{uid},#{recipient},#{recipient_addr},#{recipient_phonenumber},#{request},#{price},SYSDATE())
+	</insert>
+	<update id="update" parameterType="buyVO">
+		UPDATE buy SET RECIPIENT=#{recipient},
+		RECIPIENT_ADDR=#{recipient_addr},
+		RECIPIENT_PHONENUMBER=#{recipient_phonenumber},
+		REQUEST=#{request} WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM buy WHERE ID=#{id}
+	</delete>
+	<select id="select" parameterType="int" resultType="buyVO">
+		SELECT * FROM buy WHERE ID=#{id}
+	</select>
+	<select id="selectall" resultType="buyVO">
+		SELECT * FROM buy
+	</select>
+</mapper>
+
+
+
+
+
+

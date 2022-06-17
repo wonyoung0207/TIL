@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.ProductMapper">
+
+	<select id="select" parameterType="int" resultType="productVO">
+		SELECT p.id
+		as id, p.name as name, p.price, p.regdate, p.cid as cid, p.imgname1 as
+		imgname1, p.imgname2 as imgname2,
+		c.name as catename ,
+		scnt.cnt as cnt,
+		scnt.size as size ,
+		re.uid as review_uid, re.text as review_text
+		FROM
+		product p
+		INNER JOIN cate c ON p.cid = c.id
+		LEFT JOIN shoes_cnt scnt ON
+		p.id = scnt.pid
+		LEFT JOIN review re ON p.id = re.pid
+		WHERE p.id = #{id}
+	</select>
+
+	<select id="selectall" resultType="productVO">
+		SELECT p.id
+		as id, p.name as
+		name, p.price, p.regdate, p.cid as cid, p.imgname1 as
+		imgname1,
+		p.imgname2 as imgname2,
+		c.name as catename ,
+		scnt.cnt as cnt, scnt.size
+		as size ,
+		re.uid as review_uid, re.text as review_text
+		FROM product p
+		INNER JOIN cate c ON p.cid = c.id
+		LEFT JOIN shoes_cnt scnt ON p.id =
+		scnt.pid
+		LEFT JOIN review re ON p.id = re.pid
+	</select>
+
+	<insert id="insert" parameterType="productVO">
+		INSERT INTO product VALUES
+		(NULL,
+		#{name},#{price},curdate(),#{imgname1},#{imgname2},#{cid},#{color},#{gender})
+	</insert>
+	<update id="update" parameterType="productVO">
+		UPDATE product SET
+		NAME=#{name}, PRICE=#{price}, regdate=curdate(),
+		imgname1=#{imgname1}, imgname2=#{imgname2},
+		cid=#{cid}, color=#{color}, GENDER=#{gender} WHERE id=#{id};
+
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM PRODUCT WHERE
+		ID=#{id}
+	</delete>
+
+</mapper>
+
+
+
+
+
+
