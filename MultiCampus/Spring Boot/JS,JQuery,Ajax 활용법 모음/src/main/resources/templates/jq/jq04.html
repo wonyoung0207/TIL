@@ -1,0 +1,110 @@
+<meta charset="UTF-8">
+<style>
+#div_logo{
+	text-align:center;
+	
+}
+#logo{
+	color: #228B22;
+}
+
+#mybtn{
+	background: #4CAF50;
+	color : white;	
+	border : 2px solid #4CAF50; 
+	transition-duration : 0.4s;
+ 	text-decoration: none;
+}
+
+#mybtn:hover{
+	background : lightgreen;
+	color : gray;
+}
+
+</style>
+
+<script>
+
+</script>
+
+<h1>Jq04 </h1>
+<p> Jq04의 내용을 불러옵니다. .</p>
+<hr>
+
+<div class="container col-sm-3">
+
+</div>
+<div class="container col-sm-6">
+<div id="div_logo">
+<h3>회원 가입 화면 </h3>
+<h1><div id="logo">NAVER</div></h1>
+</div>
+<form>
+	<div class="form-group">
+		<label for="name">ID:</label>
+		<input type="text" class="form-control" name="id" id="id" placeholder="Input ID">
+	</div>
+	
+	<div class="form-group">
+		<label for="pwd">Password:</label>
+		<input type="password" class="form-control"  name="pwd" id="pwd" placeholder="Input Password">
+	</div>
+	
+	<div class="form-group">
+		<label for="samepwd">비밀번호 재확인:</label>
+		<input type="password" class="form-control"  name="samePwd" id="samePwd" placeholder="Same Password">
+	</div>
+	
+	<div class="form-group">
+		<label for="name">이름:</label>
+		<input type="text" class="form-control"  name="name" id="name" placeholder="Input Name">
+	</div>
+	
+	<div class="form-group">
+		<label for="birthday">생년 월일:</label>
+		<input type="date" class="form-control"  id="birthday" name="birthday">
+	</div>
+	
+	<div class="form-group">	
+		<label for="gender">성별:</label>
+		<select name="gender"  class="form-control" >
+			<option value="남자"> 남자 </option>
+			<option value="여자"> 여자 </option>
+		</select>
+	</div>
+	
+	<div class="form-group">
+		<label for="email" >email:</label>
+		<input type="email" class="form-control"  name="email" id="email" placeholder="abc@naver.com">
+	</div>
+	
+	<div class="form-group">
+		<label for="contry">휴대전화 </label>
+		<select name="contry" class="form-control" >
+			<option value="+82"> 한국 (+82) </option>
+			<option value="+1"> 미국 (+1) </option>	
+		</select>
+		<input type="tel" name="telphone" id="telphone"  class="form-control" placeholder="010-1234-5678" >
+		<button onclick="" class="form-control" id="mybtn"> 인증 번호 전송 </button>
+	</div>
+	
+	<div class="form-group">
+	<button onclick="" class="form-control" id="mybtn"> 가입하기 </button>
+	</div>
+	
+</form>
+</div>
+
+<!-- 
+아이디(사용가능 여부 확인 )
+비밀번호
+비밀번호 재확인
+이름
+생년 월일 (년4글자) (월 선택) (일 선택)
+성별 (select)
+본인 확인 이매일
+휴대전화 (대한민국 +82, 미국 +1) (전화번호 입력 |인증번호 받기 버튼)
+가입하기 
+ -->
+
+

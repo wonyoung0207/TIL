@@ -1,0 +1,45 @@
+<meta charset="UTF-8">
+<style>
+	#result{
+		width:500px;
+		border: 2px solid red;
+	}
+
+</style>
+
+<script>
+function display(data){
+	$('#result').text(data);
+	
+}
+
+function getdata(txt){
+	$.ajax({
+		url:'search',//서버에게 data 변수 s로 데이터를 보낸다. 
+		data:{'s':txt,},
+		success:function(data){
+			//연결에 성공하면 실행 data에는 controller에서 out.print()한 내용이 들어간다. 
+			display(data);
+		},
+		error:function(){}
+	});
+	
+}
+
+
+$(document).ready(function(){
+	$('button').click(function(){
+		var txt = $('#txt').val();
+		getdata(txt);
+	});
+});
+
+</script>
+
+<h1>AJAX 02 페이지 입니다.</h1>
+<p> AJAX 02의 내용을 불러옵니다. .</p>
+<hr>
+<h2> 버튼을 누르면 비동기 방식으로 서버에서 데이터를 가져온다. </h2>
+<input type="text" id="txt">
+<button>Get Data</button>
+<div id="result"></div>

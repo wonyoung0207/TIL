@@ -1,0 +1,131 @@
+<meta charset="UTF-8">
+<style>
+
+</style>
+
+<script>
+
+
+function getdata(){
+	$('#name').val('lee');
+	$('#pwd').val('1111');
+	$('#name').attr('disabled', 'disabled')/* 고치지 못한다. */
+	
+	$('input[name="ch"]:checkbox[value="op3"]').val('op3').attr('checked', true);
+	$('input[name="optradio"]:radio[value="op3"]').val('op2').attr('checked',true);
+	$('#sel').val('2').attr('selected','selected');
+
+}
+
+$(document).ready(function(){
+	
+	getdata();
+	
+	$('#help_name').hide();
+	$('#help_pwd').hide();
+	
+	$('#name').blur(function(){
+		var name= $('#name').val();
+		
+		if(name != ''){
+			$('#help_name').hide();
+		}else{
+			$('#help_name').show();
+		}
+	});
+	
+	$('#pwd').blur(function(){
+		var pwd= $('#pwd').val();
+		
+		if(pwd != ''){
+			$('#help_pwd').hide();
+		}
+		else{
+			$('#help_pwd').show();
+		}
+	});
+	
+	
+	$('#btn').click(function(){
+
+		var name= $('#name').val();
+		var pwd= $('#pwd').val();
+		
+		
+		if(name == ''){
+			$('#help_name').show();
+			$('#name').focus();
+			return;
+			
+		}
+		
+		if(pwd == ''){
+			$('#help_pwd').show();
+			$('#pwd').focus();
+			return;
+			
+		}
+		
+		
+ 		$('form').attr({
+			'action':'/registerimpl',
+			'method':'get'
+		});
+		$('#register_form').submit();
+	});
+	
+		
+	
+});
+
+</script>
+
+<h1>Jq08 </h1>
+<p> Jq08의 내용을 불러옵니다. .</p>
+<hr>
+<h3>Bootstrap 의 스타일이용 회원 정보 수정   </h3>
+
+<div class="container col-sm-6">
+<h1> 회원정보 수정 </h1>
+	
+	<form id="register_form">
+	
+	<div class="form-group">
+		<label for="name">Name:</label>
+		<input type="text" name="name" class="form-control" id="name" placeholder="Input Name">
+		<span class="help-block" id="help_name">This is Mandatory... </span><!-- 필수 항목이라는 것을 알려줌   -->
+	</div>
+	
+	<div class="form-group">
+		<label for="pwd">Password:</label>
+		<input type="password" name="pwd" class="form-control" id="pwd">
+		<span class="help-block" id="help_pwd">This is Mandatory... </span>
+	</div>
+	
+	<div class="form-group">
+		<label class="checkbox-inline"><input type="checkbox" name="ch" value="op1">Option 1</label>
+		<label class="checkbox-inline"><input type="checkbox" name="ch" value="op2">Option 2</label>
+		<label class="checkbox-inline"><input type="checkbox" name="ch" value="op3">Option 3</label>
+	</div>
+		
+	<div class="form-group">
+		<label class="radio-inline"><input type="radio" name="optradio" value="op1" checked>Option 1</label>
+		<label class="radio-inline"><input type="radio" name="optradio" value="op2">Option 2</label>
+		<label class="radio-inline"><input type="radio" name="optradio" value="op3">Option 3</label>
+	</div>
+		
+	<div class="form-group">
+	  <label for="sel">Select list:</label>
+	  <select class="form-control" id="sel" name="sel">
+	    <option value="1">1</option>
+	    <option value="2">2</option>
+	    <option value="3">3</option>
+	    <option value="4">4</option>
+	  </select>
+	</div>
+  	<button type="button" class="btn btn-success" id="btn" >Register</button>
+	
+	</form>
+</div>
+
+

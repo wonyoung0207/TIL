@@ -1,0 +1,58 @@
+<meta charset="UTF-8">
+<style>
+#result {
+	width: 200px;
+	border: 2px solid red;
+}
+
+#result>table {
+	width: 200px;
+	border: 2px solid blue;
+}
+
+th, td {
+	text-align: center;
+}
+</style>
+<script>
+
+function getdata(){
+		//JSON 방식 
+		var a = [
+			{id:'id01', name:'lee', age:10},
+			{id:'id02', name:'kim', age:11},
+			{id:'id03', name:'park', age:12},
+			{id:'id04', name:'ahn', age:13}
+			
+		];
+		var txt = '';
+		txt += '<table id="tb01">';
+		txt += '<thead><tr><th>id</th><th>name</th><th>age</th></tr>';
+		
+		
+		txt += '</thead>';
+		txt += '<tbody>';
+		
+ 		for(var i in a){
+			txt += '<tr><td>' + a[i].id + '</td><td>' + a[i].name + '</td><td>' + a[i].age + '</td></tr>';
+		}
+
+ 		txt += '</tbody>';
+		txt += '</table>';
+		
+		var r = document.querySelector('#result')
+		r.innerHTML = txt;
+		
+};
+
+
+</script>
+
+<h1>JS04 페이지 입니다.</h1>
+<p>Js04의 내용을 불러옵니다. .</p>
+<hr>
+<h3>JSON 형식으로 테이블에 데이터 추가하기</h3>
+<h2>
+	<a href="#" onclick="getdata()">click</a>
+</h2>
+<div id="result"></div>

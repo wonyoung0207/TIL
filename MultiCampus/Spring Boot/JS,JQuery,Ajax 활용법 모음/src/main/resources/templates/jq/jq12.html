@@ -1,0 +1,27 @@
+<meta charset="UTF-8">
+
+<script>
+$(document).ready(function(){
+	var imgs = ['img/imac.png','img/iphone1.png','img/tablet.png'];
+	var cnt = 0;
+	
+	
+	setInterval(function(){
+		$('#images').attr('src',imgs[cnt % imgs.length]);
+		cnt++;
+		$('#hh1').text(cnt);
+	},1000);//1초에 한번씩 함수 호출 
+	
+	clearInterval();
+});
+</script>
+
+<h1>Jq12 </h1>
+<p> Jq12의 내용을 불러옵니다. .</p>
+<hr>
+<h3> 이미지를 1초 간격으로 변경 </h3>
+
+<h3 id="hh1"></h3>
+<img id="images">
+
+

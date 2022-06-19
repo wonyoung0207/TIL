@@ -1,0 +1,51 @@
+<meta charset="UTF-8">
+<style>
+	table{
+		width:500px;
+		border : 2px solid red;
+	}
+</style>
+
+
+<script>
+function getdata(){
+	var data = [
+		{id:'id01', name:'lee', age:10},
+		{id:'id02', name:'kim', age:11},
+		{id:'id03', name:'park', age:12},
+		{id:'id04', name:'ahn', age:13}
+	];
+	
+	var txt = '';
+	
+	$(data).each(function(index, item){
+		txt += '<tr><td>' + item.id + '</td>';
+		txt += '<td>' + item.name + '</td>';
+		txt += '<td>' + item.age + '</td><tr>';
+	});
+	$('table > tbody').append(txt);//추가한다. 
+
+};
+
+
+$(document).ready(function(){
+	getdata();
+	
+	
+});
+</script>
+
+<h1>Jq14 </h1>
+<p> Jq14의 내용을 불러옵니다. .</p>
+<hr>
+<h3></h3>
+<table>
+	<thead>
+		<tr><th>ID</th><th>NAME</th><th>AGE</th></tr>	
+	</thead>
+	<tbody>
+			
+	</tbody>
+
+
+</table> 

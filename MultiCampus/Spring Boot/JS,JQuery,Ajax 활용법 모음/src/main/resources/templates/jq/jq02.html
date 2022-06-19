@@ -1,0 +1,81 @@
+<meta charset="UTF-8">
+<style>
+.b {
+	color: white;
+	background: lightgray;
+}
+</style>
+
+<script>
+$(document).ready(function(){
+	
+	$('button').on({
+		'click':function(){
+			$(this).css({'color':'red'},{'background':'black'});
+		},
+		'mouseenter':function(){
+			$('h1').text('mouse enter');	
+			$(this).addClass('b');
+		},
+		'mouseleave':function(){
+			$('h1').text('mouse leave');
+			$(this).removeClass('b');
+		},
+		
+	});//on() : 이벤트를 붙일 때 사용 
+	
+	/* 
+	$('button').mouseenter(function(){
+		$('h1').text('mouse enter');	
+	});
+	
+	$('button').mouseleave(function(){
+		$('h1').text('mouse leave');	
+		
+	});
+	
+	$('button').click(function(){
+		$(this).css({'color':'red'},{'background':'black'});
+	});
+	 */
+	
+	 $('h2').hover(function(){
+		 $(this).addClass('b');
+		 
+	 },function(){
+		 $(this).removeClass('b');
+		 
+	 });//마우스가 들어오면 첫번째 함수, 마우스가 나가면 두번째 함수가 실행됨 
+	 
+	 $('input[type="text"]').focus(function(){
+		 $(this).addClass('b');
+		 $('form > span:eq(0)').text('ID를 입력하세요.');
+	 });
+	 
+	 $('input[type="text"]').blur(function(){
+		 $(this).removeClass('b');
+		 var txt = $(this).val();
+		 if(txt == ''){
+			 $('form > span:eq(0)').text('ID는 필수 항목 입니다. ');
+			 $(this).focus();
+		 };
+		 if(txt.length < 5){
+			 $('form > span:eq(0)').text('ID는 5개 이상이어야 합니다. ');
+		 };
+		 
+	 });
+});
+</script>
+
+<h1>Jq02</h1>
+<p>Jq02의 내용을 불러옵니다. .</p>
+<hr>
+<h3>이벤트에 대해 학습한다.</h3>
+<button>button</button>
+<h2>header2</h2>
+
+<form>
+	ID<input type="text" name="id"><span></span><br> PWD<input
+		type="password" name="pwd"><span></span><br> <input
+		type="submit" value="login">
+</form>

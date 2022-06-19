@@ -1,0 +1,85 @@
+<meta charset="UTF-8">
+<style>
+table{
+	width:200px;
+}
+table input {
+	width:200px;
+
+}
+
+table td button{
+	width:50px;
+}
+
+
+</style>
+<script>
+
+	function calc(n){
+		var text = document.querySelector('#txt').value;
+		
+		if(n == '='){
+			document.querySelector('#txt').value = eval(text);
+			alert(text + '을 계산합니다. ');
+			return ;
+		}
+		if(n == 'back'){
+			document.querySelector('#txt').value = text.substring(0,text.length-1);
+			return ;
+		}
+		
+		if(n == 'c'){
+			document.querySelector('#txt').value = '';
+			return ;
+		}
+		document.querySelector('#txt').value += n;
+	}
+
+</script>
+
+<h1>JS07 페이지 입니다.</h1>
+<p>Js07의 내용을 불러옵니다. .</p>
+<hr>
+<h3>ws 계산기 만들기</h3>
+
+<table>
+	<tbody>
+		<tr>
+			<td colspan=4><input type='text' id='txt'></td>
+			
+		</tr>
+		<tr>
+			<td><button onclick="calc(1)">1</button></td>
+			<td><button onclick="calc(2)">2</button></td>
+			<td><button onclick="calc(3)">3</button></td>
+			<td><button onclick="calc('+')">+</button></td>
+		</tr>
+		<tr>
+			<td><button onclick="calc(4)">4</button></td>
+			<td><button onclick="calc(5)">5</button></td>
+			<td><button onclick="calc(6)">6</button></td>
+			<td><button onclick="calc('-')">-</button></td>
+		</tr>
+		<tr>
+			<td><button onclick="calc(7)">7</button></td>
+			<td><button onclick="calc(8)">8</button></td>
+			<td><button onclick="calc(9)">9</button></td>
+			<td><button onclick="calc('*')">X</button></td>
+		</tr>
+		<tr>
+			<td><button>- </button></td>
+			<td><button onclick="calc(1)">0</button></td>
+			<td><button>- </button></td>
+			<td><button onclick="calc('/')">/</button></td>
+		</tr>
+		<tr>
+			<td><button onclick="calc('.')">.</button></td>
+			<td><button onclick="calc('c')">c</button></td>
+			<td><button onclick="calc('back')">back</button></td>
+			<td><button onclick="calc('=')">=</button></td>
+		</tr>
+	</tbody>
+
+
+</table>

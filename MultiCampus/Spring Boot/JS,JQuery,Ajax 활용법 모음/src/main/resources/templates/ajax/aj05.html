@@ -1,0 +1,58 @@
+<meta charset="UTF-8">
+<style>
+	#result{
+		width:300px;
+		border:2px solid red;
+	}
+
+</style>
+<script>
+
+function display(data){//화면에 뿌려주는 역할 
+	var str = '';
+	$(data).each(function(index,item){//item 하나가 JSON 안에있는 Object이다. 
+		str += '<h1>' + item.id + ' ' + item.name + ' ' + item.age +  '</h1>';
+	});
+	$('#result').html(str);	
+};
+
+function getdata(){
+	$.ajax({
+		url : 'getdata',
+		data : {},
+		success : function(data){
+			// 받아오는 data 형식 : [ { } ,{ } ]
+			// 이러한 형식을 JSON 이라고 한다. 
+			display(data);
+		},
+		error: function(){}
+	});
+	
+};
+
+
+$(document).ready(function(){
+	getdata();
+	setInterval(function(){
+		getdata();
+	},3000);
+	
+	/* $('button').click(function(){
+		getdata();
+	});
+	 */
+});
+
+</script>
+
+
+
+<h1>AJAX 05 페이지 입니다.</h1>
+<p> AJAX 05의 내용을 불러옵니다. .</p>
+<hr>
+<button> GET Data</button>
+<div id="result"> </div>
+
+
+
+

@@ -1,0 +1,99 @@
+<meta charset="UTF-8">
+<style>
+	#container{
+		width:500px;
+		height:400px;
+	}
+
+</style>
+<script>
+function display(data){
+	const chart = Highcharts.chart('container', {//container영역에 뿌린다. 
+	    title: {
+	        text: 'Chart.update'
+	    },
+	    subtitle: {
+	        text: 'Plain'
+	    },
+	    xAxis: {
+	        categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+	    },
+	    series: [{//JSON 형식 
+	        type: 'column',
+	        colorByPoint: true,
+	        data: data,//JSON 형태로 AJAX 에서 data를 받아온다. 
+	        //[29.9, 71.5, 106.4, 129.2, 144.0, 176.0, 135.6, 148.5, 216.4, 194.1, 95.6, 54.4]
+	        // 이 데이터를 뿌린다. 
+	        showInLegend: false
+	    }]
+	});
+	
+	document.getElementById('plain').addEventListener('click', () => {
+	    chart.update({
+	        chart: {
+	            inverted: false,
+	            polar: false
+	        },
+	        subtitle: {
+	            text: 'Plain'
+	        }
+	    });
+	});
+
+	document.getElementById('inverted').addEventListener('click', () => {
+	    chart.update({
+	        chart: {
+	            inverted: true,
+	            polar: false
+	        },
+	        subtitle: {
+	            text: 'Inverted'
+	        }
+	    });
+	});
+
+	document.getElementById('polar').addEventListener('click', () => {
+	    chart.update({
+	        chart: {
+	            inverted: false,
+	            polar: true
+	        },
+	        subtitle: {
+	            text: 'Polar'
+	        }
+	    });
+	});
+
+}
+
+
+function getdata(){
+	$.ajax({
+		url:'getchart',
+		success : function(data){
+			display(data);
+		}
+	});
+}
+
+$(document).ready(function(){
+	$('#getdata').click(function(){
+		getdata();
+	});
+});
+
+
+</script>
+
+
+<h1>AJAX 07 페이지 입니다.</h1>
+<p> AJAX 07의 내용을 불러옵니다. .</p>
+<hr>
+<h1>서버에서 데이터를 가져옵니다. </h1>
+<button id="getdata"> Get Data </button>
+
+<div id="container"></div>
+<button id="plain">Plain</button>
+<button id="inverted">Inverted</button>
+<button id="polar">Polar</button>
+

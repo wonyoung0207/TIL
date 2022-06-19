@@ -1,0 +1,44 @@
+<meta charset="UTF-8">
+<style>
+
+</style>
+
+<script>
+
+
+function h2(){
+	alert('Alert....... ');
+	var h2 = document.querySelector('h2');
+	/* 문서에서 h2태그의 쿼리 셀렉터를 가져온다. */
+	h2.innerHTML = 'Change Header2';
+	h2.style = 'background : yellow';
+	
+/* 	var h2 = document.querySelector('#hh2');
+	h2.innerHTML = 'Change Header3'; */
+	
+};
+
+
+window.onload = function(){	
+	var h3 = document.querySelector('#hh3');
+	var i = 10;
+	var j = 20;
+	var result = 10 * 20;
+	
+	h3.innerHTML = ' Replace header3 => For window.onload()';
+	console.log("i + j = " + result);
+	h3.innerHTML += '<br> i * j = ' + result; 
+}
+/* 화면이 모두 출력되면 자동으로 실행된다.  */
+
+</script>
+
+<h1>JS01 </h1>
+<p> Js01의 내용을 불러옵니다. .</p>
+<hr>
+<h3>JS01 자바 스크립트의 위치와 사용법을 익힌다.</h3>
+<p>Learn JS...</p>
+
+<button onclick="h2();"> Click </button>
+<h2 id="hh2"> Header2 </h2>
+<h3 id="hh3"> Header3 </h3>

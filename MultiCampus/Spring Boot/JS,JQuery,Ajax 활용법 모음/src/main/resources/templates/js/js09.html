@@ -1,0 +1,60 @@
+<meta charset="UTF-8">
+
+<script>
+window.onload = function(){
+	var c1 = document.querySelector('#c1');
+	var c2 = document.querySelector('#c2');
+	var c3 = document.querySelector('#c3');
+	var h1 = document.querySelector('h1');
+	
+	
+	h1.onclick = function(){
+		var c = prompt('숫자를 입력하세요',0);
+		this.innerHTML = c;//this는 h1 자신을 의미한다. 
+	}
+	
+	/* 
+	c1.addEventListener('click',function(){
+		alert('c1');
+	});
+	 */
+	
+	c1.onclick = function(){//익명함수 
+		h1.innerHTML = 'Click c1';
+		
+	};//BOM 객체 사용
+	
+	c2.onclick = function(){ 
+		var c = confirm('회원가입 하시겠습니까?');
+		if(c == true){
+			location.href = '/login';
+			//내 컴퓨터 서버의 login 페이지로 간다.-> controller에 설정되어있는 경로로 이동한다.  
+			
+		}
+		
+	};
+	
+	c3.onclick = function(){
+		var c = confirm('네이버로 가시겠습니까?');
+		if(c == true){
+			location.href = 'http://www.naver.com';// location : 자바스크립트에서 특정 URL로 이동시킬때 사용
+			
+		}
+		
+	};
+	
+	
+	
+}
+
+</script>
+
+
+<h1>JS09 페이지 입니다.</h1>
+<p> Js09의 내용을 불러옵니다. .</p>
+<hr>
+<h3>DOM, BOM 객체에대해 학습한다. </h3>
+
+<button id="c1">h1 문자 변경 </button>
+<button id="c2">회원가입 페이지 이동 </button>
+<h2><a id="c3" href="#" > 네이버 이동 </a></h2>

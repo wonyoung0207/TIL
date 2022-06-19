@@ -1,0 +1,148 @@
+<meta charset="UTF-8">
+<style>
+	#result{
+		width:500px;
+		border: 2px solid red;
+	}
+
+</style>
+
+<script>
+function checkid(id){
+	$.ajax({
+		url:'checkid',
+		data: {'id':id},
+		success:function(data){
+			if(data == '1'){
+				$('#id_ok').css('color','green');
+				$('#id_ok').text('사용 가능한 아이디 ');
+				
+			}else{
+				$('#id_ok').css({'color':'red'});
+				$('#id_ok').text('아이디 중복, 현재 아이디는 사용할 수 없습니다. ');
+			}
+		}
+	});
+}
+
+
+$(document).ready(function(){
+	//$('button').attr('disabled','disabled');
+	
+	$('input[name="id"]').keyup(function(){//ID 값이 3글자 이상일경우 
+		var id = $(this).val();
+		// 길이가 3자리 미만이면 span 에 " 3자리 이상 이어야 합니다 " 출력
+		if(id.length < 3){
+			$('#id_ok').css({'color':'red'});
+			$('#id_ok').text('3자리 이상 이어야 합니다. ');
+			
+		}else{
+			$('#id_ok').text('');
+			checkid(id);
+		}
+	});
+	
+	
+	$('#pwd_check').keyup(function(){//비밀번호와 비밀번호 재확인이 같은지 확인 
+		var pwd = $('#pwd').val();
+		var pwd_check = $('#pwd_check').val();
+		
+		if(pwd != pwd_check){
+			$('#pwd_checktext').text('비밀번호가 다릅니다. ');
+			$('#pwd_checktext').css({'color':'red'});
+		}else{
+			$('#pwd_checktext').text('일치합니다. ');
+			$('#pwd_checktext').css({'color':'green'});
+			$('button').removeAttr('disabled');
+		}
+		
+	});
+	
+	$('#pwd').keyup(function(){// 비밀번호가 10자리 이상이면 못하게 막기 
+		var pwd = $('#pwd').val();
+		if(pwd.length < 10){
+			$('#pwd_ok').text('');
+		}else{
+			
+			$('#pwd_ok').text('10자리 미만으로 입력해 주세요');
+			$('#pwd_ok').css({'color':'red'});
+			
+		}
+	});
+	
+	$('#pwd').blur(function(){
+		var pwd= $('#pwd').val();
+		
+		if(pwd == ''){
+			//$(this).focus();
+		}else{
+			
+		}
+	});
+	
+	$('#id').blur(function(){
+		var id = $('#id').val();
+		
+		if(id == ''){
+			//$(this).focus();
+		}else{
+			
+		}
+	});
+	
+	$('#register').click(function(){
+
+		var id = $('#id').val();
+		var pwd = $('#pwd').val();
+		var pwd_check= $('#pwd_check').val();
+		
+		if(id == ''){// id 비어있으면 다시입력
+			alert('id is empy');
+			$('#id').focus();
+			return ;
+		}
+		
+		if(pwd == ''){// pwd 비어있으면 다시입력
+			alert('pwd is empy');
+			$('#pwd').focus();
+			return ;
+		}
+		
+		if(pwd.length > 10){// 10글자 이상이면 다시 입력 
+			alert('pwd length max 10');
+			$('#pwd').focus();
+			return ;
+		}
+		if(pwd != pwd_check){// pwd와 pwd_check 가 다르면 다시입력 
+			alert('pwd2 error' + pwd_check);
+			$('#pwd_check').focus();
+			return;
+		}
+		
+ 		$('form').attr({
+			'action':'/register_formimpl',
+			'method':'post'
+		});
+		$('#form_register').submit();
+	});
+
+});
+
+</script>
+
+<h1 id="mainAJAX">AJAX 03 페이지 입니다.</h1>
+<p> AJAX 03의 내용을 불러옵니다. .</p>
+<hr>
+<h2> 회원가입 화면 </h2>
+<h2> ID에 입력할때마다 해당 ID가 사용 가능한지 알려주는 예제  </h2>
+
+<div class="container col-sm-6">
+<form id="form_register">
+<!--   -->
+ID<input type="text" name="id" id="id" class="form-control"><span id="id_ok"></span><br>
+PWD<input type="password" name="pwd" id="pwd" class="form-control" ><span id="pwd_ok"></span><br>
+PWD Check<input type="password" name="pwd_check" id="pwd_check" class="form-control"><span id="pwd_checktext"></span><br>
+
+</form>
+<button id="register" class="btn btn-success">Register</button>
+</div>

@@ -1,0 +1,91 @@
+<meta charset="UTF-8">
+<style>
+#img_before, #img_after {
+	
+}
+
+#container {
+	text-align: center;
+}
+</style>
+
+
+<script>
+
+$(document).ready(function(){
+	var cnt = 0;//이미지 증가 
+	var imgs = ['img/imac.png','img/iphone1.png','img/tablet.png'];
+	$('#images').attr('src',imgs[0]);
+	var start = null;//function()
+	var stop = null;//function()
+	
+/* 	$('#img_before').addClass('left carousel-control');
+	$('#img_after').addClass('right carousel-control'); */
+	
+	$('#auto_go').click(function(){//AUTO 버튼 클릭시 동작
+		
+		start = setInterval(function(){
+			if(cnt == imgs.length-1){
+				cnt = -1;
+			}
+			cnt++;
+			$('#images').attr('src',imgs[cnt % imgs.length]);
+			$('#result').text(cnt);
+		},1000);//1초에 한번씩 함수 호출 
+	});
+	
+	$('#auto_stop').click(function(){//STOP 버튼 클릭시 동작
+		stop = clearInterval(start);
+		
+	});
+	
+	$('#img_before').click(function(){//<- 버튼 클릭시 동작
+		if(cnt == 0){
+			cnt = imgs.length;
+		}
+		cnt--;
+		$('#images').attr('src',imgs[cnt % imgs.length]);
+		$('#result').text(cnt);
+	});
+	
+	$('#img_after').click(function(){//-> 버튼 클릭시 동작
+		if(cnt == imgs.length-1){
+			cnt = -1;
+		}
+		cnt++;
+		$('#images').attr('src',imgs[cnt % imgs.length]);
+		$('#result').text(cnt + '');
+	});
+
+});
+
+
+</script>
+
+<h1>Jq15</h1>
+<p>Jq15의 내용을 불러옵니다. .</p>
+<hr>
+
+
+<div id="container">
+	<h3>Project</h3>
+	<div id="result">0</div>
+	<div id="group">
+
+
+		<a id="img_before" class="left carousel-control"> <span
+			class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span> <span
+			class="sr-only">Previous</span></a>
+		<button id="auto_go">AUTO</button>
+		<button id="auto_stop">STOP</button>
+		<a id="img_after" class="glyphicon glyphicon-chevron-right"></a>
+
+	</div>
+
+
+	<div id="main_div">
+		<img id="images">
+	</div>
+
+</div>
+

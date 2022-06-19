@@ -1,0 +1,54 @@
+<meta charset="UTF-8">
+<style>
+</style>
+<script>
+
+function display(data){
+	$('h3').text(data);
+	
+};
+
+function getdata(loc){
+	$.ajax({//ajax 를 호출 -> ajax는 비동기이다. 
+		url: 'https://apis.data.go.kr/1360000/MidFcstInfoService/getMidTa',
+		/* https://apis.data.go.kr/1360000/MidFcstInfoService/getMidTa
+		?serviceKey=ScoOPDUVd6N5WlabzuyOBijc5zEf5LsXEW9D1wHOYNmThCzjlYZXIAXqNYUZi69qqelh61TGGQulmBhIJRIJ7Q%3D%3D
+		&pageNo=1
+		&numOfRows=10
+		&dataType=JSON
+		&regId=11B10101
+		&tmFc=202205250600
+		 */
+	 	data : {
+			'servicekey':'ScoOPDUVd6N5WlabzuyOBijc5zEf5LsXEW9D1wHOYNmThCzjlYZXIAXqNYUZi69qqelh61TGGQulmBhIJRIJ7Q%3D%3D',
+			'pageNo':'1',
+			'numOfRows' : '10',
+			'dataType' : 'JSON',
+			'regId' : loc, 
+			'tmFc' : '202205250600'
+			},
+		success : function(data){
+			alert(data);
+		},
+	});
+}
+
+
+$(document).ready(function(){
+	$('#seoul').click(function(){
+		getdata('11B10101');
+	});
+	$('#inchun').click(function(){
+		getdata('11B20201');
+		
+	});
+});
+</script>
+<h1>AJAX 12 페이지 입니다.</h1>
+<p>AJAX 12의 내용을 불러옵니다. .</p>
+<hr>
+
+<button id="seoul">Seoul</button>
+<button id="inchun">Inchun</button>
+
+<div id="result"></div>

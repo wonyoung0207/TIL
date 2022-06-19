@@ -1,0 +1,145 @@
+<meta charset="UTF-8">
+
+
+<style>
+#map {
+	width: 500px;
+	height: 400px;
+	border: 2px solid red;
+}
+</style>
+<script>
+	var map = null;
+
+	function displaymarker(pos) {//마커를 찍는 함수 
+		$(pos).each(function(index, item) {
+			var marker = new kakao.maps.Marker({
+				map : map,
+				position : new kakao.maps.LatLng(item.lat, item.lng),
+
+			});
+			var infowindow = new kakao.maps.InfoWindow({
+				content : item.content,
+				// position은 뒤에 event 에서 marker 로 설정해 주기 때문에 주지 않아도 된다. 
+
+			});
+
+			// 마커에 마우스오버 이벤트를 등록합니다
+			kakao.maps.event.addListener(marker, 'mouseover', function() {
+				// 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+				infowindow.open(map, marker);
+			});
+			
+			kakao.maps.event.addListener(marker, 'mouseout', function() {
+				infowindow.close();
+			});
+			
+			kakao.maps.event.addListener(marker, 'click', function() {
+				location.href = item.target;
+			});
+
+		});
+
+	}
+
+	function getmarkers(loc) { // 마커를 추가하기 위한 함수 
+		var pos = null;
+		pos = [ {
+			content : '<div>서울1</div>',
+			lat : 37.55041692365908,
+			lng : 126.91037178013711,
+			target : 'js01',
+		}, {
+			content : '<div>서울2</div>',
+			lat : 37.56151692365908,
+			lng : 126.92137178013711,
+			target : 'js02',
+		}, {
+			content : '<div>서울3</div>',
+			lat : 37.57261692365908,
+			lng : 126.93237178013711,
+			target : 'js03',
+		}, {
+			content : '<div>서울4</div>',
+			lat : 37.58371692365908,
+			lng : 126.94337178013711,
+			target : 'js04',
+		} ];
+
+		displaymarker(pos);//ajax로부터 json 형태로 데이터를 받아온다.
+
+	}
+
+	function displaymap() {
+		var mapContainer = document.getElementById('map'); // 지도를 표시할 div 
+		var mapOption = {
+			center : new kakao.maps.LatLng(37.517007, 126.9041419), // 지도의 중심좌표
+			level : 7
+		// 지도의 확대 레벨
+		};
+
+		map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+	};
+
+	function gomap(loc) {
+		var latlng = null;
+
+		if (loc == 'seoul') {
+			latlng = new kakao.maps.LatLng(37.55041692365908,
+					126.91037178013711);
+			getmarkers('seoul');
+
+		} else if (loc == 'busan') {
+			latlng = new kakao.maps.LatLng(35.17642453774257,
+					129.16669784099807);
+
+		} else if (loc == 'kwangju') {
+			latlng = new kakao.maps.LatLng(35.16173425533525,
+					126.88758871719189);
+
+		}
+		map.panTo(latlng);//위치를 옮기는 메소드 
+
+	};
+
+	$(document).ready(function() {
+		displaymap();
+
+		$('#seoul').click(function() {
+			gomap('seoul');
+
+		});
+
+		$('#busan').click(function() {
+			gomap('busan');
+
+		});
+
+		$('#kwangju').click(function() {
+			gomap('kwangju');
+
+		});
+
+		kakao.maps.event.addListener(marker, 'click', function() {
+			// 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+			location.href = 'aj06';
+		});
+
+	});
+
+	//서울 37.55041692365908, 126.91037178013711
+	//부산 35.17642453774257, 129.16669784099807
+	//광주 35.16173425533525, 126.88758871719189
+</script>
+<h1>AJAX 10 페이지 입니다.</h1>
+<p>AJAX 10의 내용을 불러옵니다. .</p>
+
+<hr>
+<h1>마커 여러개에 이벤트 등록</h1>
+<button id="seoul">서울</button>
+<button id="busan">부산</button>
+<button id="kwangju">광주</button>
+
+
+<div id="map"></div>
