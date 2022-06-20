@@ -18,7 +18,8 @@ CREATE TABLE cust(
 	id VARCHAR(100) PRIMARY KEY,
     pwd VARCHAR(100),
     name VARCHAR(100),
-    regdate DATE
+    regdate DATE,
+    telphone VARCHAR(100)
 );
 
 
@@ -98,6 +99,7 @@ COUNT INT ,
 uid VARCHAR(100),
 pid INT
 );
+
 ALTER TABLE CART ADD CONSTRAINT
 FOREIGN KEY (uid) REFERENCES cust (id);
 ALTER TABLE CART ADD CONSTRAINT

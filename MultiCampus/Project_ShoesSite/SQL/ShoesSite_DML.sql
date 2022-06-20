@@ -1,11 +1,12 @@
 
+
 -- cust insert
-INSERT INTO cust VALUES ('id01','pwd01','kim',sysdate());
-INSERT INTO cust VALUES ('id02','pwd02','lee',sysdate());
-INSERT INTO cust VALUES ('id03','pwd03','park',sysdate());
-INSERT INTO cust VALUES ('id04','pwd04','seo',sysdate());
-INSERT INTO cust VALUES ('id05','pwd05','han',sysdate());
-INSERT INTO cust VALUES ('id06','pwd06','woo',sysdate());
+INSERT INTO cust VALUES ('id01','pwd01','kim',sysdate(),'010-1598-1515');
+INSERT INTO cust VALUES ('id02','pwd02','lee',sysdate(),'010-3598-1245');
+INSERT INTO cust VALUES ('id03','pwd03','park',sysdate(),'010-5528-1515');
+INSERT INTO cust VALUES ('id04','pwd04','seo',sysdate(),'010-4592-5515');
+INSERT INTO cust VALUES ('id05','pwd05','han',sysdate(),'010-8758-2315');
+INSERT INTO cust VALUES ('id06','pwd06','woo',sysdate(),'010-1298-7782');
 SELECT * FROM cust;
 
 -- addr_list insert
@@ -81,12 +82,13 @@ INSERT INTO cart VALUES(null,3,'id05',3010);
 select * from cart;
 
 -- buy insert
-INSERT INTO buy VALUES (NULL,'id01','lee','Seoul','1234','문앞에 배송',20000,sysdate());
-INSERT INTO buy VALUES (NULL,'id02','lee','Seoul','1234','문앞에 배송',20000,sysdate());
-INSERT INTO buy VALUES (NULL,'id03','lee','Seoul','1234','문앞에 배송',20000,sysdate());
-INSERT INTO buy VALUES (NULL,'id04','lee','Seoul','1234','문앞에 배송',20000,sysdate());
-INSERT INTO buy VALUES (NULL,'id05','lee','Seoul','1234','문앞에 배송',20000,sysdate());
+INSERT INTO buy VALUES (NULL,'id01','kim','lee','Seoul','010-1234-1234','문앞에 배송',50000,sysdate());
+INSERT INTO buy VALUES (NULL,'id02','lee','kim','Daejeon','010-7894-5612',NULL,70000,sysdate());
+INSERT INTO buy VALUES (NULL,'id03','choi','park','Seoul','010-1234-1234',NULL,80000,sysdate());
+INSERT INTO buy VALUES (NULL,'id04','woo','choi','Seoul','010-7894-3215','택배함에 배송 부탁드립니다',60000,sysdate());
+INSERT INTO buy VALUES (NULL,'id05','park','choi','Seoul','010-1234-1234','부재시 경비실',100000,sysdate());
 SELECT * FROM buy;
+
 
 -- shoes_cnt insert
 INSERT INTO shoes_cnt VALUES (NULL,3000,220,10);

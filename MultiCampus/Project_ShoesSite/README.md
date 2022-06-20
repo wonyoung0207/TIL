@@ -24,9 +24,9 @@
 
 ## 4. 프로젝트 환경 및 사용된 툴
 
-|     언어      |                      웹                      |                    개발도구                     | DataBase |                           협업도구                           |
-| :-----------: | :------------------------------------------: | :---------------------------------------------: | :------: | :----------------------------------------------------------: |
-| java<br />SQL | HTML<br />CSS3<br />JS<br />JQuery<br />Ajax | Eclipse<br />Spring<br />MyBatis<br />BootStrap |  MySql   | Zoom<br />[Github](https://github.com/minsiks/Team2-Semi_Project)<br />[ERDCloud](https://www.erdcloud.com/d/tBFT5AzhSeSA2sXz7)<br />[Padlet](https://padlet.com/tidnjrk010/Bookmarks)<br />[Notion](https://www.notion.so/hi-syl/d9931d43fcd740328b8c45b34269994d) |
+|     언어      |                             웹                              |   개발도구    | DataBase |                           협업도구                           |         FrameWork         |
+| :-----------: | :---------------------------------------------------------: | :-----------: | :------: | :----------------------------------------------------------: | :-----------------------: |
+| Java<br />SQL | HTML<br />CSS3<br />JS<br />JQuery<br />Ajax<br />BootStrap | Eclipse<br /> |  MySql   | Zoom<br />[Github](https://github.com/minsiks/Team2-Semi_Project)<br />[ERDCloud](https://www.erdcloud.com/d/tBFT5AzhSeSA2sXz7)<br />[Padlet](https://padlet.com/tidnjrk010/Bookmarks)<br />[Notion](https://www.notion.so/hi-syl/d9931d43fcd740328b8c45b34269994d) | Spring<br />MyBatis<br /> |
 
 ## 5. 가이드
 
