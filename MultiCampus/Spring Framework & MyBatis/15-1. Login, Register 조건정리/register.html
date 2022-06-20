@@ -1,0 +1,271 @@
+<meta charset="UTF-8">
+<style>
+.div_margin {
+	margin: 40px;
+}
+
+.pwd_li{
+	color: red;
+}
+
+</style>
+
+<script>
+
+
+function checkPwd(password) {
+    var pwd = password;
+    var one, two, three;// 조건 1~3 
+    
+    let number = pwd.search(/[0-9]/g);// 숫자 찾기 
+    let english = pwd.search(/[a-z]/ig);//영문자 찾기 
+    let spece = pwd.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);//특수문자 찾기 
+    let reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;//비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함
+    
+    // 자리수 확인 
+    if (pwd.length < 5 || pwd.length > 10) {
+		$('#pwd_li_one').html('5자리 ~ 10자리 이내로 입력해주세요.' + '<i class="fa fa-remove"></i>');
+		$('#pwd_li_one').css('color','red');
+		one = false;
+
+    } else {
+		$('#pwd_li_one').html('5자리 ~ 10자리 이내로 입력해주세요.' + '<i class="fa fa-check"></i>');
+		$('#pwd_li_one').css('color','green');
+		one = true;
+    }
+    
+    // 공백 확인 
+    if (pwd.search(/\s/) != -1) {
+		$('#pwd_li_two').html('비밀번호는 공백 없이 입력해주세요.' + '<i class="fa fa-remove"></i>');
+		$('#pwd_li_two').css('color','red');
+		two = false;
+		
+    } else {
+		$('#pwd_li_two').html('비밀번호는 공백 없이 입력해주세요.' + '<i class="fa fa-check"></i>');
+		$('#pwd_li_two').css('color','green');
+		two = true;
+    }
+    
+    // 영문, 숫자, 특수문자 확인 
+   	if (number < 0 || english < 0 || spece < 0) {
+		$('#pwd_li_three').html('영문,숫자,특수문자를 혼합하여 입력해주세요.' + '<i class="fa fa-remove"></i>');
+		$('#pwd_li_three').css('color','red');
+		three = false;
+    }else{
+		$('#pwd_li_three').html('영문,숫자,특수문자를 혼합하여 입력해주세요.' + '<i class="fa fa-check"></i>');
+		$('#pwd_li_three').css('color','green');
+		three = true;
+    }
+    
+    if(one && two && three){// 모든 조건 만족시 실행 
+    	$('#pwd_span').text('사용할 수 있는 password 입니다. ');
+    	$('#pwd_span').css('color','green');
+    }
+
+    
+};
+
+
+	function checkid(id) {
+		$.ajax({
+			url : 'checkid',
+			data : {
+				'id' : id
+			},
+			success : function(data) {
+				//alert('data : ' + data + typeof(data));
+				if (data == '1') {//1을 리턴받으면 해당 아이디 사용 불가
+					$('#id_span').html('<i class="fa fa-remove"></i>' + '해당 ID는 사용불가 입니다. ');
+					$('#id_span').css('color','red');
+				
+
+				}else{
+					$('#id_span').html('<i class="fa fa-check"></i>' + '사용 가능한 ID');
+					$('#id_span').css('color','green');
+				}
+			}
+		});
+	};
+
+	$(document).ready(function() {
+		$('#pwd_div').hide();
+		
+		$('#id').blur(function() {//id 입력다했을때 ajax이용해서 사용 가능한 id인지 확인 
+			var id = $(this).val();
+			checkid(id);
+
+		});
+		
+		
+		$('#pwd').focus(function() {// focus 일경우 실행 -> 조건 : 5자 ~ 10글자 , 공백 x, 영문, 숫자, 특수문자 혼합 
+			$('#pwd_div').show();
+			
+			$('#pwd').keyup(function(){
+				var pwd = $(this).val();
+				checkPwd(pwd);
+				
+				
+			});
+			
+			
+		});
+		
+		$('#pwd').blur(function() {// 벗어나면 실행 
+			$('#pwd_div').hide();
+
+		});
+		
+		$('#register_btn').click(function(){
+			var id = $('#id').val();
+			var pwd = $('#pwd').val();
+			var name = $('#name').val();
+			var phone = $('#phone').val();
+			//alert('id :' + id + ',pwd:' + pwd + ',name :' + name)
+			
+			if(id == ''|| pwd == '' || name == '' || phone == ''){
+				if(id == ''){
+					$('#id_span').html('<i class="fa fa-remove"></i>' + '필수 입력 요소 입니다. ');
+					$('#id_span').css('color','red');
+					$('#id').focus();
+				}
+				if(pwd == ''){
+					$('#pwd_span').html('<i class="fa fa-remove"></i>' + '필수 입력 요소 입니다. ');
+					$('#pwd_span').css('color','red');
+					$('#pwd').focus();
+				}
+				if(name == ''){
+					$('#name_span').html('<i class="fa fa-remove"></i>' + '필수 입력 요소 입니다. ');
+					$('#name_span').css('color','red');
+					$('#name').focus();
+				}
+				if(phone == ''){
+					$('#phone_span').html('<i class="fa fa-remove"></i>' + '필수 입력 요소 입니다. ');
+					$('#phone_span').css('color','red');
+					$('#phone').focus();
+				}
+				
+			}else{
+				//alert('form control');
+				$('#register_form').attr({
+					'action':'registerimpl',
+					'method':'POST'
+				})
+				
+				$('#register_form').submit();
+			}
+			
+		});
+
+	});
+</script>
+
+
+<section class="main_breadcrumb">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="breadcrumb-content">
+				<h2>register</h2>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/register">register</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<div id="content" class="cart_page checkout_page register_page">
+	<!-- cart -->
+	<div id="register"
+		class="cart_section checkout_section register_section">
+		<div class="container-fluid" id="checkout">
+
+			<div class="row billing_and_payment_option wow fadeInDown   animated">
+				<div class="heading_wrapper wow fadeInDown animated">
+					<h2 class="wow fadeInDown animated">Register</h2>
+					<h3>가입후 최고의 제품과 혜택을 받아보세요.</h3>
+
+				</div>
+				<!-- Billing Address -->
+				<div class="col-sm-6 col-lg-6">
+					<div class="login_box">
+						<h3 class="">Insert In</h3>
+						<i class="fa fa-remove" style="color: red"></i> <i
+							class="fa fa-check" style="color: green"></i>
+						<form class="eb-form eb-mailform form-checkout"
+							novalidate="novalidate" id="register_form">
+
+							<div class="form-wrap has-error">
+								<span id="id_span"></span> <input
+									class="form-input form-control" type="text" name="id" id="id"
+									placeholder="사용하실 ID를 입력해주세요. ">
+
+							</div>
+							<div class="form-wrap">
+								<span id="pwd_span"></span> <input
+									class="form-input form-control" id="pwd" type="text" name="pwd"
+									placeholder="사용하실 Password 를 입력해주세요.">
+								<div id="pwd_div" class="login_box">
+
+									<strong>패스워드는 다음 요건을 반드시 포함해야 합니다.</strong>
+									<div class="div_margin"></div>
+									<ul style="list-style-type: square;" id="pwd_ul">
+										<li><span id="pwd_li_one" class="pwd_li">8자 이상 <i class="fa fa-remove"></i></span> 
+										<li><span id="pwd_li_two" class="pwd_li">비밀번호는 공백 없이 입력해주세요. <i class="fa fa-remove"></i></span> 
+										<li><span id="pwd_li_three" class="pwd_li">영문,숫자,특수문자를 혼합하여 입력해주세요. <i class="fa fa-remove"></i></span> 
+									</ul>
+								</div>
+							</div>
+
+							<div class="form-wrap">
+								<span id="pwd_check_span"></span> <input
+									class="form-input form-control" id="pwd_check" type="text"
+									name="pwd_check" placeholder="패스워드를 다시 입력해 주세요. ">
+							</div>
+							<div class="form-wrap has-error">
+								<span id="name_span"></span> <input
+									class="form-input form-control" type="text" name="name"
+									id="name" placeholder="이름을 입력해 주세요.">
+							</div>
+
+							<div class="form-wrap">
+								<span id="phone_span"></span> <input
+									class="form-input form-control" id="phone" type="tel"
+									pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" name="phone"
+									placeholder="핸드폰 번호를 입력해 주세요. " required>
+							</div>
+
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input"
+									id="defaultUnchecked"> <label
+									class="custom-control-label register-remember"
+									for="defaultUnchecked">Remember me on this device</label>
+							</div>
+
+						</form>
+
+						<button id="register_btn" class="btn ">Register</button>
+
+						<p class="signInclass">
+							Already have an account? &nbsp;<a href="/login">Sign In</a>
+						</p>
+					</div>
+				</div>
+				<!-- Delivery Address  -->
+				<div class="col-sm-6 text-center">
+					<img src="/assets/image/nike.png">
+				</div>
+
+
+			</div>
+			<!-- your shopping cart -->
+		</div>
+	</div>
+	<!-- cart end-->
+</div>
+
+<!-- back-to-top scrtion -->
+<div class="top_button">
+	<a class="back-to-top" style="cursor: pointer;" id="top-scrolltop"><i
+		class="fa fa-angle-up"></i></a>
+</div>
+<!-- back-to-top scrtion End-->
