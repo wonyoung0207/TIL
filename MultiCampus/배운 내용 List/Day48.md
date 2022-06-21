@@ -8,7 +8,7 @@
 >
 > type="tel" 의 장점
 >
-> Login , Register 페이지 모든 조건
+> Login , Register 페이지 모든 조건 (정규식 이용 )
 
 # 세미프로젝트 Day05
 

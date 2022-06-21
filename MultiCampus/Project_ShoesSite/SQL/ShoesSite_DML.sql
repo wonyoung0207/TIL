@@ -82,11 +82,11 @@ INSERT INTO cart VALUES(null,3,'id05',3010);
 select * from cart;
 
 -- buy insert
-INSERT INTO buy VALUES (NULL,'id01','kim','lee','Seoul','010-1234-1234','문앞에 배송',50000,sysdate());
-INSERT INTO buy VALUES (NULL,'id02','lee','kim','Daejeon','010-7894-5612',NULL,70000,sysdate());
-INSERT INTO buy VALUES (NULL,'id03','choi','park','Seoul','010-1234-1234',NULL,80000,sysdate());
-INSERT INTO buy VALUES (NULL,'id04','woo','choi','Seoul','010-7894-3215','택배함에 배송 부탁드립니다',60000,sysdate());
-INSERT INTO buy VALUES (NULL,'id05','park','choi','Seoul','010-1234-1234','부재시 경비실',100000,sysdate());
+INSERT INTO buy VALUES (NULL,'id01','kim','Seoul','010-1234-1234','문앞에 배송',50000,sysdate());
+INSERT INTO buy VALUES (NULL,'id02','lee','Daejeon','010-7894-5612',NULL,70000,sysdate());
+INSERT INTO buy VALUES (NULL,'id03','choi','Seoul','010-1234-1234',NULL,80000,sysdate());
+INSERT INTO buy VALUES (NULL,'id04','woo','Seoul','010-7894-3215','택배함에 배송 부탁드립니다',60000,sysdate());
+INSERT INTO buy VALUES (NULL,'id05','park','Seoul','010-1234-1234','부재시 경비실',100000,sysdate());
 SELECT * FROM buy;
 
 
