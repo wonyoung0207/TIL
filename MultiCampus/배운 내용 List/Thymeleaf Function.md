@@ -129,3 +129,10 @@
 <span th:case="'F'" th:text="Female"/></td>
 ```
 
+## 숫자로 반복문 돌리기
+
+```html
+<!-- 참고 사이트 : https://ifuwanna.tistory.com/200-->
+<i class="fa fa-star" th:each="num : ${#numbers.sequence(1,review.star)}"></i>
+```
+

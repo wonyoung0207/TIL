@@ -45,6 +45,7 @@ id INT PRIMARY KEY,
 uid VARCHAR(100),
 recipient VARCHAR(100),
 recipient_addr VARCHAR(100),
+recipient_addr_detail VARCHAR(100),
 recipient_phonenumber VARCHAR(50),
 request VARCHAR(500),
 price INT,
@@ -97,9 +98,9 @@ CREATE TABLE CART (
 ID INT PRIMARY KEY,
 COUNT INT ,
 uid VARCHAR(100),
-pid INT
+pid INT,
+size INT
 );
-
 ALTER TABLE CART ADD CONSTRAINT
 FOREIGN KEY (uid) REFERENCES cust (id);
 ALTER TABLE CART ADD CONSTRAINT
