@@ -30,14 +30,26 @@
                  // daum 에서 제공하는 우편번호 서비스를 이용하는 함수이다. 
                  // 팝업창으로 우편번호 검색창이 띄워지고 주소를 클릭하면 oncomplete 함수가 실행된다. 
                  // 따라서 data에는 유저가 선택한 주소의 모든 값이 들어가게 된다 
+                             
+                 var addr = ''; // 주소 변수
+     
+                 if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                     addr = data.roadAddress;
+                 } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                     addr = data.jibunAddress;
+                 }
+                 // 주소 정보를 해당 필드에 넣는다.
+                 document.getElementById("sample6_address").value = addr;
+                 // 커서를 상세주소 필드로 이동한다.
+                 document.getElementById("sample6_detailAddress").focus();
              }
          }).open();
      }
      </script>
      ```
-
+  
   3. kakao 에서 제공하는 방법에는 5가지가 존재한다. 
-
+  
      1. 팝업을 이용하여 도로명 주소와 지번 주소 모두 보여주기  (브라우저 팝업으로 띄워줌 ) 
      2. 사용자가 선택한 값 이용  ( 브라우저 팝업으로 띄워줌 )
      3. iframe을 이용하여 레이어 띄우기  ( iframe팝업으로 띄워줌 )

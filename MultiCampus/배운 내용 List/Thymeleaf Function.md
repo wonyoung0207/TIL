@@ -104,6 +104,8 @@
 ```html
 <!-- thymeleaf사용시 함수에 값을 넣어줄때 대괄호를 2개 사용한다.  -->
 <button th:onclick="addcart([[${p.id}]])" />
+
+<tr th:each="buy : ${buylist}" id="buy" th:onclick="javascript:buy_click([[${buy.pid}]])">
 ```
 
 ## utext ( 사용할 text가 태그형식일 경우 사용 )
@@ -134,5 +136,21 @@
 ```html
 <!-- 참고 사이트 : https://ifuwanna.tistory.com/200-->
 <i class="fa fa-star" th:each="num : ${#numbers.sequence(1,review.star)}"></i>
+```
+
+## onclikc으로 다른주소 바로 보내기
+
+```html
+<tr th:each="buy : ${buylist}" id="buy" th:onclick="location.href='/productdetail?id=[[${buy.pid}]]'">
+```
+
+## if문으로 null , ' '  처리
+
+```html
+<!-- 문자열일 경우 null , '' 처리  -->
+<div th:if="${not #strings.isEmpty(addr_list)}"> ... </div>
+
+<!-- list일 경우 null , '' 처리  -->
+<div th:unless="${not #lists.isEmpty(addr_list)}">
 ```
 

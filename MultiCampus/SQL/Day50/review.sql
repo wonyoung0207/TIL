@@ -2,6 +2,7 @@ SELECT * FROM review;
 SELECT * FROM buy;
 SELECT * FROM buy_detail;
 SELECT * FROM cart;
+SELECT * FROM cust;
 
 
 SELECT b.id, b.uid, b.recipient, b.recipient_addr,b.recipient_addr_detail,
