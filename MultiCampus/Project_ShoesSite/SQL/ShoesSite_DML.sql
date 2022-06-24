@@ -41,8 +41,8 @@ INSERT INTO cate (id, name, tid) VALUES(52,'미들부츠',50);
 select * from cate;
 
 -- Review Insert
-INSERT INTO review VALUES(null,3000,1,'배송이 빨라서 맘에 들어요', CURRENT_DATE(),'canverse1.png','id01');
-INSERT INTO review VALUES(null,3001,2,'생각했던 색깔이랑 약간 달라요', CURRENT_DATE(),'canverse2.png','id02');
+INSERT INTO review VALUES(null,3000,1,'배송이 빨라서 맘에 들어요', CURRENT_DATE(),'canvers1.png','id01');
+INSERT INTO review VALUES(null,3001,2,'생각했던 색깔이랑 약간 달라요', CURRENT_DATE(),'canvers2.png','id02');
 INSERT INTO review VALUES(null,3003,3,'생각보다 신발 발볼이 좁아요, 한사이즈 크게 사시는게 좋을듯', CURRENT_DATE(),'running1.png','id03');
 INSERT INTO review VALUES(null,3009,4,'맘에 들어요!', CURRENT_DATE(),'roper.png','id04');
 INSERT INTO review VALUES(null,3008,5,'선물받은 사람이 아주 좋아해요!', CURRENT_DATE(),'score1.png','id05');
@@ -88,6 +88,10 @@ INSERT INTO buy VALUES (NULL,'id02','kim','Daejeon','Daejeon','010-7894-5612',NU
 INSERT INTO buy VALUES (NULL,'id03','park','Seoul','Daejeon','010-1234-1234',NULL,80000,sysdate());
 INSERT INTO buy VALUES (NULL,'id04','choi','Seoul','Daejeon','010-7894-3215','택배함에 배송 부탁드립니다',60000,sysdate());
 INSERT INTO buy VALUES (NULL,'id05','choi','Seoul','Daejeon','010-1234-1234','부재시 경비실',100000,sysdate());
+
+
+INSERT INTO buy VALUES (NULL,'id02','choi11','Seoul','Daejeon','010-1234-1234','부재시 경비실',100000,sysdate());
+INSERT INTO buy VALUES (NULL,'id02','choi22','Seoul','Daejeon','010-1234-1234','부재시 경비실',100000,sysdate());
 SELECT * FROM buy;
 
 

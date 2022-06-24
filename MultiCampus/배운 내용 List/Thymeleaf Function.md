@@ -144,6 +144,18 @@
 <tr th:each="buy : ${buylist}" id="buy" th:onclick="location.href='/productdetail?id=[[${buy.pid}]]'">
 ```
 
+## onclick으로 객체와 해당 태그 정보 넘기기 
+
+```html
+function update_num(c,count) {
+	$('#total'+c.id).text(c.pprice * $(count).val());
+}
+
+<input th:id="count" class="form-input stepper-input" type="number" data-zeros="true" th:value="${c.count}" th:onclick="update_num([[${c}]],this)" min="1" max="1000">
+
+<td th:id="'total'+${c.id}">10000</td>
+```
+
 ## if문으로 null , ' '  처리
 
 ```html
