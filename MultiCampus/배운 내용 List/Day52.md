@@ -30,3 +30,4 @@ function update_num(c,count) {
 - [google docs 이용 같이 ppt 만들기](https://docs.google.com/presentation/d/1upFYaKb7vqLy3j93h6VlixmRY24de5CrrNheaTwdWNI/edit#slide=id.p)
 - [리바인 회의 무료 템플릿](https://slidesgo.com/ko/)
 - [네이버제공 무료 ppt](https://hangeul.naver.com/2014/document)
+
