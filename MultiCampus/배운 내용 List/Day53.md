@@ -23,7 +23,12 @@
 ## Login (로그인 화면)
 
 1. 로그인 버튼 클릭시 login 시 공백값 체크 후 공백이라면 해당 input에 알려주기 
+
 2. 공백이 아니라면 controller에서 DataBase에 저장되어있는 ID와 Password가 맞는지 판단 후 맞다면 로그인, 아니라면 login 페이지로 이동. 이동 후 오류 message 표시
+
+   <img src="../images/SemiProject/login1.png">
+
+   <img src="../images/SemiProject/login02.png">
 
 ## Register (회원가입 화면)
 
