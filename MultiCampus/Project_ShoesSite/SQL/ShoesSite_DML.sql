@@ -1,5 +1,3 @@
-
-
 -- cust insert
 INSERT INTO cust VALUES ('id01','pwd01','kim',sysdate(),'010-1598-1515');
 INSERT INTO cust VALUES ('id02','pwd02','lee',sysdate(),'010-3598-1245');
@@ -42,16 +40,29 @@ select * from cate;
 
 -- Review Insert
 INSERT INTO review VALUES(null,3000,1,'배송이 빨라서 맘에 들어요', CURRENT_DATE(),'canvers1.png','id01');
+INSERT INTO review VALUES(null,3000,5,'싸고 예뻐요', CURRENT_DATE(),'canvers1.png','id03');
 INSERT INTO review VALUES(null,3001,2,'생각했던 색깔이랑 약간 달라요', CURRENT_DATE(),'canvers2.png','id02');
 INSERT INTO review VALUES(null,3003,3,'생각보다 신발 발볼이 좁아요, 한사이즈 크게 사시는게 좋을듯', CURRENT_DATE(),'running1.png','id03');
 INSERT INTO review VALUES(null,3009,4,'맘에 들어요!', CURRENT_DATE(),'roper.png','id04');
 INSERT INTO review VALUES(null,3008,5,'선물받은 사람이 아주 좋아해요!', CURRENT_DATE(),'score1.png','id05');
 
+-- 리뷰 insert 추가
+INSERT INTO review VALUES(null,3001,5,'선물받은 사람이 아주 좋아해요!', CURRENT_DATE(),'canvers2.png','id01');
+INSERT INTO review VALUES(null,3002,4,'신발이 정말 맘에 들어요', CURRENT_DATE(),'sneakers1.png','id02');
+INSERT INTO review VALUES(null,3003,3,'발볼이 좀 좁아요', CURRENT_DATE(),'running1.png','id03');
+INSERT INTO review VALUES(null,3004,5,'배송 빠르고 좋아요', CURRENT_DATE(),'running2.png','id04');
+INSERT INTO review VALUES(null,3004,3,'제껀 배송이 좀 시간이 걸렸어요', CURRENT_DATE(),'running2.png','id05');
+
+INSERT INTO review VALUES(null,3005,3,'받은 제품에 얼룩이 있어서 한번 교환했어요', CURRENT_DATE(),'running3.png','id06');
+INSERT INTO review VALUES(null,3006,4,'등산할때 편해요', CURRENT_DATE(),'mountain1.png','id05');
+INSERT INTO review VALUES(null,3007,4,'등산할때 발을 잘 잡아줘요', CURRENT_DATE(),'mountain2.png','id04');
+INSERT INTO review VALUES(null,3008,3,'선물용으로 샀어요', CURRENT_DATE(),'score1.png','id03');
+INSERT INTO review VALUES(null,3009,5,'색이 예뻐서 맘에 들어요.', CURRENT_DATE(),'roper.png','id02');
 
 select * from review;
 
 -- product Insert
-INSERT INTO product VALUES(NULL,'canvers1',10000,SYSDATE(),'canvers1.png','canvers1.png',12,'red','Men');
+INSERT INTO product VALUES(NULL,'canvers1',10000,SYSDATE(),'canvers1.png','canvers1_2.png',12,'red','Men');
 INSERT INTO product VALUES(NULL,'canvers2',35000,SYSDATE(),'canvers2.png','canvers2.png',12,'red','Women');
 INSERT INTO product VALUES(NULL,'sneakers1',20000,SYSDATE(),'sneakers1.png','sneakers1.png',11,'blue','Women');
 INSERT INTO product VALUES(NULL,'running1',30000,SYSDATE(),'running1.png','running1.png',21,'red','Women');
@@ -63,10 +74,10 @@ INSERT INTO product VALUES(NULL,'score1',40000,SYSDATE(),'score1.png','score1.pn
 INSERT INTO product VALUES(NULL,'roper1',50000,SYSDATE(),'roper.png','roper.png',31,'black','Women');
 INSERT INTO product VALUES(NULL,'mule1',15000,SYSDATE(),'mule1.png','mule1.png',32,'white','Men');
 INSERT INTO product VALUES(NULL,'slide1',30000,SYSDATE(),'slide1.png','slide1.png',41,'black','Men');
-INSERT INTO product VALUES(NULL,'aqua1',20000,SYSDATE(),'aqua1.png','aqua1.png',42,'red','Unisex');
+INSERT INTO product VALUES(NULL,'aqua1',20000,SYSDATE(),'aqua2.png','aqua2.png',42,'blue','Unisex');
 INSERT INTO product VALUES(NULL,'aqua1',20000,SYSDATE(),'aqua1.png','aqua1.png',42,'white','Unisex');
 INSERT INTO product VALUES(NULL,'sportsandal1',25000,SYSDATE(),'sportsandal1.png','sportsandal1.png',43,'white','Unisex');
-INSERT INTO product VALUES(NULL,'sportsandal1',25000,SYSDATE(),'sportsandal1.png','sportsandal1.png',43,'black','Unisex');
+INSERT INTO product VALUES(NULL,'sportsandal1',25000,SYSDATE(),'sportsandal2.png','sportsandal2.png',43,'black','Unisex');
 INSERT INTO product VALUES(NULL,'ankle1',40000,SYSDATE(),'ankle1.png','ankle1.png',51,'black','Women');
 INSERT INTO product VALUES(NULL,'middleboots1',40000,SYSDATE(),'middleboots1.png','middleboots1.png',52,'black','Women');
 
@@ -79,7 +90,12 @@ INSERT INTO cart VALUES(null,1,'id02',3002,280);
 INSERT INTO cart VALUES(null,2,'id02',3003,240);
 INSERT INTO cart VALUES(null,1,'id02',3008,220);
 INSERT INTO cart VALUES(null,3,'id05',3010,260);
-
+INSERT INTO cart VALUES(null,1,'id03',3000,260);
+INSERT INTO cart VALUES(null,1,'id03',3002,280);
+INSERT INTO cart VALUES(null,2,'id03',3003,240);
+INSERT INTO cart VALUES(null,1,'id03',3008,220);
+INSERT INTO cart VALUES(null,3,'id05',3010,260);
+INSERT INTO cart VALUES(null,1,'id06',3000,240);
 select * from cart;
 
 -- buy insert
@@ -89,26 +105,48 @@ INSERT INTO buy VALUES (NULL,'id03','park','Seoul','Daejeon','010-1234-1234',NUL
 INSERT INTO buy VALUES (NULL,'id04','choi','Seoul','Daejeon','010-7894-3215','택배함에 배송 부탁드립니다',60000,sysdate());
 INSERT INTO buy VALUES (NULL,'id05','choi','Seoul','Daejeon','010-1234-1234','부재시 경비실',100000,sysdate());
 
+INSERT INTO buy VALUES (NULL,'id02','kim','Daejeon','Daejeon1','010-7894-5612',NULL,60000,sysdate());
+INSERT INTO buy VALUES (NULL,'id02','won','Daejeon','Daejeon2','010-7894-5612',NULL,70000,sysdate());
+INSERT INTO buy VALUES (NULL,'id02','lee','Daejeon','Daejeon3','010-7894-5612',NULL,80000,sysdate());
+INSERT INTO buy VALUES (NULL,'id02','park','Daejeon','Daejeon4','010-7894-5612',NULL,90000,sysdate());
 
-INSERT INTO buy VALUES (NULL,'id02','choi11','Seoul','Daejeon','010-1234-1234','부재시 경비실',100000,sysdate());
-INSERT INTO buy VALUES (NULL,'id02','choi22','Seoul','Daejeon','010-1234-1234','부재시 경비실',100000,sysdate());
 SELECT * FROM buy;
 
 
 -- shoes_cnt insert
-INSERT INTO shoes_cnt VALUES (NULL,3000,220,10);
+INSERT INTO shoes_cnt VALUES (NULL,3000,220,0);
 INSERT INTO shoes_cnt VALUES (NULL,3000,240,5);
 INSERT INTO shoes_cnt VALUES (NULL,3000,260,5);
 INSERT INTO shoes_cnt VALUES (NULL,3001,260,5);
 INSERT INTO shoes_cnt VALUES (NULL,3001,280,15);
 INSERT INTO shoes_cnt VALUES (NULL,3002,240,10);
+INSERT INTO shoes_cnt VALUES (NULL,3002,260,10);
+INSERT INTO shoes_cnt VALUES (NULL,3002,280,10);
+INSERT INTO shoes_cnt VALUES (NULL,3003,220,0);
 INSERT INTO shoes_cnt VALUES (NULL,3003,260,15);
+INSERT INTO shoes_cnt VALUES (NULL,3003,280,15);
+
 SELECT * FROM shoes_cnt;
+
 
 -- buy_detail Insert
 INSERT INTO buy_detail VALUES(NULL,2001,3001,260,2);
 INSERT INTO buy_detail VALUES(NULL,2002,3002,270,1);
 INSERT INTO buy_detail VALUES(NULL,2003,3003,280,3);
 INSERT INTO buy_detail VALUES(NULL,2004,3001,290,1);
+
+
+INSERT INTO buy_detail VALUES(NULL,2001,3002,250,1);
+INSERT INTO buy_detail VALUES(NULL,2001,3003,260,3);
+INSERT INTO buy_detail VALUES(NULL,2006,3004,270,1);
+INSERT INTO buy_detail VALUES(NULL,2006,3002,270,2);
+INSERT INTO buy_detail VALUES(NULL,2006,3006,270,1);
+INSERT INTO buy_detail VALUES(NULL,2007,3002,260,1);
+INSERT INTO buy_detail VALUES(NULL,2007,3007,280,5);
+INSERT INTO buy_detail VALUES(NULL,2006,3001,240,1);
+INSERT INTO buy_detail VALUES(NULL,2008,3008,240,2);
+INSERT INTO buy_detail VALUES(NULL,2008,3009,270,1);
+INSERT INTO buy_detail VALUES(NULL,2005,3009,270,1);
+
 SELECT * FROM buy_detail;
     

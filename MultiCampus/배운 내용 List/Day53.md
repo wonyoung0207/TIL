@@ -198,3 +198,5 @@
   - 장바구니 테이블 
 
   <img src="../images/SemiProject/mypage19.png" >
+  
+  <img src="../images/SemiProject/mypage20.png" >
