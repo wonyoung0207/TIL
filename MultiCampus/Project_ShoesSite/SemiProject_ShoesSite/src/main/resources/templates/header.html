@@ -1,0 +1,174 @@
+<style>
+#logo{
+	height:80px;
+	width:auto;
+}
+</style>
+<meta charset="UTF-8">
+<header class="header-area">
+<html xmlns:th="http://www.thymeleaf.org">
+<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic.css" rel="stylesheet">
+	<!-- Top Header -->
+	<div class="top-header">
+		<div class="container-fluid">
+			<div class="row align-items-center">
+				<div class="col-lg-8 col-md-12">
+					<ul class="top-header-contact-info">
+						<li><i class="fa fa-envelope-o"></i> info@yourcompany.com
+						<a href="contact_us"></a></li>
+						<li><i class="fa fa-phone"></i> Emergancy Helpline: <a
+							href="">+82 02-123-4567</a></li>
+					</ul>
+				</div>
+
+				<div class="col-lg-4 col-md-12">
+					<ul class="top-header-social header_account">
+						<li th:if="${session.user == null}"><a href="/login"><i
+								class="fa fa-sign-in"></i> Login <span>/</span></a></li>
+						<li th:if="${session.user == null}"><a href="/register"><i
+								class="fa fa-pencil-square-o"></i> Register</a></li>
+						<li th:unless="${session.user == null}"><a href="/logout"><i
+								class="fa fa-sign-in"></i> Logout <span>/</span></a></li>
+						<li th:unless="${session.user == null}"><a href="/mypage" th:href="@{/mypage(userid=${session.user.id})}"><i
+								class="fa fa-user"></i> <span th:text="${session.user.name}">MyPage</span></a></li>
+					</ul>
+				
+				</div>
+
+			</div>
+		</div>
+	</div>
+	<!-- End Top Header -->
+
+	<!-- Start Navbar Area -->
+	<div class="navbar-area">
+		<div class="fashion-responsive-nav">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="fashion-responsive-menu">
+						<div class="logo">
+							<a href="/"> <img src="/assets/image/logo/logo.png"
+								alt="logo" id="logo">
+							</a>
+						</div>
+
+
+						<div class="others-option align-items-center">
+							<div class="option-item">
+								<div class="cart-btn">
+									<a href="cart"><i class="fa fa-shopping-cart"></i><span>1</span></a>
+								</div>
+							</div>
+
+						
+
+						</div>
+						<!--mobile Menu  -->
+
+						<div id="mySidenav" class="sidenav">
+							<div class="menu_slid_bg">
+								<a href="javascript:void(0)" class="closebtn"
+									onclick="closeNav()">×</a>
+
+								<div class="col-sm-12" style="padding: 0px;">
+									<h3>Categories</h3>
+
+									<ul class="accordion" id="accordion-category">
+										<li class="panel mobile_menu_li"><a href="/"
+											class=""></i> Home</a></li>
+										<li class="panel mobile_menu_li"><a href="/about_us"
+											class=""></i> about us</a></li>
+										<li class="panel mobile_menu_li"><a href="/product?gender=Men"
+											class=""></i> Men</a></li>
+											<li class="panel mobile_menu_li"><a href="/product?gender=Women"
+											class=""></i> Women</a></li>
+											<li class="panel mobile_menu_li"><a href="/product?gender=Kids"
+											class=""></i>Kids</a></li>
+	
+									
+										<li class="panel mobile_menu_li"><a href="#" class="">Login
+										</a> <span class="head"><a style=""
+												class="accordion-toggle collapsed" data-toggle="collapse"
+												data-parent="#accordion-category" href="#category87"
+												aria-expanded="false"> <span class="plus">+</span><span
+													class="minus">-</span></a></span>
+											<div id="category87" class="panel-collapse collapse"
+												style="clear: both; height: 0px;" aria-expanded="false">
+												<ul>
+													<li><a href="/login"> Login </a></li>
+													<li><a href="/register"> Register</a></li>
+												</ul>
+											</div></li>
+
+										<li class="panel mobile_menu_li"><a
+											href="/contact_us" class=""> Contact Us</a></li>
+									</ul>
+									<div class="clear"></div>
+								</div>
+
+							</div>
+						</div>
+
+						<span class="menu_open" onclick="openNav()">&#9776; Menu</span>
+						<!-- mobile Menu  end-->
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="fashion-nav">
+			<div class="container-fluid">
+				<div class="row">
+					<div class="header_menu_wrapper">
+						<nav class="navbar navbar-expand-md navbar-light">
+							<a class="navbar-brand" href="/"> <img
+								src="/assets/image/logo/logo.png" alt="logo" id="logo">
+							</a>
+
+							<div class="collapse navbar-collapse mean-menu"
+								style="display: block;">
+								<ul class="navbar-nav">
+									<li class="nav-item"><a href="/"
+										class="nav-link active">Home</a></li>
+
+									<li class="nav-item"><a href="/about_us"
+										class="nav-link">About Us</a></li>
+										
+										<li class="nav-item"><a href="/product?gender=Men"
+										class="nav-link">Men</a></li>
+										
+										<li class="nav-item"><a href="/product?gender=Women"
+										class="nav-link">Women</a></li>
+										
+										<li class="nav-item"><a href="/product?gender=Kids"
+										class="nav-link">Kids</a></li>
+										
+	
+
+			
+
+			<li class="nav-item"><a href="/contact_us"
+				class="nav-link">Contact</a></li>
+		</ul>
+
+		<div class="others-option align-items-center">
+			<div class="option-item">
+				<div class="cart-btn">
+					<a href="/cart"><i class="fa fa-shopping-cart"></i><span>1</span></a>
+				</div>
+			</div>
+
+			
+							
+							</div>
+						</div>
+					</nav>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>  
+	<!-- End Navbar Area -->
+
+</header>

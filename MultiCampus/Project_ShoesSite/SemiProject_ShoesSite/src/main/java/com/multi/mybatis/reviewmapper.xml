@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.ReviewMapper">
+	
+	<select id="selectproduct" parameterType="int" resultType="reviewVO">
+		SELECT * FROM REVIEW WHERE PID=#{pid} ORDER BY id DESC
+	</select>
+	
+	<!-- 6/24 수정 -->
+	<select id="selectstaravg" parameterType="int" resultType="int">
+		SELECT ROUND(AVG(star)) AS staravg FROM review
+		WHERE PID=#{pid}
+	</select>
+	
+	<select id="selectreviewcnt" parameterType="int" resultType="int">
+		SELECT COUNT(id) AS count FROM review
+		WHERE PID=#{pid}
+	</select>
+	
+	<select id="selectuserall" parameterType="String"
+		resultType="reviewVO">
+		SELECT r.id, r.pid, r.star, r.text, r.regdate, r.filename,
+		r.uid,
+		p.name, p.price, p.imgname1, p.color
+		FROM review r
+		INNER JOIN product p ON p.id = r.pid
+		WHERE UID=#{id}
+	</select>
+	
+	<select id="select" parameterType="String" resultType="reviewVO">
+		SELECT * FROM REVIEW WHERE ID=#{id}
+	</select>
+	<select id="selectall" resultType="reviewVO">
+		SELECT * FROM REVIEW
+	</select>
+	<insert id="insert" parameterType="reviewVO">
+		INSERT INTO REVIEW VALUES (NULL,#{pid},#{star},#{text},sysdate(),#{filename},#{uid})
+	</insert>
+	<update id="update" parameterType="reviewVO">
+		UPDATE REVIEW SET STAR=#{star},TEXT=#{text} WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM REVIEW WHERE ID=#{id}
+	</delete>
+	
+	<!-- 안원영 06.27수정  -->
+	<delete id="deleteuserid" parameterType="String" >
+		DELETE FROM REVIEW WHERE UID=#{id}
+	</delete>
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.Buy_detailMapper">
+	
+	<select id="select" parameterType="int" resultType="buy_detailVO">
+		SELECT * FROM buy_detail WHERE ID=#{id}
+	</select>
+	<select id="selectall" resultType="buy_detailVO">
+		SELECT * FROM buy_detail
+	</select>
+	<!-- 김민식추가 -->
+	<select id="selectid" parameterType="int" resultType="buy_detailVO">
+		SELECT * FROM buy_detail WHERE oid = #{oid}
+	</select>
+	<select id="getbuy_detail" parameterType="String" resultType="buy_detailVO">
+		SELECT (SELECT max(id)FROM buy) AS oid, uid, pid, count as cnt, size FROM cart c where c.uid = #{uid}
+	</select>
+	<insert id="insert" parameterType="buy_detailVO">
+		INSERT INTO buy_detail VALUES (null,#{oid},#{pid},#{size},#{cnt})
+	</insert>
+	<update id="update" parameterType="buy_detailVO">
+		UPDATE buy_detail SET OID=#{oid},PID=#{pid},SIZE=#{size},CNT=#{cnt} WHERE ID=#{id}
+	</update>
+	<delete id="deletebuyid" parameterType="int">
+		DELETE FROM buy_detail WHERE OID=#{id}
+	</delete>
+	<delete id="delete" parameterType="int">
+		DELETE FROM buy_detail WHERE ID=#{id}
+	</delete>
+	<!-- 06.24 안원영추가 buy_detail페이지 -->
+	<select id="selectdetailproduct" parameterType="int"
+		resultType="buy_detailVO">
+		SELECT b.id, b.oid, b.pid, b.size, b.cnt,
+		p.name, p.price, p.imgname1, p.color, p.gender
+		FROM buy_detail b
+		INNER JOIN product p ON b.pid = p.id
+		WHERE oid = #{oid}
+	</select>
+	
+</mapper>

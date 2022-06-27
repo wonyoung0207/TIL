@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.Addr_listMapper">
+	
+	<select id="select" parameterType="int" resultType="addr_listVO">
+		SELECT * FROM addr_list WHERE ID=#{id}
+	</select>
+	<select id="selectall" resultType="addr_listVO">
+		SELECT * FROM addr_list
+	</select>
+	<select id="getcustinfo" parameterType="String" resultType="addr_listVO" >
+		SELECT al.uid as uid, al.addr as addr, al.addr_detail as addr_detail, al.zip as zip, c.name as cname, c.telphone as telphone FROM addr_list al
+		INNER JOIN cust c ON al.uid = c.id
+		WHERE uid = #{id}
+        order by addr desc limit 1
+	</select>
+	<!-- 안원영 추가  -->
+	<select id="getcustinfoAll" parameterType="String" resultType="addr_listVO" >
+		SELECT al.id, al.uid as uid, al.addr as addr, al.addr_detail as addr_detail, al.zip as zip, c.name as cname, c.telphone as telphone FROM addr_list al
+		INNER JOIN cust c ON al.uid = c.id
+		WHERE uid = #{id}
+	</select>
+	<!-- 안원영 추가  - 회원탈퇴 -->
+	<delete id="deleteuserid" parameterType="String">
+		DELETE FROM addr_list WHERE UID=#{id}
+	</delete>
+	
+	<insert id="insert" parameterType="addr_listVO">
+		INSERT INTO addr_list VALUES (null, #{uid},#{addr},#{addr_detail},#{zip})
+	</insert>
+	<update id="update" parameterType="addr_listVO">
+		UPDATE addr_list SET UID=#{uid}, ADDR=#{addr}, ADDR_DETAIL=#{addr_detail},ZIP=#{zip} WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM addr_list WHERE ID=#{id}
+	</delete>
+</mapper>

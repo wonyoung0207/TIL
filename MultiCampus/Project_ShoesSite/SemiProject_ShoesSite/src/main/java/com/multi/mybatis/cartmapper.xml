@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.CartMapper">
+	
+	<!-- 추가쿼리문 서예린 -->
+	<select id="checkcart" parameterType="cartVO" resultType="int">
+		SELECT COUNT(id) AS result FROM cart
+		WHERE UID=#{uid} AND PID=#{pid} AND SIZE=#{size}
+	</select>
+	
+	<select id="select" parameterType="int" resultType="cartVO">
+		SELECT * FROM CART WHERE ID=#{id}
+	</select>
+	<select id="selectall" resultType="cartVO">
+		SELECT * FROM CART
+	</select>
+	<insert id="insert" parameterType="cartVO">
+		INSERT INTO CART VALUES (NULL,#{count},#{uid},#{pid},#{size})
+	</insert>
+	<update id="update" parameterType="cartVO">
+		UPDATE CART SET COUNT=#{count} WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM CART WHERE ID=#{id}
+	</delete>
+	<!-- 김민식추가 -->
+	<delete id="deleteall" parameterType="String">
+		DELETE FROM CART WHERE uid = #{uid}
+	</delete>
+	<select id="selectcnt" parameterType="String" resultType="int">
+		SELECT count(id) FROM cart where uid = #{uid}
+	</select>
+	<!-- 안원영 추가  -->
+	<delete id="deleteuserid" parameterType="String">
+		DELETE FROM CART WHERE UID=#{id}
+	</delete>
+	<select id="uidselect" parameterType="String" resultType="cartVO">
+		SELECT c.id as id, c.uid as uid, c.pid as pid, p.name as pname,p.imgname1 as pimg1,p.price as pprice, c.count as count,c.size as size FROM cart c
+		INNER JOIN product p on c.pid=p.id
+		WHERE UID = #{uid}
+	</select>
+	
+	<select id="gettotal" parameterType="String" resultType="int">
+		SELECT  sum((p.price)*(c.count)) as total FROM cart c
+		INNER JOIN product p on c.pid=p.id
+		WHERE UID = #{uid}
+	</select>
+</mapper>

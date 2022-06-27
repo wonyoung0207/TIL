@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Fashion Shop | Cart </title>
+	<meta charset="utf-8">
+<script>
+//안원영 
+var num;
+var result = 0;
+function getsum(){
+	var sum = 0;
+	$('[name="to"]').each(function(){sum+=$(this).val()*1});
+
+    $("#result").text(sum+'원');
+}
+function update_num(c,count) {
+	//<td th:id="'total'+${c.id}">280</td>
+	$('#total'+c.id).text(c.pprice * $(count).val()+'원');//t
+	$('#to'+c.id).val(c.pprice * $(count).val());//t
+	$('#co'+c.id).val($(count).val());//t
+	var num = $('#to'+c.id).val();
+	getsum();
+}
+function gettotal(){
+	var price = $('#price').text();
+	var count = $('#count').val();
+	$.ajax({
+		url:'/gettotal',
+		traditional: true,
+		data:{'price':price,'count':count},
+		success:function(result){
+			$('#total').text(result);
+			//$('#total').each(function(i){
+			//	result.push($(this).text());
+			//});
+		}
+	});
+}
+var list = $('#clist');
+$(document).ready(function(){
+	gettotal();
+	$('#count').click(function(){
+		gettotal();
+		$('[name="deletebtn"]').click(function(){
+			alert('이 상품을 장바구니에서 제외하겠습니까?');
+		});
+		
+	});
+	$('[name="count"]').click();
+	getsum();
+
+	$('#btn').click(function(){
+		$('.cntupdate').attr({
+			'method':'post',
+			'action':'/cart/update'
+		});
+		$('.cntupdate').submit();
+	});
+});
+
+</script>
+</head>
+<body>
+<!-- breadcrumb -->
+<section class="main_breadcrumb">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="breadcrumb-content">
+				<h2>cart</h2>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/cart">cart</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<div id="content" class="cart_page">
+<!-- cart -->
+	<div id="cart" class="cart_section">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="table-custom-responsive wow fadeInDown animated">
+					<table class="table-custom table-cart table-responsive" th:if ="${clist != null}">
+						<thead>
+							<tr>
+								<th>Product name</th>
+								<th>Price</th>
+								<th>Size</th>
+								<th>Quantity</th>
+								<th>total</th>
+								<th>delete</th>
+							</tr>
+						</thead>
+						<tbody id="id">
+							<tr th:each="c:${clist}">
+								<td><a class="table-cart-figure" href="checkout.html"><img th:src="'/assets/image/products/'+${c.pimg1}" alt="" width="146" height="132"></a><a class="table-cart-link" href="#" th:text="${c.pname}">Natural Mineral Stone</a></td>
+								<td id="price" th:text="${c.pprice}">$125.00</td>
+								<td th:text="${c.size}">280</td>
+								<td>
+									<div class="table-cart-stepper">
+										<div class="stepper ">
+										<input name="count" th:id="count" class="form-input stepper-input"
+													type="number" data-zeros="true" th:value="${c.count}"
+													th:onclick="update_num([[${c}]],this)" min="1" max="1000"><span
+													class="stepper-arrow up"></span><span
+													class="stepper-arrow down"></span>
+													</div>
+									</div>
+								</td>
+								<td name="total" th:id="'total'+${c.id}">10000</td>
+								<input name="to" type="hidden" th:id="'to'+${c.id}">	
+														
+								
+								<td><a name="deletebtn" type="button" class="btn btn-danger" hret="#" th:href="@{/cart/delete(id=${c.id})}">Delete</a></td>
+							</tr>
+							
+						</tbody>
+					</table>
+					<h2 th:if="${clist==null}">Your shopping cart is empty</h2>
+				</div>
+				<form class="cntupdate" commandName="CartVO">
+					<div th:each="c:${clist}">
+						<input th:id="id+${c.id}" type="hidden" th:name="cartlist[+${cStat.index}+].id" th:value="${c.id}">
+						<input th:id="co+${c.id}" type="hidden" th:name="cartlist[+${cStat.index}+].count" th:value="${c.count}">	
+					</div>						
+				</form>	
+				<div class="group-xl group-justify  wow fadeInDown animated">
+					<div>
+						<form class="eb-form eb-mailform eb-form-inline eb-form-coupon" novalidate="novalidate">
+							<div class="form-wrap">
+							  <input class="form-input form-input-inverse" id="coupon-code" type="text" name="text" placeholder="Coupon code">
+							</div>
+							<div class="form-button">
+							  <button class="btn" type="submit">Apply</button>
+							</div>
+						</form>
+					</div>
+					<div>
+						<div class="group-xl group-middle">
+							<div>
+							  <div class="group-md group-middle">
+								<div class="heading-5 font-weight-medium text-gray-500">Total</div>
+								<div class="heading-3 font-weight-normal" th:if="${total != null}" th:value="${total}"  th:text="${total}+'원'" id="result">$175</div>
+								<input id="sum" th:value="${total}" type="hidden">
+								<div class="heading-3 font-weight-normal" th:if="${total == null}" th:text="0원">제품을 장바구니에 넣어주세요!</div>
+							  </div>
+							</div><a id="btn" class="btn" href="#">Proceed to checkout</a>
+						</div>
+					</div>
+				</div>
+			</div>	
+		</div>	
+	</div>	
+<!-- cart end-->	
+</div>

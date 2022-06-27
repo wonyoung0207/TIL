@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+</head>
+<!-- breadcrumb -->
+<section class="main_breadcrumb">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="breadcrumb-content">
+				<h2>Complete payment</h2>
+				<ul>
+					<li><a href="index.html">Home</a></li>
+					<li><a href="">checkout</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<div id="content" class="cart_page checkout_page">
+<!-- cart -->
+	<div id="cart" class="cart_section checkout_section">
+		<div class="container-fluid" id="checkout">
+			<!-- your shopping cart -->
+			<div class="row your_cart wow fadeInDown   animated">
+				<h2>Complete payment</h2>
+				<div class="table-custom-responsive">
+					
+					<table class="table-custom table-cart table-responsive">
+						<thead>
+							<tr>
+								<th>주문상세번호</th>
+								<th>주문번호</th>
+								<th>제품번호</th>
+								<th>사이즈</th>
+								<th>수량</th>
+							</tr>
+						</thead>
+							<tbody>
+								<tr th:each="b:${bidlist}">
+									<td><a class="table-cart-link" href="#" th:text="${b.id}">Natural Mineral Stone</a></td>
+									<td id="price" th:text="${b.oid}">$125.00</td>
+									<td th:text="${b.pid}">280</td>
+									<td th:text="${b.size}">280</td>
+									<td th:text="${b.cnt}"></td>
+								</tr>
+								
+							</tbody>
+					</table>
+				</div>
+			</div>	
+		</div>	
+	</div>	
+<!-- cart end-->	
+</div>
+</html>

@@ -1,0 +1,130 @@
+<meta charset="UTF-8">
+<script>
+
+$(document).ready(function() {
+	var name_ok = 0;
+	var telphone_ok = 0;
+	
+	$('#name').blur(function(){
+		name = $(this).val();
+		if(name == ''){
+			$('#name_span').text('이름을 입력해 주세요.');
+			$('#name_span').css('color','red');
+			name_ok = 0;
+		}else{
+			$('#name_span').text('사용 가능한 이름입니다. ');
+			$('#name_span').css('color','green');
+			name_ok = 1;
+		}
+		
+	})
+	
+	
+	$('#telphone').blur(function(){// 핸드폰 번호 벗어나면 실행 
+		
+		telphone = $(this).val();
+	
+		if(telphone.match(/\d{3}-\d{4}-\d{4}/g) == null){//null이면 조건에 맞지 않는것
+			$('#telphone_span').html('<i class="fa fa-remove"></i>' + '전화번호 형식에 맞지 않습니다. 010-1111-1111 형식으로 작성하세요.');
+			$('#telphone_span').css('color','red');
+			telphone_ok = 0;
+		}else{
+			$('#telphone_span').html('<i class="fa fa-check"></i>' + '사용 가능한 전화번호 형식입니다. ');
+			$('#telphone_span').css('color','green');
+			telphone_ok = 1;
+		}
+	});
+	
+	
+	$('#modify_btn').click(function() {
+
+		if($('#name').val() == ''){// id값이 공백일 경우
+			$('#name_span').text('name 은 공백이 될 수 없습니다. ');
+			$('#name_span').css('color','red');
+			$('#name').focus();
+		}
+		if ($('#telphone').val() == '') {//pwd 값이 공백일 경우 
+			$('#telphone_span').text('핸드폰번호는 공백이 될 수 없습니다.');	
+			$('#telphone_span').css('color','red');	
+			$('#telphone').focus();
+		}
+		if(name_ok && telphone_ok){// 모든 조건 만족시 실행 
+			$('#user_info_form').attr({
+				'method' : 'post',
+				'action' : '/mypage/user_info_modify'
+			});
+
+			$('#user_info_form').submit();
+		}
+
+
+	});
+});
+
+</script>
+
+
+
+<div id="content"
+	class="cart_page checkout_page register_page login_page">
+	<!-- cart -->
+	<div id="register"
+		class="cart_section checkout_section register_section">
+		<div class="container-fluid" id="checkout">
+
+			<div class="row billing_and_payment_option wow fadeInDown   animated">
+				<div class="heading_wrapper wow fadeInDown animated">
+					<h2 class="wow fadeInDown animated">회원정보 수정 </h2>
+
+				</div>
+				<!-- Billing Address -->
+				<div class="login_box">
+					<h4 th:if="${msg != null}" th:text="${msg}" style="color: red"></h4>
+					
+					<form class="eb-form eb-mailform form-checkout"
+						novalidate="novalidate" id="user_info_form">
+						<div class="form-wrap">
+							아이디 : 
+							<span id="id_span"></span>
+							<input class="form-input form-control" id="id" type="text"
+								name="id" readonly th:value="${session.user.id}">
+						</div>
+						<div class="form-wrap">
+							이름 : 
+							<span id="name_span"></span>
+							<input class="form-input form-control" id="name" type="text"
+								name="name" th:value="${session.user.name}">
+						</div>
+						<div class="form-wrap">
+							휴대폰 : 
+							<span id="telphone_span"></span>
+							<input class="form-input form-control" id="telphone" type="text"
+								name="telphone" maxlength="13" th:value="${session.user.telphone}">
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" class="custom-control-input"
+								id="defaultchecked"> <label
+								class="custom-control-label register-remember"
+								for="defaultchecked">개인 정보 국외 이전 및 제 3자 제공에 동의합니다. </label>
+						</div>
+						
+
+					</form>
+					<button class="btn" id="modify_btn">개인정보 수정 </button>
+
+					<div class="clear"></div>
+				</div>
+				<!-- Delivery Address  -->
+			</div>
+			<!-- your shopping cart -->
+		</div>
+	</div>
+	<!-- cart end-->
+</div>
+
+<!-- back-to-top scrtion -->
+<div class="top_button">
+	<a class="back-to-top" style="cursor: pointer;" id="top-scrolltop"><i
+		class="fa fa-angle-up"></i></a>
+</div>
+<!-- back-to-top scrtion End-->

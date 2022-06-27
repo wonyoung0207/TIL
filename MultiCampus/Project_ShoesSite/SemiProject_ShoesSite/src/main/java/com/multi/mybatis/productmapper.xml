@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.ProductMapper">
+	
+	<!-- 추가 쿼리문 -->
+	<!-- 제품 필터링 -->
+	<sql id="filter">
+				
+	  	<trim prefix="where (" suffix=")" prefixOverrides="AND">
+	  		<foreach item="type" collection="typeArr">
+	  			<trim prefix="AND">
+	  				<choose>
+	  					<!-- Gender (무조건 하나 선택)-->
+	  					<when test="type == 'G'.toString()">
+	  						<trim prefix="(" suffix=")">
+		  						p.gender=#{gender}
+		  						<!-- 조건문으로 Unisex 항목에 관한 쿼리문 작성 -->
+		  						<if test="gender != 'Kids'.toString()">
+							       OR p.gender="Unisex"
+							    </if> 
+						    </trim>
+	  					</when>
+	  					
+	  					<!-- CID(카테고리) 중복 가능-->
+	  					<when test="type == 'C'.toString()">
+	  						<!-- 중복선택 쿼리문 필요 -->
+	  						<trim prefix="(" suffix=")" prefixOverrides="OR">
+		  						<foreach item="cid" collection="cidArr">
+			  						<trim prefix="OR">
+			  							p.cid=#{cid}
+			  						</trim>
+		  						</foreach>
+		  					</trim>
+	  					</when> 
+	  					
+	  					<!-- PRICE(가격) low, high --> 					
+	  					<when test="type == 'P'.toString()">
+	  						<trim prefix="(" suffix=")">
+	  						p.price BETWEEN #{param1} AND #{param2}
+	  						</trim >
+	  					</when>	
+	  					
+	  					<!-- COLOR(색상) 중복 선택 가능 --> 	
+	  					<when test="type == 'O'.toString()">
+	  						<!-- 중복선택 쿼리문-->
+	  						<trim prefix="(" suffix=")" prefixOverrides="OR">
+		  						<foreach item="color" collection="colorArr">
+			  						<trim prefix="OR">
+			  							p.color=#{color}
+			  						</trim>
+		  						</foreach>
+		  					</trim>
+	  					</when>
+	  					
+	  					<!-- SIZE(사이즈) 중복 선택 가능 --> 	
+	  					<when test="type == 'S'.toString()">
+	  						<!-- 중복선택 쿼리문 필요 -->
+	  						<trim prefix="(" suffix=")" prefixOverrides="OR">
+		  						<foreach item="size" collection="sizeArr">
+			  						<trim prefix="OR">
+			  							scnt.size=#{size}
+			  						</trim>
+		  						</foreach>
+		  					</trim>
+	  					</when>			
+	  				</choose>
+	  			</trim>
+	  		</foreach>
+	  	</trim>
+					
+	</sql>
+	
+	<!-- 제품 목록 순서 -->
+	<sql id="order">
+		<choose>
+			<when test="sortby == 0"> <!-- 신상품순 -->
+				ID DESC
+			</when>
+			<when test="sortby == 1"> <!-- 높은가격순 -->
+				PRICE DESC
+			</when>
+			<when test="sortby == 2"> <!-- 낮은가격순 -->
+				PRICE
+			</when>
+			<when test="sortby == 3"> <!-- 별점순 -->
+				STARAVG DESC
+			</when>
+		</choose>
+	</sql>
+	
+	
+	<select id="selectfilter" resultType="productVO">
+	<!-- 서브쿼리가 size마다 테이블의 한행을 만들기 때문에 검색 결과는 중복을 제거하고 띄우기 위해서 GROUP BY 사용 -->
+	SELECT * FROM 
+	(
+		SELECT p.id as id, p.name as name, p.price, p.regdate, p.cid as cid, 
+		p.imgname1 as imgname1, p.imgname2 as imgname2, p.color, p.gender,
+		c.name as catename , c.tid,
+		scnt.cnt as cnt, scnt.size
+		as size, a.staravg
+		FROM product p
+		INNER JOIN cate c ON p.cid = c.id
+		LEFT JOIN (SELECT pid, AVG(star) AS staravg FROM review GROUP BY pid) a ON a.pid=p.id
+		LEFT JOIN shoes_cnt scnt ON p.id = scnt.pid
+			<!-- 제품 필터링 관련 쿼리문 -->
+			<include refid="filter">
+			</include>
+		) a
+  		GROUP BY id	
+			<!-- 제품목록 순서 쿼리문(수정필요) -->
+			ORDER BY 
+			<include refid="order">
+			</include>
+		
+		
+	</select>
+
+	
+	<!-- 기본 쿼리문 -->
+	<select id="select" parameterType="int" resultType="productVO">
+	<!-- 리뷰와 사이즈는 별도로 출력하기 위해 뺐음 -->
+		SELECT p.id
+		as id, p.name as name, p.price, p.regdate, p.cid as cid, p.imgname1 as
+		imgname1, p.imgname2 as imgname2, p.color, p.gender,
+		c.name as catename 
+		FROM
+		product p
+		INNER JOIN cate c ON p.cid = c.id
+		WHERE p.id = #{id}
+	</select>
+
+	<select id="selectall" resultType="productVO">
+		SELECT p.id as id, p.name as name, p.price, p.regdate, p.cid as cid, 
+		p.imgname1 asnimgname1, p.imgname2 as imgname2, p.color, p.gender,
+		c.name as catename ,
+		scnt.cnt as cnt, scnt.size
+		as size ,
+		re.uid as review_uid, re.text as review_text
+		FROM product p
+		INNER JOIN cate c ON p.cid = c.id
+		LEFT JOIN shoes_cnt scnt ON p.id =
+		scnt.pid
+		LEFT JOIN review re ON p.id = re.pid
+		ORDER BY p.id DESC
+	</select>
+	
+	<insert id="insert" parameterType="productVO">
+		INSERT INTO product VALUES
+		(NULL,
+		#{name},#{price},curdate(),#{imgname1},#{imgname2},#{cid},#{color},#{gender})
+	</insert>
+	<update id="update" parameterType="productVO">
+		UPDATE product SET
+		NAME=#{name}, PRICE=#{price}, regdate=curdate(),
+		imgname1=#{imgname1}, imgname2=#{imgname2},
+		cid=#{cid}, color=#{color}, GENDER=#{gender} WHERE id=#{id};
+
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM PRODUCT WHERE
+		ID=#{id}
+	</delete>
+	
+	
+</mapper>
+
+
+
+
+
+

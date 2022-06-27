@@ -1,0 +1,411 @@
+<meta charset="UTF-8">
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<style>
+input[name=cid] {
+	display: none;
+}
+
+p{
+	font-weight : bold;
+	margin-top: 10px;
+}
+
+#forpadding{
+	padding-left: 15px;
+}
+
+#noresult{
+	color: red;
+	text-align: center;
+}
+
+input[name="cid"]+label{
+	display: block;
+	width: auto;
+	line-height: 20px;
+	padding-left: 10px;
+	font-weight: normal;
+	cursor: pointer;
+}
+
+input[name="cid"]:checked+label span::after{
+	content: '✔';	
+	color: #cbb18a;
+}
+
+input[name="cid"]:checked + label {
+  color: #cbb18a;
+  font-weight: bold;
+}
+
+input[name="param1"]{
+	display:inline-block;
+	text-align: right;
+}
+
+input[name="param2"]{
+	display:inline-block;
+	text-align: right;
+}
+
+input[name="color"] {
+	display: none;
+}
+
+input[name="color"]+label span{
+  display: inline-block;
+  width:40px; 
+  height: 40px;
+  cursor: pointer;
+  border-radius: 30px;
+  cursor:pointer;
+  border:solid 0.5px #c4c4c4;
+}
+input[name="color"]:checked + label span {
+  border : solid 5px #cbb18a;
+}
+
+input[name="size"] {display: none;}
+
+input[name="size"]+label span{
+  display: inline-block;
+  width: 50px; 
+  height: 35px;
+  cursor: pointer;
+  border-radius: 5px;
+  cursor:pointer;
+  border:solid 0.5px #c4c4c4;
+  line-height:35px;
+  text-align: center;
+  font-size: medium;
+}
+input[name="size"]:checked + label span {
+  background-color : #cbb18a;
+  text-align: center;
+}
+
+#category{
+	margin-bottom : 30px;
+}
+#price{
+	margin-bottom : 30px;
+}
+#color{
+	margin-bottom : 30px;
+}
+#size{
+	margin-bottom : 30px;
+}
+
+#filterbutton{
+	margin: 0;
+	padding: 0;
+}
+
+</style>
+<script>
+function addfilter(){
+	
+	var gender = new URLSearchParams(location.search).get('gender');
+	
+	var cidArray = new Array();  // 선택안하면 ''
+	$('input:checkbox[name="cid"]:checked').each(function() {
+		cidArray.push(this.value);
+	});
+ 	var cid = cidArray.join(',');
+	
+	var param1 = $('input[name="param1"]').val();  // 안쓰면 ''
+	var param2 = $('input[name="param2"]').val();  // 안쓰면 ''
+	
+	var colorArray = new Array();  // 선택안하면 ''
+	$('input:checkbox[name="color"]:checked').each(function() {
+		colorArray.push(this.value);
+	});
+ 	var color = colorArray.join(',');
+	
+ 	var sizeArray = new Array();  // 선택안하면 ''
+	$('input:checkbox[name="size"]:checked').each(function() {
+		sizeArray.push(this.value);
+	});
+ 	var size = sizeArray.join(',');
+ 	
+ 	var sortby = $('#input-sort option:selected').val();
+	
+ 	var type = "G";
+ 	
+ 	// type 설정 및 빈값에 null 혹은 0 설정
+ 	
+ 	// cid
+ 	if(!(cid.trim() === "") && !(cid === undefined) && !(cid === null)){
+ 		type += "C";
+ 	}else{
+ 		cid = 0;
+ 	}
+ 	//param1,2
+ 	if(!(param1.trim() === "") && !(param1 === undefined) && !(param1 === null)){
+ 		
+ 		if(!(param2.trim() === "") && !(param2 === undefined) && !(param2 === null)){
+	 		type += "P";
+	 	}
+ 	}
+	if((param1.trim() === "") || (param1 === undefined) || (param1 === null)){
+ 		param1 = 0;
+ 	}
+	if((param2.trim() === "") || (param2 === undefined) || (param2 === null)){
+ 		param2 = 0;
+ 	}
+ 	//color
+ 	if(!(color.trim() === "") && !(color === undefined) && !(color === null)){
+ 		type += "O";
+ 	}else{
+ 		color = null;
+ 	}
+ 	// size
+ 	if(!(size.trim() === "") && !(size === undefined) && !(size === null)){
+ 		type += "S";
+ 	}else{
+ 		size = null;
+ 	}
+ 	
+ 	
+	$.ajax({
+		url:'/addfilter',
+		type:'GET',
+		data:{'type':type,'gender':gender,'cid':cid,'param1':param1,'param2':param2,'color':color,'size':size,'sortby':sortby},
+		
+	}).done(function (fragment) {
+        $('#productTable').replaceWith(fragment);
+    });
+}
+function valCheck(object){   
+	  if (object.value.length >= object.maxLength){   
+	  	object.value = object.max
+	  }
+	  if (object.value < object.min){   
+	  	object.value = '';
+	  }
+	}
+
+$(document).ready(function() {
+	
+	$('#addfilter').click(function() {
+	 	addfilter();
+	});
+	
+	$('#resetfilter').click(function() {
+		$('input:checkbox[name="cid"]:checked').prop('checked',false);
+		$('input:checkbox[name="color"]:checked').prop('checked',false);
+		$('input:checkbox[name="size"]:checked').prop('checked',false);
+		$('input[name="param1"]').val('');
+		$('input[name="param2"]').val('');
+	});
+	
+	$("#input-sort").on("change", function(){
+		var aaa = $('#input-sort option:selected').val();
+    	addfilter();
+	});
+	
+});
+
+
+
+</script>
+
+
+
+
+
+<!-- breadcrumb -->
+<section class="main_breadcrumb">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="breadcrumb-content">
+				<h2>Men</h2> <!-- Men, Women, Kids -->
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="/product/men">Men</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<div id="content" class="products_page">
+<!-- products -->
+	<div id="products" class="products_section">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-3">
+					<div class="eb_right" id="filter_form">
+					
+						<!-- 화면 왼쪽 필터 시작 -->
+					
+						<!-- category 체크박스 -->
+						<div id="cate" class="cate">
+						<h3>category</h3>
+						    <div class="form-check">
+					    	  <p>운동화</p>
+					    	  <input type="checkbox" name="cid" id="11" value="11">
+					    	  <label for="11">스니커즈<span></span></label>
+						      <input type="checkbox" name="cid" id="12" value="12">
+					    	  <label for="12">캔버스화<span></span></label>
+					    	  
+					    	  <p>스포츠화</p>
+					    	  <input type="checkbox" name="cid" id="21" value="21">
+					    	  <label for="21">런닝화<span></span></label>
+						      <input type="checkbox" name="cid" id="22" value="22">
+					    	  <label for="22">등산화<span></span></label>
+					    	  <input type="checkbox" name="cid" id="23" value="23">
+					    	  <label for="23">축구화<span></span></label>
+					    	  
+					    	  <p>구두</p>
+					    	  <input type="checkbox" name="cid" id="31" value="31">
+					    	  <label for="31">로퍼<span></span></label>
+						      <input type="checkbox" name="cid" id="32" value="32">
+					    	  <label for="32">뮬/블로퍼<span></span></label>
+					    	  
+					    	  <p>샌들</p>
+					    	  <input type="checkbox" name="cid" id="41" value="41">
+					    	  <label for="41">슬라이드<span></span></label>
+						      <input type="checkbox" name="cid" id="42" value="42">
+					    	  <label for="42">아쿠아슈즈<span></span></label>
+					    	  <input type="checkbox" name="cid" id="43" value="43">
+					    	  <label for="43">스포츠샌들<span></span></label>
+					    	  
+					    	  <p>부츠</p>
+					    	  <input type="checkbox" name="cid" id="51" value="51">
+					    	  <label for="51">앵클부츠<span></span></label>
+						      <input type="checkbox" name="cid" id="52" value="52">
+					    	  <label for="52">미들부츠<span></span></label>
+						    </div>
+						</div>
+						<hr>
+						<!-- price 폼 -->
+						<div id="price" class="price">
+						<h3>price</h3>
+						  <div class="form-horizontal">
+						  	<div class="form-group">
+							    <label class="control-label col-sm-3" for="param1" id="minplabel">Min:</label>
+							    <div class="col-sm-7">
+							    	<input type="number" class="form-control" id="param1" name="param1" placeholder="(원)" 
+							    		min="0" max="100000" maxlength="6" oninput="valCheck(this)">
+							    </div>
+							    <label class="control-label col-sm-3" for="param2" id="maxplabel">Max:</label>
+							    <div class="col-sm-7">
+								    <input type="number" class="form-control" id="param2" name="param2" placeholder="(원)" 
+								    	min="0" max="100000" maxlength="6" oninput="valCheck(this)">
+							    </div>
+						    </div>
+						  </div>
+						</div>
+						<hr>
+						<!-- color 체크박스 -->
+						<div id="color" class="color">
+						<h3>color</h3>
+						  <div class="form-check" id="forpadding">
+						  	<input type="checkbox" id="black" value="black" name="color">
+						  	<label for="black"><span style="background-color:black;"></span></label>
+						  	<input type="checkbox" id="white" value="white" name="color">
+						  	<label for="white"><span style="background-color:white;"></span></label>
+						  	<input type="checkbox" id="red" value="red" name="color">
+						  	<label for="red"><span style="background-color:#c30001;"></span></label>
+						  	<input type="checkbox" id="blue" value="blue" name="color">
+						  	<label for="blue"><span style="background-color:#3784d2;"></span></label>
+						  	<input type="checkbox" id="gray" value="gray" name="color">
+						  	<label for="gray"><span style="background-color:#ababab;"></span></label>
+						  </div>
+						</div>
+						<hr>
+						<!-- size 체크 박스 -->
+						<div id="size" class="size">
+						<h3>Size</h3>
+						  <div class="form-check" id="forpadding">
+						  	<input type="checkbox" id="220" value="220" name="size">
+						  	<label for="220"><span>220</span></label>
+						  	<input type="checkbox" id="240" value="240" name="size">
+						  	<label for="240"><span>240</span></label>
+						  	<input type="checkbox" id="260" value="260" name="size">
+						  	<label for="260"><span>260</span></label>
+						  	<input type="checkbox" id="280" value="280" name="size">
+						  	<label for="280"><span>280</span></label>
+						  </div>
+						</div>
+						<div class="container-fluid" id="filterbutton">
+							<div class="col-sm-6" id="buttondiv">
+								<button class="btn btn-sm btn-block" id="resetfilter" type="reset">초기화</button>
+							</div>	
+							<div class="col-sm-6" id="buttondiv">
+								<button class="btn btn-sm btn-block" id="addfilter">검색</button>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- 화면 왼쪽 필터 끝 -->
+				
+				
+				
+				<div class="col-sm-9">
+					<div class="eb_left">
+					<!-- product-list-top -->
+						<div class="product-list-top">
+							<div class="sort-by-wrapper">
+								  <div class="col-md-6 col-xs-6 sort">
+										<div class="form-group input-group input-group-sm wow fadeInDown pull-left">
+											<label class="input-group-addon" for="input-sort">Sort By:</label>
+											<div class="select-wrapper">
+												<select id="input-sort" class="form-control">
+													<option value="0" selected="selected" name="sortby">신상품순</option>
+													<option value="1" name="sortby">높은가격순</option>	
+													<option value="2" name="sortby">낮은가격순</option>
+													<option value="3" name="sortby">별점순</option>
+												</select>
+											</div>
+										</div>
+								  </div>
+							</div>
+
+							<div class="clear"></div>
+						</div>
+					<!-- product-list-top -->
+					<div id = "productTable" th:if="${msg}==1">
+						<div class="col-sm-4" th:each="detail:${plist}" th:id="${detail.id}">
+							<div class="product-thumb">
+								<div class="image wow fadeInDown animated">
+									<a th:href="@{productdetail(id=${detail.id})}"><img class="wow fadeInDown animated" th:src="'assets/image/products/'+${detail.imgname1}" alt="Kundli Dosha" title="Kundli Dosha" width="100%"></a>
+								</div>
+								<div class="caption">
+									
+									<div class="rate-and-title">
+										<h4 class="wow fadeInDown animated" th:text="${detail.name}"><a th:href="">name</a></h4>
+										<th:block th:switch="${detail.staravg}">
+											<div class="rating wow fadeInDown animated" th:case="0">
+												<span id="staro" ><i class="fa fa-star-o" th:each="num:${#numbers.sequence(1,5)}"></i></span>
+											</div>
+											<div class="rating wow fadeInDown animated" th:case="5">
+												<span id="staro" ><i class="fa fa-star" th:each="num:${#numbers.sequence(1,5)}"></i></span>
+											</div>
+											<div class="rating wow fadeInDown animated" th:case="*">
+												<span id="star"><i class="fa fa-star" th:each="num:${#numbers.sequence(1,detail.staravg)}"></i></span><span id="staro" ><i class="fa fa-star-o" th:each="num:${#numbers.sequence(1,5-detail.staravg)}"></i></span>
+											</div>
+										</th:block>
+										
+										<p class="price wow fadeInDown animated">
+											<span class="price" th:text="${detail.price}+'원'">price</span>  
+										</p>
+									</div>
+								</div>
+							</div>
+						</div>	
+					</div>	
+					<div id = "productTable" th:unless="${msg}==1">
+						<h1 id="noresult">검색결과가 없습니다.</h1>
+					</div>						
+					<!-- products end -->
+					</div>	
+				</div>
+				
+			</div>	
+		</div>	
+	</div>	
+	
+</div>
+</html>

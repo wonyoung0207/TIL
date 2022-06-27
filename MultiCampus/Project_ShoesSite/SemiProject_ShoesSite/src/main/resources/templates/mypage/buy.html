@@ -1,0 +1,90 @@
+<!-- 쇼핑정보 - 주문/배송현황 클릭시 실행 -->
+
+<meta charset="UTF-8">
+<style>
+h2, h3, h4 {
+	color: black;
+}
+
+.orange {
+	color: orange;
+}
+
+#buy img {
+	width: 200px;
+	height: 200px;
+}
+
+#buy_product div {
+	margin: 10px;
+}
+</style>
+<script>
+
+
+
+$(document).ready(function(){
+
+	
+	
+});
+
+</script>
+
+<div class="row">
+	<h2>주문내역 / 배송현황</h2>
+	<p>상품의 출고지가 여러 곳이거나 온라인 물류센터 보관 장소에 따라 분리 배송될 수 있습니다.</p>
+	<p>분리 배송된 상품별로 운송장이 발급되어 다른 날짜에 받으실 수 있으며, 마이 페이지에서 배송 조회가 가능합니다.
+</div>
+<hr>
+
+<div class="block-sm login_box" th:if="${not #lists.isEmpty(buylist)}" th:each="buy : ${buylist}" >
+	<div class="container-fluid" id="buy">
+		<div class="row">
+			<div class="col-sm-4">
+				<h3 th:text="${#dates.format(buy.regdate,'yyyy-MM-dd')}">regdate</h3>
+				<h4>
+					주문번호 : <span th:text="${buy.id}" class="orange"> </span>
+				</h4>
+			</div>
+
+			<div class="col-sm-8">
+				<div class="text-right">
+					<a th:href="@{buy_detail(id=${buy.id})}">상세주문내역 ></a>
+				</div>
+			</div>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-sm-6">
+				<img th:src="'/assets/image/products/'+${buy.imgname1}" th:onclick="location.href='/productdetail?id=[[${buy.pid}]]'">
+			</div>
+			<div class="col-sm-4">
+				<div class="container-fluid" id="buy_product">
+					<div>
+						<a th:href="@{/productdetail(id=${buy.pid})}"><h3 th:text="${buy.name}">name</h3></a>
+					</div>
+					<div>
+						<span th:text="${buy.pid}">pid</span> &nbsp &nbsp <span
+							th:text="${buy.size}">size</span>
+					</div>
+					<div th:text="${buy.cnt}+ '개'"></div>
+					<div>
+						<h4>
+							<span th:text="${buy.price_one} * ${buy.cnt} + '원'" class="orange"></span>
+						</h4>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="row text-center">
+				<button class="btn" id="buy_remove" th:onclick="location.href='buy_remove?id=[[${buy.id}]]'">주문취소</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div th:unless="${not #lists.isEmpty(buylist)}" >
+주문한 상품이 없습니다. 
+</div>

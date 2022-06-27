@@ -1,0 +1,56 @@
+
+<meta charset="UTF-8">
+<div class="contact-box-wrap">
+	<div class="contact-box">
+		<h3>
+			<p class="contact-box-title">MY PAGE</p>
+		</h3>
+
+		<div class="contact-box-item">
+			<p class="contact-box-title">Profile</p>
+			<i class="fa fa-user fa-2x"> </i> &nbsp <span
+				th:text="${session.user.name}"></span>
+
+		</div>
+
+		<div class="contact-box-item">
+			<p class="contact-box-title">쇼핑정보</p>
+			<div class="link-inline">
+				<a href="buy" th:href="@{/mypage/buy(id=${session.user.id})}">
+					주문/배송 현황</a>
+			</div>
+
+
+		</div>
+		<div class="contact-box-item">
+			<p class="contact-box-title">활동정보</p>
+			<div class="link-inline link-inline-top">
+				<a href="review" th:href="@{/mypage/review(id=${session.user.id})}">
+					상품리뷰</a>
+			</div>
+		</div>
+		<div class="contact-box-item">
+			<p class="contact-box-title">나의 정보</p>
+			<div class="link-inline">
+				<a href="#" th:href="@{/mypage/user_info(id=${session.user.id})}">
+					회원정보 관리</a>
+			</div>
+			<div class="link-inline">
+				<a href="addr" th:href="@{/mypage/user_addr(id=${session.user.id})}">
+					배송지관리</a>
+			</div>
+			<div class="link-inline">
+				<a href="#"
+					th:href="@{/mypage/user_changePwd(id=${session.user.id})}">
+					비밀번호 변경</a>
+			</div>
+			<div class="link-inline">
+				<a href="#" th:href="@{/mypage/user_remove(id=${session.user.id})}">
+					회원탈퇴 </a>
+			</div>
+
+		</div>
+
+
+	</div>
+</div>

@@ -1,0 +1,216 @@
+<meta charset="UTF-8">
+<script>
+var current_pwd_ok=0, pwd_ok=0, pwd_check_ok=0;// 조건 만족시 1(true)로 만족x시 0(false) 
+
+function checkPwd(password) {
+    var pwd = password;
+    var one, two, three;// 조건 1~3 
+    
+    let number = pwd.search(/[0-9]/g);// 숫자 찾기 
+    let english = pwd.search(/[a-z]/ig);//영문자 찾기 
+    let spece = pwd.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);//특수문자 찾기 
+    let reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;//비밀번호는 8자 이상이어야 하며, 숫자/대문자/소문자/특수문자를 모두 포함
+    
+    // 자리수 확인 
+    if (pwd.length < 5 || pwd.length > 10) {
+		$('#pwd_li_one').html('5자리 ~ 10자리 이내로 입력해주세요.' + '<i class="fa fa-remove"></i>');
+		$('#pwd_li_one').css('color','red');
+		one = false;
+
+    } else {
+		$('#pwd_li_one').html('5자리 ~ 10자리 이내로 입력해주세요.' + '<i class="fa fa-check"></i>');
+		$('#pwd_li_one').css('color','green');
+		one = true;
+    }
+    
+    // 공백 확인 
+    if (pwd.search(/\s/) != -1) {
+		$('#pwd_li_two').html('비밀번호는 공백 없이 입력해주세요.' + '<i class="fa fa-remove"></i>');
+		$('#pwd_li_two').css('color','red');
+		two = false;
+		
+    } else {
+		$('#pwd_li_two').html('비밀번호는 공백 없이 입력해주세요.' + '<i class="fa fa-check"></i>');
+		$('#pwd_li_two').css('color','green');
+		two = true;
+    }
+    
+    // 영문, 숫자, 특수문자 확인 
+   	if (number < 0 || english < 0 || spece < 0) {
+		$('#pwd_li_three').html('영문,숫자,특수문자를 혼합하여 입력해주세요.' + '<i class="fa fa-remove"></i>');
+		$('#pwd_li_three').css('color','red');
+		three = false;
+    }else{
+		$('#pwd_li_three').html('영문,숫자,특수문자를 혼합하여 입력해주세요.' + '<i class="fa fa-check"></i>');
+		$('#pwd_li_three').css('color','green');
+		three = true;
+    }
+    
+    if(one && two && three){// 모든 조건 만족시 실행 
+    	$('#pwd_span').html('사용할 수 있는 password 입니다. ' + '<i class="fa fa-check"></i>');
+    	$('#pwd_span').css('color','green');
+    	pwd_ok = 1;
+    }else{
+    	$('#pwd_span').html('사용할 수 없는 password 입니다. ' + '<i class="fa fa-remove"></i>');
+    	$('#pwd_span').css('color','red');
+    	pwd_ok = 0;
+    }
+
+    
+};
+
+function checkCurrentPwd(write_pwd){// 기존 비밀번호 확인 
+	//alert(write_pwd);
+	$.ajax({
+		url:'/checkpwd',
+		data:{
+			'write_pwd' : write_pwd
+		},
+		success:function(data){//기존pwd와 다른경우 0리턴, 같다면 1 리턴 
+			if(data == '1'){//비밀번호 같은경우 .
+				$('#current_pwd_span').html('현재 비밀번호와 같습니다. ' + '<i class="fa fa-check"></i>');
+				$('#current_pwd_span').css('color','green');
+				current_pwd_ok = 1;
+			}else{// 비밀번호 다른경우
+				$('#current_pwd_span').html('현재 비밀번호와 다릅니다. ' + '<i class="fa fa-remove"></i>');
+				$('#current_pwd_span').css('color','red');
+				current_pwd_ok = 0;
+			}
+		}
+	});
+	
+	
+	
+}
+
+
+$(document).ready(function() {
+	$('#pwd').focus(function() {// focus 일경우 실행 -> 조건 : 5자 ~ 10글자 , 공백 x, 영문, 숫자, 특수문자 혼합 
+		$('#pwd_div').show();
+		
+		$('#pwd').keyup(function(){
+			var pwd = $(this).val();
+			checkPwd(pwd);
+			
+		});
+	});
+	
+	
+	$('#pwd').blur(function() {// 패스워드 벗어나면 실행 
+		$('#pwd_div').hide();
+
+	});
+	
+	$('#pwd_check').blur(function() {// 패스워드 확인 벗어나면 실행 
+		var pwd = $('#pwd').val();
+		var pwd_check = $(this).val();
+		
+		if(pwd_check != pwd){// 같지 않다면 다시 입력 
+			$('#pwd_check_span').html('password와 다릅니다. 다시입력해 주세요.' + '<i class="fa fa-remove"></i>');
+			$('#pwd_check_span').css('color','red');
+			pwd_check_ok = 0;
+			
+		}else{//같다면 실행
+			$('#pwd_check_span').html('password와 같습니다. 이용가능 '+ '<i class="fa fa-check"></i>');
+			$('#pwd_check_span').css('color','green');
+			pwd_check_ok = 1;
+		}
+	});
+	
+	$('#current_pwd').blur(function(){// 현재 비밀번호 확인시 실행 
+		checkCurrentPwd($(this).val());
+		
+	});
+	
+	$('#modify_btn').click(function(){
+		if( pwd_ok && pwd_check_ok && current_pwd_ok ){// 작성한 값이 모든 조건 만족시 실행 
+			$('#pwd_form').attr({// controller 호출 
+				'action':'user_changePwdimpl',
+				'method':'POST'
+			})
+			
+			$('#pwd_form').submit();
+
+		}else{
+			$('#btn_span').html('모든 가입 조건을 충족해야 합니다. ' + '<i class="fa fa-remove"></i>');
+			$('#btn_span').css('color','red');
+		}
+	});
+	
+	
+	
+});
+
+</script>
+
+
+
+<div id="content"
+	class="cart_page checkout_page register_page login_page">
+	<!-- cart -->
+	<div id="register"
+		class="cart_section checkout_section register_section">
+		<div class="container-fluid" id="checkout">
+
+			<div class="row billing_and_payment_option wow fadeInDown   animated">
+				<div class="heading_wrapper wow fadeInDown animated">
+					<h2 class="wow fadeInDown animated">비밀번호 변경</h2>
+
+				</div>
+				<!-- Billing Address -->
+				<div class="login_box">
+					<h4 th:if="${msg != null}" th:text="${msg}" style="color: red"></h4>
+
+					<form class="eb-form eb-mailform form-checkout"
+						novalidate="novalidate" id="pwd_form">
+						<div class="form-wrap">
+							기존 비밀번호 : <span id="current_pwd_span"></span> <input
+								class="form-input form-control" id="current_pwd" type="text"
+								name="current_pwd" placeholder="기존 비밀번호">
+						</div>
+						<div class="form-wrap">
+							새 비밀번호 : <span id="pwd_span"></span> <input
+								class="form-input form-control" id="pwd" type="text" name="pwd"
+								placeholder="새 비밀번호 입력">
+							<div id="pwd_div" class="login_box">
+
+								<strong>패스워드는 다음 요건을 반드시 포함해야 합니다.</strong>
+								<div class="div_margin"></div>
+								<ul style="list-style-type: square;" id="pwd_ul">
+									<li><span id="pwd_li_one" class="pwd_li">8자 이상 <i
+											class="fa fa-remove"></i></span>
+									<li><span id="pwd_li_two" class="pwd_li">비밀번호는 공백
+											없이 입력해주세요. <i class="fa fa-remove"></i>
+									</span>
+									<li><span id="pwd_li_three" class="pwd_li">영문,숫자,특수문자를
+											혼합하여 입력해주세요. <i class="fa fa-remove"></i>
+									</span>
+								</ul>
+							</div>
+						</div>
+
+						<div class="form-wrap">
+							새 비밀번호확인 : <span id="pwd_check_span"></span> <input
+								class="form-input form-control" id="pwd_check" type="text"
+								name="pwd_check" placeholder="새 비밀번호 확인">
+						</div>
+					</form>
+					<button class="btn" id="modify_btn">비밀번호 변경</button><br>
+					<span id="btn_span"></span>
+
+					<div class="clear"></div>
+				</div>
+				<!-- Delivery Address  -->
+			</div>
+			<!-- your shopping cart -->
+		</div>
+	</div>
+	<!-- cart end-->
+</div>
+
+<!-- back-to-top scrtion -->
+<div class="top_button">
+	<a class="back-to-top" style="cursor: pointer;" id="top-scrolltop"><i
+		class="fa fa-angle-up"></i></a>
+</div>
+<!-- back-to-top scrtion End-->

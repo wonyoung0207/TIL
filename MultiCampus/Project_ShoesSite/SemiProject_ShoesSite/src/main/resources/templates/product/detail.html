@@ -1,0 +1,421 @@
+<meta charset="UTF-8">
+<html lang="kr" xmlns:th="http://www.thymeleaf.org">
+<style>
+#userid{
+	font-weight: bold;
+	font-size: 1.1em;
+}
+
+#commentlist{
+	padding-top : 10px;
+	margin-bottom: 30px;
+}
+
+.form-radio{
+	display: inline-block;
+}
+
+#size{
+	margin-top: 40px;
+	margin-bottom: 30px;
+}
+
+input[name="size"] {display: none;}
+
+input[name="size"]+label{
+  display: inline-block;
+  width: 50px; 
+  height: 35px;
+  cursor: pointer;
+  border-radius: 5px;
+  cursor:pointer;
+  border:solid 0.5px #c4c4c4;
+  line-height:35px;
+  text-align: center;
+  font-size: medium;
+}
+input[name="size"]:checked + label{
+  background-color : #cbb18a;
+  text-align: center;
+}
+
+input[name="size"]:disabled+ label{
+  background-color : #f7f4f4;
+  color : #dfdada;
+  text-align: center;
+}
+
+#pdescriptionimg>img{
+	width:100%;
+	height:auto;
+}
+
+
+#product_tabs_description{
+	padding-top: 45px;
+}
+
+#thd{
+	display : inline-block;
+	width : 140px;
+	height:40px;
+	font-size: 1.5em;
+	
+}
+
+#tbd{
+	display : inline-block;
+	width : 100px;
+	height:40px;
+	font-size: large;
+}
+
+#tbds{
+	display : inline-block;
+	width : 50px;
+	height:40px;
+	font-size: large;
+}
+input[name="star"]{
+	display: none;
+}
+.comment-respond .starrate {margin-bottom:20px}
+.comment-respond .starrate label.starclass-1:before {
+    content: "\f005";
+}
+.comment-respond .starrate label:first-child {
+    padding-left: 0;
+}
+.comment-respond .starrate label {
+    font-size: 0;
+    color: #ccc;
+    display: inline-block;
+    border-right: 1px solid #e6e6e6;
+    padding: 0 10px;
+    line-height: 12px;
+    cursor: pointer;
+}
+.comment-respond .starrate label.starclass-2:before {
+    content: "\f005\f005";
+}
+.comment-respond .starrate label.starclass-3:before {
+    content: "\f005\f005\f005";
+}
+.comment-respond .starrate label.starclass-4:before {
+    content: "\f005\f005\f005\f005";
+}
+.comment-respond .starrate label.starclass-5:before {
+    content: "\f005\f005\f005\f005\f005";
+}
+.eb-Reviews .comment-respond .starrate label:hover {
+    color: #fed700;
+}
+input[name="star"]:checked+label{
+	color: #fed700;
+}
+
+.comment-respond .starrate label:before {
+    font-family: 'FontAwesome';
+    font-size: 12px;
+    display: inline-block;
+    letter-spacing: 2px;
+}
+
+</style>
+<script th:inline="javascript">
+function addcart(pid){
+	var uid = $('#uid').val();
+	var count = $('#qty').val();
+	var size = $('input[type="radio"]:checked').val();
+
+	$.ajax({
+		url:'/addcart',
+		data:{'uid':uid, 'pid':pid, 'count':count, 'size':size},
+		async:false,
+		success:function(msg){
+			// 재고 문제일때 alert
+			if (msg === "상품의 재고가 선택한 수량보다 많습니다."){
+				alert(msg);
+			
+			// 그외에 confirm
+			}else{
+				var c = confirm(msg);
+				if(c==true){
+					location.href='/cart?id='+uid;
+				}
+			}
+		}
+	});
+}
+
+$(document).ready(function() {
+	$('#minus').click(function() {
+		var result = document.getElementById('qty'); 
+		var qty = result.value; 
+		if( !isNaN( qty ) && qty > 0 ) {
+			result.value--;
+		}
+		return false;
+	});
+	
+	
+	$('#plus').click(function() {
+		var result = document.getElementById('qty'); 
+		var qty = result.value; 
+		if( !isNaN( qty )) {
+			result.value++;
+		}
+		return false;
+		
+	});
+	
+	$('#addcart').click(function() {
+		var c = $('input[type="radio"]:checked').val();
+		var q = $('#qty').val();
+		
+		if(c == '' || c == null || c == undefined || c == 0 ){// id값이 공백일 경우
+			$('#size_span').text('사이즈를 선택하세요.');	
+			$('#size_span').css('color','red');	
+			$('#border').css('border','solid 2px red');
+		}else{
+			if( q=='' || q==null || q==undefined || q<=0 ){
+				$('#qty').focus();
+			}else{
+				var pid = [[${detailproduct.id}]];
+				addcart(pid);
+			}
+		}
+	});
+	
+	$('#submitcomment').click(function(){
+		var comment = $('#comment').val();
+		var star = $('input[name="star"]:checked').val();
+		var uid = $('#userid').val();
+		
+		if(star==""||star==null||star==undefined||star==0){
+			$('#star_span').text('필수항목입니다.');
+		}else{
+			$('#star_span').text('');
+			if (comment==""||comment==null||comment==undefined){
+				$('#comment').focus();
+				$('#comment_span').text('필수항목입니다.');		
+			}else{
+				$('#comment_span').text('');	
+				$('#commentform').attr({
+					'enctype':'multipart/form-data',
+					'method':'post',
+					'action':'addreview'
+				})
+				$('#commentform').submit();
+				alert("리뷰가 등록되었습니다.")
+			}
+		}
+		
+	});
+});
+	
+
+
+</script>
+<!-- script files -->
+	<script src="assets/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="assets/js/custom.js"></script>
+	<script src="assets/vendor/smoothproducts/smoothproducts.min.js"></script>
+<!-- script files -->
+<!-- breadcrumb -->
+<section class="main_breadcrumb">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="breadcrumb-content">
+				<h2 th:text="${detailproduct.name}">Name</h2>
+			</div>
+		</div>
+	</div>
+</section>
+
+<div id="content" class="single_products_page">
+<!-- single products page -->
+	<div id="products_products" class="single_products_section">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="eb_right single_products_right_side">
+						<div class="single_products_images">
+							<div class="single_product_image">
+								<div class="sp-loading">
+									<img th:src="'assets/image/products/'+${detailproduct.imgname1}" alt="" width="100%">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				
+				<div class="col-sm-6">
+					<div class="eb_left single_products_left_side">
+						<h2 th:text=${detailproduct.name}>name</h2>
+						<div class="rating">
+							<p>	
+								<th:block th:switch="${staravg}">
+									<span th:case="0"><i class="fa fa-star-o" th:each="num:${#numbers.sequence(1,5)}"></i></span>
+									<span th:case="5"><i class="fa fa-star" th:each="num:${#numbers.sequence(1,5)}"></i></span>
+									<span th:case="*"><i class="fa fa-star" th:each="num:${#numbers.sequence(1,staravg)}"></i><i class="fa fa-star-o" th:each="num:${#numbers.sequence(1,5-staravg)}"></i></span>
+								</th:block>
+								<span class="border"> | </span> 
+								<span th:text="${reviewcount}+' reviews'">reviewcount</span>	  
+							</p>
+						</div>
+						<hr>
+						<div class="price-block">
+							<div class="price-box">
+								<p class="in-stock"><i class="fa fa-check"></i> In Stock</p>
+								<p class="special-price"> <span class="price-label">Special Price</span> <span id="product-price-48" class="price" th:text="${detailproduct.price}+'원'"></span> </p>
+							</div>
+						</div>
+						
+						<!-- 사이즈 및 수량 선택하여 카트에 넣기 -->
+						<div class="add-to-box" th:if="${session.user!=null}">
+							<div class="add-to-cart">
+								<div class="pull-left" id="cart_form">
+									<div id="size" class="size">
+									  <h3>Size</h3>
+									  <div id="border">
+									  <div class="form-radio" th:each="sizedetail:${slist}">
+									  	<input type="radio" th:id="${sizedetail.size}" th:value="${sizedetail.size}" name="size" >
+									  	<label th:for="${sizedetail.size}" th:text="${sizedetail.size}" ></label>
+									  </div>
+									  </div>
+									  <div><span id="size_span"></span></div>
+									</div>
+									<div class="custom pull-left">
+										<input type="hidden" th:value=${session.user.id} id="uid" name="uid">
+										<input type="hidden" th:value="${detailproduct.id}" id="pid" name="pid">
+										<button class="reduced items-count" type="button" id="minus"><i class="fa fa-minus">&nbsp;</i></button>
+											<input type="number" class="input-text qty" title="Qty" max="5" maxlength="1" value="1" id="qty" name="count">
+										<button class="increase items-count" type="button" id="plus"><i class="fa fa-plus">&nbsp;</i></button>
+									</div>
+									<button id="addcart" class="btn btn-cart" title="Add to Cart" type="button">Add to Cart</button>
+								</div>
+							</div>
+						</div>
+						<ul class="shipping-pro">
+							<li>Free Wordwide Shipping</li>
+							<li>30 Days Return</li>
+                        </ul>
+						
+					</div>	
+				</div>
+			</div>		
+			
+			<!---- ---------------------->
+			<div class="row">
+				<div class="product-collateral">
+					<div class="add_info">
+							<ul id="product-detail-tab" class="nav nav-tabs product-tabs">
+								<li class="active"> <a href="#product_tabs_description" data-toggle="tab"> Product Description </a> </li>
+								<li> <a href="#reviews_tabs" data-toggle="tab">Reviews</a> </li>
+							</ul>
+
+
+						  <div id="productTabContent" class="tab-content cont">
+								<div class="tab-pane fade in active" id="product_tabs_description">
+									<div class="col-sm-4" id="pdescriptionimg">
+										<img th:src="'assets/image/products/'+${detailproduct.imgname2}">
+									</div>
+									<div class="std col-sm-8">
+										<span id="thd">ID : </span><span id="tbd" th:text="${detailproduct.id}"></span><br>
+										<span id="thd">Category : </span><span id="tbd" th:text="${detailproduct.catename}"></span><br>
+										<span id="thd">Name : </span><span id="tbd" th:text="${detailproduct.name}"></span><br>
+										<span id="thd">RegDate : </span><span id="tbd" th:text="${#dates.format(detailproduct.regdate,'yyyy/MM/dd')}"></span><br>
+										<span id="thd">Price : </span><span id="tbd" th:text="${detailproduct.price}"></span><br>
+										<span id="thd">Color : </span><span id="tbd" th:text="${detailproduct.color}"></span><br>
+
+										<span id="thd">Size : </span><span id="tbds" th:each="sd:${slist}" th:text="${sd.size}"></span>
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam fringilla augue nec est tristique auctor. Donec non est at libero vulputate rutrum. Morbi ornare lectus quis justo gravida semper. Nulla tellus mi, vulputate adipiscing cursus eu, suscipit id nulla. Donec a neque libero. Pellentesque aliquet, sem eget laoreet ultrices, ipsum metus feugiat sem, quis fermentum turpis eros eget velit. in imperdiet ligula euismod eget. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. in imperdiet ligula euismod eget. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. </p>
+								    </div>
+								</div>
+
+								<div class="tab-pane fade" id="reviews_tabs">
+									<div class="eb-Reviews">
+										<div>
+											<h4 class="eb-Reviews-title" th:text="${reviewcount}+' reviews for '+${detailproduct.name}"></h4>
+											    <div class="comment-text" th:each="reviewdetail:${rlist}" id="commentlist">
+													<div class="reviewstar">
+														<th:block th:switch="${reviewdetail.star}">
+															<div th:case="0">
+																<span><i class="fa fa-star-o" th:each="num:${#numbers.sequence(1,5)}" style="color: #fed700"></i></span>
+															</div>
+															<div th:case="5">
+																<span><i class="fa fa-star" th:each="num:${#numbers.sequence(1,5)}" style="color: #fed700"></i></span>
+															</div>
+															<div th:case="*">
+																<span><i class="fa fa-star" th:each="num:${#numbers.sequence(1,reviewdetail.star)}" style="color: #fed700"></i></span><span><i class="fa fa-star-o" th:each="num:${#numbers.sequence(1,5-reviewdetail.star)}" style="color: #fed700"></i></span>
+															</div>
+														</th:block>
+													</div>
+													<p class="meta">
+													<span th:text="${reviewdetail.uid}" id="userid">John Doe</span> 
+													<span> - </span><span th:text="${#dates.format(reviewdetail.regdate,'yyyy/MM/dd')}"></span>
+													</p>
+													<div class="description">
+														<p th:text="${reviewdetail.text}"></p>
+													</div>
+											    </div>
+										</div>
+									<div>
+								<div>
+								<div class="comment-respond" th:if="${session.user!=null}">
+									<span class="comment-reply-title"><i class="fa fa-pencil-square-o"></i> Write a review </span>			
+									<form class="comment-form" id="commentform">
+											<input type="hidden" name="uid" th:value=${session.user.id}>
+											<input type="hidden" name="pid" th:value=${detailproduct.id}>
+											<div class="comment-form-rating">
+											
+												<label id="rating">Your rating * <span id="star_span" style="color:red;font-weight:bold;"></span></label>
+												<p class="starrate">
+													<input type="radio" name="star" value=1 id="s1">
+													<label class="starclass-1" for="s1" id="star1">1</label>
+												
+													<input type="radio" name="star" value=2 id="s2">
+													<label class="starclass-2" for="s2" id="star2">2</label>
+													
+													<input type="radio" name="star" value=3 id="s3">
+													<label class="starclass-3" for="s3" id="star3">3</label>
+												
+													<input type="radio" name="star" value=4 id="s4">
+													<label class="starclass-4" for="s4" id="star4">4</label>
+													
+													<input type="radio" name="star" value=5 id="s5">
+													<label class="starclass-5" for="s5" id="star5">5</label>
+												</p>
+											</div>
+											<div class="comment-form-comment">
+												<label>Your review * <span id="comment_span" style="color:red;font-weight:bold;"></span></label>
+												<textarea id="comment" name="text" cols="45" rows="8" required=""></textarea>
+											</div>
+											<div class="custom-file">
+									            <input type="file" class="custom-file-input" id="customFile" name="mf">
+									            <label class="custom-file-label" for="customFile"></label>
+									        </div>
+
+											<button type="button" id="submitcomment" class="btn submit">제출</button>
+										
+									</form>
+								</div><!-- #respond -->
+							</div>
+						</div>
+						<div class="clear"></div>
+					</div>
+				</div>
+						  </div>
+					</div>
+				</div>
+			</div>
+				
+			<!---- ---------------------->
+
+			
+		</div>	
+	</div>
+</div>
+</html>

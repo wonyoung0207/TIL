@@ -1,0 +1,53 @@
+<meta charset="UTF-8">
+<style>
+.margin {
+	margin: 20px;
+}
+
+#star {
+	color: orange;
+}
+</style>
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div>
+			<div class="row">
+				<div class="col-sm-6">
+					<h2>내가 산 모든 상품 </h2>
+				</div>
+				<div class="col-sm-6 text-right">
+					<a href="myproduct_reviewAll">전체보기 > </a>
+				</div>
+
+			</div>
+			<hr>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>상품이름</th>
+						<th>상품코드</th>
+						<th>가격</th>
+						<th>구매날짜</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="buy : ${buylist}" id="buy" th:onclick="location.href='/productdetail?id=[[${buy.pid}]]'">
+						<td th:text="${buy.name}">name</td>
+						<td th:text="${buy.pid}" id="buy_pid" th:value="${buy.pid}"></td>
+						<td th:text="${buy.price_one}">price_one</td>
+						<td th:text="${#dates.format(buy.regdate,'yyyy-MM-dd')}">date</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+		<hr>
+	</div>
+
+	<div class="row">
+		<div class="margin">&nbsp</div>
+	</div>
+
+</div>

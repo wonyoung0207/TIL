@@ -1,0 +1,117 @@
+<meta charset="UTF-8">
+<style>
+.margin {
+	margin: 20px;
+}
+
+#star {
+	color: orange;
+}
+table img {
+	width: 50px;
+	height: 50px;
+}
+
+</style>
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div>
+			<div class="row">
+				<div class="col-sm-6">
+					<h2>나의 상품리뷰 쓰기</h2>
+					<span> 최근 1달 사이 구매한 상품 리뷰</span>
+				</div>
+				<div class="col-sm-6 text-right">
+					<a href="myproduct_reviewAll">전체보기 > </a>
+				</div>
+
+			</div>
+			<hr>
+			<div th:unless="${not #lists.isEmpty(buylist)}">1달 사이의 구매 품목이
+				없습니다.</div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>상품이름</th>
+						<th>상품코드</th>
+						<th>가격</th>
+						<th>구매날짜</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:if="${not #lists.isEmpty(buylist)}"
+						th:each="buy : ${buylist}"
+						th:onclick="location.href='/productdetail?id=[[${buy.pid}]]'">
+						<td th:text="${buy.name}">name</td>
+						<td th:text="${buy.pid}" id="buy_pid" th:value="${buy.pid}"></td>
+						<td th:text="${buy.price_one}">price_one</td>
+						<td th:text="${#dates.format(buy.regdate,'yyyy-MM-dd')}">date</td>
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+		<hr>
+	</div>
+
+	<div class="row">
+		<div class="margin">&nbsp</div>
+	</div>
+	<div class="row">
+		<div>
+			<div class="row">
+				<div class="col-sm-6">
+					<h2>나의 상품리뷰 모아보기</h2>
+
+				</div>
+
+
+			</div>
+			<hr>
+			<div th:unless="${not #lists.isEmpty(reviewlist)}">리뷰가 존재하지 않습니다.</div>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>별점</th>
+						<th>상품이름</th>
+						<th>구매날짜</th>
+						<th>상품코드</th>
+						<th>색상</th>
+						<th>text</th>
+						<th>리뷰 사진 file</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:if="${not #lists.isEmpty(reviewlist)}"
+						th:each="review : ${reviewlist}"
+						th:onclick="location.href='/productdetail?id=[[${review.pid}]]'">
+						<td>
+							<div class="rating">
+								<p>
+									<i class="fa fa-star" id="star"
+										th:each="num : ${#numbers.sequence(1,review.star)}"></i>
+								</p>
+							</div>
+						</td>
+						<td th:text="${review.name}">name</td>
+						<td th:text="${#dates.format(review.regdate,'yyyy-MM-dd')}">price_one</td>
+						<td th:text="${review.pid}">pid</td>
+						<td th:text="${review.color}">color</td>
+						<td th:text="${review.text}">text</td>
+						<td><img
+							th:src="'/assets/image/products/'+${review.filename}"
+							th:if="review.filename != null"> <img
+							th:src="'/assets/image/products/'+${review.filename}"
+							th:unless="review.filename != null"></td>
+
+					</tr>
+
+				</tbody>
+			</table>
+		</div>
+		<hr>
+	</div>
+</div>

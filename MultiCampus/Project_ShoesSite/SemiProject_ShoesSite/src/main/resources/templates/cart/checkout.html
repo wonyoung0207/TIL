@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+  	
+<script>
+
+
+    function sample6_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                
+                var addr = ''; // 주소 변수
+
+                if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+                    addr = data.roadAddress;
+                } else { // 사용자가 지번 주소를 선택했을 경우(J)
+                    addr = data.jibunAddress;
+                }
+                // 주소 정보를 해당 필드에 넣는다.
+                document.getElementById("sample6_address").value = addr;
+                // 커서를 상세주소 필드로 이동한다.
+                document.getElementById("sample6_detailAddress").focus();
+            }
+        }).open();
+    }
+    function payment(data){
+    	IMP.init('imp94826430');
+    	var count = $('#cnt').val();
+    	var name = $('#pname').text()+"외"+count+"개";
+    	var total = $('#total').val();
+	  	//결제시 전달되는 정보
+		IMP.request_pay({
+				    pg : 'inicis', 
+				    pay_method : 'card',
+				    merchant_uid : 'merchant_' + new Date().getTime(),
+				    name : name /*상품명*/,
+				    amount : total/*상품 가격*/,
+				    buyer_email: "gildong@gmail.com",
+				    buyer_name : $('#cname').val(),
+				    buyer_tel : '010-1234-5678'/*구매자 연락처*/,
+				    buyer_addr : '서울특별시 강남구 삼성동'/*구매자 주소*/,
+				}, function(rsp) {
+					var result = '';
+				    if ( rsp.success ) {
+				        var msg = '결제가 완료되었습니다.';
+				        msg += '고유ID : ' + rsp.imp_uid;
+				        msg += '상점 거래ID : ' + rsp.merchant_uid;
+				        msg += '결제 금액 : ' + rsp.paid_amount;
+				        msg += '카드 승인번호 : ' + rsp.apply_num;
+				        $('#buy').attr({
+				        	'method':'post',
+							'action':'buyimpl'
+				        });
+				      //form 두개 보내기 위함
+						$('#buy').submit();
+				        result ='0';
+				    } else {
+				        var msg = '결제에 실패하였습니다.';
+				        msg += '에러내용 : ' + rsp.error_msg;
+				        result ='1';
+				    }
+				    if(result=='0') {
+				    	location.href= $.getContextPath()+"/cart/checkout/success";
+				    }
+				    alert(msg);
+				});
+    }
+
+$(document).ready(function(){
+
+	$('#check').click(function(){
+		$('#rname').val($('#cname').val());
+		$('#sample6_address').val($('#caddr').val());
+		$('#sample6_detailAddress').val($('#caddr_detail').val());
+		$('#rtelphone').val($('#ctelphone').val());
+	});
+	$('#addrsearch').click(function(){
+		sample6_execDaumPostcode();
+	});
+	
+	$('#confirm').click(function(){
+		
+		payment();
+	});
+	
+});
+
+</script>
+</head>
+<!-- breadcrumb -->
+<section class="main_breadcrumb">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="breadcrumb-content">
+				<h2>checkout</h2>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a href="">checkout</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<div id="content" class="cart_page checkout_page">
+<!-- cart -->
+	<div id="cart" class="cart_section checkout_section">
+		<div class="container-fluid" id="checkout">
+			
+			<div class="row billing_and_payment_option wow fadeInDown   animated">
+				<!-- Billing Address -->
+				<div class="col-sm-6 col-lg-6">
+					<h3>Cust Info</h3>
+						<form class="eb-form eb-mailform form-checkout" novalidate="novalidate">
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-wrap has-error">
+										<input class="form-input form-control" id="" th:value="${al.uid}" type="text" name="uid" readonly="readonly" placeholder="회원 아이디">
+									</div>
+								</div>
+								
+								<div class="col-sm-6">
+									<div class="form-wrap has-error">
+										<input class="form-input form-control" th:value="${al.cname}" id="cname" type="text" name="cname" data-constraints="@Required" readonly="readonly" placeholder="이름">
+									</div>
+								</div>
+								
+								<div class="col-sm-12">
+									<div class="form-wrap has-error">
+										<input class="form-input form-control" th:value="${al.addr}" id="caddr" type="text" name="addr" data-constraints="@Required" readonly="readonly" placeholder="회원 주소">
+									</div>
+								</div>
+								<div class="col-sm-12">
+									<div class="form-wrap has-error">
+										<input class="form-input form-control" th:value="${al.addr_detail}" id="caddr_detail" type="text" name="addr_detail" data-constraints="@Required" readonly="readonly" placeholder="회원 상세주소">
+									</div>
+								</div>
+								
+								<div class="col-sm-12">
+									<div class="form-wrap has-error">
+										<input class="form-input form-control" th:value="${al.telphone}" id="ctelphone" type="text" name="recipient_phonenumber" data-constraints="@Required" readonly="readonly" placeholder="회원 전화번호">
+									</div>
+								</div>
+							</div>
+							<label class="checkbox-inline text-transform-capitalize">
+								<input id="check" name="input-checkbox-1" value="checkbox-1" type="checkbox" class="checkbox-custom"><span class="checkbox-custom-dummy"></span>주문자와 수령인 동일
+							</label>
+					</form>
+				</div>
+				<!-- Delivery Address  -->
+				<div class="col-sm-6 col-lg-6 wow fadeInDown   animated">
+					<h3>Recipient Info</h3>
+					  <form id="buy" class="eb-form eb-mailform form-checkout" novalidate="novalidate">
+							<div class="row">
+								<div class="col-sm-6">
+									<div class="form-wrap has-error">
+										<input class="form-input form-control" id="uid" th:value="${al.uid}" type="hidden" name="uid" data-constraints="@Required" placeholder="주문자 아이디">
+									</div>
+								</div>
+								
+								<div class="col-sm-12">
+									<div class="form-wrap has-error">
+										<input class="form-input form-control" id="rname" type="text" name="recipient" data-constraints="@Required" placeholder="수령인">
+									</div>
+								</div>
+								
+								<div class="col-sm-6">
+									<div class="form-wrap has-error">
+										<input class="form-input form-control" id="sample6_address" type="text" name="recipient_addr" placeholder="수령인 주소">
+									</div>
+								</div>
+								<div class="col-sm-3">
+									<div class="form-wrap has-error">
+										<button type="button" id="addrsearch" >우편번호찾기</button><br>
+									</div>
+								</div>
+								<div class="col-sm-12">
+									<div class="form-wrap has-error">
+										<input class="form-input form-control" id="sample6_detailAddress" type="text" name="recipient_addr_detail" data-constraints="@Required" placeholder="수령인 상세주소">
+									</div>
+								</div>
+								
+								<div class="col-sm-12">
+									<div class="form-wrap has-error">
+										<input class="form-input form-control" id="rtelphone" type="text" name="recipient_phonenumber" data-constraints="@Required" placeholder="수령인 전화번호">
+									</div>
+								</div>
+								
+								<div class="col-sm-12">
+									<div class="form-wrap">
+										<input class="form-input form-control" id="checkout-city-1" type="text" name="request" data-constraints="@Required" placeholder="요청사항">
+									</div>
+								</div>
+								<div class="col-sm-6">
+									<div class="form-wrap">
+										<input class="form-input form-control" id="checkout-email-1" th:value="${total}" type="text" name="price" readonly="readonly"  placeholder="주문금액">
+									</div>
+								</div>
+							</div>
+					</form>
+					
+				</div>
+			</div>
+			<!-- your shopping cart -->
+			<div class="row your_cart wow fadeInDown   animated">
+				<h2>your shopping cart</h2>
+				<div class="table-custom-responsive">
+					<table class="table-custom table-cart table-responsive">
+						<thead>
+							<tr>
+								<th>Product name</th>
+								<th>Price</th>
+								<th>Size</th>
+								<th>Quantity</th>
+							</tr>
+						</thead>
+							<tbody>
+								<tr th:each="c:${clist}">
+									<td><a class="table-cart-figure" href="checkout.html"><img th:src="'/assets/image/products/'+${c.pimg1}" alt="" width="146" height="132"></a><a id="pname" class="table-cart-link" href="#" th:text="${c.pname}">Natural Mineral Stone</a></td>
+									<td th:text="${c.pprice}+'원'">$125.00</td>
+									<td th:text="${c.size}">280</td>
+									<td>
+										<div class="table-cart-stepper">
+											<div class="stepper "><input class="form-input stepper-input" type="number" data-zeros="true" th:value="${c.count}" min="1" max="1000"><span class="stepper-arrow up"></span><span class="stepper-arrow down"></span></div>
+										</div>
+									</td>
+								</tr>
+								
+							</tbody>
+					</table>
+				</div>
+			</div>	
+			
+			<!-- payment method -->
+				<div class="row payment_method wow fadeInDown   animated">
+					<div class="col-sm-6 col-lg-6">
+						<h3>Payment methods</h3>
+						<div class="inner_payment_method">
+							<div class="box-radio">
+								<div class="radio-panel">
+									<label class="radio-inline">
+										<input name="input-group-radio" value="checkbox-1" type="radio" checked="" class="radio-custom"><span class="radio-custom-dummy"></span>Direct Bank Transfer
+									</label>
+									
+								</div>
+								
+								<div class="radio-panel">
+									<label class="radio-inline">
+										<input name="input-group-radio" value="checkbox-1" type="radio" class="radio-custom"><span class="radio-custom-dummy"></span>PayPal
+									</label>
+								
+								</div>
+								<div class="radio-panel">
+									<label class="radio-inline">
+										<input name="input-group-radio" value="checkbox-1" type="radio" class="radio-custom"><span class="radio-custom-dummy"></span>Cheque Payment
+									</label>
+									
+								</div>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<!--Cart total -->
+					<div class="col-sm-6 col-lg-6 wow fadeInDown   animated">
+					  <h3>Cart total</h3>
+						  <div class="table-custom-responsive">
+							<table class="table-custom table-responsive">
+								  <tbody>
+									<tr>
+									  <td>Cart Subtotal</td>
+									  <td th:text="${total}+'원'">$175</td>
+									</tr>
+									<tr>
+									  <td>Shipping</td>
+									  <td>Free</td>
+									</tr>
+									<tr>
+									  <td>Total</td>
+									  <td th:text="${total}+'원'">$175</td>
+									</tr>
+								  </tbody>
+							</table>
+							<input id="cnt" type="hidden" th:value="${cnt}">
+							<input id="total" type="hidden" th:value="${total}">
+							<a id="confirm" class="btn">Confirm Order</a>
+						</div>
+					</div>
+				</div>
+			<!-- payment method -->
+		</div>	
+	</div>	
+<!-- cart end-->	
+</div>
+</html>

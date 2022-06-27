@@ -1,0 +1,547 @@
+<meta charset="UTF-8">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<link href="https://hangeul.pstatic.net/hangeul_static/css/nanum-gothic.css" rel="stylesheet">
+
+
+<section>
+	<div id="slideWiz" class="slideWiz" style="width: 100%; height: 500px;"></div>
+</section>
+<!-- silder End -->
+<!-- about Us -->
+<div id="about_us" class="about_section"
+	style="background-image: url(assets/image/about_img.jpg); width: 100%; background-repeat: no-repeat; background-size: cover;">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-6">
+				<div class="about_text wow slideInLeft">
+					<h1>Fashionshop이 준비한 특가!</h1>
+					<h2>놓치지 마세요!</h2>
+					<p>캐주얼한 신발부터 격식있는 구두까지 모두 Fashionshop에서 특가로 구매하세요!</p>
+					
+				
+					<a href="/about_us" class="btn">about_us</a>
+				</div>
+			</div>
+			<div class="col-sm-6">
+				<div class="about_images wow slideInRight">
+					
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- about Us end-->
+
+
+
+<!-- Our products  -->
+	<div id="products" class="products_section">
+		<div class="container-fluid">
+			<div class="heading_wrapper wow fadeInDown animated">
+				<h2 class="wow fadeInDown animated">Best Products</h2>
+				<p class="wow fadeInDown animated"> 인기제품을 지금 만나보세요! </p>
+			</div>
+			<div class="row">
+				<div id="product" class="owl-carousel owl-theme">
+			<!--Best 1 -->
+				<div class="item">
+					<div class="col-sm-12">
+						<div class="product-thumb">
+							<div class="image wow fadeInDown animated">
+								<a href="/product?gender=Men"><img class="wow fadeInDown animated" src="assets/image/products/canvers1.png" alt="canverse1" title="canverse1" width="100%"></a>
+								
+								<div class="sale"><span class="">Sale</span></div>
+								<!--  
+								<div class="button-group">
+									<div class="inner">
+										<button type="button" title="Quick View" class="button-quickview"><span>Quick View</span></button>
+										<button type="button" title="Add to Wishlist" class="button-wishlist"><span>Add to Wishlist</span></button>
+										<button type="button" title="Compare this Product" class="button-compare"><span>Compare this Product</span></button>
+									</div>
+								</div> -->
+							</div>
+							<div class="caption">
+								
+								<div class="rate-and-title">
+									<h4 class="wow fadeInDown animated"><a href="/product?gender=Men">canverse1</a></h4>
+									<div class="rating wow fadeInDown animated">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+										<div class="clear"></div>
+									</div>
+									<p class="price wow fadeInDown animated">
+										<span class="price-old">13,900</span> <span class="price-new">10,000</span>  
+									</p>
+									
+								</div>
+							</div>
+						</div>
+					</div>				
+				</div>				
+				<!-- Best 2-->
+				<div class="item">
+					<div class="col-sm-12">
+						<div class="product-thumb">
+							<div class="image wow fadeInDown animated">
+								<a href="/product?gender=Men"><img class="wow fadeInDown animated" src="assets/image/products/running2.png" alt="running2" title="running2" width="100%"></a>
+								
+								<!-- 
+								<div class="button-group">
+									<div class="inner">
+										<button type="button" title="Quick View" class="button-quickview"><span>Quick View</span></button>
+										<button type="button" title="Add to Wish List" class="button-wishlist"><span>Add to Wish List</span></button>
+										<button type="button" title="Compare this Product" class="button-compare"><span>Compare this Product</span></button>
+									</div>
+								</div> -->
+							</div>
+							<div class="caption">
+								
+								<div class="rate-and-title">
+									<h4 class="wow fadeInDown animated"><a href="/product?gender=Men">running2</a></h4>
+									<div class="rating wow fadeInDown animated">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o"></i>
+										<div class="clear"></div>
+									</div>
+									<p class="price wow fadeInDown animated">
+										<span class="price">50,000</span> 
+									</p>
+									
+								</div>
+							</div>
+						</div>
+					</div>				
+				</div>				
+				<!-- 3-->
+				<div class="item">
+					<div class="col-sm-12">
+						<div class="product-thumb">
+							<div class="image wow fadeInDown animated">
+								<a href="/product?gender=Men"><img class="wow fadeInDown animated" src="assets/image/products/mountain1.png" alt="mountain1" title="mountain1" width="100%"></a>
+								<!-- 
+								<div class="button-group">
+									<div class="inner">
+										<button type="button" title="Quick View" class="button-quickview"><span>Quick View</span></button>
+										<button type="button" title="Add to Wish List" class="button-wishlist"><span>Add to Wish List</span></button>
+										<button type="button" title="Compare this Product" class="button-compare"><span>Compare this Product</span></button>
+									</div>
+								</div> -->
+							</div>
+							<div class="caption">
+								
+								<div class="rate-and-title">
+									<h4 class="wow fadeInDown animated"><a href="/product?gender=Men">mountain 1</a></h4>
+									<div class="rating wow fadeInDown animated">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<div class="clear"></div>
+									</div>
+									<p class="price wow fadeInDown animated">
+										<span class="price-new">50,000</span>  
+									</p>
+									
+								</div>
+							</div>
+						</div>
+					</div>				
+				</div>				
+				<!--4 -->
+				<div class="item">
+					<div class="col-sm-12">
+						<div class="product-thumb">
+							<div class="image wow fadeInDown animated">
+								<a href="/product?gender=Women"><img class="wow fadeInDown animated" src="assets/image/products/mule1.png" alt="mule1" title="mule1" width="100%"></a>
+								<div class="sale"><span class="">Sale</span></div>
+								<!--	<div class="button-group">
+									<div class="inner">
+										<button type="button" title="Quick View" class="button-quickview"><span>Quick View</span></button>
+										<button type="button" title="Add to Wish List" class="button-wishlist"><span>Add to Wish List</span></button>
+										<button type="button" title="Compare this Product" class="button-compare"><span>Compare this Product</span></button>
+									</div>
+								</div> -->
+							</div>
+							<div class="caption">
+								
+								<div class="rate-and-title">
+									<h4 class="wow fadeInDown animated"><a href="/product?gender=Women">mule1</a></h4>
+									<div class="rating wow fadeInDown animated">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+										<div class="clear"></div>
+									</div>
+									<p class="price wow fadeInDown animated">
+										<span class="price-old">23,000</span> <span class="price-new">15,000</span>  
+									</p>
+									
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>	
+				<!--5 -->	
+					<div class="item">
+						<div class="col-sm-12">
+							<div class="product-thumb">
+								<div class="image wow fadeInDown animated">
+									<a href="/product?gender=Women"><img class="wow fadeInDown animated" src="assets/image/products/ankle1.png" alt="ankle1" title="ankle1" width="100%"></a>
+									
+									<div class="sale"><span class="">Sale</span></div>
+								<!--	<div class="button-group">
+										<div class="inner">
+											<button type="button" title="Quick View" class="button-quickview"><span>Quick View</span></button>
+											<button type="button" title="Add to Wish List" class="button-wishlist"><span>Add to Wish List</span></button>
+											<button type="button" title="Compare this Product" class="button-compare"><span>Compare this Product</span></button>
+										</div>
+									</div> -->
+								</div>
+								<div class="caption">
+									
+									<div class="rate-and-title">
+										<h4 class="wow fadeInDown animated"><a href="/women">ankle1</a></h4>
+										<div class="rating wow fadeInDown animated">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+											<div class="clear"></div>
+										</div>
+										<p class="price wow fadeInDown animated">
+											<span class="price-old">45,000</span> <span class="price-new">40,000</span>  
+										</p>
+										
+									</div>
+								</div>
+							</div>
+						</div>				
+					</div>			
+				<!-- products end -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Products End-->
+
+
+<!-- Our Astrologers Work for You -->
+<div id="website_visitors" class="astrologers-work">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-6 condition-set">
+				<div class="astrologers_title">
+					<h2 class="wow fadeInDown animated">Fashion Shop</h2>
+					
+					<p class="wow fadeInDown animated">FashionShop에 오신 방문해주셔서 감사합니다. 
+						저희 FashionShop은 신발전문 쇼핑몰로서, 고객분들께
+						어디든지 '나'를 이끌어 줄 딱 맞는 신발과 즐거움을 드리기 위해 오늘도 최선을 다하고 있습니다. </p>
+					<p class="wow fadeInDown animated">맘에 드는 신발을 찾으셨다면, 세일특가가 사라지기 전에 구매를, 
+혹시나 홈페이지 이용과 상품구매에 불편한 점이 있으셨다면 Contact 메뉴를 통해 의견을 남겨주시기 바랍니다. 
+감사합니다. :)  </p>
+				</div>
+			</div>
+
+		<div class="col-sm-6">
+				<div class="astrologers_visitors">
+					<div class="col-sm-6">
+						<div class="astrologers_experience">
+							<h3 class="wow fadeInDown animated number-counter" data-count-from="" data-count-to="6" data-count-speed="30"></h3>
+							<h5 class="wow fadeInDown animated">누적 회원가입(건)</h5>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="astrologers_experience">
+							<h3 class="wow fadeInDown animated number-counter" data-count-from="" data-count-to="0" data-count-speed="30"></h3>
+							<h5 class="wow fadeInDown animated">오늘 신규가입(건)</h5>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="astrologers_experience">
+							<h3 class="wow fadeInDown animated number-counter" data-count-from="" data-count-to="3" data-count-speed="30"></h3>
+							<h5 class="wow fadeInDown animated">평균 배송소요기간(일)</h5>
+						</div>
+					</div>
+					<div class="col-sm-6">
+						<div class="astrologers_experience">
+							<h3 class="wow fadeInDown animated number-counter" data-count-from="" data-count-to="8" data-count-speed="30"></h3>
+							<h5 class="wow fadeInDown animated">누적 판매량(개)</h5>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Our products  -->
+<div id="products" class="products_section">
+	<div class="container-fluid">
+		<div class="heading_wrapper wow fadeInDown animated">
+			<h2 class="wow fadeInDown animated">New Products</h2>
+			<p class="wow fadeInDown animated">신상품을 누구보다 빠르게 지금 만나보세요! </p>
+		</div>
+		<div class="row">
+			<div id="new_category" class="owl-carousel owl-theme">
+			<!--New Products 1 -->
+				<div class="item">
+					<div class="col-sm-12">
+						<div class="product-thumb">
+							<div class="image wow fadeInDown animated">
+								<a href="/women"><img class="wow fadeInDown animated" src="assets/image/products/canvers2.png" alt="canvers2" title="canvers2" width="100%"></a>
+								
+								<div class="sale"><span class="">Sale</span></div>
+								<!--
+								<div class="button-group">
+									<div class="inner">
+										<button type="button" title="Quick View" class="button-quickview"><span>Quick View</span></button>
+										<button type="button" title="Add to Wish List" class="button-wishlist"><span>Add to Wish List</span></button>
+										<button type="button" title="Compare this Product" class="button-compare"><span>Compare this Product</span></button>
+									</div>
+								</div> -->
+							</div>
+							<div class="caption">
+								
+								<div class="rate-and-title">
+									<h4 class="wow fadeInDown animated"><a href="/women">canvers2</a></h4>
+									<div class="rating wow fadeInDown animated">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+										<div class="clear"></div>
+									</div>
+									<p class="price wow fadeInDown animated">
+										<span class="price-old">37,900</span> <span class="price-new">35,000</span>  
+									</p>
+									
+								</div>
+							</div>
+						</div>
+					</div>				
+				</div>				
+				<!--New Products 2-->
+				<div class="item">
+					<div class="col-sm-12">
+						<div class="product-thumb">
+							<div class="image wow fadeInDown animated">
+								<a href="/women"><img class="wow fadeInDown animated" src="assets/image/products/running3.png" alt="running3" title="running3" width="100%"></a>
+								
+								<div class="sale"><span class="">Sale</span></div>
+								<!--
+								<div class="button-group">
+									<div class="inner">
+										<button type="button" title="Quick View" class="button-quickview"><span>Quick View</span></button>
+										<button type="button" title="Add to Wish List" class="button-wishlist"><span>Add to Wish List</span></button>
+										<button type="button" title="Compare this Product" class="button-compare"><span>Compare this Product</span></button>
+									</div>
+								</div> -->
+							</div>
+							<div class="caption">
+								
+								<div class="rate-and-title">
+									<h4 class="wow fadeInDown animated"><a href="/women">running3</a></h4>
+									<div class="rating wow fadeInDown animated">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o"></i>
+										<div class="clear"></div>
+									</div>
+									<p class="price wow fadeInDown animated">
+										<span class="price-old">53,000</span> <span class="price-new">50,000</span>  
+									</p>
+									
+								</div>
+							</div>
+						</div>
+					</div>				
+				</div>				
+				<!--New Products 3-->
+				<div class="item">
+					<div class="col-sm-12">
+						<div class="product-thumb">
+							<div class="image wow fadeInDown animated">
+								<a href="/women"><img class="wow fadeInDown animated" src="assets/image/products/mountain2.png" alt="mountain2" title="mountain2" width="100%"></a>
+								<!-- <div class="button-group">
+									<div class="inner">
+										<button type="button" title="Quick View" class="button-quickview"><span>Quick View</span></button>
+										<button type="button" title="Add to Wish List" class="button-wishlist"><span>Add to Wish List</span></button>
+										<button type="button" title="Compare this Product" class="button-compare"><span>Compare this Product</span></button>
+									</div>
+								</div> -->
+							</div>
+							<div class="caption">
+								
+								<div class="rate-and-title">
+									<h4 class="wow fadeInDown animated"><a href="/women">mountain2</a></h4>
+									<div class="rating wow fadeInDown animated">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+										<div class="clear"></div>
+									</div>
+									<p class="price wow fadeInDown animated">
+										<span class="price-new">50,000</span>  
+									</p>
+									
+								</div>
+							</div>
+						</div>
+					</div>				
+				</div>				
+				<!--New Products 4 -->
+				<div class="item">
+					<div class="col-sm-12">
+						<div class="product-thumb">
+							<div class="image wow fadeInDown animated">
+								<a href="/women"><img class="wow fadeInDown animated" src="assets/image/products/slide1.png" alt="slide1" title="slide1" width="100%"></a>
+								<!-- <div class="button-group">
+									<div class="inner">
+										<button type="button" title="Quick View" class="button-quickview"><span>Quick View</span></button>
+										<button type="button" title="Add to Wish List" class="button-wishlist"><span>Add to Wish List</span></button>
+										<button type="button" title="Compare this Product" class="button-compare"><span>Compare this Product</span></button>
+									</div>
+								</div> -->
+							</div>
+							<div class="caption">
+								
+								<div class="rate-and-title">
+									<h4 class="wow fadeInDown animated"><a href="/women">slide1</a></h4>
+									<div class="rating wow fadeInDown animated">
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+										<i class="fa fa-star-o"></i>
+										<div class="clear"></div>
+									</div>
+									<p class="price wow fadeInDown animated">
+										<span class="price">30,000</span>
+									</p>
+									
+								</div>
+							</div>
+						</div>
+					</div>	
+				</div>	
+				<!--New Products 5 -->	
+					<div class="item">
+						<div class="col-sm-12">
+							<div class="product-thumb">
+								<div class="image wow fadeInDown animated">
+									<a href="/women"><img class="wow fadeInDown animated" src="assets/image/products/aqua1.png" alt="aqua1" title="aqua1" width="100%"></a>
+									
+									<div class="sale"><span class="">Sale</span></div>
+								<!--	<div class="button-group">
+										<div class="inner">
+											<button type="button" title="Quick View" class="button-quickview"><span>Quick View</span></button>
+											<button type="button" title="Add to Wish List" class="button-wishlist"><span>Add to Wish List</span></button>
+											<button type="button" title="Compare this Product" class="button-compare"><span>Compare this Product</span></button>
+										</div>
+									</div> -->
+								</div>
+								<div class="caption">
+									
+									<div class="rate-and-title">
+										<h4 class="wow fadeInDown animated"><a href="/women">aqua1</a></h4>
+										<div class="rating wow fadeInDown animated">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+											<i class="fa fa-star-o"></i>
+											<div class="clear"></div>
+										</div>
+										<p class="price wow fadeInDown animated">
+											<span class="price-old">23,000</span> <span class="price-new">20,000</span>  
+										</p>
+										
+									</div>
+								</div>
+							</div>
+						</div>				
+					</div>			
+				<!-- products end -->
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Products End-->
+
+
+<!-- Review -->
+<div id="testimonials" class="testimonial_section">
+	<div class="container-fluid">
+		<div class="heading_wrapper wow fadeInDown animated">
+			<h2 class="wow fadeInDown animated">Review</h2>
+			<p class="wow fadeInDown animated">구매자들의 생생한 후기를 들려드립니다.</p>
+		</div>
+		<div class="row">
+			<div id="testimonial" class="owl-carousel owl-theme">
+				<div class="item">
+					<div class="col-sm-12">
+						<div class="testimonial_inner_matter">
+							<img src="assets/image/products/canvers1.png"
+								class="wow fadeInDown animated">
+							<p class="wow fadeInDown animated">배송이 빨라서 맘에 들어요</p>
+							<h5 class="wow fadeInDown animated">id**</h5>
+						
+						</div>
+					</div>
+				</div>
+
+				<div class="item">
+					<div class="col-sm-12">
+						<div class="testimonial_inner_matter">
+							<img src="assets/image/products/canvers2.png"
+								class="wow fadeInDown animated">
+							<p class="wow fadeInDown animated">생각했던 색깔이랑 약간 달라요</p>
+							<h5 class="wow fadeInDown animated">id**</h5>
+							
+						</div>
+					</div>
+				</div>
+
+				<div class="item">
+					<div class="col-sm-12">
+						<div class="testimonial_inner_matter">
+							<img src="assets/image/products/running1.png"
+								class="wow fadeInDown animated">
+							<p class="wow fadeInDown animated">생각보다 신발 발볼이 좁아요, 한사이즈 크게 사시는게 좋을듯</p>
+							<h5 class="wow fadeInDown animated">id**</h5>
+							
+						</div>
+					</div>
+				</div>
+
+				<div class="item">
+					<div class="col-sm-12">
+						<div class="testimonial_inner_matter">
+							<img src="assets/image/products/roper.png"
+								class="wow fadeInDown animated">
+							<p class="wow fadeInDown animated">맘에 들어요!</p>
+							<h5 class="wow fadeInDown animated">id**</h5>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- Review end -->

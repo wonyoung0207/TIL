@@ -1,0 +1,64 @@
+<!-- 쇼핑정보 - 주문/배송현황 클릭시 실행 -->
+
+<meta charset="UTF-8">
+<style>
+h2, h3, h4 {
+	color: black;
+}
+
+.orange {
+	color: orange;
+}
+
+#buy img {
+	width: 200px;
+	height: 200px;
+}
+
+#buy_product div {
+	margin: 10px;
+}
+</style>
+<script>
+	$(document).ready(function() {
+
+	});
+</script>
+
+<div class="row">
+	<h2>상세주문내역</h2>
+
+</div>
+<hr>
+
+<div class="container-fluid">
+	<div class="row">
+		<div>
+			<hr>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th>상품이름</th>
+						<th>상품코드</th>
+						<th>가격</th>
+						<th>사이즈</th>
+						<th>구매갯수</th>
+						<th>색상</th>
+						<th>성별</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr	th:each="buy : ${buy_detailList}">
+						<td th:text="${buy.name}">name</td>
+						<td th:text="${buy.pid}" id="buy_pid" th:value="${buy.pid}"></td>
+						<td th:text="${buy.price}">price</td>
+						<td th:text="${buy.size}">size</td>
+						<td th:text="${buy.cnt}">cnt</td>
+						<td th:text="${buy.color}">color</td>
+						<td th:text="${buy.gender}">gender</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<hr>
+	</div>

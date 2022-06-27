@@ -1,0 +1,41 @@
+<meta charset="utf-8">
+
+<!-- breadcrumb -->
+<section class="main_breadcrumb">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="breadcrumb-content">
+				<h2>My Page</h2>
+				<ul>
+					<li><a href="/">Home</a></li>
+					<li><a th:href=@{/mypage(userid=${session.user.id})}>My Page</a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</section>
+<div id="content" class="contact_page">
+
+	<div id="contact">
+		<div class="container-fluid">
+			<div class="row">
+				<div class="col-sm-2">
+					<div th:insert="${left} ? ${left} : left"> </div>
+				</div>
+
+				<div class="col-sm-10">
+					<div th:insert="${mypage_center} ? ${mypage_center} : mypage_center"></div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+
+
+	<!-- back-to-top scrtion -->
+	<div class="top_button">
+		<a class="back-to-top" style="cursor: pointer;" id="top-scrolltop"><i
+			class="fa fa-angle-up"></i></a>
+	</div>
+	<!-- back-to-top scrtion End-->

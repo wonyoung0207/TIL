@@ -51,11 +51,11 @@ BootStrap으로 구현되어있는 무료 Templat 이용하여 Nike site 를 참
 
 2. 프로젝트 환경  및 도구
 
-    ![img](/images/clip_image002.png)     
+    ![img](../images/SemiProject/clip_image002.png)     
 
 3. 사이트  정보 구조도(I.A) 
 
-   ![img](images/clip_image004-16563137541041.png)
+   ![img](../images/SemiProject/clip_image004.png)
 
 ---
 

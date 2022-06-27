@@ -1,0 +1,130 @@
+<!-- 쇼핑정보 - 주문/배송현황 클릭시 실행 -->
+
+<meta charset="UTF-8">
+<!-- 주소 API 사용  -->
+
+<style>
+h2, h3, h4, h5, h6 {
+	color: black;
+}
+
+ul {
+	padding-left: 0;
+	margin-left: 0;
+	margin-top: 10px;
+	margin-bottom: 0;
+}
+
+li {
+	display: inline-block;
+}
+
+.modal {
+	display: none;
+}
+</style>
+<script>
+function removeSelect(event){
+	var remove = confirm('정말로 삭제하시겠습니까?');// 취소를 누르면 false 리턴 
+	if(remove == false){
+		event.preventDefault();
+	}else{
+		return true;
+	}
+}
+
+	// 우편번호 찾기 찾기 화면을 넣을 element
+	var element_wrap = document.getElementById('insert_searchAddr');
+
+	function foldDaumPostcode() {
+		// iframe을 넣은 element를 안보이게 한다.
+		element_wrap.style.display = 'none';
+	};
+	function searchAddr() {
+		// 현재 scroll 위치를 저장해놓는다.
+		var currentScroll = Math.max(document.body.scrollTop,
+				document.documentElement.scrollTop);
+		new daum.Postcode({
+			oncomplete : function(data) {
+				// daum 에서 제공하는 우편번호 서비스를 이용하는 함수이다. 
+				// 팝업창으로 우편번호 검색창이 띄워지고 주소를 클릭하면 oncomplete 함수가 실행된다. 
+				// 따라서 data에는 유저가 선택한 주소의 모든 값이 들어가게 된다 
+
+				var addr = ''; // 주소 변수
+
+				if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
+					addr = data.roadAddress;
+				} else { // 사용자가 지번 주소를 선택했을 경우(J)
+					addr = data.jibunAddress;
+				}
+
+				// 우편번호와 주소 정보를 해당 필드에 넣는다.
+				// 주소 정보를 해당 필드에 넣는다.
+				document.getElementById("add_addr").value = addr;
+				// 커서를 상세주소 필드로 이동한다.
+				document.getElementById("add_addr_detail").focus();
+
+				// iframe을 넣은 element를 안보이게 한다.
+				// (autoClose:false 기능을 이용한다면, 아래 코드를 제거해야 화면에서 사라지지 않는다.)
+				element_wrap.style.display = 'none';
+				// 우편번호 찾기 화면이 보이기 이전으로 scroll 위치를 되돌린다.
+				document.body.scrollTop = currentScroll;
+			},
+			// 우편번호 찾기 화면 크기가 조정되었을때 실행할 코드를 작성하는 부분. iframe을 넣은 element의 높이값을 조정한다.
+			onresize : function(size) {
+				element_wrap.style.height = size.height + 'px';
+			},
+			width : '100%',
+			height : '100%'
+		}).embed(element_wrap);
+	};
+
+	$(document).ready(function() {
+
+
+	});
+</script>
+
+<div class="row">
+	<div class="col-sm-6">
+		<h2>배송지 관리</h2>
+
+	</div>
+	<div class="col-sm-6 text-right">
+		<div class="text-right">
+			<button class="btn" id="new_addr" onclick="location.href='addr_new'">+ 새 배송지 추가</button>
+		</div>
+	</div>
+</div>
+<hr>
+
+
+
+<div class="container-fluid" th:if="${not #lists.isEmpty(addr_list)}" th:each="addr : ${addr_list}">
+	<div class="col-sm-6 block-sm login_box">
+		<div class="row">
+			<h3 th:text="${addr.addr}">배송지 우편 주소</h3>
+			<h6 th:text="${addr.cname}">이름</h6>
+			<div class="row">
+				<div class="col-sm-3">상세주소</div>
+				<div class="col-sm-9" th:text="${addr.addr_detail}">상세주소</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-3">연락처</div>
+				<div class="col-sm-9" th:text="${addr.telphone}">연락처 내용</div>
+			</div>
+
+		</div>
+
+		<div class="row">
+			<ul class="text-left">
+				<li><a th:href="@{addr_modify(id=${addr.id})}">수정</a></li>
+				<li><span>|</span>
+				<li><a th:href="@{addr_remove(id=${addr.id})}" onclick="removeSelect(event)"> 삭제 </a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div th:unless="${not #lists.isEmpty(addr_list)}">
+	주소록이 비었습니다. 
+</div>

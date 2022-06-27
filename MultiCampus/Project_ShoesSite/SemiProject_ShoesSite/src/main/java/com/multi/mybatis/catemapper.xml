@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.multi.mapper.CateMapper">
+	
+	<select id="select" parameterType="int" resultType="cateVO">
+		SELECT * FROM CATE WHERE ID=#{id}
+	</select>
+	<select id="selectall" resultType="cateVO">
+		SELECT * FROM CATE
+	</select>
+	<insert id="insert" parameterType="cateVO">
+		INSERT INTO CATE VALUES (#{id},#{name},#{tid})
+	</insert>
+	<update id="update" parameterType="cateVO">
+		UPDATE CATE SET ID=#{id},NAME=#{name}} WHERE ID=#{id}
+	</update>
+	<delete id="delete" parameterType="int">
+		DELETE FROM CATE WHERE ID=#{id}
+	</delete>
+</mapper>

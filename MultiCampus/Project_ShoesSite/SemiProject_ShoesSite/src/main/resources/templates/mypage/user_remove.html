@@ -1,0 +1,99 @@
+<meta charset="UTF-8">
+<script>
+var current_pwd_ok = 0;
+
+function checkCurrentPwd(write_pwd){// 기존 비밀번호 확인 
+	//alert(write_pwd);
+	$.ajax({
+		url:'/checkpwd',
+		data:{
+			'write_pwd' : write_pwd
+		},
+		success:function(data){//기존pwd와 다른경우 0리턴, 같다면 1 리턴 
+			if(data == '1'){//비밀번호 같은경우 .
+				$('#current_pwd_span').html('현재 비밀번호와 같습니다. ' + '<i class="fa fa-check"></i>');
+				$('#current_pwd_span').css('color','green');
+				$('#btn_span').html('');
+				
+				current_pwd_ok = 1;
+			}else{// 비밀번호 다른경우
+				$('#current_pwd_span').html('현재 비밀번호와 다릅니다. ' + '<i class="fa fa-remove"></i>');
+				$('#current_pwd_span').css('color','red');
+				current_pwd_ok = 0;
+			}
+		}
+	});
+}
+
+
+$(document).ready(function() {
+	$('#current_pwd').blur(function(){// 현재 비밀번호 확인시 실행 
+		checkCurrentPwd($(this).val());
+	});
+	
+	$('#remove_btn').click(function(){
+		if(current_pwd_ok){// 작성한 값이 모든 조건 만족시 실행 
+			$('#removeUser_form').attr({// controller 호출 
+				'action':'user_removeimpl',
+				'method':'POST'
+			})
+			
+			$('#removeUser_form').submit();
+
+		}else{
+			$('#btn_span').html('비밀번호가 틀립니다. ' + '<i class="fa fa-remove"></i>');
+			$('#btn_span').css('color','red');
+		}
+	});
+	
+	
+	
+});
+
+</script>
+
+
+
+<div id="content"
+	class="cart_page checkout_page register_page login_page">
+	<!-- cart -->
+	<div id="register"
+		class="cart_section checkout_section register_section">
+		<div class="container-fluid" id="checkout">
+
+			<div class="row billing_and_payment_option wow fadeInDown   animated">
+				<div class="heading_wrapper wow fadeInDown animated">
+					<h2 class="wow fadeInDown animated">회원탈퇴 </h2>
+
+				</div>
+				<!-- Billing Address -->
+				<div class="login_box">
+					<h4 th:if="${msg != null}" th:text="${msg}" style="color: red"></h4>
+
+					<form class="eb-form eb-mailform form-checkout"
+						novalidate="novalidate" id="removeUser_form">
+						<div class="form-wrap">
+							비밀번호 : <span id="current_pwd_span"></span> <input
+								class="form-input form-control" id="current_pwd" type="text"
+								name="current_pwd" placeholder="기존 비밀번호">
+						</div>
+					</form>
+					<button class="btn" id="remove_btn">회원탈퇴 </button><br>
+					<span id="btn_span"></span>
+
+					<div class="clear"></div>
+				</div>
+				<!-- Delivery Address  -->
+			</div>
+			<!-- your shopping cart -->
+		</div>
+	</div>
+	<!-- cart end-->
+</div>
+
+<!-- back-to-top scrtion -->
+<div class="top_button">
+	<a class="back-to-top" style="cursor: pointer;" id="top-scrolltop"><i
+		class="fa fa-angle-up"></i></a>
+</div>
+<!-- back-to-top scrtion End-->
