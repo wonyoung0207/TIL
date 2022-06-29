@@ -1,4 +1,4 @@
-# Day54
+# Day55
 
 ---
 
@@ -17,11 +17,26 @@
      3. 서버타입 - Compact
      4. 서버 이미지 이름 - centos-7.2-64
   2. 서버 타입
+
 - putty
   - server에 접속하기 위한 도구
   - 포트 포워딩 정보를 이용해서 접속한다. 
     - Server 에 접속만 가능한 포트와 포워딩이다. 
+
 - workbench 같은 다른곳에서 접속하기 위해서는 Server에 설정되어있는 공인 IP 로 접속해야한다. 
+
+- 비공인 ip 
+
+  - 서버에서 사용되는 ip로 , **이름표** 정도로 이해하면 된다. 
+  - 클라우드 안에서의 ip 
+
+- 공인 ip 
+
+  - 전세계 어디서든 접속할 수 있는 주소 
+
+- | 0.0.0.0/0              | 1-65535                        |
+  | ---------------------- | ------------------------------ |
+  | 어떤 ip에서나 접속가능 | 1번~ 65535 까지 포트 사용 가능 |
 
 ---
 
@@ -221,6 +236,8 @@
 ## Git branch
 
 > [다중 branch 예시](https://backlog.com/git-tutorial/kr/stepup/stepup2_6.html)
+>
+> [git 특강 주소](https://url.kr/r9p3oi)
 
 ### 브렌치 개념
 
@@ -250,9 +267,9 @@
 4. git switch b1
    - 브랜치 b1으로 Head 변경
 5. b1 에서 작업 후 add , commit , push b1 -> push 할때 master가아닌 b1으로 해야함 
-6. git hub에서 'request branch ' 신청 후 수락
+6. github에서 'request branch ' 신청 후 수락
 
 ### 같은부분을 고친 branch 합치기
 
-- 만약 같은 부분을 고친 2개의 브랜치를 master로 합칠경우 error가 난다. 
-- 둘 중 어떤것을 고를것인지 git이 보여준다. 선택하면 됨 
+- 만약 같은 부분을 고친 2개의 브랜치를 master로 합칠경우 merge error가 난다. 
+- 둘 중 어떤것을 고를것인지 git이 보여준다. 선택하고 다시 merge 하면 된다. 
