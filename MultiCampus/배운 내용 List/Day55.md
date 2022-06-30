@@ -151,83 +151,99 @@
 
 ## 설치 
 
-- JDK 1.8 설치
+### JDK 1.8 설치
 
-  ```
-  yum  list  java*jdk-devel
-  yum install  java-1.8.0-openjdk-devel.x86_64
-  
-  java -version
-  ```
+```
+yum  list  java*jdk-devel
+yum install  java-1.8.0-openjdk-devel.x86_64
 
-- mysql 설치 
+java -version
+```
 
-  1. [참고 사이트 ](https://cafe.naver.com/2022webservice?iframe_url_utf8=%2FArticleRead.nhn%253Fclubid%3D30692828%2526articleid%3D317%2526referrerAllArticles%3Dtrue)
+### mysql 설치 
 
-  2. install 
+1. [참고 사이트 ](https://cafe.naver.com/2022webservice?iframe_url_utf8=%2FArticleRead.nhn%253Fclubid%3D30692828%2526articleid%3D317%2526referrerAllArticles%3Dtrue)
 
-     ```
-     1) yum install -y https://dev.mysql.com/get/mysql80-community-release-el7-5.noarch.rpm
-     
-     2) yum repolist enabled | grep "mysql.*"
-     
-     3) yum install -y mysql-server
-     
-     4) mysql -V
-     ```
+2. install 
 
-  3. Configuring Server
+   ```
+   1) yum install -y https://dev.mysql.com/get/mysql80-community-release-el7-5.noarch.rpm
+   
+   2) yum repolist enabled | grep "mysql.*"
+   
+   3) yum install -y mysql-server
+   
+   4) mysql -V
+   ```
 
-     1. start & stop
+3. Configuring Server
 
-        ```
-        systemctl enable mysqld # 재부팅 시 자동 시작하도록 설정
-        systemctl start mysqld # 서비스 시작
-        systemctl status mysqld # 서비스 구동 여부 확인
-        ```
+   1. start & stop
 
-     2. Setting root password
+      ```
+      systemctl enable mysqld # 재부팅 시 자동 시작하도록 설정
+      systemctl start mysqld # 서비스 시작
+      systemctl status mysqld # 서비스 구동 여부 확인
+      ```
 
-        ```
-        grep "temporary password" /var/log/mysqld.log
-        ```
+   2. Setting root password
 
-     3. root 로 접속 후 비밀번호 변경 ( 반드시 영문 대소, 숫자, 특수문자 들어가야함 )
+      ```
+      grep "temporary password" /var/log/mysqld.log
+      ```
 
-        ```
-        mysql -u root -p
-        
-        mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY '변경할 비밀번호';
-        mysql> exit;
-        ```
+   3. root 로 접속 후 비밀번호 변경 ( 반드시 영문 대소, 숫자, 특수문자 들어가야함 )
 
-     4. 비밀번호 정책 변경 
+      ```
+      mysql -u root -p
+      
+      mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY '변경할 비밀번호';
+      mysql> exit;
+      ```
 
-        ```
-        mysql -u root -p
-        
-        mysql> SHOW VARIABLES LIKE 'validate_password%';
-        mysql> SET GLOBAL validate_password.length = 5; # 다섯자리까지만..
-        mysql> SET GLOBAL validate_password.number_count = 0; # 숫자 필요없엉
-        mysql> SET GLOBAL validate_password.policy=LOW; # 정책 수준은 낮게..
-        mysql> SET GLOBAL validate_password.mixed_case_count = 0; # 대소문자 필요없엉
-        mysql> SET GLOBAL validate_password.special_char_count = 0; # 특수문자 필요없엉
-        ```
+   4. 비밀번호 정책 변경 
 
-     5. 사용자 생성 및 데이터베이스 생성 
+      ```
+      mysql -u root -p
+      
+      mysql> SHOW VARIABLES LIKE 'validate_password%';
+      mysql> SET GLOBAL validate_password.length = 5; # 다섯자리까지만..
+      mysql> SET GLOBAL validate_password.number_count = 0; # 숫자 필요없엉
+      mysql> SET GLOBAL validate_password.policy=LOW; # 정책 수준은 낮게..
+      mysql> SET GLOBAL validate_password.mixed_case_count = 0; # 대소문자 필요없엉
+      mysql> SET GLOBAL validate_password.special_char_count = 0; # 특수문자 필요없엉
+      ```
 
-        ```
-        mysql -u root -p
-        
-        mysql> use mysql;
-        mysql> select host, user from user;
-        
-        mysql> CREATE USER '아이디'@'%' identified by '비밀번호'; # 외부접속만 가능한 계정 생성
-        mysql> CREATE DATABASE DB이름 default character set utf8;
-        mysql> GRANT ALL PRIVILEGES ON DB이름.* to '아이디'@'%'; # 해당 DB에 대한 권한 부여
-        mysql> flush privileges; # 새로고침 똭!
-        mysql> select host,user from user; # 다시 확인
-        ```
+   5. 사용자 생성 및 데이터베이스 생성 
+
+      ```
+      mysql -u root -p
+      
+      mysql> use mysql;
+      mysql> select host, user from user;
+      
+      mysql> CREATE USER '아이디'@'%' identified by '비밀번호'; # 외부접속만 가능한 계정 생성
+      mysql> CREATE DATABASE DB이름 default character set utf8;
+      mysql> GRANT ALL PRIVILEGES ON DB이름.* to '아이디'@'%'; # 해당 DB에 대한 권한 부여
+      mysql> flush privileges; # 새로고침 똭!
+      mysql> select host,user from user; # 다시 확인
+      ```
+
+### mysql 삭제
+
+1. mysql stop 하기
+   systemctl stop mysqld
+
+2. version 확인
+   yum list installed | grep mysql
+
+3. 삭제
+   yum remove -y mysql-community-*
+
+4. dir 삭제
+   cd /var/lib
+   mysql 관련 dir 삭제
+   rm -rf mysql
 
 
 ---
