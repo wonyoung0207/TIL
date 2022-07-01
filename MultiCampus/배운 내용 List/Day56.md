@@ -46,7 +46,7 @@
 1. CMD로 서버에 파일 저장 
 
    - scp -P 60003 day05-1.war root@27.96.128.120:/root
-   - 포워딩 ip (공인 ip 아님) 를 이용해서 /root에 파일을 저장한다. 
+   - 공인 ip 를 이용해서 /root에 파일을 저장한다. 
 
 2. apache-tomcat의 webapps 에 파일 복사 
 

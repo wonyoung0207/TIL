@@ -5,6 +5,8 @@
 > NCP (Naver Cloud Platform)
 >
 > [Final Project 브레인 스토밍](https://minsiks.notion.site/minsiks/Multi-Cam-Final-Project-1feec3f3a5f54f0db4c4e097220f0aab) 
+>
+> [MySQL] sql_mode=only_full_group_by 에러 해결
 
 # MY SQL 제약조건
 
@@ -13,6 +15,17 @@
 # Kakao Map 사용시 설정 조건
 
 - kakao developers  에서 ' 내 애플리케이션 - MultiCapus - Web - 사이트 도매인' 에 공인 ip 추가해야함 
+
+## [MySQL] sql_mode=only_full_group_by 에러 해결
+
+1. putty에 접속후 mysql 로 들거간다. 
+
+2. /etc/my.conf   파일 수정
+
+   ``` 
+   sql_mode=STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION
+   ```
+
 
 # Final Project 
 
@@ -99,3 +112,4 @@
   - 쿠폰
     - DB table / 쿠폰번호, 사용 기간, 쿠폰 타입
   - 적립금
+
