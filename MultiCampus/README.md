@@ -65,9 +65,35 @@
 - [Day39](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day39.md) : shoppingdb에 있는 4개의 테이블 (cust, product, cate, cart) 의 CRUD 구현 , 일반계정과 Admin 계정 나누기 시작 
 - [Day40](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day40.md) : shoppingdb 의 Customer (Select, Add), Cate(Select, Add) 구현 , ajax, thyemleaf 함수, jquery를 사용해 구현, **Thymeleaf 이용 javaScript 에서 model 객체 사용 방법**
 - [Day41](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day41.md) :  select 태그에 조건 걸어서 보이는 값과 보내지는 값을 다르게 설정, 서버 파일 올리는 방법, bootstrap padding margin 조절 방법, img 경로를 thymeleaf로 설정
-- [Day42](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day42.md) :
-- [Day43](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day43.md) :
-- 
+- [Day42](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day42.md) : login, search , char 기능 구현 . 이미지 저장 
+- [Day43](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day43.md) : 이미지 저장시 필요한 Util 파일 유동적으로 수정 . 세미프로젝트 1일차. ( 쇼핑몰 제작시 참고할 사이트 브레인스토밍 )
+- [Day44](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day44.md) : Modal 이용해서 cart 만들기 . 세미프로젝트 2일차 ( 쇼핑몰 주제 선정 : 나이키 사이트와 비슷한 신발 쇼핑몰 , 템플릿 결정 , 카테고리 설정 )
+- [Day45](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day45.md) : 세미프로젝트 3일차 ( ERD 설계 , 역할분담 결정 , 구현기능 결정 , 필요한 DDL, DML 문 작성 )
+- [Day46](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day46.md) : 세미프로젝트 4일차 ( ERD 완성 , 환경 Setting, DDL , DML 완성 )
+- [Day47](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day47.md) : Kakao 주소API( 우편번호 ) 사용 . 정규표현식 정의 및 사용방법 (전화번호 정규표현식)
+- [Day48](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day48.md) : 세미프로젝트 5일차 ( Login , Register 기능에 정규표현식 구현  ), Script와 css 경로를 절대경로로 수정 . 
+- [Day49](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day49.md) : Mybatis Logger 남기기, 세미프로젝트 6일차 ( bootstrap i 태그 및 SQL inner join 사용 )
+- [Day50](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day50.md) : 세미프로젝트 7일차 ( java에서 Date 비교 , 날짜 빼기 ,thymleaf 에서 each 문 사용시 숫자로 반복문 돌리는 방법 - #numbers.sequence() 함수 사용 )
+- [Day51](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day51.md) : 세미프로젝트 8일차 ( Mypage 개발 - a태그 동작 막기, onclick 으로 함수에 thymeleaf 값 전달하기 )
+- [Day52](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day52.md) : 세미프로젝트 9일차 ( Mypage 개발 - thymeleaf 값 전달 ,  ppt 템플릿 선택 )
+- [Day53](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day53.md) : 세미프로젝트 마무리 ( 내가 개발한 내용 정리 )
+- Project
+  - [Nice ShoppingMall]() : 
+
+
+# NCP ( Naver Cloud Platform )
+
+- [Day54](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day54.md) : NCP 사용법
+- [Day55](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day55.md) : NCP 서버 생성 및 putty 접속, 리눅스 명령어 정리 , 리눅스에 JDK, mysql 설치, Git branch 개념 공부 
+- [Day56](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day56.md) : 리눅스 Apach Tomcat server 설치, 파일 서버로 올리기 , 서버 구동 시키는 방법 , workbanch 설정방법 , 파이널 프로젝트 1일차 ( 주제 정하기 )
+- [Day57](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day57.md) : 카카오멥 사용시 설정 조건 , 리눅스의 Mysql 에서 group by 인식 불가 에러 처리 방법 , 파이널 프로젝트 2일차 ( 주제 1안 2안 3안 결정 )
+- [Day58](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day58.md) : 파이널 프로젝트 3일차 ( 사용 템플릿 찾기 , )
+- [Day59](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day59.md) : 멘토링 1일차( 질문 및 답변 정리 ) , 파이널 프로젝트 4일차 ( 주제 변경 : 영화관 , 템플릿 결정, 페이지 구성 결정  )
+- [Day60](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day60.md) :
+- [Day61](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day61.md) :
+- [Day62](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day63.md) :
+- [Day53](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day53.md) :
+- [Day64](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day64.md) :
 
 # 특강
 

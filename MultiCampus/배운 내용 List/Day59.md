@@ -5,6 +5,8 @@
 > 멘토링 : 박재진 
 >
 > [Final Project 브레인 스토밍](https://minsiks.notion.site/minsiks/Multi-Cam-Final-Project-1feec3f3a5f54f0db4c4e097220f0aab) 
+>
+> Final Project 주제 및 페이지 구성 결정 
 
 # 멘토링 질문
 
