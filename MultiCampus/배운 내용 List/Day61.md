@@ -2,8 +2,9 @@
 
 ---
 
-> NCP ( CLOVA OCR 사용 - 문자 판독기 )
+> NCP ( papago ( 언어 번역기 ) , CFR ( 얼굴 인식기 ))
 >
+> 입력한 단어로 구글 search 이용 
 
 # NCP
 
@@ -84,7 +85,7 @@ public class NaverAPI {
   - 닮은 유명인 검색
   - 얼굴의 표정을 인식하여 기쁜지 슬픈지 등 감정을 판단.
 
--  닮은 유명인 검색 
+- 닮은 유명인 검색 
 
   ```java
   @Test
@@ -269,7 +270,7 @@ public class NaverAPI {
 4. 쿠폰 사용 유무에 따라 삭제 or true/false
 5. AiTEMS 사용법
 
-## 2. 기획완 완성
+### 기획완 완성
 
 [파이널프로젝트 기획안 4조.docx - Google Docs](https://docs.google.com/document/d/1MbLavEHwsvxEfyyYkqMv0_yCHno2QccQ/edit)
 
@@ -277,5 +278,25 @@ public class NaverAPI {
 - 챗봇 기능 제외
 - 성인인증 API 제외
 
+# google search 이용
 
+- html 로 입력받은 단어를 google 검색을 통해 보여준다. 
+- [참고 사이트 ](https://codemate.kr/@kjw5394/HTMLCSS-12.-%EA%B2%80%EC%83%89-%EA%B8%B0%EB%8A%A5-%EA%B5%AC%ED%98%84)
+- 이용 방법 
+  - "google.com/search?q=" 을 이용해야한다. 
+  - google은 q 에 검색하는 언어가 들어간다. 
 
+1. form 이용
+
+   ```html
+   <form action="https://www.google.com/search" method="GET">
+   	<input name="q" type="text">
+   	<input type="submit">
+   </form>
+   ```
+
+2. a 태그 이용 
+
+   ```html
+   <a href="https://www.google.com/search?q=김밥" target="_blank">김밥 새창에서 검색 </a>
+   ```

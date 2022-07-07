@@ -2,7 +2,7 @@
 
 ---
 
-> NCP ( CLOVA OCR 사용 - 문자 판독기 )
+> NCP ( kakaomap 을 이용한 맛집, fitness 등을 검색 )
 >
 > JSON 데이터 정제 방법 
 
