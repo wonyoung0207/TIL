@@ -99,4 +99,5 @@
 
 - [GitHub](https://github.com/wonyoung0207/TIL/tree/master/GitHub)
 - [Notion](https://github.com/wonyoung0207/TIL/blob/master/Notion/Notion.md)
-- [취업에 필요한 로드멥](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/%EA%B0%9C%EB%B0%9C%EC%9E%90%EB%A1%9C%20%EC%B7%A8%EC%97%85%ED%95%98%EA%B8%B0%20%EC%9C%84%ED%95%9C%20%EB%A1%9C%EB%93%9C%EB%A7%B5_%ED%8A%B9%EA%B0%95)
+- [취업에 필요한 로드멥](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/%ED%8A%B9%EA%B0%95)
+- [면접특강](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/%ED%8A%B9%EA%B0%95)
