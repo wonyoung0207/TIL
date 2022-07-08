@@ -8,19 +8,21 @@
 >
 > MOOC 활용법
 >
-> [특강 정리 사이트](https://hphk.notion.site/c06ba1d2551541beb3426065da0c8397)
+> [채용 특강 정리 사이트](https://hphk.notion.site/c06ba1d2551541beb3426065da0c8397)
+>
+> [면접특강 정리 사이트 ]()
 
 ---
 
-## 1. [채용공고 정리](https://github.com/wonyoung0207/TIL/tree/master/JAVA/MultiCampus/개발자로%20취업하기%20위한%20로드맵_특강/채용공고%20정리.md)
+## 1. [채용공고 정리](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%ED%8A%B9%EA%B0%95/%EC%B1%84%EC%9A%A9%EA%B3%B5%EA%B3%A0%20%EC%A0%95%EB%A6%AC.md)
 
-## 2. [자기소개서 분석](https://github.com/wonyoung0207/TIL/tree/master/JAVA/MultiCampus/개발자로%20취업하기%20위한%20로드맵_특강/자기소개서%20분석.md)
+## 2. [자기소개서 분석](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%ED%8A%B9%EA%B0%95/%EC%9E%90%EA%B8%B0%EC%86%8C%EA%B0%9C%EC%84%9C%20%EB%B6%84%EC%84%9D.md)
 
-## 3. [희망직군_백엔드 ](https://github.com/wonyoung0207/TIL/blob/master/JAVA/MultiCampus/개발자로%20취업하기%20위한%20로드맵_특강/희망직군_백엔드.md)
+## 3. [희망직군_백엔드 ](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%ED%8A%B9%EA%B0%95/%ED%9D%AC%EB%A7%9D%EC%A7%81%EA%B5%B0_%EB%B0%B1%EC%97%94%EB%93%9C.md)
 
-## 4. [면접 특강]()
+## 4. [면접 특강](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%ED%8A%B9%EA%B0%95/%EB%A9%B4%EC%A0%91%ED%8A%B9%EA%B0%95.md)
 
-## 5. [면접 질문]()
+## 5. [면접 질문](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%ED%8A%B9%EA%B0%95/%EB%A9%B4%EC%A0%91%EC%A7%88%EB%AC%B8.md)
 
 ---
 
