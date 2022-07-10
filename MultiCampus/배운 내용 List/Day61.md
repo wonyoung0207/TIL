@@ -162,9 +162,9 @@ public class NaverAPI {
 
   - 마동석 이미지를 넣었을 경우 결과 출력물 
 
-    - ```
-      {"info":{"size":{"width":559,"height":373},"faceCount":1},"faces":[{"celebrity":{"value":"마동석","confidence":1.0}}]}
-      ```
+    ```
+    {"info":{"size":{"width":559,"height":373},"faceCount":1},"faces":[{"celebrity":{"value":"마동석","confidence":1.0}}]}
+    ```
 
     - confidence 가 정확도임 
 

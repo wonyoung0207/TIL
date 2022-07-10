@@ -89,10 +89,10 @@
 - [Day57](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day57.md) : 카카오멥 사용시 설정 조건 , 리눅스의 Mysql 에서 group by 인식 불가 에러 처리 방법 , 파이널 프로젝트 2일차 ( 주제 1안 2안 3안 결정 )
 - [Day58](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day58.md) : 파이널 프로젝트 3일차 ( 사용 템플릿 찾기 , )
 - [Day59](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day59.md) : 멘토링 1일차( 질문 및 답변 정리 ) , 파이널 프로젝트 4일차 ( 주제 변경 : 영화관 , 템플릿 결정, 페이지 구성 결정  )
-- [Day60](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day60.md) :
-- [Day61](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day61.md) :
-- [Day62](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day63.md) :
-- [Day53](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day53.md) :
+- [Day60](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day60.md) : kakaomap 을 이용한 맛집, fitness등을 검색 , JSON 데이터 정제 방법 
+- [Day61](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day61.md) : NCP 이용 Papago (언어번역기), CFR (얼굴 인식기) 이용, 입력한 단어로 구글 search 기능 이용 
+- [Day62](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day63.md) : Final Project 5일차 ( ERD 완성 및 DDL , DML 문 작성 )
+- [Day63](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day63.md) :
 - [Day64](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day64.md) :
 
 # 특강
