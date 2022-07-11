@@ -91,11 +91,11 @@ ALTER TABLE seat ADD CONSTRAINT PRIMARY KEY(id);
 
 CREATE TABLE theater(
     id INT,
-    tid VARCHAR(5),
+    seatid VARCHAR(5),
    capacity INT
 );
 ALTER TABLE theater ADD CONSTRAINT PRIMARY KEY(id);
-ALTER TABLE theater ADD CONSTRAINT FOREIGN KEY(tid) REFERENCES seat(id);
+ALTER TABLE theater ADD CONSTRAINT FOREIGN KEY(seatid) REFERENCES seat(id);
 
 -- SCHEDULES TABLE
 
@@ -129,7 +129,7 @@ CREATE TABLE detail_reservation(
     sid INT,
     purchasedate DATE,
     mcnt INT,
-    seatno VARCHAR(10)
+    seatid VARCHAR(10)
 );
 ALTER TABLE detail_reservation ADD CONSTRAINT PRIMARY KEY(id);
 
@@ -175,3 +175,5 @@ ALTER TABLE mycoupon AUTO_INCREMENT = 7000;
 ALTER TABLE mycoupon ADD CONSTRAINT FOREIGN KEY (uid) REFERENCES cust (id);
 ALTER TABLE mycoupon ADD CONSTRAINT FOREIGN KEY (cid) REFERENCES coupon (id);
 
+
+    

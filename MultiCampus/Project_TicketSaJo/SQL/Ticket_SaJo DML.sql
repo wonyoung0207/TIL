@@ -330,6 +330,7 @@ INSERT INTO coupon VALUES ('event03', 3000);
 INSERT INTO coupon VALUES ('event04', 4000);
 INSERT INTO coupon VALUES ('event05', 5000);
 INSERT INTO coupon VALUES ('event06', 6000);
+INSERT INTO coupon VALUES ('event07', 7000);
 SELECT * FROM coupon;
 
 
@@ -342,7 +343,6 @@ INSERT INTO mycoupon VALUES (NULL,'kms', 'event04',false, sysdate(), sysdate());
 INSERT INTO mycoupon VALUES (NULL,'kms', 'event05',true, NULL, sysdate());
 INSERT INTO mycoupon VALUES (NULL,'kms', 'event06',true, NULL, sysdate());
 SELECT * FROM mycoupon;
-
 
 
 

@@ -91,9 +91,9 @@
 - [Day59](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day59.md) : 멘토링 1일차( 질문 및 답변 정리 ) , 파이널 프로젝트 4일차 ( 주제 변경 : 영화관 , 템플릿 결정, 페이지 구성 결정  )
 - [Day60](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day60.md) : kakaomap 을 이용한 맛집, fitness등을 검색 , JSON 데이터 정제 방법 
 - [Day61](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day61.md) : NCP 이용 Papago (언어번역기), CFR (얼굴 인식기) 이용, 입력한 단어로 구글 search 기능 이용 
-- [Day62](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day63.md) : Final Project 5일차 ( ERD 완성 및 DDL , DML 문 작성 )
-- [Day63](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day63.md) :
+- [Day62](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day62.md) : Final Project 5일차 ( ERD 완성 및 DDL , DML 문 작성 )
 - [Day64](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day64.md) :
+- [Day65](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day65.md) :
 
 # 특강
 
