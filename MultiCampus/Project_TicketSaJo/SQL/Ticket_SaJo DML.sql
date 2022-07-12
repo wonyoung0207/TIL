@@ -6,7 +6,7 @@ INSERT INTO genre (id, name, tid) VALUES(20,'판타지',null);
 INSERT INTO genre (id, name, tid) VALUES(21,'판타지/모험',20);
 INSERT INTO genre (id, name, tid) VALUES(22,'판타지/SF',20);
 INSERT INTO genre (id, name, tid) VALUES(30,'공포',null);
-INSERT INTO genre (id, name, tid) VALUES(31,'공포/스릴러',null);
+INSERT INTO genre (id, name, tid) VALUES(31,'공포/스릴러',30);
 
 SELECT * FROM genre;
 
