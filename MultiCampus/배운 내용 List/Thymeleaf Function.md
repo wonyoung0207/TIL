@@ -166,3 +166,9 @@ function update_num(c,count) {
 <div th:unless="${not #lists.isEmpty(addr_list)}">
 ```
 
+## javascript 안에서 thymeleaf 사용
+
+```javascript
+var id = [[${session.loginid}]];
+```
+
