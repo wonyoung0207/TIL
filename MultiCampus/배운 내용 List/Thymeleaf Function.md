@@ -172,3 +172,12 @@ function update_num(c,count) {
 var id = [[${session.loginid}]];
 ```
 
+## 반복문에서 index 뽑기
+
+```html
+<div class="movie-beta__item third--item" th:each="movie,index : ${starSortList}">
+    <p th:text="${movie.rcnt} + ' Comments '"></p>
+    <p th:text="${index.index}"></p><!--0부터 시작  -->
+</div>
+```
+

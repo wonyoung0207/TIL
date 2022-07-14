@@ -46,7 +46,7 @@ GROUP BY mid;
 
 SELECT m.id, m.gid, m.title, m.director, m.mainactor, m.releasedate, m.posterimg1, m.posterimg2, m.country, m.runningtime, m.text,
 g.name as gname, g.tid as hgid,
-ROUND(AVG(r.star),1) as star ,COUNT(mid) as reviewcnt
+ROUND(AVG(r.star),1) as star ,COUNT(mid) as rcnt
 FROM movie m
 INNER JOIN genre g ON m.gid=g.id
 INNER JOIN reviews r ON r.mid=m.id
@@ -54,8 +54,21 @@ GROUP BY m.id
 ORDER BY star DESC
 LIMIT 0, 6;
 
+-- 오늘 상영하는 영화 
+SELECT * FROM schedules
+WHERE sdate = DATE_FORMAT(sysdate(), '%Y-%m-%d');
+-- INSERT INTO schedules VALUES (null,1,1000,sysdate());
 
-
+SELECT m.id, m.gid, m.title, m.director, m.mainactor, m.releasedate, m.posterimg1, m.posterimg2, m.country, m.runningtime, m.text,
+g.name as gname, g.tid as hgid,
+ROUND(AVG(r.star),1) as star,
+s.id as sid, s.sdate as sdate
+FROM movie m
+INNER JOIN schedules s ON s.mid=m.id
+INNER JOIN genre g ON m.gid=g.id
+INNER JOIN reviews r ON r.mid=m.id
+WHERE s.sdate = DATE_FORMAT(sysdate(), '%Y-%m-%d')
+GROUP BY m.id;
 
 
 SELECT * FROM theater;
