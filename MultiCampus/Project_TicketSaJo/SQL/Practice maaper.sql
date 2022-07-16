@@ -87,6 +87,35 @@ select * FROM(
 ) m
 LIMIT 0, 3;
 
+-- review rank 페이지 
+SELECT m.id, m.gid, m.title, m.director, m.mainactor, m.releasedate,
+m.posterimg1, m.posterimg2, m.country, m.runningtime, m.text,
+g.name as gname, g.tid as hgid,
+ROUND(AVG(r.star),1) as star ,COUNT(mid) as rcnt
+FROM movie m
+INNER JOIN genre g ON m.gid=g.id
+INNER JOIN reviews r ON r.mid=m.id
+GROUP BY id
+ORDER BY star DESC
+LIMIT 3,3;
+-- 시작위치 , 반환갯수 
+
+-- 갯수 구하기 
+SELECT COUNT(*) FROM (
+SELECT m.id, ROUND(AVG(r.star),1) as star 
+FROM movie m
+INNER JOIN reviews r ON r.mid=m.id
+GROUP BY id) c;
+
+
+SELECT m.id, m.gid, m.title, m.director, m.mainactor, m.releasedate,
+m.posterimg1, m.posterimg2, m.country, m.runningtime, m.text,
+ROUND(AVG(r.star),1) as star ,COUNT(mid) as rcnt, COUNT(m.id) as cnt
+FROM movie m
+INNER JOIN reviews r ON r.mid=m.id
+GROUP BY id;
+
+
 -- review rank
 SELECT m.id, m.gid, m.title, m.director, m.mainactor, m.releasedate,
 m.posterimg1, m.posterimg2, m.country, m.runningtime, m.text,
@@ -99,6 +128,9 @@ INNER JOIN reviews r ON r.mid=m.id
 GROUP BY id
 ORDER BY star DESC;
         
+
+-- 영화별 나이별
+
         
 SELECT * FROM theater;
 SELECT * FROM schedules;

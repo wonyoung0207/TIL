@@ -2,6 +2,7 @@
 INSERT INTO genre (id, name, tid) VALUES(10,'로맨스',null);
 INSERT INTO genre (id, name, tid) VALUES(11,'로맨스/코미디',10);
 INSERT INTO genre (id, name, tid) VALUES(12,'로맨스/전쟁',10);
+INSERT INTO genre (id, name, tid) VALUES(13,'로맨스/드라마',10);
 INSERT INTO genre (id, name, tid) VALUES(20,'판타지',null);
 INSERT INTO genre (id, name, tid) VALUES(21,'판타지/모험',20);
 INSERT INTO genre (id, name, tid) VALUES(22,'판타지/SF',20);
@@ -11,7 +12,6 @@ INSERT INTO genre (id, name, tid) VALUES(40,'드라마',null);
 INSERT INTO genre (id, name, tid) VALUES(41,'드라마/범죄',40);
 INSERT INTO genre (id, name, tid) VALUES(42,'드라마/모험',40);
 
-INSERT INTO genre (id, name, tid) VALUES(13,'로맨스/드라마',10);
 SELECT * FROM genre;
 
 
@@ -55,9 +55,7 @@ INSERT INTO movie VALUES (null, 41,'라쇼몽','Kurosawa Akira','Toshiro Mifune,
 INSERT INTO movie VALUES (null, 31,'벤허','William Wyler','Charlton Heston',19591118,'benhurimg1.jpg','benhurimg2.jpg','일본','88m','복수와 용서, 구원에 관한 스펙터클 클래식 <벤허> 역사상 가장 품격 있는 명작의 귀환! 서기 26년, 로마 제국 시대 ‘유다 벤허’(찰톤 헤스톤)는 예루살렘의 제일 가는 유태 귀족이다. 어느날, 로마의 지배하에 있던 이스라엘에 새로운 총독이 부임해오고, 그를 보좌하는 주둔 사령관으로 벤허의 옛 친구인 멧살라(스티븐 보이드)가 임명된다. ');
 INSERT INTO movie VALUES (null, 13,'서울의 지붕 밑','이형표','김승호, 김진규, 최은희',19611215,'seoulimg1.jpg','seoulimg2.jpg','한국','115m','서울의 한 동네에서 한의원을 운영하는 김학규(김승호)는 건너편에 생긴 산부인과로 손님을 많이 빼앗겨 골이 나 있다. 그의 딸인 미장원을 운영하는 젊은 미망인인 현옥(최은희)은 산부인과 의사 최두열(김진규)과 좋은 감정을 나누고 있지만, 김학규는 최두열을 시기하고 질투하여 그 둘의 사이를 사사건건 훼방 놓으려 한다. 대학을 나왔으나 취직을 못하고 있는 아들 현구(신영균)는 점례를 임신시켜 결혼하려고 하나, 김학규는 점례가 동네 주막 여주인(황정순)의 딸이라며 반대한다. 어느 날 최두열이 시의원 선거에 나간다는 소식을 접한 김학규는 입후보하고 전 재산을 투자해 선거에 몰두하지만 결국 낙선의 고배를 마신다. 쓸데없는 아집으로 가사를 탕진한 김학규는 자신의 잘못을 뉘우치고 현구와 점례를 받아들이고 현옥과 두열의 관계도 승낙한다.');
 INSERT INTO movie VALUES (null, 41,'시계 태엽 오렌지','Stanley Kubrick','Malcolm McDowell,Patrick Magee',19711219,'clockimg1.jpg','clockimg2.jpg','영국','136m','노숙자 폭행, 집단 싸움, 차량 절도, 주택 침입… 10대 소년 ‘알렉스’는 친구들과 어울려 극악한 비행을 저지르고 다닌다.어느 때와 다름없이 한 저택에 침입해 주인과 싸우고 달아나려던 순간 경찰에 검거된다. 살인죄가 적용되어 14년 형을 살게 된 ‘알렉스’.');
-
-
-
+Select * from movie;
 
 -- cust Insert
 INSERT INTO cust VALUES ('kms', 'pwd01', '김민식', 19900805, '1000', 'man');
@@ -69,13 +67,19 @@ SELECT * FROM cust;
 
 
 -- review Insert
-INSERT INTO reviews VALUES (6000, 'kms', 1000, 1, '좋다', '2022-07-08');
-INSERT INTO reviews VALUES (6001, 'awy', 1001, 2, '재밌다', '2022-07-02' );
-INSERT INTO reviews VALUES (6002, 'jhj', 1002, 3, '지겹다', '2022-04-08');
-INSERT INTO reviews VALUES (6003, 'jsy', 1003, 4, '잠이 온다', '2022-04-04');
-INSERT INTO reviews VALUES (6004, 'ljm', 1004, 5, '즐겁다', '2022-01-08');
+INSERT INTO reviews VALUES (null, 'kms', 1000, 1, '좋다', '2022-07-08');
+INSERT INTO reviews VALUES (null, 'awy', 1001, 2, '재밌다', '2022-07-02' );
+INSERT INTO reviews VALUES (null, 'jhj', 1002, 3, '지겹다', '2022-04-08');
+INSERT INTO reviews VALUES (null, 'jsy', 1003, 4, '잠이 온다', '2022-04-04');
+INSERT INTO reviews VALUES (null, 'ljm', 1004, 5, '즐겁다', '2022-01-08');
+INSERT INTO reviews VALUES (null, 'kms', 1000, 4, '명작입니다.', '2022-07-08');
+INSERT INTO reviews VALUES (null, 'awy', 1005, 1, '너무 졸려요', '2022-07-08');
+INSERT INTO reviews VALUES (null, 'ljm', 1004, 2, '생각보다는 별로', '2022-07-02' );
+INSERT INTO reviews VALUES (null, 'jsy', 1001, 3, '지겹다', '2022-04-08');
+INSERT INTO reviews VALUES (null, 'kms', 1002, 4, '기대보다 훨씬 재밌어요', '2022-04-04');
+INSERT INTO reviews VALUES (null, 'jhj', 1003, 5, '최고의 명작', '2022-01-08');
+INSERT INTO reviews VALUES (null, 'jhj', 1000, 4, '그럭저럭 재밌습니다.', '2022-07-08');
 SELECT * FROM reviews;
-
 
 
 -- pointlist Insert
@@ -356,7 +360,6 @@ INSERT INTO coupon VALUES ('event03', 3000);
 INSERT INTO coupon VALUES ('event04', 4000);
 INSERT INTO coupon VALUES ('event05', 5000);
 INSERT INTO coupon VALUES ('event06', 6000);
-INSERT INTO coupon VALUES ('event07', 7000);
 SELECT * FROM coupon;
 
 
