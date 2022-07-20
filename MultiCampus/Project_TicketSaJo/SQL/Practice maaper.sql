@@ -129,8 +129,8 @@ GROUP BY id
 ORDER BY star DESC;
         
 
--- 영화별 나이별
-
+-- 영수증 적립금 추가 
+INSERT INTO pointlist VALUES (null, 'awy', -500, sysdate(), '쿠폰5');
         
 SELECT * FROM theater;
 SELECT * FROM schedules;
@@ -139,3 +139,4 @@ SELECT * FROM reviews;
 SELECT * FROM movie;
 SELECT * FROM genre;
 SELECT * FROM cust;
+SELECT * FROM pointlist;
