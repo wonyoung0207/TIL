@@ -181,3 +181,21 @@ var id = [[${session.loginid}]];
 </div>
 ```
 
+## JavaScript에서 Thymeleaf 사용하기
+
+```javascript
+// javascript에서 thymeleaf 사용하기 위해서는 script태그에 th:inline="javascript" 를 사용해 thymeleaf 를 사용하겠다고 명시해야 한다. 
+// 또한 스크립트 내에 '  /*<![CDTATA[*/ /*]]>*/   '를 명시해주어야 하며 타임 리프 변수도 '  /*[[]]*/  '로 감싸주어야 한다.
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+    function search() {
+        const searchWord = document.getElementById('searchWord').value;
+        const page = /*[[${paging.page}]]*/;
+
+        location.href='list?page=' + page + '&searchWord=' + searchWord;
+    }
+    /*]]>*/
+</script>
+```
+
