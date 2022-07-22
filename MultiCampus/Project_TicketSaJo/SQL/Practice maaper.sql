@@ -132,6 +132,16 @@ ORDER BY star DESC;
 -- 영수증 적립금 추가 
 INSERT INTO pointlist VALUES (null, 'awy', -500, sysdate(), '쿠폰5');
         
+        
+        
+        
+-- 쿠폰 할인가격 순 정렬
+SELECT * FROM coupon ORDER BY sale;        
+        
+        
+-- 유저의 쿠폰 유무 확인 
+SELECT * FROM mycoupon where uid='kms' and cid='8004';
+        
 SELECT * FROM theater;
 SELECT * FROM schedules;
 SELECT * FROM detail_schedules;
@@ -139,4 +149,6 @@ SELECT * FROM reviews;
 SELECT * FROM movie;
 SELECT * FROM genre;
 SELECT * FROM cust;
+SELECT * FROM coupon;
+SELECT * FROM mycoupon;
 SELECT * FROM pointlist;

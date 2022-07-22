@@ -13,6 +13,8 @@
 >쿠폰기능 
 >
 >Thymeleaf를 JavaScript에서 사용하기
+>
+>modal 이용 가이드 
 
 ## 쿠폰
 

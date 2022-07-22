@@ -30,7 +30,8 @@
 
 ## 파일 서버로 올리기
 
-- scp -P [외부 포트번호] a.zip root@[포트포워딩ip]:/root
+- cmd 에서 해당 명령어 사용  ,NCP 공인 IP 필요.
+- scp -P [외부 포트번호] a.zip root@[공인IP]:/root
   - ex) scp -P 60003 day05.war root@27.96.128.120:/root
 
 ## Workbench 설정
@@ -74,6 +75,7 @@
      
      ```
      mv day05 ROOT
+     //mv 기존파일명 바꿀파일명
      ```
 
 6. 서버 다운
