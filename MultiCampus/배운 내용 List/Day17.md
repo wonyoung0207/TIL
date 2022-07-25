@@ -123,14 +123,24 @@
         + ```sql
           # 오늘 날짜를 기준으로 몇일이 지났는지 날짜1- 날짜2 의 일수를 계산 
           SELECT mdate, DATEDIFF(NOW(), mDate) FROM usertbl;
-          
           # 오늘 날짜를 기준으로 몇달이 지났는지 날짜1- 날짜2 의 개월 수를 구한다. 
           # 이 함수를 사용하려면 형태가 YYYYmm 이여야 한다. 
+          
+          ## 사용 예시 
           SELECT mdate,DATE_FORMAT(mdate,'%Y%m')  FROM usertbl;
           SELECT mdate, 
           period_diff(DATE_FORMAT(NOW(),'%Y%m') , 
           date_format(mDate,'%Y%m'))
           FROM usertbl;
+          
+          # %Y = 4자리 년도 , %y = 2자리 년도  
+          # %m = 숫자 월 ( 두자리 ) , %M = 긴 월(영문)
+          # %b = 짧은 월(영문) , %c = 숫자 월(한자리는 한자리)   
+          # %d = 일자 (두자리) ,  %e = 일자(한자리는 한자리)  
+          # %W = 긴 요일 이름(영문)  ,  %a = 짧은 요일 이름(영문)  
+          # %I = 시간 (12시간) , # %H = 시간(24시간) 
+          # %i = 분 
+          # %r = hh:mm:ss AM,PM 
           ```
 
 ## 2. **ALTER** 문

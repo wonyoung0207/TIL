@@ -199,3 +199,16 @@ var id = [[${session.loginid}]];
 </script>
 ```
 
+## Select 태그 사용
+
+```html
+<!-- select 태그에 thymleaf를 사용할때는 ${} 안의 값에 ? 를 꼭 붙여줘야한다.  --> 
+<!-- utext : 사용자에게 보이는 값 , value : 전송시 보내지는 값  --> 
+<select th:onchange="totalPrice([[${price}]])" id="selectCoupon">
+    <option value="선택"> 선택 </option>
+    <option th:each="mycoupon,index : ${mycouponlist}" 
+            th:value="${mycoupon?.sale}" th:id="'coupon '+${mycoupon.id}" th:utext="${mycoupon?.text}+'( '+${mycoupon?.sale}+'원 )'"
+            ></option>
+</select>
+```
+

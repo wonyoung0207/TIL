@@ -1,4 +1,4 @@
-# Day72
+# Day73
 
 ---
 
@@ -63,6 +63,23 @@
   
       return "redirect:/"+pageArr[pageArr.length-1];
   }
+  ```
+
+
+## Controller 에서 다른 Controller 호출
+
+- 컨트롤러에서 다른 컨트롤러를 호출하기 위해서 "redirect: " 를 이용할 수 있다. 
+
+- redirect 는 새로고침 기능으로도 쓰이지만 url을 변경하여 해당 페이지를 호출하는데에도 쓰인다. 
+
+  ```java
+  @RequestMapping("/signinimpl")
+  public String signinimpl(Model m) {
+      
+      // retrun "index"; // 이렇게 하면 springboot가 자동으로 resource/templates 경로에 있는 index.html 파일을 호출한다. 
+      return "redirect:/siginok"; // return 으로 redirect 를 사용하면 url 을 새로고침하는 것이기 때문에 Controller에서 /siginok 을 Mapping 하고있는 곳을 호출한다. 
+  }
+  
   ```
 
   

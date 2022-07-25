@@ -141,6 +141,18 @@ SELECT * FROM coupon ORDER BY sale;
         
 -- 유저의 쿠폰 유무 확인 
 SELECT * FROM mycoupon where uid='kms' and cid='8004';
+
+-- 쿠폰 이벤트 날짜 확인 
+SELECT * FROM coupon 
+WHERE date_format(sysdate(),'%Y%m%d') >= sdate
+and date_format(sysdate(),'%Y%m%d') <= edate
+ORDER BY sale;
+
+-- 쿠폰 사용여부 + 사용기간 
+SELECT mc.id, mc.uid, mc.cid, mc.used, mc.udate, mc.rdate,
+c.name as cname, c.edate, c.sale, c.text
+FROM mycoupon as mc
+INNER JOIN coupon as c ON mc.cid=c.id;
         
 SELECT * FROM theater;
 SELECT * FROM schedules;
