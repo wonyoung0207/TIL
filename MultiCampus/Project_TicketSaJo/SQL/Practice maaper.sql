@@ -150,9 +150,13 @@ ORDER BY sale;
 
 -- 쿠폰 사용여부 + 사용기간 
 SELECT mc.id, mc.uid, mc.cid, mc.used, mc.udate, mc.rdate,
-c.name as cname, c.edate, c.sale, c.text
+c.name as cname, c.sdate, c.edate, c.sale, c.text
 FROM mycoupon as mc
-INNER JOIN coupon as c ON mc.cid=c.id;
+INNER JOIN coupon as c ON mc.cid=c.id
+WHERE date_format(sysdate(),'%Y%m%d') >= sdate
+and date_format(sysdate(),'%Y%m%d') <= edate
+and uid='awy' and used=1
+ORDER BY c.sale DESC;
         
 SELECT * FROM theater;
 SELECT * FROM schedules;
