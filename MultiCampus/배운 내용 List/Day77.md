@@ -37,5 +37,3 @@
      spring.seucrity.user.roles = USER, ADMIN
      ```
 
-  3. 
-
