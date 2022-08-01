@@ -2,15 +2,9 @@
 
 ---
 
-> 쿠폰기능 
->
-> 로그인 후 이전 페이지 기억 
-
 # Final Project
 
->Ticket 구매 - javascript에서 split사용 
->
->google OAuth 로그인 
+>어노테이션 GetMapping 과 RequestMapping 차이점
 
 ## OAuth 로그인 
 

@@ -2,15 +2,11 @@
 
 ---
 
-> 쿠폰기능 
->
-> 로그인 후 이전 페이지 기억 
-
 # Final Project
 
 >Ticket 구매 - javascript에서 split사용 
 >
->google OAuth 로그인 
+>google OAuth 로그인 과정
 
 - javascript에서 split을 사용한다. 
 

@@ -157,6 +157,12 @@ WHERE date_format(sysdate(),'%Y%m%d') >= sdate
 and date_format(sysdate(),'%Y%m%d') <= edate
 and uid='awy' and used=1
 ORDER BY c.sale DESC;
+
+
+-- 영수증 바코드 번호 저장 
+SELECT * FROM receipt;
+INSERT INTO receipt VALUES ('580807201121',sysdate(),'영수증 테스트 ' );
+DELETE FROM receipt WHERE id='580807201122';
         
 SELECT * FROM theater;
 SELECT * FROM schedules;

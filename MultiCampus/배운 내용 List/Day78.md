@@ -8,9 +8,9 @@
 
 # Final Project
 
->Ticket 구매 - javascript에서 split사용 
+>spring boot 에서 properties 와 yml 파일의 차이점 
 >
->google OAuth 로그인 
+>WebSecurityConfigurerAdapter 지원 불가 해결방법
 
 ## OAuth 로그인 
 
