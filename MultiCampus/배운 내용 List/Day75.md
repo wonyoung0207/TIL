@@ -18,6 +18,7 @@
 ## OAuth 로그인 
 
 - [유튜브 강의-나도코딩](https://opentutorials.org/course/2473/16571)
+- [생활코딩 OAuth ](https://www.inflearn.com/course/web2-oauth2/unit/36283?tab=curriculum) - 더 설명 잘되어있음 
 
 
 ### 구조
@@ -44,7 +45,7 @@
 
 1. 소셜 로그인 요청
 2. 백엔드로 GET “/oauth2/authorization/{provider-id}?redirect_uri=http://localhost:3000/oauth/redirect”으로 OAuth 인가 요청
-3. Provider 별로 Authorization Code 인증을 할 수 있도록 리다이렉트 (Redirect: GET “https://oauth.provider.com/oauth2.0/authorize?…”)
+3. Provider 별로 Authorization Code 인증을 할 수 있도록 리다이렉트 (Redirect: GET “https://oauth.provider.com/oauth2.0/authorize?…”) 주소를 설정한다. -> 이때 리다이렉트 주소를 Client 에서 Controller로 받아야 한다. 
 4. 리다이렉트 화면에서 provider 서비스에 로그인
 5. 로그인이 완료된 후, Athorization server로부터 백엔드로 Authorization 코드 응답
 6. 백엔드에서 인가 코드를 이용하여 Authorization Server에 엑세스 토큰 요청
