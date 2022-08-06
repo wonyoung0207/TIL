@@ -13,9 +13,6 @@
 
   - [깃허브 자료](https://github.com/codingspecialist/-Springboot-Security-OAuth2.0-V3)
 
-- JWT ( JSON Web Token)
-  - 세션ID의 역할은 
-
 - ```null
   Resource Owner : 액세스 중인 리소스 유저
   - 사용자
