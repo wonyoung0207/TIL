@@ -5,6 +5,8 @@
 > Spring boot 애서 지원하는 OAuth 2.0 을 이용하여 소셜 로그인 만들기
 >
 > OAuth 2.0 구조에대해 학습하고 구현해본다. 
+>
+> [프로젝트 코드 깃허브 ](https://github.com/wonyoung0207/Spring-boot-Security-OAuth-2.0/tree/master/OAuthSecurity)
 
 ## 참고 강의 
 
@@ -580,7 +582,7 @@ spring.security.oauth2.client.provider.naver.user-name-attribute= response
 
 ## Spring boot Security 코드 진행 순서  
 
-> [코드 저장되어 있는 깃허브 ]()
+> [코드 저장되어 있는 깃허브 ](https://github.com/wonyoung0207/Spring-boot-Security-OAuth-2.0/tree/master/OAuthSecurity)
 >
 > google OAuth 를 예시로 사용 
 >
