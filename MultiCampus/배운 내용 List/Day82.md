@@ -32,56 +32,50 @@
 
     - 이떄 Controller 에서 일반로그인과 플렛폼 로그인을 나눠서 작성해줘야한다는 문제가 발생한다.  이러한 문제를 해결하기 위해서 PrincipalDetails 형태로 받아준다. 
 
-      - 
 
 
-    ```java
-    // 로그인 세션정보 확인 - 일반 로그인시 사용 
-    @RequestMapping("/test/login")
-    public @ResponseBody String testLogin(Authentication authentication, 
-                                          @AuthenticationPrincipal PrincipalDetails userDetails) {//DI(의존성 주입) 
-        System.out.println("test/login/ ==========");
-    
-        // 로그인한 유저 정보를 찾는 방법 
-    
-        // 첫번째. Authentication 객체를 이용해서 유저 정보 찾기 
-        PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
-        System.out.println("Authentication : " + principalDetails.getUser());//로그인한 유저의 정보가 담겨있다.
-    
-    
+```java
+// 로그인 세션정보 확인 - 일반 로그인시 사용 
+@RequestMapping("/test/login")
+public @ResponseBody String testLogin(Authentication authentication, 
+                                      @AuthenticationPrincipal PrincipalDetails userDetails) {//DI(의존성 주입) 
+    System.out.println("test/login/ ==========");
+
+    // 로그인한 유저 정보를 찾는 방법 
+
+    // 첫번째. Authentication 객체를 이용해서 유저 정보 찾기 
+    PrincipalDetails principalDetails = (PrincipalDetails) authentication.getPrincipal();
+    System.out.println("Authentication : " + principalDetails.getUser());//로그인한 유저의 정보가 담겨있다.
         // 두번째. @AuthenticationPrincipal 걸어서 유저정보 찾기  
-        // @AuthenticationPrincipal 어노테이션을 이용해서 세션정보에 접근할 수 있다. 
-        System.out.println("userDetails : " + userDetails.getUser());
-    
-        return "세션정보 확인하기 ";
-    }
-    
-    // 로그인 세션정보 확인 - 플랫폼 로그인시 사용 (google, facebook) 
-    @RequestMapping("/test/oauth/login")
-    public @ResponseBody String testOAuthLogin(Authentication authentication,
-                                               @AuthenticationPrincipal OAuth2User userDetails) {//DI(의존성 주입) 
-        System.out.println("test/oauth/login/ ==========");
-    
-        OAuth2User oauth2User = (OAuth2User) authentication.getPrincipal();
-        // 방법 1
-        System.out.println("Authentication : " + oauth2User.getAttributes());//로그인한 유저의 정보가 담겨있다.
-    
-        // 방법 2
-        System.out.println("userDetails : " + userDetails.getAttributes());//로그인한 유저의 정보가 담겨있다.
-        return "OAuth 세션정보 확인하기 ";
-    }
-    
-    
-    // 로그인 세션정보 확인 - 플랫폼 로그인시 사용 (google, facebook) 
-    // 일반로그인 , 플랫폼 로그인으로 해도 모두 PrincipalDetails 로 받을 수 있다. 
-    @RequestMapping("/user")
-    public String user(	@AuthenticationPrincipal PrincipalDetails principalDetails) {//DI(의존성 주입) 
-        System.out.println("principalDetails : " + principalDetails.getUser());
-    
-        return "user";
-    }
-    	
-    ```
+    // @AuthenticationPrincipal 어노테이션을 이용해서 세션정보에 접근할 수 있다. 
+    System.out.println("userDetails : " + userDetails.getUser());
+
+    return "세션정보 확인하기 ";
+}
+
+// 로그인 세션정보 확인 - 플랫폼 로그인시 사용 (google, facebook) 
+@RequestMapping("/test/oauth/login")
+public @ResponseBody String testOAuthLogin(Authentication authentication,
+                                           @AuthenticationPrincipal OAuth2User userDetails) {//DI(의존성 주입) 
+    System.out.println("test/oauth/login/ ==========");
+
+    OAuth2User oauth2User = (OAuth2User) authentication.getPrincipal();
+    // 방법 1
+    System.out.println("Authentication : " + oauth2User.getAttributes());//로그인한 유저의 정보가 담겨있다.
+
+    // 방법 2
+    System.out.println("userDetails : " + userDetails.getAttributes());//로그인한 유저의 정보가 담겨있다.
+    return "OAuth 세션정보 확인하기 ";
+}
+// 로그인 세션정보 확인 - 플랫폼 로그인시 사용 (google, facebook) 
+// 일반로그인 , 플랫폼 로그인으로 해도 모두 PrincipalDetails 로 받을 수 있다. 
+@RequestMapping("/user")
+public String user(	@AuthenticationPrincipal PrincipalDetails principalDetails) {//DI(의존성 주입) 
+    System.out.println("principalDetails : " + principalDetails.getUser());
+
+    return "user";
+}
+```
 
 - 순서
 
@@ -96,5 +90,4 @@
     4. code를 리턴받음 (OAuth-Client라이브러리가 대신받아줌) -> PrincipalOauth2UserService 에서 후처리가 진행됨 
     5. AccessToken 요청
     6. userRequest 에 담겨있는 정보를 활용해 회원프로필 정보를 받아야한다. (loadUser 함수 이용)
-
 

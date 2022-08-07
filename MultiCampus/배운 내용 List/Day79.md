@@ -27,7 +27,7 @@
 - 정리하자면, RequestMapping을 사용하지 않고 GetMapping과 PostMapping을 사용하는 이유는 url 요청을 통해 메서드를 요청할 때 전송 방식을 하나의 url로 두개 이상의 매핑을 처리할 수 있기 때문이다. 
 
   ```java
-  //만약 @RequestMapping("/insertBoard")으로 GET 방식의 요청을 받았다면 POST 방식의 요청은 다른 url을 써야한다
+  //만약 @RequestMapping("/insertBoard")으로 GET 방식의 요청을 받았다면 POST 방식의 요청은 다른 url을 써하는 반면에 getMapping , postMapping은 하나의 url을 사용해 처리할 수 있다. 
   @getMapping("/insertBoard")
   @PostMapping("/insertBoard")
   ```
