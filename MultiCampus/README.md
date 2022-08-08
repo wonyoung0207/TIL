@@ -78,7 +78,7 @@
 - [Day52](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day52.md) : 세미프로젝트 9일차 ( Mypage 개발 - thymeleaf 값 전달 ,  ppt 템플릿 선택 )
 - [Day53](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day53.md) : 세미프로젝트 마무리 ( 내가 개발한 내용 정리 )
 - Project
-  - [Nice ShoppingMall]() : 
+  - [Nice ShoppingMall](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Project_ShoesSite) 
 
 
 # NCP ( Naver Cloud Platform )
