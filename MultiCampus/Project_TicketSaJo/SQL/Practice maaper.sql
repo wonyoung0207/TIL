@@ -163,7 +163,44 @@ ORDER BY c.sale DESC;
 SELECT * FROM receipt;
 INSERT INTO receipt VALUES ('580807201121',sysdate(),'영수증 테스트 ' );
 DELETE FROM receipt WHERE id='580807201122';
-        
+
+
+
+
+-- 방문자수 체크 
+DROP TABLE IF EXISTS visit;       
+CREATE TABLE visit(
+   id VARCHAR(100),
+   count INT
+);
+
+INSERT INTO visit (id, count) VALUES('Unknown',0);
+INSERT INTO visit (id, count) VALUES('awy',2);
+
+DELETE FROM visit WHERE id='awy';
+UPDATE visit SET count=count+1 WHERE id='Unknown';
+
+SELECT * FROM visit;
+SELECT sum(count) FROM visit;
+
+
+-- mysql event schedular 사용 가능한지 확인 
+show variables LIKE 'event%';
+-- value 가 off라면 on으로 변경해야 사용할수 있다. 
+SET GLOBAL event_scheduler = ON;
+-- 등록된 event 목록
+SELECT * FROM information_schema.events;
+-- event 추가 
+CREATE EVENT today_visit_reset
+ON SCHEDULE EVERY 1 DAY
+COMMENT 'visit테이블 정보 삭제'
+DO
+TRUNCATE TABLE visit;
+-- 이벤트 삭제 
+-- DROP event today_visit_reset;
+
+
+
 SELECT * FROM theater;
 SELECT * FROM schedules;
 SELECT * FROM detail_schedules;
@@ -174,3 +211,4 @@ SELECT * FROM cust;
 SELECT * FROM coupon;
 SELECT * FROM mycoupon;
 SELECT * FROM pointlist;
+SELECT * FROM visit;
