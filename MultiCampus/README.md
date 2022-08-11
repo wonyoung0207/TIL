@@ -46,7 +46,7 @@
 - [Day26](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day26.md) : DOM 과 BOM 개념 및 차이점 , JQuery 개념 및 사용법, [문제 만들기 ( BootStrap이용 회원가입화면 만들기) ](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Spring%20Framwork%20Code/06.%20JQuery/template/jq04.html)
 - [Day27](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day27.md) : JQuery 사용 기능, [문제 만들기(Jquery 이용 이미지 자동 넘기기 )](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Spring%20Framwork%20Code/06.%20JQuery/template/jq15.html)
 - [Day28](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day28.md) : AJAX 개념 및 동작 방식, [문제 만들기 (Naver 회원가입 페이지를 AJAX로 구현)](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Spring%20Framwork%20Code/07.%20AJAX/templates/aj04.html)
-- [Day29](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day29.md) : AJAX 기능, JSONArray 와 JSONObject 차이점 , 차트 그리는 사이트, js파일과 jsp파일 차이점
+- [Day29](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day29.md) : AJAX 기능, JSONArray 와 JSONObject 차이점 , 차트(chart) 그리는 사이트, js파일과 jsp파일 차이점
 - [Day30](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day30.md) : KakaoMap API 이용 방법
 - [Day31](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day31.md) : KakaoMap API 이용 방법, 공공API 사용법 
 - Project 
@@ -65,7 +65,7 @@
 - [Day39](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day39.md) : shoppingdb에 있는 4개의 테이블 (cust, product, cate, cart) 의 CRUD 구현 , 일반계정과 Admin 계정 나누기 시작 
 - [Day40](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day40.md) : shoppingdb 의 Customer (Select, Add), Cate(Select, Add) 구현 , ajax, thyemleaf 함수, jquery를 사용해 구현, **Thymeleaf 이용 javaScript 에서 model 객체 사용 방법**
 - [Day41](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day41.md) :  select 태그에 조건 걸어서 보이는 값과 보내지는 값을 다르게 설정, 서버 파일 올리는 방법, bootstrap padding margin 조절 방법, img 경로를 thymeleaf로 설정
-- [Day42](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day42.md) : login, search , char 기능 구현 . 이미지 저장 
+- [Day42](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day42.md) : login, search , chart(차트) 기능 구현 . 이미지 저장 
 - [Day43](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day43.md) : 이미지 저장시 필요한 Util 파일 유동적으로 수정 . 세미프로젝트 1일차. ( 쇼핑몰 제작시 참고할 사이트 브레인스토밍 )
 - [Day44](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day44.md) : Modal 이용해서 cart 만들기 . 세미프로젝트 2일차 ( 쇼핑몰 주제 선정 : 나이키 사이트와 비슷한 신발 쇼핑몰 , 템플릿 결정 , 카테고리 설정 )
 - [Day45](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day45.md) : 세미프로젝트 3일차 ( ERD 설계 , 역할분담 결정 , 구현기능 결정 , 필요한 DDL, DML 문 작성 )

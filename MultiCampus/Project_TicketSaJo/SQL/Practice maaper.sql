@@ -167,18 +167,39 @@ DELETE FROM receipt WHERE id='580807201122';
 
 
 
+
 -- 방문자수 체크 
-DROP TABLE IF EXISTS visit;       
+DROP TABLE IF EXISTS visit;      
+DROP TABLE IF EXISTS visitList;     
+ 
 CREATE TABLE visit(
    id VARCHAR(100),
+   count INT,
+   date DATE
+);
+  
+CREATE TABLE visitList(
+   date Date PRIMARY KEY,
    count INT
 );
 
-INSERT INTO visit (id, count) VALUES('Unknown',0);
-INSERT INTO visit (id, count) VALUES('awy',2);
+-- INSERT INTO visit VALUES('Unknown',0,sysdate());
+-- INSERT INTO visit VALUES('awy',2,'2022-08-11');
+
+
+INSERT INTO visitList VALUES(adddate(sysdate(), interval -1 DAY),55);
+INSERT INTO visitList VALUES(adddate(sysdate(), interval -2 DAY),73);
+INSERT INTO visitList VALUES(adddate(sysdate(), interval -3 DAY),22);
+INSERT INTO visitList VALUES(adddate(sysdate(), interval -4 DAY),104);
+INSERT INTO visitList VALUES(adddate(sysdate(), interval -5 DAY),126);
+INSERT INTO visitList VALUES(adddate(sysdate(), interval -6 DAY),43);
+
+SELECT * FROM visitList;
 
 DELETE FROM visit WHERE id='awy';
 UPDATE visit SET count=count+1 WHERE id='Unknown';
+
+DELETE FROM visitList WHERE date='2022-08-11';
 
 SELECT * FROM visit;
 SELECT sum(count) FROM visit;
@@ -190,15 +211,51 @@ show variables LIKE 'event%';
 SET GLOBAL event_scheduler = ON;
 -- 등록된 event 목록
 SELECT * FROM information_schema.events;
--- event 추가 
+-- event 1 추가 
 CREATE EVENT today_visit_reset
 ON SCHEDULE EVERY 1 DAY
+STARTS '2022-08-09 00:00:00'
 COMMENT 'visit테이블 정보 삭제'
 DO
 TRUNCATE TABLE visit;
+
+-- event 2 추가 
+CREATE EVENT today_visit_save
+ON SCHEDULE EVERY 1 DAY
+STARTS '2022-08-09 23:59:00'
+COMMENT 'visit테이블 정보 저장'
+DO
+INSERT INTO visitList(date, count) 
+SELECT sysdate() as date,sum(v.count) as count 
+FROM visit as v;
 -- 이벤트 삭제 
 -- DROP event today_visit_reset;
+-- DROP event today_visit_save;
 
+SELECT sum(v.count) FROM visit as v;
+INSERT INTO visitList(date, count) SELECT sysdate() as date,sum(v.count) as count FROM visit as v;
+
+
+
+
+-- 회원 수 출력 
+SELECT COUNT(id) FROM cust;
+SELECT COUNT(id) FROM cust where used=0;
+UPDATE cust SET used=0 WHERE id='11111';
+
+-- 당일 예약 수 
+SELECT count(id) FROM ticket where purchasedate='2022-08-10';
+
+
+-- 전체 누적 방문자 수 
+SELECT SUM(count) FROM visitList;
+SELECT * FROM visitList;
+
+-- 오늘 날짜부터 7일전까지의 방문자 수 가져오기 
+SELECT * FROM visitList
+WHERE date >= adddate(sysdate(), interval -8 DAY)
+ORDER BY date
+LIMIT 0, 7;
 
 
 SELECT * FROM theater;
@@ -212,3 +269,6 @@ SELECT * FROM coupon;
 SELECT * FROM mycoupon;
 SELECT * FROM pointlist;
 SELECT * FROM visit;
+SELECT * FROM visitList;
+SELECT * FROM reservation;
+SELECT * FROM ticket;
