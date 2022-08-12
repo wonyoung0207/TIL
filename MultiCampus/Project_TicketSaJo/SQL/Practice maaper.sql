@@ -193,6 +193,7 @@ INSERT INTO visitList VALUES(adddate(sysdate(), interval -3 DAY),22);
 INSERT INTO visitList VALUES(adddate(sysdate(), interval -4 DAY),104);
 INSERT INTO visitList VALUES(adddate(sysdate(), interval -5 DAY),126);
 INSERT INTO visitList VALUES(adddate(sysdate(), interval -6 DAY),43);
+INSERT INTO visitList VALUES(adddate(sysdate(), interval -7 DAY),60);
 
 SELECT * FROM visitList;
 
@@ -208,7 +209,7 @@ SELECT sum(count) FROM visit;
 -- mysql event schedular 사용 가능한지 확인 
 show variables LIKE 'event%';
 -- value 가 off라면 on으로 변경해야 사용할수 있다. 
-SET GLOBAL event_scheduler = ON;
+-- SET GLOBAL event_scheduler = ON;
 -- 등록된 event 목록
 SELECT * FROM information_schema.events;
 -- event 1 추가 
@@ -252,10 +253,15 @@ SELECT SUM(count) FROM visitList;
 SELECT * FROM visitList;
 
 -- 오늘 날짜부터 7일전까지의 방문자 수 가져오기 
-SELECT * FROM visitList
+SELECT date, count FROM visitList
 WHERE date >= adddate(sysdate(), interval -8 DAY)
 ORDER BY date
 LIMIT 0, 7;
+
+-- 전체 방문자 평균
+SELECT CONVERT(AVG(count),INTEGER) FROM visitList;
+
+
 
 
 SELECT * FROM theater;
