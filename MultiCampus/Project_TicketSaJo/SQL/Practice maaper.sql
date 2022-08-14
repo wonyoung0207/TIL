@@ -259,10 +259,13 @@ ORDER BY date
 LIMIT 0, 7;
 
 -- 전체 방문자 평균
-SELECT CONVERT(AVG(count),INTEGER) FROM visitList;
+SELECT CONVERT(AVG(count),SIGNED) FROM visitList;
 
+-- 쿠폰 삭제 
+DELETE FROM mycoupon WHERE uid='awy';
 
-
+-- 영수증 삭제 
+DELETE FROM receipt where id='58080720-503-1';
 
 SELECT * FROM theater;
 SELECT * FROM schedules;
@@ -278,3 +281,5 @@ SELECT * FROM visit;
 SELECT * FROM visitList;
 SELECT * FROM reservation;
 SELECT * FROM ticket;
+SELECT * FROM receipt;
+
