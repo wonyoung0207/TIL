@@ -812,6 +812,34 @@ spring.security.oauth2.client.provider.naver.user-name-attribute= response
      }
      ```
 
+---
+
+## 결과화면 
+
+- 로그인은 **"google 로그인 버튼 클릭 -> 계정 선택 -> 데이터 정보 요구 동의 -> 로그인"**  순서로 진행된다. 
+
+  <img src="../images/FinalProject/login_social1.png">
+
+  <img src="../images/FinalProject/login_social2.png">
+
+  <img src="../images/FinalProject/login_social3.png">
+
+  <img src="../images/FinalProject/login_social4.png">
+
+  <img src="../images/FinalProject/login_social5.png">
+
+  <img src="../images/FinalProject/login_social6.png">
+
+- 로그인이 완료되면 다음 데이터를 받아와 세션에 사용자 정보를 저장한다. 
+
+  ```java
+  google 로그인 요청
+  getAttributes : {sub=xxx, name=안원영, given_name=원영, family_name=안, picture=https://xxx, email=xxx@gmail.com, email_verified=true, locale=ko}
+  principalDetails : CustVO(id=xxx@gmail.com, pwd=0000, name=안원영, birth=Wed Feb 07 00:00:00 KST 1996, point=0, sex=men, used=true, usepoint=0)
+  ```
+
+  
+
 
 ---
 
