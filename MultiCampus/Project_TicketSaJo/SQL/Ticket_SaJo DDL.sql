@@ -18,7 +18,9 @@ DROP TABLE IF EXISTS schedules;
 DROP TABLE IF EXISTS detail_schedules;
 DROP TABLE IF EXISTS ticket;
 DROP TABLE IF EXISTS booked;
-
+DROP TABLE IF EXISTS visit;      
+DROP TABLE IF EXISTS visitList;     
+  
 CREATE TABLE genre(
    id INT,
    name VARCHAR(100),
@@ -51,7 +53,8 @@ CREATE TABLE cust (
    name VARCHAR(20),
    birth DATE,
    point INT,
-   sex   VARCHAR(10)
+   sex   VARCHAR(10),
+   used BOOLEAN
 );
 ALTER TABLE cust ADD CONSTRAINT PRIMARY KEY(id);
 
@@ -113,7 +116,7 @@ CREATE TABLE detail_schedules(
     sid INT,
     mcnt INT,
     starttime TIME,
-    endtime TIME,
+    endtime TIME
     
 );
 ALTER TABLE detail_schedules ADD CONSTRAINT FOREIGN KEY(sid) REFERENCES schedules(id);
@@ -188,8 +191,71 @@ ALTER TABLE mycoupon ADD CONSTRAINT FOREIGN KEY (cid) REFERENCES coupon (id);
 CREATE TABLE booked(
 	sid INT,
     mcnt INT,
-    seatid VARCHAR(100)
+    seatid VARCHAR(5)
    
 );
+
+
+
+
 ALTER TABLE booked ADD CONSTRAINT PRIMARY KEY(sid,mcnt,seatid);
 
+-- receipt
+
+CREATE TABLE receipt(
+	id varchar(100),
+    regdate Date,
+    text varchar(100)
+);
+ALTER TABLE receipt ADD CONSTRAINT PRIMARY KEY(id);
+
+-- admin
+CREATE TABLE admin (
+   id   VARCHAR(100) PRIMARY KEY,
+   pwd   VARCHAR(20)
+);
+CREATE TABLE code (
+   id INT,
+   code VARCHAR(20)
+);
+
+
+  
+-- 오늘 방문자수
+CREATE TABLE visit(
+   id VARCHAR(100),
+   count INT,
+   date DATE
+);
+-- 요일별 방문자수
+CREATE TABLE visitList(
+   date Date PRIMARY KEY,
+   count INT
+);
+
+-- mysql event schedular 사용 가능한지 확인 
+show variables LIKE 'event%';
+-- value 가 off라면 on으로 변경해야 사용할수 있다. 
+-- SET GLOBAL event_scheduler = ON;
+-- 등록된 event 목록
+SELECT * FROM information_schema.events;
+-- event 1 추가 
+CREATE EVENT today_visit_reset
+ON SCHEDULE EVERY 1 DAY
+STARTS '2022-08-09 00:00:00'
+COMMENT 'visit테이블 정보 삭제'
+DO
+TRUNCATE TABLE visit;
+
+-- event 2 추가 
+CREATE EVENT today_visit_save
+ON SCHEDULE EVERY 1 DAY
+STARTS '2022-08-09 23:59:00'
+COMMENT 'visit테이블 정보 저장'
+DO
+INSERT INTO visitList(date, count) 
+SELECT sysdate() as date,sum(v.count) as count 
+FROM visit as v;
+-- 이벤트 삭제 
+-- DROP event today_visit_reset;
+-- DROP event today_visit_save;

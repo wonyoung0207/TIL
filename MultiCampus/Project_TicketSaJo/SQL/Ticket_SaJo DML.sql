@@ -61,12 +61,18 @@ INSERT INTO movie VALUES (null, 41,'시계 태엽 오렌지','Stanley Kubrick','
 Select * from movie;
 
 -- cust Insert
-INSERT INTO cust VALUES ('kms', 'pwD1', '김민식', 19900805, '1000', 'man');
-INSERT INTO cust VALUES ('awy', 'pwD2', '안원영', 19600908, '1500', 'man');
-INSERT INTO cust VALUES ('jhj', 'pwD3', '장효준', 19680402, '2000', 'man');
-INSERT INTO cust VALUES ('jsy', 'pwD4', '정세연', 19601103, '3000', 'woman');
-INSERT INTO cust VALUES ('ljm', 'pwD5', '이진만', 19390805, '4500', 'man');
-SELECT * FROM cust;
+INSERT INTO cust VALUES ('kms', 'pwD1', '김민식', 19900805, '0', 'man',true);
+INSERT INTO cust VALUES ('awy', 'pwD2', '안원영', 19600908, '0', 'man',true);
+INSERT INTO cust VALUES ('jhj', 'jhj', '장효준', 19680402, '1000', 'man',true);
+INSERT INTO cust VALUES ('jsy', 'pwD4', '정세연', 19601103, '0', 'woman',true);
+INSERT INTO cust VALUES ('ljm', 'pwD5', '이진만', 19390805, '0', 'man',true);
+INSERT INTO cust VALUES ('id01', '11111', '방말숙', 19700504, '0', 'woman',true);
+INSERT INTO cust VALUES ('id02', '22222', '이말숙', 19620503, '0', 'man',true);
+INSERT INTO cust VALUES ('id03', '33333', '태말숙', 20030214, '0', 'woman',true);
+INSERT INTO cust VALUES ('id04', '44444', '남말숙', 19970729, '0', 'man',true);
+INSERT INTO cust VALUES ('id05', '55555', '홍말숙', 19371219, '0', 'woman',true);
+
+SELECT * FROM 	cust;
 
 
 -- review Insert
@@ -838,39 +844,39 @@ SELECT * FROM schedules;
 
 
 -- DETAIL_SCHEDULES TALBE DDL
-INSERT INTO detail_schedules VALUES (2000,1,'13:00:00','15:00:00','');
-INSERT INTO detail_schedules VALUES (2000,2,'16:00:00','18:00:00','');
-INSERT INTO detail_schedules VALUES (2000,3,'19:00:00','21:00:00','');
-INSERT INTO detail_schedules VALUES (2001,1,'13:00:00','15:00:00','');
-INSERT INTO detail_schedules VALUES (2001,2,'16:00:00','18:00:00','');
-INSERT INTO detail_schedules VALUES (2001,3,'19:00:00','21:00:00','');
-INSERT INTO detail_schedules VALUES (2002,1,'13:00:00','15:00:00','');
-INSERT INTO detail_schedules VALUES (2002,2,'16:00:00','18:00:00','');
-INSERT INTO detail_schedules VALUES (2002,3,'19:00:00','21:00:00','');
-INSERT INTO detail_schedules VALUES (2003,1,'13:00:00','15:00:00','');
-INSERT INTO detail_schedules VALUES (2003,2,'16:00:00','18:00:00','');
-INSERT INTO detail_schedules VALUES (2003,3,'19:00:00','21:00:00','');
-INSERT INTO detail_schedules VALUES (2004,1,'13:00:00','15:00:00','');
-INSERT INTO detail_schedules VALUES (2004,2,'16:00:00','18:00:00','');
-INSERT INTO detail_schedules VALUES (2004,3,'19:00:00','21:00:00','');
-INSERT INTO detail_schedules VALUES (2005,1,'13:00:00','15:00:00','');
-INSERT INTO detail_schedules VALUES (2005,2,'16:00:00','18:00:00','');
-INSERT INTO detail_schedules VALUES (2005,3,'19:00:00','21:00:00','');
-INSERT INTO detail_schedules VALUES (2006,1,'13:00:00','15:00:00','');
-INSERT INTO detail_schedules VALUES (2006,2,'16:00:00','18:00:00','');
-INSERT INTO detail_schedules VALUES (2006,3,'19:00:00','21:00:00','');
-INSERT INTO detail_schedules VALUES (2007,1,'13:00:00','15:00:00','');
-INSERT INTO detail_schedules VALUES (2007,2,'16:00:00','18:00:00','');
-INSERT INTO detail_schedules VALUES (2007,3,'19:00:00','21:00:00','');
-INSERT INTO detail_schedules VALUES (2008,1,'13:00:00','15:00:00','');
-INSERT INTO detail_schedules VALUES (2008,2,'16:00:00','18:00:00','');
-INSERT INTO detail_schedules VALUES (2008,3,'19:00:00','21:00:00','');
-INSERT INTO detail_schedules VALUES (2009,1,'13:00:00','15:00:00','');
-INSERT INTO detail_schedules VALUES (2009,2,'16:00:00','18:00:00','');
-INSERT INTO detail_schedules VALUES (2009,3,'19:00:00','21:00:00','');
-INSERT INTO detail_schedules VALUES (2010,1,'13:00:00','15:00:00','');
-INSERT INTO detail_schedules VALUES (2010,2,'16:00:00','18:00:00','');
-INSERT INTO detail_schedules VALUES (2010,3,'19:00:00','21:00:00','');
+INSERT INTO detail_schedules VALUES (2000,1,'13:00:00','15:00:00');
+INSERT INTO detail_schedules VALUES (2000,2,'16:00:00','18:00:00');
+INSERT INTO detail_schedules VALUES (2000,3,'19:00:00','21:00:00');
+INSERT INTO detail_schedules VALUES (2001,1,'13:00:00','15:00:00');
+INSERT INTO detail_schedules VALUES (2001,2,'16:00:00','18:00:00');
+INSERT INTO detail_schedules VALUES (2001,3,'19:00:00','21:00:00');
+INSERT INTO detail_schedules VALUES (2002,1,'13:00:00','15:00:00');
+INSERT INTO detail_schedules VALUES (2002,2,'16:00:00','18:00:00');
+INSERT INTO detail_schedules VALUES (2002,3,'19:00:00','21:00:00');
+INSERT INTO detail_schedules VALUES (2003,1,'13:00:00','15:00:00');
+INSERT INTO detail_schedules VALUES (2003,2,'16:00:00','18:00:00');
+INSERT INTO detail_schedules VALUES (2003,3,'19:00:00','21:00:00');
+INSERT INTO detail_schedules VALUES (2004,1,'13:00:00','15:00:00');
+INSERT INTO detail_schedules VALUES (2004,2,'16:00:00','18:00:00');
+INSERT INTO detail_schedules VALUES (2004,3,'19:00:00','21:00:00');
+INSERT INTO detail_schedules VALUES (2005,1,'13:00:00','15:00:00');
+INSERT INTO detail_schedules VALUES (2005,2,'16:00:00','18:00:00');
+INSERT INTO detail_schedules VALUES (2005,3,'19:00:00','21:00:00');
+INSERT INTO detail_schedules VALUES (2006,1,'13:00:00','15:00:00');
+INSERT INTO detail_schedules VALUES (2006,2,'16:00:00','18:00:00');
+INSERT INTO detail_schedules VALUES (2006,3,'19:00:00','21:00:00');
+INSERT INTO detail_schedules VALUES (2007,1,'13:00:00','15:00:00');
+INSERT INTO detail_schedules VALUES (2007,2,'16:00:00','18:00:00');
+INSERT INTO detail_schedules VALUES (2007,3,'19:00:00','21:00:00');
+INSERT INTO detail_schedules VALUES (2008,1,'13:00:00','15:00:00');
+INSERT INTO detail_schedules VALUES (2008,2,'16:00:00','18:00:00');
+INSERT INTO detail_schedules VALUES (2008,3,'19:00:00','21:00:00');
+INSERT INTO detail_schedules VALUES (2009,1,'13:00:00','15:00:00');
+INSERT INTO detail_schedules VALUES (2009,2,'16:00:00','18:00:00');
+INSERT INTO detail_schedules VALUES (2009,3,'19:00:00','21:00:00');
+INSERT INTO detail_schedules VALUES (2010,1,'13:00:00','15:00:00');
+INSERT INTO detail_schedules VALUES (2010,2,'16:00:00','18:00:00');
+INSERT INTO detail_schedules VALUES (2010,3,'19:00:00','21:00:00');
 
 SELECT * FROM detail_schedules;
 
@@ -902,13 +908,13 @@ select * from ticket;
 
 
 -- coupon Insert
-INSERT INTO coupon VALUES (null,'event01','2022-06-01','2022-09-30','snow', 1000,'모든 고객에게 제공되는 쿠폰 입니다. ');
-INSERT INTO coupon VALUES (null,'event02','2022-06-01','2022-07-30','users', 2000,'여름기념 쿠폰 입니다. ');
-INSERT INTO coupon VALUES (null,'event03','2022-07-20','2022-08-20','wizard', 3000,'깜짝 할인 이벤트 쿠폰 입니다.');
-INSERT INTO coupon VALUES (null,'event04','2022-07-20','2022-08-20','smile', 4000,'반짝 할인 이벤트 쿠폰 입니다.');
-INSERT INTO coupon VALUES (null,'event05','2022-06-20','2022-08-20','users', 2000,'봄 기념 쿠폰 입니다. ');
-INSERT INTO coupon VALUES (null,'event06','2022-07-25','2022-08-20','wizard', 30000,'코로나 기원 쿠폰 입니다.');
-INSERT INTO coupon VALUES (null,'event07-BIG sale','2022-06-25','2022-07-25','gift', 10000,'Big Sale 쿠폰입니다. ');
+INSERT INTO coupon VALUES (null,'event01','2022-06-01','2022-09-30','snow', 1000,'모든 고객에게 제공되는 쿠폰');
+INSERT INTO coupon VALUES (null,'event02','2022-06-01','2022-07-30','users', 2000,'여름기념 쿠폰');
+INSERT INTO coupon VALUES (null,'event03','2022-07-20','2022-08-20','wizard', 3000,'깜짝 할인 이벤트 쿠폰');
+INSERT INTO coupon VALUES (null,'event04','2022-07-20','2022-08-20','smile', 4000,'반짝 할인 이벤트 쿠폰');
+INSERT INTO coupon VALUES (null,'event05','2022-06-20','2022-08-20','users', 2000,'봄 기념 쿠폰');
+INSERT INTO coupon VALUES (null,'event06','2022-07-25','2022-08-20','wizard', 30000,'코로나 기원 쿠폰');
+INSERT INTO coupon VALUES (null,'event07-BIG sale','2022-06-25','2022-07-25','gift', 10000,'Big Sale');
 SELECT * FROM coupon;
 
 
@@ -922,9 +928,20 @@ INSERT INTO mycoupon VALUES (NULL,'kms', 8004,true, NULL, sysdate());
 INSERT INTO mycoupon VALUES (NULL,'kms', 8005,true, NULL, sysdate());
 SELECT * FROM mycoupon;
 
+-- admin Insert
+INSERT INTO admin VALUES('master','111111');
+INSERT INTO code VALUES(1,LEFT(UUID(),8));
 
 
+-- visitList
+INSERT INTO visitList VALUES(adddate(sysdate(), interval -1 DAY),55);
+INSERT INTO visitList VALUES(adddate(sysdate(), interval -2 DAY),73);
+INSERT INTO visitList VALUES(adddate(sysdate(), interval -3 DAY),22);
+INSERT INTO visitList VALUES(adddate(sysdate(), interval -4 DAY),104);
+INSERT INTO visitList VALUES(adddate(sysdate(), interval -5 DAY),126);
+INSERT INTO visitList VALUES(adddate(sysdate(), interval -6 DAY),43);
 
+SELECT * FROM visitList;
 
 
 
