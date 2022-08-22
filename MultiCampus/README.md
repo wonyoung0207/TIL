@@ -9,7 +9,7 @@
 - [Day01](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day01.md) : 자바의 특장점과 규칙
 - [Day02](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day02.md) : 자바의 기본 문법과 연산자, 변수 (소수점 찍기)
 - [Day03](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day02.md) : 자바의 메모리 관리 (Stack, Heap) 
-- [Day04](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day05.md) : 조건문과 반복문, 깃허브와 eclipse 연동 방법 , 
+- [Day04](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day05.md) : 조건문과 반복문, 깃허브와 eclipse 연동 방법 
 - [Day05](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day05.md) : 2중 for문, 변수와 객체 차이, 배열 
 - [Day06](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day06.md) : 2차원 배열 저장구조 , [문제 만들기( LotteGame, fruit, 숫자 추측)](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Java/Day06) 
 - [Day07](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day07.md) : 객체지향 프로그래밍, [문제만들기 (Bank)](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Java/Day07/bank.java) 
@@ -84,16 +84,83 @@
 # NCP ( Naver Cloud Platform )
 
 - [Day54](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day54.md) : NCP 사용법
+
 - [Day55](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day55.md) : NCP 서버 생성 및 putty 접속, 리눅스 명령어 정리 , 리눅스에 JDK, mysql 설치, Git branch 개념 공부 
+
 - [Day56](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day56.md) : 리눅스 Apach Tomcat server 설치, 파일 서버로 올리기 , 서버 구동 시키는 방법 , workbanch 설정방법 , 파이널 프로젝트 1일차 ( 주제 정하기 )
+
 - [Day57](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day57.md) : 카카오멥 사용시 설정 조건 , 리눅스의 Mysql 에서 group by 인식 불가 에러 처리 방법 , 파이널 프로젝트 2일차 ( 주제 1안 2안 3안 결정 )
+
 - [Day58](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day58.md) : 파이널 프로젝트 3일차 ( 사용 템플릿 찾기 , )
+
 - [Day59](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day59.md) : 멘토링 1일차( 질문 및 답변 정리 ) , 파이널 프로젝트 4일차 ( 주제 변경 : 영화관 , 템플릿 결정, 페이지 구성 결정  )
+
 - [Day60](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day60.md) : kakaomap 을 이용한 맛집, fitness등을 검색 , JSON 데이터 정제 방법 
+
 - [Day61](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day61.md) : NCP 이용 Papago (언어번역기), CFR (얼굴 인식기) 이용, 입력한 단어로 구글 search 기능 이용 
+
 - [Day62](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day62.md) : Final Project 5일차 ( ERD 완성 및 DDL , DML 문 작성 )
-- [Day64](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day64.md) :
-- [Day65](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day65.md) :
+
+- [Day63](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day63.md) : NCP (Naver Cloud Platform)를 이용한 OCR 과 ChatBot 기능 
+
+- [Day64](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day64.md) : NCP 를 이용한 WebSocket, Scheduler 기능 
+
+- [Day65](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day65.md) : Final Project 개인 개발 시작, 메인페이지, 오늘 상영영화, reivew 별점 제작, Mysql only_full_group_by 에러 처리 방법  
+
+- [Day66](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day66.md) : Final Project (메인페이지 movie detail 페이지와 연결, google search 기능 사용, 리뷰 rank 페이지 개발 - **페이징 처리 query**)
+
+- [Day67](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day67.md) : Final Project (메인페이지 movie detail 페이지와 연결, google search 기능 사용, 리뷰 rank 페이지 개발 - **페이징 처리 query**)
+
+- [Day68](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day68.md) : Final Project (NCP의 ORC 기능 복습 )
+
+- [Day69](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day69.md) :  Final Project (플렛폼 로그인 서비스 학습, OAuth 정의  )
+
+- [Day70](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day70.md) :  Final Project ( ORC 이용 영수증 이미지 인식 - 사진저장 및 OCR 연결   )
+
+- [Day71](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day71.md) :  Final Project ( 영수증 인식 후 적립 가능한지 검사 - JavaScript 날짜 형식 이용  )
+
+- [Day72](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day72.md) :  Final Project ( 동기와 비동기 정의, 쿠폰기능 ,Thymeleaf를 JavaScript에서 사용하는 방법 , modal 이용 가이드 )
+
+- [Day73](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day73.md) :  Final Project ( 쿠폰기능 ,
+
+  로그인 후 이전 페이지 기억하는 기능 구현 - Referer 이용  )
+
+- [Day74](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day74.md) :  Final Project ( 쿠폰 기간 설정 및 로그인 모달 수정 - mybatis에서 부등호 사용방법, Ticket 구매에 쿠폰 연결 , html파일의 Thymeleaf에서 select 태그 사용방법  )
+
+- [Day75](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day75.md) :  Final Project ( Ticket 구매 - javascript에서 split사용 , OAuth 로그인 과정 및 구조 정리 )
+
+- [Day76](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day76.md) :  Final Project ( Spring boot 에서 google OAuth 로그인 사용 과정 및 필요한 소스 정리  )
+
+- [Day77](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day77.md) :  Final Project ( Spring Boot Security Maven 및 properties 설정 소스  )
+
+- [Day78](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day78.md) :  Final Project ( properties 와 yml 파일의 차이점 , ebSecurityConfigurerAdapter 지원 불가 해결방법)
+
+- [Day79](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day79.md) :  Final Project ( 어노테이션 GetMapping 과 RequestMapping 차이점 )
+
+- [Day80](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day80.md) :  Final Project ( JavaScript 숫자 텍스트에서 콤마 제거 후 숫자로 변경 , ajax 를 동기로 변경하는 방법 , 동기와 비동기 차이점  )
+
+- [Day81](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day81.md) :  Final Project ( Google OAuth 로그인 구현, JPA 개념  )
+
+- [Day82](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day82.md) :  Final Project (  스프링부트 시큐리티 Session 개념, OAuth 2.0 진행 순서)
+
+- [Day83](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day83.md) :  Final Project ( scope 개념 , google 과 naver 에서 api 콘솔 설정 방법  )
+
+- [Day84](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day84.md) :  Final Project ( Spring boot Security 에서 사용되는 용어 정리  )
+
+- [Day85](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day85.md) :  Final Project ( Google OAuth 로그인 연결, 로그인 버튼 꾸미기, 로그인 페이지 CSS 설정 )
+
+- [Day86](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day86.md) :  Final Project ( admin page 의 center 꾸미기, 쿠키와 Ajax 이용 해당 사이트 방문자 수 채크 - 쿠키 개념 )
+
+- [Day87](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day87.md) :  Final Project (  방문자 수 채크에 필요한 mysql 이벤트 스케쥴러 - DB Event Scheduler 설정 방법 , 테이블의 모든 데이터 삭제시 함수 적용 불가 에러 처리  )
+
+- [Day88](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day88.md) :  Final Project ( INSERT INTO 에 다른 테이블 값 적용시키기, DB event 적용 방법 및 조건걸기  )
+
+- [Day89](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day89.md) :  Final Project ( chart 이용 방문자수 표시 - chart 그리는 방법  )
+
+- Project
+
+  - [클래식 영화 예매 사이트 제작 ( TicketSaJo )](https://github.com/wonyoung0207/Ticket_SaJo)
+
 
 # 특강
 

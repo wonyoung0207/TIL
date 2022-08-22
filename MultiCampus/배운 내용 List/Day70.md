@@ -2,22 +2,22 @@
 
 ---
 
-> ORC 이용 영수증 이미지 인식 
+> OCR 이용 영수증 이미지 인식 
 
 # Final Project
 
 >사진 저장
 >
->ORC 연결
+>OCR 연결
 
-## 사진 저장해서 ORC이용
+## 사진 저장해서 OCR이용
 
-- 서버로 사진을 전송하여 ORC로 사진을 판별하고 결과를 전송받는다. 
+- 서버로 사진을 전송하여 OCR로 사진을 판별하고 결과를 전송받는다. 
 
 - 순서 
   1. 업로드된 파일을 서버에 저장한다. 
-  2. 저장된 사진을 통해 ORC 판독을 진행한다. 
-  3. ORC판독 진행결과를 이용해 html 파일에 뿌려준다. 
+  2. 저장된 사진을 통해 OCR 판독을 진행한다. 
+  3. OCR판독 진행결과를 이용해 html 파일에 뿌려준다. 
 
 
 ### MultipartFile 사용 
@@ -33,18 +33,18 @@
 ### 1. 파일 업로드 
 
 - input type="file" 을 이용해 파일을 업로드 한다. 
-- 업로드 버튼을 누르면 Ajax를 이용해 파일을 업로드, ORC 판별한다. 
+- 업로드 버튼을 누르면 Ajax를 이용해 파일을 업로드, OCR 판별한다. 
 
 ```java
 @Autowired
-ORCAPI orcapi;
+OCRAPI OCRapi;
 
-@RequestMapping("/orcresult")//ORC 영수증 인식 이용 
-public Object orcresult(MultipartHttpServletRequest filelist) {
+@RequestMapping("/OCRresult")//OCR 영수증 인식 이용 
+public Object OCRresult(MultipartHttpServletRequest filelist) {
     Object obj = null;
     String fieldName = "";
     MultipartFile mfile = null; 
-    System.out.println("orcresult 실행 ... ");
+    System.out.println("OCRresult 실행 ... ");
 
     //filelist --> 넘어온 파일 리스트
     //MultipartFile로 이름을 주어서 따로 받을 수 있다. ajax로 file1로 보냈으니 받을 때 MultipartFile file1 이런식으로도 가능하다.
@@ -57,7 +57,7 @@ public Object orcresult(MultipartHttpServletRequest filelist) {
         Util.saveFile(mfile);//서버에 파일을 저장하는 모듈 
 
     }
-    obj = orcapi.orcresult(mfile.getOriginalFilename());// ORC 판독 진행 
+    obj = OCRapi.OCRresult(mfile.getOriginalFilename());// OCR 판독 진행 
     return obj;
 }
 ```
@@ -94,20 +94,20 @@ public static void saveFile(MultipartFile mf) {
 }
 ```
 
-### 2. ORC 판독 진행 
+### 2. OCR 판독 진행 
 
 - 판독에 필요한 이미지 이름을 매개변수로 받는다. 
-- 서버에 저장되어있는 사진의 경로를 가져와 ORC 판독기를 실행한다. 
+- 서버에 저장되어있는 사진의 경로를 가져와 OCR 판독기를 실행한다. 
 
 ```java
 
 @Component
-public class ORCAPI {
+public class OCRAPI {
 	String apiURL = "https://xtwbhr7su2.apigw.ntruss.com/custom/v1/17243/fb64d737a4729e5285737905a977c2703f72e819a7824771b610a8f612e9f6c4/infer";
 	String secretKey = "d2NVcFRPemZUYnloZkVxekpPSExyYnVxSXZwQmJHY3A=";// 
 
-	public Object orcresult(String imgname) {
-		System.out.println("orcresult API 실행 ...");
+	public Object OCRresult(String imgname) {
+		System.out.println("OCRresult API 실행 ...");
 		StringBuffer response = null;
 		Object obj = null;
 		System.out.println("imgname : " + imgname);
@@ -176,7 +176,7 @@ public class ORCAPI {
 
 
 		} catch (Exception e) {
-			System.out.println("ORC API Error 발생 ... ");
+			System.out.println("OCR API Error 발생 ... ");
 			System.out.println(e);
 		}
 		

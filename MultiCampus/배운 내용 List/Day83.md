@@ -6,6 +6,7 @@
 
 >Google OAuth 로그인 구현
 >
+>scope의 의미
 
 ### 스프링부트 시큐리티
 

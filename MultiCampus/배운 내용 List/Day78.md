@@ -2,9 +2,9 @@
 
 ---
 
-> 쿠폰기능 
+> spring boot 에서 properties 와 yml 파일의 차이점 
 >
-> 로그인 후 이전 페이지 기억 
+> WebSecurityConfigurerAdapter 지원 불가 해결방법
 
 # Final Project
 

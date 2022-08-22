@@ -6,7 +6,7 @@
 >
 > Final Project 
 
-## ORC
+## OCR
 
 - [가이드](https://api.ncloud-docs.com/docs/ai-application-service-ocr)
 

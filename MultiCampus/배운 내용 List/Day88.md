@@ -4,9 +4,7 @@
 
 # Final Project
 
->admin page 의 center 꾸미기
->
->쿠키와 Ajax 이용 해당 사이트 방문자 수 채크 
+>INSERT INTO 에 다른 테이블 값 적용시키기
 
 ## 사이트 방문자 수 체크 
 
@@ -38,5 +36,4 @@
   FROM visit as v;
   -- visit 테이블의 값을 가져와 저장한다. 
   ```
-
 

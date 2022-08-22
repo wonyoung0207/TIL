@@ -8,6 +8,7 @@
 
 >영수증 적립조건 검사 
 >
+>JavaScript 날짜 형식 이용 
 
 ## JavaScript 날짜
 
