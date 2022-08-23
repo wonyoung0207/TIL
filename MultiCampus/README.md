@@ -4,7 +4,7 @@
 
 > 정리 : MultiCampus 공부 리스트
 
-# [자바 ](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Java)
+# [Java](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Java)
 
 - [Day01](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day01.md) : 자바의 특장점과 규칙
 - [Day02](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day02.md) : 자바의 기본 문법과 연산자, 변수 (소수점 찍기)
