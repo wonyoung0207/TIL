@@ -133,7 +133,7 @@
      String email = "test@naver.com";
      
      //유효성 검사
-     boolean name_check = Pattern.matches("^[가-힣]*$", name);
+     boolean name_check = Pattern.matches("^[가-힣]*$", name); // 한글 
      boolean tel_check = Pattern.matches("^01(?:0|1|[6-9])-(?:\\d{3}|\\d{4})-\\d{4}$", tel);
      boolean email_check = Pattern.matches("\\w+@\\w+\\.\\w+(\\.\\w+)?", email);
      
