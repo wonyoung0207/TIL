@@ -303,8 +303,8 @@
 
    4. containsKey(), containsValue()
 
-      - containsKey()는 HashMap에 인자로 전달된 key가 존재하면 `true`를 리턴하고 그렇지 않으면 `false`를 리턴합니다.
-      - containsValue()는 HashMap에 인자로 전달된 key가 존재하면 `true`를 리턴하고 그렇지 않으면 `false`를 리턴합니다.
+      - containsKey()는 HashMap에 인자로 전달된 key가 존재하면 `true`를 리턴하고 그렇지 않으면 `false`를 리턴한다.
+      - containsValue()는 HashMap에 인자로 전달된 key가 존재하면 `true`를 리턴하고 그렇지 않으면 `false`를 리턴한다.
 
       ```java
       fruits.containsKey("포도");
