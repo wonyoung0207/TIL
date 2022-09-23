@@ -6,7 +6,9 @@
 
 > SQL 문 
 
+
 ---
+
 
 ## 1번 문제설명 
 
@@ -31,6 +33,7 @@
 SELECT ANIMAL_ID, NAME From ANIMAL_INS
 ORDER BY ANIMAL_ID;
 ```
+
 
 ---
 
