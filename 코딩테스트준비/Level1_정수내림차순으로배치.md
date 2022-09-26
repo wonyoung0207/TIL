@@ -26,17 +26,65 @@
 1. 내풀이 
 
    ```java
+   public static long solution(long n) {
+       long answer = 0;
+       ArrayList<Long> num = new ArrayList<>();
+       String s = "";
    
+       while(n > 0 ) {
+   
+           num.add((n % 10));
+           n = n / 10;
+       }
+   
+       Collections.sort(num);
+       Collections.reverse(num);
+   
+       for(Long a : num) {
+           s += a + "";
+       }
+   
+       answer = Long.parseLong(s);
+       return answer;
+   }
    ```
-   
+
 2. 좋아요 많은 풀이 
 
    ```java
-   
+   public int reverseInt(int n){
+       res = "";
+       Integer.toString(n).chars().sorted().forEach(c -> res = Character.valueOf((char)c) + res);
+       return Integer.parseInt(res);
+   }
    ```
+
+3. 노가다 풀이 
+
+   ```java
+   public int reverseInt(int n){
+       String arr[]=String.valueOf(n).split("");
    
+       Arrays.sort(arr);
+       String str = "";
    
+       for(int i=arr.length-1; i>=0; i--){
+           str+= arr[i];
+       }
+   
+       return Integer.parseInt(str);
+   }
+   ```
+
    
 
 ## 사용된 개념
 
+- ArrayList 정렬
+
+  ```java
+  collections.sort(list); // 정렬
+  Collections.reverse(num); // 거꾸로 
+  ```
+
+  
