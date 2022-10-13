@@ -199,7 +199,7 @@
 
 ## 사용된 개념
 
-<img src="images/collection구조.png">
+<img src="../images/collection구조.png">
 
 - 배열이 아닌 Collection 사용 이유 
   - 기존에는 많은 데이터를 처리하기 위해 **배열을 사용했었지만 크기가 고정**되어있고 삽입 및 삭제 시간이 오래 걸린다는 불편한 점들이 많았습니다.
