@@ -125,3 +125,11 @@
 ---
 
 ## 사용된 개념
+
+1. toLowerCase , toUpperCase 
+   - 해당함수는 문자열일경우 사용가능하다. 
+   - char 형으로 사용하고자 할 경우는 Character.toUpperCase() 형식으로 사용해야한다. 
+2. 문자의 숫자 판별
+   - isDigit () 사용
+     - 해당 함수는 Character 안에 있으므로 import 해야한다. 
+     - 문자열이 아닌 문자를 판별한다. 
