@@ -40,13 +40,81 @@
 1. 내가 푼 풀이 
 
    ```java
-   ```
+   public int solution(int n) {
+       int answer = 0;
+       int cnt = 0;
+       int n_binary_cnt = binary_cnt(n);
+       int n_binary_str_len = Integer.toBinaryString(n).length();
+       int i= 0;
+       //System.out.println("n_binary_cnt : " + n_binary_cnt);
    
-2. 
+       while(true ){
+           n = n + 1;
+           if(n_binary_cnt == binary_cnt(n)){
+               answer = n;
+               break;
+           }
+           //System.out.println("answer : " + n);
+           i++;
+       }
+   
+   
+       return answer;
+   }
+   
+   public int binary_cnt(int num){//숫자를 받아서 1의 갯수를 돌려줌 
+       char[] ch = Integer.toBinaryString(num).toCharArray();
+       int cnt = 0;
+   
+       for(char c : ch){
+           if(c == '1'){
+               cnt++;
+           }
+       }
+   
+       return cnt;
+   }
+   ```
+
+2. 간단한 풀이 
+
+   ```java
+   public int nextBigNumber(int n)
+   {
+       int a = Integer.bitCount(n);
+       int compare = n+1;
+   
+       while(true) {
+           if(Integer.bitCount(compare)==a)
+               break;
+           compare++;
+       }
+   
+       return compare;
+   }
+   ```
+
+3. 간단한 풀이 
+
+   ```java
+   public int nextBigNumber(int n)
+   {
+       int cnt = Integer.bitCount(n);
+       while(Integer.bitCount(++n) != cnt) {}
+       return n;
+   }
+   ```
+
+   
+
 
 
 ---
 
 ## 사용된 개념
 
-1. 
+1. Integer.bitCount(n);
+   - 정수를 매개변수로  넣으면 해당 수를 2진 비트로 변경 후 1의 갯수를 리턴해준다. 
+     - ex
+       1. 1111(2) → 4
+       2. 1101(2) → 3
