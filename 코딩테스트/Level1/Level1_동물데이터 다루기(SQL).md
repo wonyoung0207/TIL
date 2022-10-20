@@ -29,7 +29,7 @@
 
 ## 풀이 
 
-```java
+```sql
 SELECT ANIMAL_ID, NAME From ANIMAL_INS
 ORDER BY ANIMAL_ID;
 ```
@@ -115,11 +115,9 @@ SELECT ANIMAL_ID, NAME FROM ANIMAL_INS WHERE INTAKE_CONDITION NOT LIKE '%Aged%' 
     - %a : a로 끝나는 단어 찾기 
   - \_ : 특정 위치부터 검색 
     - WHERE name LIKE '__a%'   =>  세 번째 문자가 a인 모든 이름을 출력 
-- INSERT ( 찾을 필드 , 찾을 값)
+- INSTR( 찾을 필드 , 찾을 값)
   - NSTR 함수는 특정 문자열을 찾은 위치를 정수형(숫자)으로 반환한다.  문자열을 찾으면 1이상, 못 찾으면 0을 반환한다.
     -  WHERE INSTR(ename, 'MI') > 0
-
-
 
 ---
 
