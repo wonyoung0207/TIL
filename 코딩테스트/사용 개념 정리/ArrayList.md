@@ -75,7 +75,7 @@
      Collections.sort(list, Collections.reverseOrder());     // [a, C, B, A]
      
      Collections.sort(num);
-     Collections.reverse(num);
+     Collections.reverse(num);// 기존 list를 반대로 뒤집는것 
      ```
   
   2. List.sort() 이용
