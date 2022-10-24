@@ -27,7 +27,7 @@
   System.out.println("문자열의 길이 : " + sb.length()); // 출력결과 : 문자열의 길이 : 14
   System.out.println("용량의 크기 : " + sb.capacity()); // 출력결과 : 용량의 크기 : 27
   System.out.println("문자열 역순 변경 : "  + sb.reverse()); // 출력결과 : 문자열 역순 변경 : zyxkjihgfedcba
-  
+   
   //StringBuilder의 메서드는 원본에영향을 끼친다
   ```
 
