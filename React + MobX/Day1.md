@@ -96,7 +96,7 @@
 
 ### Virtual Dom
 
-- 리액트는 화면을 렌더링할때 Virtual Dom 을 사용한다. 
+- 리액트는 화면을 렌더링(전환) 할때 Virtual Dom 을 사용한다. 
 - Virtual Dom 각 요소는 React Element로 구성되어있다. 
 
 ### JSX ( JavaScript  XML)
@@ -127,4 +127,5 @@
   1. 태그의 앞 글자 대소문자 구분 
      - JSX를 JavaScript로 변경하는 과정에서 대소문자를 잘 구분해야한다.
      - 태그 사용시 앞 글자를 대문자로 하면 React 컴포넌트로 인식하고, 소문자로 하면 HTML 요소로 인식하게 된다. 
+     - 예를들어, `< button>` 태그는 HTML 요소로 인식되고, `<Button>` 태그는 컴포넌트로 인식한다. 
   2. JSX 코드상에서 JavaScript 코드를 사용해야할 때 중괄호 안에 작성한다. 
