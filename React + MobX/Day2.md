@@ -24,7 +24,7 @@
    import React, {Component} from 'react'// react 에서 React를 가져오고 , export에서 Component 모듈의 이름을 가진 데이터도 가져온다. 
    
    class App extends Component{
-       render(){// 컴포넌트는 무조건  render() 함수를 사용해야하며 render함수는 return 하는 값이 무조건 존재해야한다. 
+       render(){// 컴포넌트는 무조건  render() 함수를 사용해야하며 render함수는 return 하는 값이 무조건 존재해야한다. return 값은 대부분 react Element 값 이고 list 나 배열의 형태도 return 될 수 있다. 
            return (
                <BookList books={Books}></BookList>// BookList라는 컴포넌트로 books라는 변수의 데이터를 보낸다. 이제 BookList에서 props를 이용해 Books의 데이터를 가져올 수 있다 .
            )
