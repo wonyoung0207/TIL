@@ -1,6 +1,6 @@
 # Day5
 
-> 6-1 ~ 6-2 까지의 내용 
+> 6-1 ~ 6-3 까지의 내용 
 
 ---
 
@@ -50,6 +50,51 @@
   - Flux 아키텍처를 따르는 라이브러리이다.  
   - Mobx는 Dispacher 과정을 맡아 진행하는 라이브러리로, 컴포넌트에서 Store에 있는 State를 사용할 수 있게 해주는 라이브러리이다. 
 
+- Mobx 에서 사용되는 라이브러리 
+
+  1. mobx.js
+  
+     - @obsevable : 해당 변수가 mobx에 의해 관리되고 있는 State라는 것을 나타낸다. 
+  
+  2. mobx-react.js : mobx와 react를 연결하는데 필요 
+  
+     - @inject : Store객체를 주입하는 것으로, 사용할 컴포넌트 위에 정의한다. 
+  
+       - props로 주입이 되어 this.props를 이용해 사용한다. 
+
+       ```react
+       @inject('counterStore')
+       class CounterComponent extends Component{
+           render(){
+               const {counterStore } = this.props;
+               return(
+               	<div>
+                   	<Button onClick={() => counterStore.decrement()}>
+                           -
+                       </Button>
+                   	<Box
+                           component='span' m={5} > {counterStore.count} <!-- get메소드 이용 -->
+                       
+                       </Box>
+                   
+                   </div>
+               )
+           }
+       }
+       ```
+  
+       
+  
+     - \<provider> : Store들을 정의하는 것으로, mobx는 여러 Store를 만들어 관리할 수 있다. 
+  
+       - 예를들어, CounterStore 라는 count를 관리하는 Store와 UserStore라는 User 관련 정보를 관리하는 Store 이렇게 여러개로 나눌 수 있다. 
+       - provider 태그안의 컴포넌트들은 Store에 있는 State를 사용할 수 있다. 
+         - 만약 App 를 Provider 안에 넣으면 App 컴포넌트 안의 모든 컴포넌트에서 Store 를 사용할 수 있다. 
+       - 이때 provider 안에 컴포넌트에는 **props로 Store의 정보가 전달**된다. 
+  
+  - 어떤 라이브러리에 어떤 API가 있는지 알아야 한다. 
+    - 예를들어, mobx 라이브러리에는 observable API가 있다. 
+  
 - 사용 개념 
 
   - 라이브러리로, 별도로 설치해야 사용가능하다. 
@@ -57,16 +102,30 @@
 
   <img src="./images/Mobx예시1.png">
 
-  - Observable
+  - Observable ( mobx 라이브러리 )
     - Mobx에 의해 관리되는 State들을 감싸는 함수 
     - Observer가 바라보는 데이터를 가진 함수이다. 
     - 따라서 Observable로 감싼 변수는 Mobx가 Store에서 관리하는 State이다. 
-
-  - Observer
+    - Observable이 붙은 변수의 값은 항상 @action 에 의해서만 변경된다. 
+    
+  - Observer ( mobx-react 라이브러리 )
     - Observable한 특정 데이터를 바라보는 컴포넌트이다. 
     - 따라서 해당 어노테이션이 있는 클래스 컴포넌트는 Mobx가 Store에서 관리하는 State를 사용한다는 의미이다. 
-
-  - Action 또는 runInAction
+    - observer 어노테이션을 붙여줘야 변경된 값이 컴포넌트에 적용된다. 
+    
+      - 이때 반드시 Store 컴포넌트 부분에서 생성자 안에 **makeObservable(this)** 를 선언해 줘야한다. 
+    
+      ```react
+      import { observable , action, makeObservable } from 'mobx';
+      
+      class CounterStore{
+          constructor(){
+              makeObservable(this);
+          }
+      }
+      ```
+    
+  - Action 또는 runInAction ( mobx 라이브러리 )
     - Observable 데이터를 변경할 때에는 Action 함수로 변경해야한다. 
     - Action : 대부분 사용 
     - runInAction : 비동기 액션일 경우 사용 
