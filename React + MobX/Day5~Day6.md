@@ -60,7 +60,7 @@
   
   2. mobx-react.js : mobx와 react를 연결하는데 필요 
   
-     - @inject : Store객체를 주입하는 것으로, 사용할 컴포넌트 위에 정의한다. 
+     - **@inject** : Store객체를 주입하는 것으로, 사용할 컴포넌트 위에 정의한다. 
   
        - inject로 주입된 객체들은 props에서 꺼내 this.props를 이용해 사용한다. 
        - inject 되기 위해서는 해당 컴포넌트들이 \<provider> 를 통해 전체 Store가 제공되어야한다. 
@@ -86,9 +86,7 @@
        }
        ```
   
-       
-  
-     - \<provider> : Store들을 정의하는 것으로, mobx는 여러 Store를 만들어 관리할 수 있다. 
+     - **\<provider>**: Store들을 정의하는 것으로, mobx는 여러 Store를 만들어 관리할 수 있다. 
   
        - 예를들어, CounterStore 라는 count를 관리하는 Store와 UserStore라는 User 관련 정보를 관리하는 Store 이렇게 여러개로 나눌 수 있다. 
        - provider 태그안의 컴포넌트들은 Store에 있는 State를 사용할 수 있다. 
@@ -113,7 +111,8 @@
 - Mobx에 의해 관리되는 State들을 감싸는 함수 
 - Observer가 바라보는 데이터를 가진 함수이다. 
 - 특정 데이터를 관찰가능한 데이터로 만들어 react 컴포넌트가 state로 사용할 수 있게 한다. 
-- 따라서 Observable로 감싼 변수는 Mobx가 Store에서 관리하는 State이다. 
+  - 따라서 Observable로 감싼 변수는 Mobx가 Store에서 관리하는 State이다. 
+
 - Observable이 붙은 변수의 값은 항상 @action 에 의해서만 변경된다. 
 - observable 데이터가 변경되면 rendering 을 다시해야한다. 
 
