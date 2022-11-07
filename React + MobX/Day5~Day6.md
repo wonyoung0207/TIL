@@ -106,7 +106,7 @@
 
 <img src="./images/Mobx예시1.png">
 
-### 1. Observable ( mobx 라이브러리 )
+### 1. Observable ( mobx 라이브러리 ) : Store안에있는 변수에 사용된다. 
 
 - Mobx에 의해 관리되는 State들을 감싸는 함수 
 - Observer가 바라보는 데이터를 가진 함수이다. 
@@ -116,7 +116,7 @@
 - Observable이 붙은 변수의 값은 항상 @action 에 의해서만 변경된다. 
 - observable 데이터가 변경되면 rendering 을 다시해야한다. 
 
-### 2. Observer ( mobx-react 라이브러리 )
+### 2. Observer ( mobx-react 라이브러리 ) : Observable 한 데이터를 사용하는 컴포넌트 (  Container, View)에서 사용된다. 
 
 - Observable한 특정 데이터를 바라보는 컴포넌트로, Observable 데이터가 변경되면 다시 rendering을 한다. 
 - 따라서 해당 어노테이션이 있는 클래스 컴포넌트는 Mobx가 Store에서 관리하는 State를 사용한다는 의미이다. 
@@ -132,7 +132,24 @@
       constructor(){
           makeObservable(this);
       }
+      @observable
+      _todo = {} // id, title, date
+      
+      get todo(){
+          return this._todo;
+      }
+      
+      @action
+      setTodoProps(name, value){
+          this._todo = {
+          	...this._todo,
+              [name] = value
+          }
+      }
   }
+  
+  export default new CounterStore();
+  
   ```
 
 ### 3. Action 또는 runInAction ( mobx 라이브러리 )
