@@ -167,3 +167,38 @@ testFunc02();
   let evenNum = numbers.filter( number => number % 2  === 0);
   // 2의 배수만 배열의 형태로 evenNum 에 저장됨 
   ```
+
+---
+
+## 객체 ( Object )
+
+### 정의
+
+- **이름(key) 과 값(value)**으로 구성된 프로퍼티의 집합이다. 
+- 문자열, 숫자, boolean, null, undefined 를 제외한 모든 값은 객체이다. 
+- **프로퍼티(property)** : 객체의 상태를 나타내는 값
+  - var a = { num : 5 } 에서 num : 5가 프로퍼티이다. 
+- **메서드(method)** : 프로퍼티를 참조하고 조작할 수 있는 동작
+
+### 선언
+
+- 객체 리터럴
+  - 리터럴이란 사람이 이해할 수 있는 문자나 약속된 기호를 사용해 값을 생성하는 표기법을 말한다. 
+  - 자바스크립트에서 객체를 생성하는 가장 일반적으로 사용하는 방법 = 리터럴
+
+```javascript
+// 객체 리터럴 이용해서 객체 생성 
+let a = {}; // 객체 선언 
+
+let b = { // 객체는 key와 value로 구성된다. 
+    "key1" : "value1",
+    "key2" : "value2"
+}
+
+// 접근 
+console.log(b["key1"])
+
+// 조회
+let c = b["key3"] || "none"; // key값중 key3가 없다면 none으로 초기화 
+```
+
