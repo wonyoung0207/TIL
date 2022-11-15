@@ -321,7 +321,7 @@ class a {
 *.iml
 ```
 
-### .gitignore 파일 다시 적용
+### git이 관리중인 파일을 .gitignore 로 제외시키는 방법 
 
 - gitignore 파일은 **git track(추적)하지 않도록 설정하는 역할**을 한다.
 - 이미 관리되고 push 한 파일은 후에 .gitignore에 추가해도 없어지지 않는다. 

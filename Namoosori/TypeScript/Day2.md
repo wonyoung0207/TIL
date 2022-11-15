@@ -9,6 +9,8 @@
 > 제네릭
 >
 > Type allas
+>
+> 사용자 키보드 입력 ( readline-sync)
 
 ## TypeScript
 
@@ -96,11 +98,34 @@ console.log(strBox.getFruit().getName()); // 여기서 에러발생 : 이유는 
 type mynum = number;
 const num : mynum = 14;
 
-type UserType = {name : string, age : number};
+type UserType = {name : string, age : number}; // 2개의 타입을 가지는 객체형태를 만들 수 있다. 
 const testUser : UserType = {name : 'kim', age : 14};
 
 // type allas 를 사용하지 않은경우 
 const user : {name : string, age : number} = {name : 'kim', age : 14};
+
+
+// 함수에 type allas  적용 전 
+getItemCounts() : {total : number, incomplete : number }{
+    return {
+        total : this.itemMap.size,
+        incomplete : this.getTodoItems(false).length
+    }
+}
+
+// 함수에 type allas 적용 후 
+type ItemCouns = {
+    total : number,
+    incomplete : number
+}
+
+getItemCounts() : ItemCouns{
+    return {
+        total : this.itemMap.size,
+        incomplete : this.getTodoItems(false).length
+    }
+}
+
 ```
 
 ---
@@ -115,7 +140,7 @@ const user : {name : string, age : number} = {name : 'kim', age : 14};
 - sync VS async
   - 모든 메소드는 sync 와 async로 구분할 수 있다. 
 
-## 에러
+### 발생 에러
 
 - Could not find a declaration file for module 'readline-sync'
 
@@ -123,16 +148,139 @@ const user : {name : string, age : number} = {name : 'kim', age : 14};
 
   - 다음 코드로 npm install을 하니 해결되었다
 
-    ```
+    ```shell
     npm install --save @types/readline-sync
+    
+    // 다르게 사용한 경우 
+    npm i --save readline-sync @types/readline-sync
+    // i : install 을 의미함 
+    // 두개의 모듈을 설치함 ( readline-sync (기본모듈) 와 @types/readline-sync ())
+    // 기본모듈만 설치했을 경우 typeScript에서는 에러남. 따라서 @types/readline-sync 모듈도 설치해야함
+    ```
+    
+
+- npm(Node Package Manager) 은 프로젝트에 필요한 라이브러리를 다운로드 또는 관리 할 수 있도록 해주는 프로그램
+
+  -  -save 옵션은 package.json의 dependency 항목에 모듈을 추가한다는 의미
+
+- **TypeScript에서는 모듈 설치 시 @types 의 전용 모듈을 같이 설치해야 사용할 수 있다.**
+
+---
+
+ ## 템플릿 리터럴 ( \` `)
+
+### 정의 
+
+- bakcktick( ` ) 문자를 사용하여 문자열을 표현한 것 
+- JavaScript 의 ES6버전부터 나온 개념 . 
+- 따라서 템플릿 리터럴은 새로운 문자연결 표기 방식 이라고 할수있다. 
+
+### 기능 
+
+1. 줄바꿈을 쉽게 할 수 있다. 
+2. 문자열 내부에 표현식을 포함할 수 있다. 
+
+```typescript
+a = 3;
+b = 2;
+c = 5;
+console.log(`This is BackTick. ${ a + b } = 
+${ c } 이다. `) 
+// 출력문 : This is BackTick. 5 = 
+// 5
+
+// 여기서 backTick의 강점은 ${} 라는 표현식을 문자열 내부에 넣은것과 \n 을 사용하지 않고 실제 enter를 눌러 줄바꿈 할 수 있다는 것이다. 
+```
+
+---
+
+## inquirer
+
+- 사용자로부터 화살표(방향키)로 움직여 선택항목을 선택해  입력을 받는다. 
+
+### 사용방법
+
+1. 'npm install inquirer @types/inquirer  '  을 통해 2가지 모듈을 받는다. ( inquirer 의 기본모듈과 typescript에서 사용할수 있는 모듈 )
+
+2. 모드지정 ( prompt 함수에 리터럴 타입으로 값을 넣어서 모드를 만든다. )
+
+   ```typescript
+   // Commends.ts
+   export enum Commans{
+       Quit = "Quit",
+       Add = "Add"
+   }
+   
+   // TodoConsole.ts
+   inquirer.prompt({
+       type : 'list', // list형태로 항목을 뿌려줌 
+       name : 'command',
+       message : 'Choose Option',  
+       choice : Object.values(Commands)// 선택할 수있는 항목들 ( 여기서는 열거형 enum 을 사용한다. )
+   }).then((answers) => { // 사용자가 화살표로 선택한 항목 
+       if(answers['command'] !== Commands.Quit ){ // 항목들중 Quit을 화살표로 선택하면 실행
+           this.promptUser();
+       }
+   })
+   ```
+
+<img src="./images/requirer.png">
+
+### 발생 오류
+
+- inquirer 은 npm으로 실행시키면 사용자 방향키 입력에 에러가 난다.
+
+  - 따라서 node로 실행한다. 
+
+    ```shell
+    node build/index.js
     ```
 
-    - 질문하기 : 왜 install 그냥 했을때는 모듈을 인식하지 못하는가 => 내가 보기엔 External Libraries 안에 있는 @types 폴더 안에 readline 모듈이 있다. 이곳에 추가해줘야하는건가???
-    - 만약 맞다면 왜 packge.json 파일의 dependency에 추가가 안되나??? 해당 폴더 상위에 packge.json이 없는 이유는 뭔가??
+---
 
-- **pm(Node Package Manager)**은 **프로젝트에 필요한 라이브러리를 다운로드 또는 관리 할 수 있도록 해주는 프로그램**
+## Enum ( 열거형 타입)
 
-  -  **--save 옵션은 package.json의 dependency 항목에 모듈을 추가한다는 의미**
+### 정의
+
+- **상수들을 관리하기 위한 객체**로, 상수의 집합을 정의
+
+### 상수와 일반상수
+
+- 상수 : 시용자 정의 상수 => const 를 이용한 변수 
+  - 속성을 변경할 수 없음 
+  - const PI = 3.14    => PI라는 변수는 사용자 정의 변수가 되어 다른 곳에서 PI의 값을 변경하지 못한다. 변경하고 싶으면 초기화 부분의 값을 변경해줘야한다. 
+- 일반상수 : nummber , string ...
+  - 속성의 변경이 가능 
+
+### 사용방법
+
+1. enum 키워드로 시작
+2. 클래스처럼 중괄호 { }  사용 
+3. key = value 의 형태로 나열 
+4. 열거형 속성은 **숫자와 문자열만 허용**한다. 
+
+```typescript
+enum Coloe{
+    red = 'r',
+    blue = 'b',
+    green = 'g'
+}
+// 상수의 집합 = enum(열거형)
+const color : Color = Color.red;
+```
+
+### 리버스 멥핑 
+
+- key로 값을꺼낼 수 있고, 값으로도 key를 꺼낼 수 있는 구조 
+
+- 열거형 앞에 **const 가 안붙는다면** 일반적으로 리버스 맵핑이 가능하다. 
+
+  ```typescript
+  console.log(color.red ) // 출력 : r
+  console.log(color['r']) // 출력 : red
+  ```
+
+  
 
 ---
 
