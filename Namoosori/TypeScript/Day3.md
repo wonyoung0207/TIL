@@ -8,9 +8,13 @@
 >
 > 정규표현식 
 >
+> 논리연산자 특이한 사용 ( !!, || , && )
+>
 > 타입표명 (  AS 문법)
 >
-> 
+> interface ( 덕타이핑 )
+>
+> 유니온 (Union)
 
 ## Stage 02 코드 구조
 
@@ -102,6 +106,29 @@ if(!targetClub){ // 비어있거나 null이면 실행? => 모든 객체는 true
 
 - 문자열에서 정규표현식에 매칭되는 항목들을 배열로 반환 
 
+### 논리연산자의 특이한 사용 
+
+- or 연산자 ( || ) : 첫번째 값이 존재하면 첫번째 값을 리턴함. 그렇지 않다면 2번쨰 값 리턴 
+  - 
+- and 연산자 ( && ) : 두개의 값이 모두 true이면 가장 마지막값을 리턴함 .
+  - 둘 중 하나라도 false면 false를 리턴한다. 
+
+```typescript
+// OR 연산자 
+newValueMap.set('phoneNumber', newPhoneNumber || foundMember.phoneNumber); // => newPhoneNumber에 값이 있으면 해당값이 map의 value로 들어가고, 만약 없다면 foundMember.phoneNumber 가 value로 들어간다. 
+
+
+// And 연산자 
+// 조건문 사용 
+if(person.age > 20 ){ 
+	console.log('운전가능 ')
+} else{
+    console.log('운전불가 ')
+}
+// 논리연산자 사용 
+console.log( person.age > 19 && '운전가능 ') // person.age >19 와 '운전가능' 이 참이기 때문에 마지막 값인 '운전가능' 을 리턴함 
+```
+
 ### 논리 연산자 !! 두개 쓰는 이유 
 
 - 한개인 경우 = 부정
@@ -145,29 +172,6 @@ if(!targetClub){ // 비어있거나 null이면 실행? => 모든 객체는 true
 - string.**indexOf**(searchvalue, position)
 - 문자열에서 특정 문자열을 찾고 검색된 문자열이 첫번째로 나타나는 **위치** index를 리턴함
 
-### 논리연산자의 특이한 사용 
-
-- or 연산자 ( || ) : 첫번째 값이 존재하면 첫번째 값을 리턴함. 그렇지 않다면 2번쨰 값 리턴 
-  - 
-- and 연산자 ( && ) : 두개의 값이 모두 true이면 가장 마지막값을 리턴함 .
-  - 둘 중 하나라도 false면 false를 리턴한다. 
-
-```typescript
-// OR 연산자 
-newValueMap.set('phoneNumber', newPhoneNumber || foundMember.phoneNumber); // => newPhoneNumber에 값이 있으면 해당값이 map의 value로 들어가고, 만약 없다면 foundMember.phoneNumber 가 value로 들어간다. 
-
-
-// And 연산자 
-// 조건문 사용 
-if(person.age > 20 ){ 
-	console.log('운전가능 ')
-} else{
-    console.log('운전불가 ')
-}
-// 논리연산자 사용 
-console.log( person.age > 19 && '운전가능 ') // person.age >19 와 '운전가능' 이 참이기 때문에 마지막 값인 '운전가능' 을 리턴함 
-```
-
 ---
 
 ## Union
@@ -180,14 +184,141 @@ console.log( person.age > 19 && '운전가능 ') // person.age >19 와 '운전�
 ### 특징
 
 - 유니온 타입을 사용하면 사용된 두 클래스에 공통인 멤버에만 접근이 가능하다. 
+- 따라서 각 타입이 가지는 **고유멤버( 타입이 가지는 내장함수)는 사용할 수 없다**.  => **TypeGuard** 를 사용해 해결할 수 있다. 
+- typeguard 방법 3가지 
+  1. **typeof 연산자** : number, string, boolean 같은 기본 타입만 체크 가능 
+  2. 사용자 정의함수
+  3. **instanceof**  : Array 같은 객체 타입 체크 가능 
 
 ### 사용방법
 
 - Union Operator( | ) 이용 
 
 ```typescript
-a(shape : any) // 다양한 타입을 받고자 할 떄 any를 쓰고 any는 데이터 타입이든지 들어올 수 있다. 
+// 하나의 타입 지정
+a(shape : any) { } // 다양한 타입을 받고자 할 떄 any를 쓰고 any는 데이터 타입이든지 들어올 수 있다. 
 
- 
+// 유니온 타입 지정 
+ let numOrstr : number | string; // 문자열과 숫자만 담을 수 있다. 
+
+numOrstr = 'abc';
+numOrstr.split() // 유니온타입을 사용하면 string 에 있는 고유멤버인 split() 함수를 사용할 수 없게된다
+// 따라서 typeguard 를 이용해 해결할 수 있다. 
+
+// typegard 적용 => typeof
+if(typeof numOrstr === 'string'){
+    numOrstr.split();
+}
+// typeguard 적용 => instanceof 
+if(numOrstr instanceof Array){
+    
+}
+
 ```
+
+---
+
+### 구조분해할당
+
+- 객체에 있는 값을 쉽게 사용할 수있는 방법 
+
+```javascript
+let {name, id} = person01;
+// person01이라는 객체에서 name, id 라는 key 값을 찾아 value를 리턴한다. 
+```
+
+---
+
+## Interface
+
+### 정의
+
+- typeScript 에서의 interface는 여러 타입의 속성을 interface 하나로 나타내기 위해 사용된다. 
+
+### 특징
+
+- 인터페이스에서 정의하는 메소드는 모두 추상메소드이다. 
+
+- 클래스와 다르게 인스턴스화 (객체화 ) 할 수 없다. 
+
+- 인터페이스를 이용해 변수, 함수, 클래스에 타입을 지정할 수 있다. 
+
+  ```typescript
+  // interface 적용 전. => 변수마다 모두 타입을 지정해줘야한다. 
+  const todo : {id : string, task : string , complete : boolean } = {
+      id : 'abc',
+      task : 'task',
+      complete : true
+  }
+  
+  // interface 적용 후 => 여러군대서 재활용 가능 
+  interface Itodo{
+      id : string,
+      task : string;
+      complete : boolean
+  }
+  
+  const todo : Itodo = {
+      id : 'abc',
+      task : 'task',
+      complete : true
+  }
+  ```
+
+### 사용시 만족해야할 조건
+
+1. 인터페이스 사용한 변수에서는 인터페이스 안에서 정의된 타입들을 모두 정의해줘야한다. 
+
+   - 옵셔널 프로퍼티 
+     - 인터페이스에서 필수요소가 아닌 선택적 요소로 변경한 프로퍼티
+     - '?' 키워드를 이용하면 변경할 수 있다.  
+
+   ```typescript
+   interface Shape {
+       p1 : number[],
+       p2 : number[],
+       area? : number
+   }
+   
+   let rectangle : Shap = {
+       p1 : [1,2,3],
+       p2 : [4,5,6],
+       area : 12
+   }
+   
+   // 이때 area 는 '?' 를 붙인 선택적 요소이기 때문에 다음과 같이 생략할 수 있다. 
+   let rectangle : Shap = {
+       p1 : [1,2,3],
+       p2 : [4,5,6]
+   }
+   ```
+
+2. readonly 사용
+
+   - interface 정의 시 프로퍼티 앞에 readonly를 사용하면 해당 인터페이스가 적용된 객체안에 있는 readonly 프로퍼티는 추후 값을 변경할 수 없다. 
+     - 따라서 readonly는  const와 동일한 기능을 한다. 
+   - const는 변수선언시 사용, interface의 readonly는 특정 프로퍼티를 상수화 시키고자 할 때 사용 
+
+   ```typescript
+   interface p {
+       readonly x : number,
+       y : number,
+   }
+   
+   let test : p = {
+       x : 10, 
+       y : 4
+   }
+   test.x = 11 //  변경시 에러남. readonly이기 때문에 
+   ```
+
+3. Class와의 관계
+
+   - 클래스 구현에 interface를 사용했다면 해당 클래스는 interface의 프로퍼티( 멤버변수 ) 와 메소드를 모두 요소로 구현해야한다. 
+     - interface는 기본적으로 추상화가 적용되기 때문에  implements 한 곳에서 모두 구현해야한다. 
+
+### 덕 타이핑 (duck typing)
+
+- 특정 인터페이스에서 정의한 프로퍼티나 메소드를 갖고있는 클래스는 해당 인터페이스를 구현한 것으로 인정하는 것 
+  - 따라서 implements 를 하지 않은 클래스더라도 해당 인터페이스의 요소 ( 프로퍼티, 추상메소드 등) 를 가지고 있다면 implements한 것과 동일시 하게 본다. 
 
