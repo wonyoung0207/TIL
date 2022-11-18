@@ -76,7 +76,16 @@
     }
     ```
 
+- ClubWindow
+
+  - register() 부분에서 newClub 객체를 생성하면 foundedDate 가 자동 셋팅됨 ( 생성자 안에 있음 ). 근데 객체 생성 후 또 foundedDate 해줌. 
+
+    ```typescript
+    // newClub.foundedDate = DateUtil.today(); // => 어차피 생성자에서 생성함 . 삭제해도 됨 
+    ```
+
     
+
 
 ## 실행 에러
 
