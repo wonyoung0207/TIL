@@ -4,7 +4,9 @@
 
 >Stage 02 실행 순서 
 >
+>싱글톤 패턴
 >
+>Null 과 undefined 차이점 
 
 ## Stage 02 코드 구조
 
