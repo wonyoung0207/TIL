@@ -90,7 +90,7 @@ class MapStorage{
 
 ```javascript
 var var1; //undefined (어떤 값도 할당되지 않아서 자료형을 알 수 없음)
-var var2 = null; //null (null로 (값이) 할당되어서 자료형을 알 수 있음 - null의 자료형은 object다.)
+var var2 = null; //null (null로 (값이) 할당되어서 자료형을 알 수 있음 - null의 자료형은 object)
 
 undefined == null //true
 undefined === null //false
