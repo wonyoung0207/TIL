@@ -15,7 +15,6 @@
   - io : 총 DB역할을 담당하는 메모리맵
   - ~store / ~storeCycler : CRUD 추상메소드의 인터페이스와 그 사이클러 인터페이스
   - ~MapStore : ~store의 구현 클래스로 실제로 CRUD 액션을 구현, MapCycler 역시 동일.
-  - service : Controller/Presenter (화면과 DB를 이어주고 사이의 실제적인 조건 검증 및 액션을 수행하는 메소드)
 - C (Controller)
   - DTO : 객체 정보의 **입출납을** 담당하는 데이터 바구니(fromEntity로 가져오고, to속성~ 으로 DTO에 담은 데이터를 transfer해서 쏴준다.
   - service / serviceCycler : **데이터의 가공을 담당**하는 액션 메소드의 선언 인터페이스와 그 cycler

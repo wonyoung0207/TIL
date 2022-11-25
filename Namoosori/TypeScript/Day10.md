@@ -26,9 +26,13 @@
 
 1. DTO에는 FromEntity() 메소드와 ToClassName() 메소드가 구현되어있고, 해당 메소드를 통해 데이터의 형태를 변형한다. 
 2. FromEntity() 는 데이터를 View로 리턴할 떄 사용하고, ToClassName() 은 MemoryMap에 데이터를 변경할 때 사용한다.
+3. fromEntity와 toClassName은 ServiceLogic에서 구현된다. 
 
 ---
-## 싱글톤 객체
+## 싱글톤 객체 
+
+- 자기 자신의 static 메소드에서 자기 자신 객체를 생성. 
+- 생성자에서 멤버변수 다 null로 초기화 => 딱 한번만 생성되도록 함 
 
 ### ServiceLogicLycler
 
@@ -42,7 +46,7 @@
 - requestClubStore() 메소드 안에서 객체생성
 - getInstance() 를 통해 안에있는 메소드들에 접근 
 
-### MemotyMap
+### MemoryMap
 
 - 모든 Entity를 Map형태로 가짐
 - getInstance() 를 통해 안에있는값에 접근 
@@ -60,3 +64,5 @@
 - if( e instanceof Error) => instatnceof 는 타입가드로, e가 Error형임을 보장한다. 
   - 타입가드 사용하면 e의 내장함수를 사용할 수 있다. 
 - 인터페이스는 여러 타입을 지정하기위해 사용한다. 
+- boardId와 clubId는 항상 동일하다. 
+
