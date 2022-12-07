@@ -41,19 +41,19 @@
   - by : 뒤에오는것을 이용해 찾아라
   - in : 뒤에오는것을 넣어라 
 
-  ```
+  ```typescript
   if('getId' in club || 'setAutoId' in club){
-              if(this.autoIdMap.get(className) === undefined){
-                  this.autoIdMap.set(className , Number(club.getId()));
-              }
-              let keySequence = this.autoIdMap.get(className);
-              if(keySequence !== undefined ){
-                  const autoId = keySequence.toString();
+      if(this.autoIdMap.get(className) === undefined){
+          this.autoIdMap.set(className , Number(club.getId()));
+      }
+      let keySequence = this.autoIdMap.get(className);
+      if(keySequence !== undefined ){
+          const autoId = keySequence.toString();
   
-                  club.setAutoId(autoId);
+          club.setAutoId(autoId);
   
-                  this.autoIdMap.set(className, ++keySequence);
-                  console.log('clubMapStore for create club : ' + keySequence);
-              }
-          }
+          this.autoIdMap.set(className, ++keySequence);
+          console.log('clubMapStore for create club : ' + keySequence);
+      }
+  }
   ```
