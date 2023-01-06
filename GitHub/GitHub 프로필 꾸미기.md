@@ -9,7 +9,7 @@
 - 메인 프로필을 만들기 위해서는 자기 자신의 ID로 된 레포지토리를 생성해야 한다.
   - 나의 ID로 레포지토리를 생성하면 특수 레포지토리로 설정되어 README.md 파일을 꼭 같이 생성해야한다는 주의 문구가 뜬다. 
   - 나의 경우엔 " wonyoung0207 " 로 진행했다. 
-- 레포지토리 생성 후 clone을 받아 README.md 파일을 나의 프로필로 꾸미기 시작한다. 
+- 레포지토리 생성 후 clone을 받아 README.md 파일을 통해 프로필을 꾸밀 수 있다. 
 
 <img src="./images/profile0.png" width=700 >
 
@@ -120,6 +120,7 @@
   ```
 
   - username부분만 자신의 github ID 로 번경해주면 된다. 
+  - 색상을 변경하고 싶다면 theme 부분을 변경하면 된다. 
 
 <img src="./images/profile3.png" width=600px>
 
