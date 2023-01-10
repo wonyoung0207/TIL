@@ -10,7 +10,7 @@
 
    <img src="images/nodejs설치1.jpg">
 
-   - Node.js runtime : Node.js 런타임 본체가 되겠습니다. 
+   - Node.js runtime : Node.js 런타임 본체
    - corepack manager : 패키지 관리로 npm, yarn등의 패키지 관리자의 여러 버전을 설치하고, 사용여부를 지정한다. 서로 다른 개발 또는 배포 환경에서 상호간의 설치 호환성을 유지하기 위해서 사용되어질 수 있다. 
    - npm package manager : 패키지 관리자
    - Online documentation shortcuts : 온라인 문서에 대한 바로가기
