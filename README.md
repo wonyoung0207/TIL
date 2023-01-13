@@ -4,7 +4,7 @@
 
 ## MultiCampus
 
-- [배운내용정리List](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List)
+- [배운내용정리List](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus)
 - [Java](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Java)
 - [SQL](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/SQL)
 - [HTML & Spring Boot](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Spring%20Boot)

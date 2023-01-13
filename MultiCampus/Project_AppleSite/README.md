@@ -235,7 +235,7 @@
 ## 4. 회원가입 화면  
 
    1. 자세한 설명은 Day28.md의 Project 에서
-      1. [Day28 바로가기](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Day28.md)
+      1. [Day28 바로가기](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day28.md
       
       2. 기능
          1. 만들었던 naver 회원가입 페이지를 AJAX 와 JQuery를 이용해 동적으로 만든다. 
