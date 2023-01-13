@@ -248,3 +248,9 @@
    3. 결과창 
       
       <img src="../images/registerok.png">
+
+---
+
+## 5. 시연영상
+
+<img src="./시연영상.gif">
