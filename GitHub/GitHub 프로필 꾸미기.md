@@ -122,6 +122,19 @@
   - username부분만 자신의 github ID 로 번경해주면 된다. 
   - 색상을 변경하고 싶다면 theme 부분을 변경하면 된다. 
 
+- Error ( 2023-01-13 ) 수정
+
+  - Cannot read properties of undefined (reading 'user') => 파일을 찾지 못해 stats가 안나오는 에러 발생 
+
+  - 해결방법 
+
+    ```
+    // 해결방법 => https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api? 로 주소변경 
+    
+    ![Wonyoung Ahn's github stats](https://github-readme-stats-git-masterrstaa-rickstaa.vercel.app/api?username=wonyoung0207&show_icons=true&theme=merko&bg_color=00000000)
+    ```
+
+
 <img src="./images/profile3.png" width=600px>
 
 ---

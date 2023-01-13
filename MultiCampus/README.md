@@ -33,7 +33,7 @@
 - [Day19](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day19.md) : SQL문 제약조건 종류 및 방법, 가상테이블(View)
 - [Day20](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day20.md) : marketDB ERD 작성 
 - Project
-  - [Mart](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Project_Mysql_Java_Connection)
+  - [Mart](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Project_Mart)
 
 
 # [HTML5 & Spring Boot](https://github.com/wonyoung0207/TIL/tree/master/MultiCampus/Spring%20Boot)
@@ -42,10 +42,10 @@
 - [Day22](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day22.md) : HTML 구조 ( 특수기호, 태그 종류), Spring 동작 구조
 - [Day23](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day23.md) : HTML 구조( 태그 종류 ), 폰트 추가 , 콘텐츠 중앙 배치 방법
 - [Day24](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day24.md) : JSP 파일 개념, 반응형 웹 , thymeleaf 서버 개념 및 사용 방법, Bootstrap 템플릿 이용해서 반응형 웹 구현 
-- [Day25](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day25.md) : HTML5 신규 기능 , JavaScript 개념 및 사용법, [문제 만들기 ( 나만의 계산기 )](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Spring%20Framwork%20Code/05.%20JavaScript/templates/js/js07.html)
-- [Day26](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day26.md) : DOM 과 BOM 개념 및 차이점 , JQuery 개념 및 사용법, [문제 만들기 ( BootStrap이용 회원가입화면 만들기) ](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Spring%20Framwork%20Code/06.%20JQuery/template/jq04.html)
-- [Day27](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day27.md) : JQuery 사용 기능, [문제 만들기(Jquery 이용 이미지 자동 넘기기 )](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Spring%20Framwork%20Code/06.%20JQuery/template/jq15.html)
-- [Day28](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day28.md) : AJAX 개념 및 동작 방식, [문제 만들기 (Naver 회원가입 페이지를 AJAX로 구현)](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Spring%20Framwork%20Code/07.%20AJAX/templates/aj04.html)
+- [Day25](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day25.md) : HTML5 신규 기능 , JavaScript 개념 및 사용법, [문제 만들기 ( 나만의 계산기 )](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Spring%20Boot/05.%20JavaScript/templates/js/js07.html)
+- [Day26](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day26.md) : DOM 과 BOM 개념 및 차이점 , JQuery 개념 및 사용법, [문제 만들기 ( BootStrap이용 회원가입화면 만들기) ](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Spring%20Boot/06.%20JQuery/template/jq04.html)
+- [Day27](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day27.md) : JQuery 사용 기능, [문제 만들기(Jquery 이용 이미지 자동 넘기기 )](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Spring%20Boot/06.%20JQuery/template/jq15.html)
+- [Day28](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day28.md) : AJAX 개념 및 동작 방식, [문제 만들기 (Naver 회원가입 페이지를 AJAX로 구현)](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/Spring%20Boot/07.%20AJAX/templates/aj04.html)
 - [Day29](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day29.md) : AJAX 기능, JSONArray 와 JSONObject 차이점 , 차트(chart) 그리는 사이트, js파일과 jsp파일 차이점
 - [Day30](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day30.md) : KakaoMap API 이용 방법
 - [Day31](https://github.com/wonyoung0207/TIL/blob/master/MultiCampus/%EB%B0%B0%EC%9A%B4%20%EB%82%B4%EC%9A%A9%20List/Day31.md) : KakaoMap API 이용 방법, 공공API 사용법 
