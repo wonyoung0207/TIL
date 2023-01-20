@@ -39,7 +39,7 @@
 List<String> list = customer.stream() //  스트림 객체로 변경 
     .filter(customer -> customer.getAge() > 30 ) //  중간연산1 ( Stream 객체 반환 )
     .sort() //  중간연산2 ( Stream 객체 반환 )
-    .map(Customer :: getName()) // 중간 연산3 ( Stream 객체 반환 )
+    .map(Customer :: getName()) // 중간 연산3 ( 데이터를 특정 타입의 데이터로 변환 후 Stream 객체 반환 ) => string 형의 stream으로 반환 
     .collect(Collectors.toList()); // 최종 연산 (collection 객체 반환 )
 ```
 
@@ -57,6 +57,7 @@ List<String> list = customer.stream() //  스트림 객체로 변경
   6. Optional **reduce**(BinaryOperator) : 데이터를 소모하고 그 결과를 반환 
   7. Objectp[] **toArray**() : 배열 객체로 반환 
   8. Stream **sorted**()
+  9. stream map() : 데이터를 특정 타입의 데이터로 변환 후 반환 
 
 ---
 

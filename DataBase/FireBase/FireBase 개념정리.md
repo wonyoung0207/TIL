@@ -20,12 +20,12 @@
 4. Pub.dev 에서 install 할것들
 
    - firebase_auth
-     - irebase auth 이용시 기본설정
+     - firebase auth 이용시 기본설정
    - cloud_firestore. 
      - firebase store 이용시 기본설정
    - 연동한것들을 pubspec.yaml에 추가해줌
 
-5. Firebase이용방법
+5. Firebase 이용방법
 
    1. Firebase 에 프로젝트를 생성한다.
    2. Android 문양을 선택한다.
@@ -50,12 +50,12 @@
 
       - db변수 생성 및 셋팅한다.
 
-   2. db 변수 이용해서 테이블 이름으로 된 doc 정보들 모두 가져오기 
+   2. db 변수 이용해서 컬렉션 형태의 테이블에서 cafes 이름으로 된 doc 정보들 모두 가져오기 
 
       - 예시 코드 
         - db.collection(‘cafes’).get().then( (snapshot) => { snapshot.docs.forEach(doc => { console.log( doc.data()) }) })
 
-      1. doc(문서)의 형태로 가져와서 data 해줘야함
+      1. doc(문서)의 형태로 가져와서 doc.data 해줘야함
       2. then()은 데이터를 가공해서 가져오기 위함이다.
       3. 이때 doc.id 이 문서를 뜻하고, doc.data().name 이 해당 문서안의 필드에 있는 정보를 뜻한다.
 
