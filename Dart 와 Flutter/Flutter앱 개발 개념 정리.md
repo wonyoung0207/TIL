@@ -21,7 +21,7 @@
    - 만약 구동이 에러가 없는데 구동 안되는거면 애뮬레이터 용량문제일수 있다. ADB 삭제 후 다시 만들거나 edit 들어가서 internal Storage를 4096으로 늘린다.
      - File -> project counstruct -> project JDK -> android studio default
 
-5. scaffold 의미 
+5. **scaffold 의미** 
 
    - 앱의 시작을 알리는 위젯. 모두다 여기서 시작함
    - 스케폴드 안에서 화면 구성이 이루어진다.
@@ -46,7 +46,7 @@
    - 안전영역을 의미하며, 앱 바에서 표시되지 않고, 앱 바의 밑을 영역으로 사용한다.
    - Scaffold( body: SafeArea(...))  의 형태로 사용
 
-10. State
+10. **State**
 
     - 앱에서 사용되는 data를 의미
     - State는 위젯의 상태를 저장하며 위젯이 생성될 때(위젯이 화면에 그려질 때) 위젯의 속성을 유지하는 객체이다.
@@ -57,7 +57,7 @@
       - statelessWidget : 변경될 data가 없는경우 사용되는 위젯 
       - setState( () {} ) => 부모 state를 호출한다. stateful 에서만 사용됨
 
-11. stateless vs stateful
+11. **stateless vs stateful**
 
     -  페이지 이동할때마다 위젯 초기화 일어난다. 
        - **stateless위젯**은 고정된 화면으로 **초기 한번의 위젯 초기화 시에만 리로드** 된다. 
@@ -119,7 +119,7 @@
     1. Row일때는 주축이 mainAxisAlignment 가 되서 가로를 기준으로 center에 정렬이 된다.
     2. Column일 경우 주축이 세로가 되서 세로화면을 기준으로 center로 정렬된다.
 
-16. 위젯
+16. **위젯**
 
     - 독립적으로 실행되는 작은 프로그램으로, 주로 바탕화면 등에서 날씨를 나타냄
     - Flutter는 모든 것이 위젯으로 이루어져 있어서, 위젯을 많이 알수록 많은 기능을 사용할 수 있다.
