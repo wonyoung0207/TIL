@@ -4,7 +4,7 @@
 
 > representational : 표현 
 >
-> REST == RESTful, 레스트풀 이라고도 한다. 
+> REST == RESTful, 레스트풀 이라고도 한다.
 >
 > [참고 사이트1](https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html)
 >
@@ -24,8 +24,8 @@
 
 #### 즉, REST란
 
-1. HTTP URI(Uniform Resource Identifier)를 통해 자원(Resource)을 명시하고
-2. HTTP Method(POST, GET, PUT, DELETE)를 통해 해당 자원에 대한 CRUD Operation을 적용하는 것을 의미한다.
+1. HTTP **URI(Uniform Resource Identifier)**를 통해 **자원(Resource)을 명시**하고
+2. HTTP **Method(POST, GET, PUT, DELETE)**를 통해 해당 자원에 대한 **CRUD Operation을 적용**하는 것을 의미한다.
    - Create : 데이터 생성(POST)
    - Read : 데이터 조회(GET)
    - Update : 데이터 수정(PUT, PATCH)
@@ -34,7 +34,7 @@
 ### REST API
 
 - REST 기반으로 서비스 API를 구현한 것 
-- REST 아키텍처를 구현하는 웹 서비스를 RESTful 웹 서비스라고 한다.
+- **REST 아키텍처를 구현하는 웹 서비스**를 **RESTful 웹 서비스**라고 한다.
 - API 개발자는 여러 아키텍처를 사용하여 API를 설계할 수 있다.
   - REST 아키텍처 스타일을 따르는 API를 REST API라고 한다.
 
@@ -62,8 +62,8 @@
 
 ### 필요한 이유 
 
-- 최근의 서버 프로그램은 다양한 브라우저와 안드로이폰, 아이폰과 같은 모바일 디바이스에서도 통신을 할 수 있어야 한다.
-- 이때 REST 아키텍처를 이용하여 멀티 플렛폼에서 안정적으로 통신할 수 있다. 
+- 최근의 서버 프로그램은 **다양한 브라우저**와 안드로이폰, 아이폰과 같은 **모바일 디바이스에서도 통신**을 할 수 있어야 한다.
+- 이때 REST 아키텍처를 이용하여 **멀티 플렛폼에서 안정적으로 통신**할 수 있다. 
 
 ### 구성요소
 
