@@ -11,9 +11,9 @@
 ### 특징 
 
 - 경량 컨테이너
-- IoC(Invertion of Control: 제어 역행)
-- Di(Dependency Injection: 의존성 주입)
-- AOP(Aspect-Oriented Programming: 관점지향 프로그래밍)
+- **IoC**(Invertion of Control: 제어 역행)
+- **Di**(Dependency Injection: 의존성 주입)
+- **AOP**(Aspect-Oriented Programming: 관점지향 프로그래밍)
 
 ### 단점
 
