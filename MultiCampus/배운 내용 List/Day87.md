@@ -49,6 +49,35 @@
    -- ON SCHEDULE EVERY 자주쓰이는 종류
    1 MINUTE, 1 SECOND
    1 WEEK ,1 DAY
+   
+   
+   
+   -- mysql event schedular 사용 가능한지 확인 
+   show variables LIKE 'event%';
+   -- value 가 off라면 on으로 변경해야 사용할수 있다. 
+   -- SET GLOBAL event_scheduler = ON;
+   -- 등록된 event 목록
+   SELECT * FROM information_schema.events;
+   -- event 1 추가 
+   CREATE EVENT today_visit_reset
+   ON SCHEDULE EVERY 1 DAY
+   STARTS '2022-08-09 00:00:00'
+   COMMENT 'visit테이블 정보 삭제'
+   DO
+   TRUNCATE TABLE visit;
+   
+   -- event 2 추가 
+   CREATE EVENT today_visit_save
+   ON SCHEDULE EVERY 1 DAY
+   STARTS '2022-08-09 23:59:00'
+   COMMENT 'visit테이블 정보 저장'
+   DO
+   INSERT INTO visitList(date, count) 
+   SELECT sysdate() as date,sum(v.count) as count 
+   FROM visit as v;
+   -- 이벤트 삭제 
+   -- DROP event today_visit_reset;
+   -- DROP event today_visit_save;
    ```
 
    - CREAT EVENT 이벤트명
