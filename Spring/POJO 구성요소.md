@@ -8,9 +8,12 @@
 >
 > MVC 패턴 
 
-## POJO
+## POJO ( Plain Old Java Object )
 
 - Spring의 삼각형으로, **IOC/DI, AOP, PSA** 로 구성된다.
+- POJO란 특정 기술에 종속되지 않는 **순수한 자바 객체**를 의미
+
+  - 진정한 POJO란 객체지향적인 원리에 충실하면서, 환경과 기술에 종속되지 않고 필요에 따라 재활용될 수 있는 방식으로 설계된 오브젝트이다
 
 1. IOC / DI
    - IOC란 제어의 역전으로, 프로그램의 흐름을 개발자가 아닌 **프레임워크가 주도**한다. 
@@ -74,48 +77,35 @@
   - 객체지향적 구조를 사용하면 **중복된 코드가 많이 발생**하게 된다. 
   - 따라서 AOP를 사용하면 중복코드를 줄이기 위해서 **비슷한내용은 서비스 로직으로 spring framework가 관리**하고 , **개발자가 기업의 핵심적 코드에 집중**할 수 있도록 한다. 
 
-### JDBC ( Java DataBase Connected)
+### POJO 예시
 
-- 데이터베이스에 손쉽게 접속할 수 있도록 구현해놓은 API로, 해당 API를 통해 여러 환경에서 데이터베이스에 손쉽게 접근할 수 있다. 
-  - SQL호환성만 유지된다면 DB변경시 JDBC 코드를 재사용할 수 있다. 
-- 따라서 **자바에서 DB와 연결하기위해 JDBC를 사용하고 , JDBC는 DAO 패턴에 의해 비즈니스 로직과 데이터 액세스를 분리한다.** 
+- POJO (o) -> 순수한 기본 자바 객체의 형태 
 
-### DAO ( Data Access Object ) 패턴 
+  ```java
+  public class UserDTO {
+      private String userName
+      public String getUserName() {
+          return userName;
+      }
+      public void setUserName(String userName) {
+          this.userName = userName;
+      }
+  }
+  ```
 
-- 공통적인 데이터 접근 작업을 수행하는 패턴으로, 애플리케이션 특화 작업은 사용자가 정의한 DAO 콜백에 의해 처리된다. 
-- DAO에게 DB접근의 책임성을 주고, 개발자는 비즈니스 로직만을 담당하게 된다. 
+- POJO (x) -> WindowAdapter 를 상속하여 특정 기술에 종속되어 의존함 
 
----
+  ```java
+  public class WinExam extends WindowAdapter {
+  
+      @Override
+      public void windowClosing(WindowEvent e) {
+          System.exit(0);
+      }
+  }
+  ```
 
-## MVC 패턴 
+- 등장 이유 
 
-### 정의
-
-- 컴포넌트(요소)의 변경이 다른 영역 컴포넌트에 영향을 미치지 않도록 하는 패턴이다. 
-- 컴포넌트간의 결합도를 낮춰 수정에 용이하다. 
-
-### 종류
-
-1. Model : 데이터와 관련된 부분
-2. View : 시각적으로 보이는 화면과 관련
-3. Controller : 전체적으로 제어하기 위한 제어문법
-
-### 장점
-
-1. 화면과 비즈니스 로직을 분리해서 작업 가능
-2. 확장성이 뛰어남
-3. 공동작업이 용이하고 유지보수성이 좋음
-
-### 단점
-
-1.  개발 고자어이 복잡해 초기 개발속도가 느림
-2. 개발에 많은 지식이 요구됨 
-
-### 흐름
-
-1. 클라이언트가 요청 전송
-2. 요청 URL과 매칭되는 컨트롤러 검색
-3. 컨트롤러를 찾아서 요청 수행
-4. 컨트롤러 실행결과를 Model And View 클래스로 변경해서 전달
-5. 컨트롤러 실행결고로 보여줄 View를 검색 
-6. 검색한 View를 클라이언트에게 띄워줌 
+  - 특정 기술과 환경에 종속되어 의존하게 되면, 코드 가독성 뿐만아니라 유지보수, 확장성에도 어려움이 생긴다. 
+  - 이러한 객체지향의 장점을 잃어버린 자바를 되살리기 위해 POJO라는 개념이 등장한 것
