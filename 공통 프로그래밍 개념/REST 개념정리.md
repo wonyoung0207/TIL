@@ -40,7 +40,9 @@
    - Post, Get, Put. Delete 로 자원을 생성,조회,수정,삭제 하는 것 
 3. Message (정보)
 
-### REST API
+---
+
+## REST API
 
 - REST 기반으로 서비스 API를 구현한 것 
 - **REST 아키텍처를 구현하는 웹 서비스**를 **RESTful 웹 서비스**라고 한다.
