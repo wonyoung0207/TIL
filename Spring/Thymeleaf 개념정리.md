@@ -12,7 +12,7 @@
 ## JSP 파일 호출
 
    - jsp파일은  url 에서 바로 호출이 불가능하다. 
-   - 서버가 controller에서 알맞은 jsp 파일을 찾아 html로 바꿔 전달해주는형식이기 때문이다. \
+   - 서버가 controller에서 알맞은 jsp 파일을 찾아 html로 바꿔 전달해주는형식이기 때문이다. 
 
 ### Thymeleaf 파일 호출
 
