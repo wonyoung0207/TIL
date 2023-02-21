@@ -24,7 +24,7 @@
 
 ### POM ( Project Object Model )
 
-- pom.xml파일을 말한다 .
+- pom.xml파일을 말한다.
 - Maven의 기능을 이용하기 위해서 pom이 사용된다. 
 - pom.xml을 보면 프로젝트의 **설정, 의존성**을 알 수 있다. 
 
