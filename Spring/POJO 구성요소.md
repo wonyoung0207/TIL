@@ -1,4 +1,4 @@
-# Day2
+# POJO ( Plain Old Java Object ) 구성요소 
 
 ---
 
