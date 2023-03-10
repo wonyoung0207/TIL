@@ -27,7 +27,7 @@
 | Connection | Jsoup의 connect 혹은 설정 메소드들을 이용해 만들어지는 객체, 연결을 하기 위한 정보를 담고 있다. |
 | Response   | Jsoup가 URL에 접속해 얻어온 결과. Document와 다르게 status 코드, status 메시지나 charset같은 헤더 메시지와 쿠키등을 가지고 있다. |
 
-### 동작 방법
+### 동작과정
 
 1. Connection 객체를 통해 URL에 접속하고(혹은 로컬 파일/문자열), 
 2. Response 객체에서 세션ID같은 쿠키와 HTML Document를 얻어낸 후, 
