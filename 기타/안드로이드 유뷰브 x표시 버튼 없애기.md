@@ -18,23 +18,23 @@
 
 1. 먼저 유튜브 계정을 클릭한다. 
 
-   <img src="./images/유뷰브x표시1.jpg" width="300">
+   <img src="./images/유뷰브x표시2.jpg" width="300">
 
 2. 창이 하나 뜨는데, 밑에보면 "설정" 버튼이 있다. 클릭한다. 
 
-   <img src="./images/유뷰브x표시2.jpg" width="300">
+   <img src="./images/유뷰브x표시3.jpg" width="300">
 
 3. 맨 밑으로 스크롤 하면 " 접근성 " 항목이 있다. 클릭한다.
 
-   <img src="./images/유뷰브x표시3.jpg" width="300" >
+   <img src="./images/유뷰브x표시4.jpg" width="300" >
 
 4. "접근성 플레이어" 가 활성화 되어있는 모습을 볼 수 있다.  클릭해서 해제해준다. 
 
-   <img src="./images/유뷰브x표시4.jpg" width="200"> <img src="./images/유뷰브x표시5.jpg" width="200">
+   <img src="./images/유뷰브x표시5.jpg" width="200"> <img src="./images/유뷰브x표시6.jpg" width="200">
 
 
 
 ## 결과
 
-<img src="./images/유뷰브x표시6.jpg" width="300">
+<img src="./images/유뷰브x표시7.jpg" width="300">
 
