@@ -10,7 +10,7 @@
 
 ## [MongoDB](https://www.mongodb.com/)
 
-<img src="./images/MongoDB로고.png">
+<img src="./images/MongoDB로고.png" width="500">
 
 ### 정의
 
