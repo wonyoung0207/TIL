@@ -46,6 +46,8 @@
 
 ### 구성요소
 
+<img src="./images/DNS서버구조.png" width="600">
+
 1. 도메인 네임 스페이스(Domain Name Space) => " **저장** "
    - 도메인 저장을 분산시키는 역할을 한다. 
    - 이 도메인 이름은 이 IP 주소이다”라는 ‘텍스트’를 저장하는 데이터베이스가 필요하고 분산된 데이터가 어디 저장되어 있는지 찾을 프로그램과 해당 IP 주소로 이동할 프로그램(브라우저 등)이 필요하다. 
@@ -68,3 +70,13 @@
 4. ISP는 Authoritative DNS 서버에서 최종적으로 IP 주소를 응답받는다.
 5. ISP는 해당 IP 주소를 캐시한다.
 6. 웹 브라우저에게 응답한다.
+
+### 동작 예시
+
+1. www.naver.com 입력
+2. 연결되어있는 dns 서버가 우연히 naver.com 이라면 바로 사용자에게 알려줄 수 있다.
+3. 그러나 그런 경우는 매우 드물기 때문에 root dns 서버에게 com dns 서버의 주소를 물어본다.
+4. root dns 서버에게 받은 com에게 찾아가 naver.com의 주소를 물어본다. 
+5. com에게 받은naver.com에게 찾아가 www.naver.com의 주소를 물어본다
+
+- 따라서 www.naver.com의 ip주소를 알고 있는 naver.com dns 서버는 rocal dns 서버에게 주소를 알려주고 rocal nds 서버는 사용자에게 다시 알려주게 된다. 마침내 www.naver.com의 ip 주소를 얻은 사용자는 접속하여 서버에게 네이버 페이지를 불러올 수 있다.
