@@ -24,7 +24,7 @@
 
 ---
 
-## 프로그래밍 개념 정리 
+## IT관련 개념 정리 
 
 1. [Java](https://github.com/wonyoung0207/TIL/tree/master/Java)
 2. [JavaScript](https://github.com/wonyoung0207/TIL/tree/master/JavaScript)
