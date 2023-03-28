@@ -170,10 +170,12 @@
         Collections.sort(list)
         // 내림차순으로 정렬        
         Collections.sort(list, Collections.reverseOrder());     // [a, C, B, A]
+        
+        Collections.reverse(list);
         ```
    
      2. List.sort() 이용
-   
+     
         ```java
          // 오름차순으로 정렬        
         list.sort(Comparator.naturalOrder());        

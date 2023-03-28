@@ -38,7 +38,7 @@
 // 람다 표현식으로 사용 
 List<String> list = customer.stream() //  스트림 객체로 변경 
     .filter(customer -> customer.getAge() > 30 ) //  중간연산1 ( Stream 객체 반환 )
-    .sort() //  중간연산2 ( Stream 객체 반환 )
+    .sorted() //  중간연산2 ( Stream 객체 반환 )
     .map(Customer :: getName()) // 중간 연산3 ( 데이터를 특정 타입의 데이터로 변환 후 Stream 객체 반환 ) => string 형의 stream으로 반환 
     .collect(Collectors.toList()); // 최종 연산 (collection 객체 반환 )
 ```
@@ -67,7 +67,7 @@ List<String> list = customer.stream() //  스트림 객체로 변경
 
    - Collection 객체들은 디폴트로 **stream() 메소드**를 가진다.  해당 메소드는 **stream 객체로 만들어주는 메소드**이다. 
 
-   - Collection 객체 ( List, Set, Queue ) 와 Map 인터페이스 는 default 메소드로 stream() 메소드를 가진다. 
+   - **Collection** 객체 ( List, Set, Queue ) 와 **Map** 인터페이스 는 **default 메소드로 stream() 메소드를 가진다.** 
 
      ```java
      List<String> list = new ArrayList<>();
@@ -196,11 +196,37 @@ List<String> names = customer.stream() // stream 객체는 <Customer> 타입을 
 
 - 최종 연산으로, stream 객체 타입의 데이터를 collection(list, set queue) , map 형식으로 변경해서 리턴해 준다. 
 - 매개변수의 값으로 **Collector**에 있는 메소드를 사용한다. 
+- toMap(key, value) 
+  - 해당 메소드 사용시 key값 중복에 주의해야한다. -> map은 중복허용 안하기 때문에 
+  - 따라서 위의 문제로 인해 3번째 인자로 (oldValue, newValue) -> oldValue 의 형태로 메소드를 제공한다. 
+  - `(oldValue, newValue) -> oldValue` 중복이 있는 경우에는 oldValue 값을 선택한다.
+
 
 ```java
+// toList()
 clubMap.values().stream()
     .filter(club -> club.getClubName().equals(clubName))
     .collect(Collectors.toList());
+
+// toMap()
+Map<String, Integer> nameVsAgeMap = students
+    .stream()
+    .collect(Collectors.toMap(// 인자값 2개를 넣어야 하는데, key 와 value 값을 넣어준다. 
+        Student::getName,
+        Student::getAge)
+    );
+
+
+Map<String, Integer> nameVsAgeMap = students
+    .stream()
+    .collect(Collectors.toMap(
+        Student::getName,
+        Student::getAge,
+        (oldValue, newValue) -> {
+            log.info("oldValue : {} newValue : {}", oldValue, newValue);
+            return oldValue;
+        })
+            );
 ```
 
 
