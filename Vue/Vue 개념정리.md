@@ -10,6 +10,8 @@
 >
 >[참고 사이트3](https://wikidocs.net/17701)
 
+<img src="./images/vue로고.png" width="300">
+
 ## Vue
 
 ### 정의
