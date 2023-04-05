@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+
+</head>
+<body>
+    <div id="app">
+        <form v-on:submit.prevent="submit('inputData')">
+            <!-- 노가다 양방향 데이터 바인딩 ( 이벤트이용 ) -->
+            <input type="text" :value="text" @keyup="updateText"><br>
+            <!-- <input type="text" :value="text" v-on:keyup="updateText"><br> 위와 같은 결과냄 -->
+            {{ text }}<br>
+
+            <!-- 더 쉬운 양방향 데이터 바인딩  (v-model 키워드 사용 )-->
+            <input type="text" v-model="text"><br>
+        </form>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app", 
+            data : {
+                text : '',
+            },
+            methods : { 
+                updateText(event) {
+                    this.text = event.target.value; // event 발생시 생성되는 객체로, event 안에는 발생한 이벤트와 관련 정보들이 들어있다. 
+                },
+            }
+        })
+    </script>
+</body>
+</html>

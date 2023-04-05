@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+
+</head>
+<body>
+    헬로 월드 1
+    <div id="app">
+        <!-- 뷰 인스턴스 연결하는 곳  -->
+        {{ name }}    
+    </div>
+
+    <script>
+        new Vue({
+            // 뷰 인스턴스 생성
+            el: "#app", // 연결할 태그 이름 
+            data : { // 뷰 인스턴스에서 사용할 데이터 
+                name : "wonyoung"
+            }
+        })
+    </script>
+
+
+</body>
+</html>

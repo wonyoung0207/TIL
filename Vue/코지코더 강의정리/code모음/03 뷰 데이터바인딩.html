@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+
+</head>
+<body>
+    <div id="app">
+        <!-- <input v-bind:type="type" v-bind:value="inputData"> -->
+        <!-- vue에서 지원하는 기능으로인해 v-bind 라는 문구를 생략하고 : 만 써서 이용가능  -->
+        <input :type="type" :value="inputData">
+        <a :href="myGithubConnection('wonyoung0207')"> 내 깃주소 연결 
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app", 
+            data : {
+                person : {
+                    name : 'wonyoung',
+                    age : 28
+                },
+                inputData : '값을 넣어주세요. ',// 데이터 바인딩 시 사용할 변수이름과 값
+                type : 'text', // 데이터 바인딩
+                github : 'https://github.com/',
+            },
+            methods : { 
+                myGithubConnection(myGithubAdd){
+                    return this.github + myGithubAdd;
+                }
+                
+            }
+        })
+    </script>
+
+
+</body>
+</html>

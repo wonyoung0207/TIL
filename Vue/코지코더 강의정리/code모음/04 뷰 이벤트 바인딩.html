@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+
+</head>
+<body>
+    <div id="app">
+        {{ year }}
+        <br>
+        <button v-on:click="addYear()"> 날짜 더하기 </button>
+        <button v-on:click="minusYear()"> 날짜 빼기 </button>
+        <br>
+
+        <form v-on:submit.prevent="submit('inputData')">
+            <input type="text">
+            <!-- submit 의 특징은 데이터를 보내고나면 화면을 리로드 시킨다는 것이다. 따라서 preventDefault 를 false로 해줘야한다. -->
+            <!-- vue에서는 .prevent 라는 이벤트 수식어를 통해 더 쉽게 사용할 수 있다.  -->
+            <button type="submit"> submit </button>
+        </form>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app", 
+            data : {
+                year : '2023',
+            },
+            methods : { 
+                addYear(){
+                    this.year++;
+                },
+                minusYear(){
+                    this.year--;
+                },
+                submit(inputData){
+                    alert(inputData);
+                },
+            }
+        })
+    </script>
+</body>
+</html>
