@@ -12,11 +12,11 @@
     <div id="app">
         {{ year }}
         <br>
-        <button v-on:click="addYear()"> 날짜 더하기 </button>
-        <button v-on:click="minusYear()"> 날짜 빼기 </button>
+        <button v-on:click="addYear"> 날짜 더하기 </button>
+        <button v-on:click="minusYear"> 날짜 빼기 </button>
         <br>
 
-        <form v-on:submit.prevent="submit('inputData')">
+        <form v-on:submit.prevent="submit">
             <input type="text">
             <!-- submit 의 특징은 데이터를 보내고나면 화면을 리로드 시킨다는 것이다. 따라서 preventDefault 를 false로 해줘야한다. -->
             <!-- vue에서는 .prevent 라는 이벤트 수식어를 통해 더 쉽게 사용할 수 있다.  -->
@@ -37,8 +37,8 @@
                 minusYear(){
                     this.year--;
                 },
-                submit(inputData){
-                    alert(inputData);
+                submit(){
+                    alert('헬로우');
                 },
             }
         })

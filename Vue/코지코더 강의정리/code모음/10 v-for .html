@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div id="app">
+        <div>
+            {{ people[0].name }} {{ people[0].age}}
+        </div>
+        <div>
+            {{ people[1].name }} {{ people[1].age}}
+        </div>
+        <div>
+            {{ people[2].name }} {{ people[2].age}}
+        </div>
+        <br>
+        <hr>
+
+        <!-- p of people 로 써도 됨  -->
+        <!-- 이렇게 반복문 하면 고유 key를 설정해주는 것이 좋다.  -->
+        <!-- (p, index) in peple  을 사용해서 index도 사용할 수 있다.  -->
+        <div v-for="p in people" :key="p.id + ' : ' + name">
+            {{ p.name }} {{ p.age }}
+        </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#app", 
+            data : {
+                people : [
+                    { id : 1, name : 'a', age : 11},
+                    { id : 2, name : 'b', age : 12},
+                    { id : 3, name : 'c', age : 13},
+                ]
+            },
+        })
+    </script>
+</body>
+</html>

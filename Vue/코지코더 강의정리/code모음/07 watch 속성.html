@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+
+</head>
+<body>
+    <div id="app">
+        computed 이용 : {{ reverseMessage2 }}
+        <br>
+        <button @click="changeMsg"> text 변경 </button>
+        <br>
+        {{ updateData }}
+    </div>
+    <script>
+        new Vue({
+            el: "#app", 
+            data : {
+                msg : '내이름은 안원영 입니다. ',
+                updateData : '업데이트 전 ',
+            },
+            methods : {  // 호출시 실행되며 중복으로 호출해도 함수안의 코드를 계속해서 호출함 
+                changeMsg(){
+                    this.msg = '텍스트 변경';
+                }
+            },
+            computed : {               
+                reverseMessage2(){
+                    return this.msg.split('').reverse().join('');
+                }
+            },
+            watch : { // 어떤 데이터를 감시할 것인지 체크 후 해당 데이터가 변경되면 실행됨 
+                msg(newVal, oldVal) { // newVal은 새로 바뀐 데이터의 값, oldVal 은 바뀌기 전의 값이 들어간다. 
+                    this.updateData = '업데이트 후 ';
+                    console.log(newVal, oldVal);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

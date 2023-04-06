@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div id="app">
+        <button @click="toggle"> Toggle </button>
+        <!-- 간단한 if문을 통해 조건문의 결과가 true이면 태그 렌더링 o , false이면 태그 자체를 렌더링하지 않음   -->
+        <div v-if="show"> v-if 이용 Show Data </div><br>
+        <!-- v-show는 v-if와 다르게 무조건 렌더링 되기 때문에 html파일에 표시된다. 하지만 false일때 'display : none' 을 적용해 태그를 보이지 않게 만드는 것 뿐이다. -->
+        <div v-show="show"> v-show 이용 Show Data </div>
+        <br>
+
+        <button @click="increase"> add nummber </button>
+        <!-- template 태그를 이용해 여러 태그를 묶을 수 있다.  -->
+        <template v-if="nummber === 1">
+            <div>1</div>
+            <div>1</div>
+            <div>1</div>
+        </template>
+        <div v-else-if="nummber > 1 && nummber <= 3">
+            <div>1~3 까지 </div>
+        </div>        
+        <div v-else>
+            3초과
+        </div>
+        <br>
+    </div>
+    <script>
+        new Vue({
+            el: "#app", 
+            data : {
+                show : true,
+                nummber : 1,
+            },
+            methods : {  
+                toggle(){
+                    this.show = !this.show;
+                },
+                increase(){
+                    this.nummber++;
+                }
+            },
+        })
+    </script>
+</body>
+</html>

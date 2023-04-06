@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+    <style>
+        /* 클래스별 스타일 지정  */
+        .red {
+            color : red;
+        }
+
+        .font-bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- 클래스를 2개 적용시키기 위해서는 ' , ' 를 사용한다.  -->
+        <!-- 클래스 바인딩시 ' :  ' 를 class 앞에 붙여줘야 한다.  -->
+        <!-- 클래스 이름에 ' - ' 가 있다면 ' ' 를 사용해 클래스 이름을 묶어줘야 한다. -->
+        <div :class="{ red : isRed, 'font-bold' : isBold }"> Color Text Test </div>
+        <button @click="changeText"> 클래스 이용 폰트 스타일 변경하기 </button>
+        <br>
+        <!-- 태그에 있는 style속성으로 바인딩해서 변경하기  -->
+        <div :style="{ color : color, fontSize : size}"> Color and size Change </div>
+    </div>
+    <script>
+        new Vue({
+            el: "#app", 
+            data : {
+                isRed : false, // 클래스에 false를 적용하면 클래스이름으로 지정되지 않는다. 
+                isBold : false,
+                color : 'red',
+                size : '30px',
+            },
+            methods : {  
+                changeText(){ // 해당 메소드 호출시 클래스의 적용을 토글시킬 수 있다. 
+                    this.isBold = !this.isBold;
+                    this.isRed = !this.isRed;
+                }
+            },
+        })
+    </script>
+</body>
+</html>
