@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+</head>
+<body>
+    <div id="app">
+        <my-button> </my-button>
+    </div>
+
+    <script>
+        // 컴포넌트 전역 설정
+        Vue.component('hello-world',{
+            template : '<div> hello world!! </div>'
+        })
+        // 컴포넌트 지역 설정 
+        const myButton = {
+            template : `
+            <div>
+                {{name}} <br>
+                <button @click="changeText" > change </button> 
+                <hello-world> </hello-world> 
+            </div>
+            `
+            ,
+            data() {
+                return {
+                    name : 'wony'
+                }
+            },
+            methods : {
+                changeText(){
+                    this.name = 'Update Text complate!!';
+                }
+            }
+        };
+
+        const app = new Vue({// app이라는 클래스 태그 안에서만 my-button 컴포넌트를 사용할 수 있게됨 
+            el: "#app", 
+            component : { // 컴포넌트를 지역으로 사용 
+                'my-button' : myButton,
+            },
+        })
+    </script>
+</body>
+</html>
