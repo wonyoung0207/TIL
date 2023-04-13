@@ -18,8 +18,18 @@
 
 - 웹 페이지 화면(**프론트엔드**)을 개발하기 위한 javascript **프레임워크**	
 - React와 Angular 의 장점을 합쳐놓은 MVVM(Model - View - ViewModel ) 모델을 사용한다. 
+- vue는 web-app 을 만들 떄 사용한다. 
+  - **web-app 은 app처럼 부드럽게 전환되는 web 사이트**를 뜻한다. 
+  - 리액트와 angular 의 특징을 가진다.  
 
 <img src="./images/mvvm패턴구조.png" width="500">
+
+### 동작 방법
+
+1. **view**에서 일어나는 이벤트를 **Dom Listener**가 **감지**하고 **Model에 해당 사항을 반영**한다. model은 자바스크립트이다. 
+2. 이때 model 의 값이 **바인딩되어있어 Vue의 Data Binding**이 일어난다. 
+3. 데이터바인딩이 일어나면 **view의 내용이 자동으로 변경**된다.
+4. **따라서 vuejs는 view와 model사이에서 Dom Listener 와 Data Binding을 처리한다.** 
 
 ### Vue의 목적
 
