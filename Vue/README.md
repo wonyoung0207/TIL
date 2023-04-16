@@ -9,6 +9,8 @@
 >[참고 사이트2](https://seungwongo.medium.com/vue-js-%EB%9E%80-8f865b34e53d)
 >
 >[참고 사이트3](https://wikidocs.net/17701)
+>
+>[Vue js 웹 서비스 개발에 필요한 지식 정리 공간](https://joshua1988.github.io/vue-camp/textbook.html)
 
 <img src="./images/vue로고.png" width="300">
 
@@ -162,6 +164,7 @@ new Vue({
     computed : ,
     created : ,
     mounted : ,
+    router : ,
     watch : , 
 })
 ```
