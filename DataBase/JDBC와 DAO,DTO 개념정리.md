@@ -1,0 +1,52 @@
+# JDBC와  DAO
+
+---
+
+>JDBC와 DAO 개념에 대해 정리한다. 
+
+## JDBC ( Java DataBase Connected)
+
+### 정의
+
+- 데이터베이스에 손쉽게 접속할 수 있도록 구현해놓은 API로, 해당 API를 통해 여러 환경에서 데이터베이스에 손쉽게 접근할 수 있다. 
+  - SQL호환성만 유지된다면 DB변경시 JDBC 코드를 재사용할 수 있다. 
+  - 따라서 **자바에서 DB와 연결하기위해 JDBC를 사용하고 , JDBC는 DAO 패턴에 의해 비즈니스 로직과 데이터 액세스를 분리한다.** 
+
+---
+
+## DAO ( Data Access Object ) 
+
+### 정의
+
+- DB의 data에 접근하기 위한 객체
+  - 공통적인 데이터 접근 작업을 수행하는 객체로, 애플리케이션 특화 작업은 사용자가 정의한 DAO 콜백에 의해 처리된다. 
+
+
+### 역할
+
+- DAO에게 DB접근의 책임성을 주고, 개발자는 비즈니스 로직만을 담당하게 된다. 
+  - 쉽게 말해, **DAO를 통해 DB를 연결**하여 데이터를 가져오거나, 삭제, 수정등 **CRUD를 작업하는** 것
+
+
+---
+
+## DTO ( Data Transfer Object )
+
+### 정의
+
+- 계층간 **데이터 교환을** 하기 위해 사용하는 객체 ( 데이터를 담을 수 있는 객체 )
+  - 로직을 가지지 않는 순수한 **Java Beans**(getter 와 setter 만 가지고 기능이 없는 객체 ) 를 뜻한다. 
+- DTO는 MVC중 Model쪽에 속하여 MVC 흐름 속에서 데이터가 교환될 수 있도록 하는 객체
+
+### 역할
+
+- **DAO**가 DB에서 얻어온 데이터를 Service나 Controller로 보낼 때 DTO를 이용해 getter와 setter를 사용하여 데이터를 얻어온다. 
+- Controller는 View - Model의 데이터를 주고 받을 때 별도의 DTO를 주로 사용
+
+---
+
+### 정리
+
+- Controller에서 Service를 호출하고 Service가 DAO계층에 있는 메소드를 호출하면 DAO에서 Mybatis를 호출한다.
+  - mybatis는 자바와 sql간의 멥핑을 해주는 프레임워크 이다. 
+- Mybatis를 통해 SQL 쿼리가 실행되고 결과로 나온 값들을 DTO에 담아 전달한다. 
