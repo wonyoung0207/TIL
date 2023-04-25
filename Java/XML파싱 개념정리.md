@@ -23,6 +23,8 @@
       - 단점: 구현과 구조 변경이 어렵다.
    3. 핸들러를 따로 구현하여 발생한 이벤트를 변수에 저장 활용하는 방식을 사용한다.  
 
+- 따라서 한번에 Dom으로 묶어 처리하고 싶다면 Dom을 사용하고, 라인 단위로 내려가며 처리하고 싶다면 SAX 방식을 사용한다. 
+
 ---
 
 ## SAX
@@ -33,6 +35,24 @@
   1. **startElement()** : 태그를 처음 만나면, 발생하는 이벤트
   2. **endElement()** : 닫힌 태그를 만나면 발생하는 이벤트
   3. **characters()** : 태그와 태그 사이의 text(내용)을 처리하기 위한 이벤트
+     - 파서가 XML 문서의 element 내부의 문자 데이터를 발견할 때 호출
+     - 따라서 element (태그) 안에 값이 있을경우 실행되는 메소드이다. 
+
+### 메서드의 매개변수 
+
+- startElement()와 endElement() 메서드에서의 매개변수 중 localName, qName, attributes에 대해 알아본다. 
+
+1. **localName**
+   - localName은 태그의 이름을 문자열로 반환
+   - 예를 들어, \<book> 태그에서 localName은 "book"(태그이름)이 된다. 
+2. **qName**
+   - qName은 네임스페이스를 포함한 태그의 이름을 문자열로 반환
+   - 예를 들어, \<book xmlns="http://example.com"> 태그에서 qName은 "book"이 된다. 
+   - qName은 XML **문서의 네임스페이스**를 식별하는 데 사용된다.
+3. **attributes**
+   - attributes는 **태그의 속성**을 포함하는 Attributes 객체
+   - Attributes 객체는 이름-값 쌍의 집합으로, 각각의 이름과 값을 문자열로 반환한다.
+   - 예를 들어, \<book **id**="1234" **author**="John Doe"> 태그에서 attributes는 **id와 author 속성의 값을 포함**하게 됩니다.
 
 ### 예시
 
