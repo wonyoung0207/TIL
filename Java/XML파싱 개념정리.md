@@ -177,3 +177,62 @@ public class StartAnalysis {
 }
 ```
 
+---
+
+## Error
+
+- org.w3c.dom.DOMException: HIERARCHY_REQUEST_ERR: 삽입이 허용되지 않는 노드를 삽입하려고 시도했습니다.
+
+- 오류 코드
+
+  ```java
+  FileOutputStream fos = new FileOutputStream( resultFilePath + "T_" + fildId + "_TB.xml");
+  DataOutputStream dos = new DataOutputStream(fos);
+  
+  DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+  DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+  Document doc = dBuilder.newDocument();
+  
+  Element rootElement = doc.createElement("ROWS");// 
+  doc.appendChild(rootElement); // 
+  
+  // rMap 에 있는 값 
+  for (HashMap.Entry<String, F> entry : rMap.entrySet()) { // Map의 value에 있는 F 파일 객체 이용하기 위해
+      // 가장 상위의 row 엘리먼트(태그) 생성 
+      Element rowElement = doc.createElement("ROW");// fildId 만큼 ROW 가 생성되야 함 
+      doc.appendChild(rootElement); // row 태그 추가  -> Error 남 
+  
+      Element element = doc.createElement("ROWID");// rowId로 하위 태그셍성 
+      if (entry.getValue() != null) {
+          element.appendChild(doc.createTextNode(entry.getValue().getRowId()+"")); // 태그 안에 들어갈 내용 추가 
+      }
+      rootElement.appendChild(element); // ROW 태그 밑에 추가 
+  }
+  
+  byte[] bytes = docToString(doc).getBytes();
+  fos.write(bytes);
+  fos.close();
+  
+  ```
+
+- 해결코드
+
+  - 문제점:  rootElement에 rowElement를 추가해야 하는데 doc에 추가함. 
+
+    - `doc.appendChild(rootElement)`에서 `rootElement`가 문서의 루트 요소가 되기 때문에 이후에 추가하는 모든 요소들은 이 루트 요소의 자식 요소가 되어야 한다. 
+    - 이렇게되면 가장 상위 Element로 rootElement와 rowElement가 추가되는데, 이때 충돌이 발생한다. 
+
+    ```java
+    for (HashMap.Entry<String, F> entry : rMap.entrySet()) { // Map의 value에 있는 F 파일 객체 이용하기 위해
+        // 가장 상위의 row 엘리먼트(태그) 생성 
+        Element rowElement = doc.createElement("ROW");// fildId 만큼 ROW 가 생성되야 함 
+        rootElement.appendChild(rootElement); // row 태그 추가  
+    
+        Element element = doc.createElement("ROWID");// rowId로 하위 태그셍성 
+        if (entry.getValue() != null) {
+            element.appendChild(doc.createTextNode(entry.getValue().getRowId()+"")); // 태그 안에 들어갈 내용 추가 
+        }
+        rootElement.appendChild(element); // ROW 태그 밑에 추가 
+    }
+    ```
+
