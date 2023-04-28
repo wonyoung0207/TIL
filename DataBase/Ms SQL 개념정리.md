@@ -8,7 +8,7 @@
 
 ### 정의
 
-- Microsoft SQL Server의 줄임말로, 관계형 데이터베이스 관리 시스템(RDBMS)이다. 
+- Microsoft SQL Server의 줄임말로, 관계형 데이터베이스 관리 시스템(**RDBMS**)이다. 
 
 ### 특징
 
@@ -29,24 +29,64 @@
 
 ### T - SQL   (Transact-SQL)
 
-- MS SQL 이 사용하는 고유 쿼리 언어 
+1. **MS SQL 이 사용하는 고유 쿼리 언어** 
 
-  - 예를 들어, MSSQL은 TOP N 문법을 사용하여 결과 집합의 상위 N 개의 행을 선택한다.
-  - 반면 MySQL은 LIMIT 문법을 사용하여 비슷한 작업을 수행한다. 
+   - 예를 들어, MSSQL은 TOP N 문법을 사용하여 결과 집합의 상위 N 개의 행을 선택한다.
+   - 반면 MySQL은 LIMIT 문법을 사용하여 비슷한 작업을 수행한다. 
 
-- 문자열 조합 
+2. **문자열 조합** 
 
-  - MySQL
+   - MySQL
 
-    ```SQL
-    SELECT CONCAT('Hello', ' ', 'World');
-    ```
+     ```SQL
+     SELECT CONCAT('Hello', ' ', 'World');
+     ```
 
-  - T-SQL
+   - T-SQL
 
-    ```SQL
-    SELECT 'Hello' + ' ' + 'World';
-    ```
+     ```SQL
+     SELECT 'Hello' + ' ' + 'World';
+     ```
+
+### 사용 메소드 
+
+1. **날짜** 
+
+   - GETDATE() : 현재 컴퓨터에 설정되어있는 시스템 시간을 불러와주는 함수
+
+2. **Commit** 
+
+   - **모든 작업을 정상적으로 처리하겠다고 확정**하는 명령어이다.
+
+     - 트랜젝션의 처리 과정을 데이터베이스에 반영하기 위해서, **변경된 내용을 모두 영구 저장한다.**
+     - COMMIT 수행하면, **하나의 트랜젝션 과정을 종료하게 된다.**
+     - TRANSACTION(INSERT, UPDATE, DELETE)작업 내용을 실제 DB에 저장한다.
+     - 이전 데이터가 **완전히 UPDATE**된다.
+     - 모든 사용자가 변경한 데이터의 결과를 볼 수 있다.
+
+   - 예시 
+
+     - 100개의 데이터가 있었을 때 20개를 삭제하고 30개를 다시 입력한다.
+     - 그러면 총 110개의 데이터가 나와야 한다.
+     - 하지만, commit을 하지 않을 경우에는 기존의 100개만 데이터가 나온다.
+
+   - MSSQL에서는 **autocommit 모드**가 기본적으로 활성화되어있어 **해당 명령어를 사용하지 않아도 된다**. 
+
+     - 만약 autocommit 모드를 비활성화하고 싶다면 다음 명령어를 사용한다. 
+
+       ```sql
+       SET autocommit OFF;
+       COMMIT; 
+       -- 비활성화 하면 commit 명령어 실행해줘야함 
+       ```
+
+     - 다시 활성화 하고 싶다면 다음명령어를 사용한다. 
+
+       ```sql
+       SET autocommit ON;
+       ```
+
+       
 
 
 
