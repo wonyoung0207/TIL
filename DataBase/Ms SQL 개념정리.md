@@ -86,7 +86,51 @@
        SET autocommit ON;
        ```
 
-       
+3. **convert()**
 
+   - 데이터 변환시 사용되는 함수이다. 
 
+     - **expression :** 유효한 식
+     - **data_type :** 대상 데이터 형식 별칭 데이터 형식은 사용할 수 없다. 
+     - **length :** 대상 데이터 형식의 길이를 지정하는 선택적 정수. 
+       - 기본값은 30이다.
+     - **style :** Convert함수가 식을 변환하는 방법을 지정하는 정수 식
+       - style이 Null이면 Null 값이 반환된다.
+
+   - 예시 
+
+     ```mssql
+     -- 함수 형태 
+     CONVERT(data_type[(length)], expression[style])
+     
+     -- 예시 
+     SELECT CONVERT(NVARCHAR(10),칼럼) AS 칼럼명 FROM MY_TABLE --VARCHAR로 변환
+     SELECT CONVERT(VARCHAR(30), FORMAT(GETDATE(), 'yyyyMMddHHmmssfff')); -- Format의 데이터를 varchar형태로 변환 
+     ```
+
+4. **format()** 
+
+   - SQL Server 2012 버전부터 FORMAT 함수가 추가되었다. 
+
+   - 날짜 데이터형식을 변환할 때 많이 사용한다. 
+
+     - nvarchar 타입으로 리턴된다. 
+
+   - 예시 
+
+     ```mssql
+     SELECT CONVERT(VARCHAR(30), FORMAT(GETDATE(), 'yyyyMMddHHmmssfff'));
+     ```
+
+   - **varchar와 nvarchar의 차이**
+
+     - **varchar**는 **바이트 수**, **nvarchar**는 **글자 수**를 기준으로 한다. 
+       - **varchar**는 **가변 문자열**이며, **nvarchar**는 **유니코드 지원 가변 문자열**이다. 
+
+     - 비유니코드 지원인 **varchar**는 **영어, 숫자는 1byte, 그 외 한글, 한자 등은 2byte로 저장**한다. 
+       - 반면, **nvarchar**는 유니코드 지원이므로 **모든 문자를 일괄적으로 2byte로 저장**한다. 
+
+     - 예시
+       - ''**MousaDembele**'라는 문자열은 **varchar**에서는 영문 12자리이기 때문에 **12byte의 공간**이 필요하다. 
+       - 반면 **nvarchar**에서는 영문이든 한글이든 관계없이 글자당 2byte를 할당하기 때문에 **24byte의 공간**이 필요하게 된다. 
 
