@@ -57,19 +57,20 @@
 
 3. `<isNotEmpty>` 태그 대신에 `IF` 문을 사용하는 것이 일반적이다. 
 
-  - `<isNotEmpty>` 태그는 iBATIS에서 사용하는 기능 중 하나인 동적 쿼리를 생성하는 기능 중 하나인데, MSSQL에서는 동적 쿼리를 생성할 때 `IF`문을 사용하여 조건절을 처리하는 것이 일반적이다. 
+   - `<isNotEmpty>` 태그는 iBATIS에서 사용하는 기능 중 하나인 동적 쿼리를 생성하는 기능 중 하나인데, MSSQL에서는 동적 쿼리를 생성할 때 `IF`문을 사용하여 조건절을 처리하는 것이 일반적이다. 
 
-    ```mssql
-    <!-- 다른 SQL 문에서 사용되는 동적 태그 --> 
-    <isNotEmpty property="search_val" prepend="AND">
-        AND EQUIP_TYPE = 1
-    </isNotEmpty>
-    
-    <!-- MSSQL 에서 사용되는 동적 태그 --> 
-    <if test="search_val != null and search_val != ''">
-        AND EQUIP_TYPE = 1
-    </if>
-    ```
+     ```mssql
+     <!-- 다른 SQL 문에서 사용되는 동적 태그 --> 
+     <isNotEmpty property="search_val" prepend="AND">
+         AND EQUIP_TYPE = 1
+     </isNotEmpty>
+     
+     <!-- MSSQL 에서 사용되는 동적 태그 --> 
+     <if test="search_val != null and search_val != ''">
+         AND EQUIP_TYPE = 1
+     </if>
+     ```
+
 
 4. \<isEqual> 태그와 \<iterate> 태그
 
@@ -114,24 +115,21 @@
 
        - STUFF() 함수는 문자열을 변경하고 조작하는 데 사용되는 함수이다.
        - 함수는 지정된 시작 위치에서 지정된 문자열 수를 제거한 후, 다른 문자열로 대체한다. 
+         - character_expression: 대상 문자열
+         - start: 문자열을 대체할 시작 위치
+         - length: 대체할 문자열의 길이
+         - replaceWith_expression: 대체할 새 문자열
 
+       
        ```xml
        STUFF ( character_expression , start , length , replaceWith_expression )
        ```
-
-       - character_expression: 대상 문자열
-
-       - start: 문자열을 대체할 시작 위치
-
-       - length: 대체할 문자열의 길이
-
-       - replaceWith_expression: 대체할 새 문자열
-
-
+       
        ```sql
        SELECT STUFF('ABCD', 2, 1, 'XX') + 'EF'
+       
        -- 문자열 'ABCD'에서 2번째 위치부터 1개의 문자를 제거하고 'XX'로 대체한 후 그 문자열의 뒤에 'EF'를 추가합니다.
-       -- 결과는 'AXXCD' + 'EF'가 되어 'AXXCDEF'
+       -- 결과는 'AXXCD' + 'EF'가 되어 'AXXCDEF' 이다 
        ```
 
 5. LIMIT 없이 TOP 사용
