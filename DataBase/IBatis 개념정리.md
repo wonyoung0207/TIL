@@ -70,6 +70,16 @@
   </isEqual>
   ```
 
+### 시작 공통 태그 
+
+1. \<sqlMap namespace="apig_apiApplication">
+   - 하나의 XML 파일 내에서 SQL 구문과 Java 클래스를 **그룹화**하는 데 사용된다. 
+2. \<typeAlias alias="appVO" type="com.mesim.apig.apiApplication.vo.ApiApplicationVO"/>
+   - Java 클래스의 별칭(alias)과 해당 클래스를 정의하는 패키지 경로(type)를 설정한다. 
+3. \<sql id="app_tb">APIG_APPLICATION\</sql>
+   - SQL 구문의 id와 해당 SQL 구문을 나타낸다. 
+   - SQL 구문의 id는 해당 SQL을 참조할 때 사용한다.
+
 ### 태그 종류
 
 #### 1. 단일 태그 
@@ -173,6 +183,10 @@
 
    - 배열 타입의 파라메터를 받을 때 활용
 
+   - `<iterate>` 태그의 `property` 속성에는 반복할 컬렉션 변수(리스트나 배열) 를 지정한다. 
+
+     - `open` 속성은 반복문 시작 전에 출력할 문자열이며, `close` 속성은 반복문 종료 후에 출력할 문자열이다. 
+     
      ```xml
      WHERE 1=1
      <isNotEmpty prepend="AND" property="empIdArray">

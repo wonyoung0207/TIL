@@ -44,9 +44,144 @@
 
    - T-SQL
 
+     - '+' 를 사용하여 문자열을 조합할 수 있다. 
+     
      ```SQL
      SELECT 'Hello' + ' ' + 'World';
+     
+     <isNotEmpty property="name">
+         AND name LIKE '%' + #{name} + '%'
+     </isNotEmpty>
      ```
+     
+
+3. `<isNotEmpty>` 태그 대신에 `IF` 문을 사용하는 것이 일반적이다. 
+
+  - `<isNotEmpty>` 태그는 iBATIS에서 사용하는 기능 중 하나인 동적 쿼리를 생성하는 기능 중 하나인데, MSSQL에서는 동적 쿼리를 생성할 때 `IF`문을 사용하여 조건절을 처리하는 것이 일반적이다. 
+
+    ```mssql
+    <!-- 다른 SQL 문에서 사용되는 동적 태그 --> 
+    <isNotEmpty property="search_val" prepend="AND">
+        AND EQUIP_TYPE = 1
+    </isNotEmpty>
+    
+    <!-- MSSQL 에서 사용되는 동적 태그 --> 
+    <if test="search_val != null and search_val != ''">
+        AND EQUIP_TYPE = 1
+    </if>
+    ```
+
+4. \<isEqual> 태그와 \<iterate> 태그
+
+   - \<isEqual> 테그 대체
+
+     ```xml
+     <choose>
+       <when test="EQUIP_TYPE == 1">
+         AND EQUIP_TYPE = 1
+       </when>
+       <when test="EQUIP_TYPE == 2">
+         AND EQUIP_TYPE = 2
+       </when>
+       <otherwise>
+         AND EQUIP_TYPE = 3
+       </otherwise>
+     </choose>
+     ```
+
+   - \<iterate> 대체 
+
+     - `for xml path`와 `stuff` 함수를 이용하여 리스트를 문자열로 변환한 후 `IN` 연산자를 이용하여 쿼리를 작성할 수 있다.
+
+     ```xml
+     <iterate property="list" open="(" close=")" conjunction=",">
+       #list[]#
+     </iterate>
+     
+     <!--  -->
+     WHERE column_name IN (
+       SELECT STUFF(
+     (
+         SELECT ',' + CAST(list_column AS varchar(MAX))
+         FROM list_table
+         FOR XML PATH(''), TYPE).value('.', 'nvarchar(MAX)'
+     )
+     , 1, 1, '')
+     )
+     ```
+
+     - STUFF() 함수 
+
+       - STUFF() 함수는 문자열을 변경하고 조작하는 데 사용되는 함수이다.
+       - 함수는 지정된 시작 위치에서 지정된 문자열 수를 제거한 후, 다른 문자열로 대체한다. 
+
+       ```xml
+       STUFF ( character_expression , start , length , replaceWith_expression )
+       ```
+
+       - character_expression: 대상 문자열
+
+       - start: 문자열을 대체할 시작 위치
+
+       - length: 대체할 문자열의 길이
+
+       - replaceWith_expression: 대체할 새 문자열
+
+
+       ```sql
+       SELECT STUFF('ABCD', 2, 1, 'XX') + 'EF'
+       -- 문자열 'ABCD'에서 2번째 위치부터 1개의 문자를 제거하고 'XX'로 대체한 후 그 문자열의 뒤에 'EF'를 추가합니다.
+       -- 결과는 'AXXCD' + 'EF'가 되어 'AXXCDEF'
+       ```
+
+5. LIMIT 없이 TOP 사용
+
+   1. MySQL에서는 LIMIT 없이 TOP을 사용하여 결과 집합의 일부분만 반환
+
+      ```mssql
+      -- mysql
+      SELECT *
+      FROM my_table
+      LIMIT 10;
+      
+      -- mssql
+      SELECT TOP 10 *
+      FROM my_table;
+      ```
+
+6. 문자열 연결
+
+   1. MySQL에서는 CONCAT 함수를 사용하여 문자열을 연결할 수 있지만, MSSQL에서는 '+' 연산자를 사용
+
+      ```mssql
+      -- mysql 
+      SELECT CONCAT(first_name, ' ', last_name) AS full_name
+      FROM my_table;
+      
+      -- mssql
+      SELECT first_name + ' ' + last_name AS full_name
+      FROM my_table;
+      ```
+
+7. 페이징 처리
+
+   1. MySQL과 같은 다른 데이터베이스에서는 LIMIT와 OFFSET을 사용하여 페이징 처리를 할 수 있지만, MSSQL에서는 OFFSET-FETCH 또는 ROW_NUMBER() OVER() 함수를 사용
+
+      ```sql
+      -- mysql 
+      SELECT *
+      FROM my_table
+      LIMIT 10 OFFSET 20;
+      
+      -- mssql
+      SELECT *
+      FROM (
+          SELECT ROW_NUMBER() OVER (ORDER BY column_name) AS rownum, *
+          FROM my_table
+      ) AS A
+      WHERE A.rownum BETWEEN 21 AND 30;
+      
+      ```
 
 ### 사용 메소드 
 
@@ -70,7 +205,7 @@
      - 그러면 총 110개의 데이터가 나와야 한다.
      - 하지만, commit을 하지 않을 경우에는 기존의 100개만 데이터가 나온다.
 
-   - MSSQL에서는 **autocommit 모드**가 기본적으로 활성화되어있어 **해당 명령어를 사용하지 않아도 된다**. 
+   - **MSSQL**에서는 **autocommit 모드**가 기본적으로 활성화되어있어 **해당 명령어를 사용하지 않아도 된다**. 
 
      - 만약 autocommit 모드를 비활성화하고 싶다면 다음 명령어를 사용한다. 
 
