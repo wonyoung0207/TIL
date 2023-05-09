@@ -267,3 +267,23 @@
        - ''**MousaDembele**'라는 문자열은 **varchar**에서는 영문 12자리이기 때문에 **12byte의 공간**이 필요하다. 
        - 반면 **nvarchar**에서는 영문이든 한글이든 관계없이 글자당 2byte를 할당하기 때문에 **24byte의 공간**이 필요하게 된다. 
 
+5. COALESCE() 
+
+   - ( ) 안에 들어오는 인수들중 Null 이 아닌 첫번째 값을 리턴 
+
+   - ex ) COALESCE( Null , Null, A, B) => 이경우 0, 1 번째가 Null이기 때문에 패스하고 2번째에 있는 'A' 를 출력한다. 
+
+     ```mysql
+     # NAME Column의 값이 NULL인 경우 다음 표현식으로 넘어간다.
+     # 다음 표현식인 "No name"이 Null이 아니므로 "No name"을 출력.
+     SELECT COALESCE(NAME, "No name")
+     FROM ANIMAL_INS
+     # 출력값 -> NAME 변수가 Null이라면 "No name" 이 출력되고 , Null이 아니라면 NAME 변수에 저장된 값이 출력된다. 
+     
+      mysql> SELECT COALESCE( NULL, 'habony' );
+     # 출력값 -> habony
+     
+      mysql> SELECT COALESCE( NULL, NULL, NULL );
+     # 출력값 -> NULL
+     ```
+
