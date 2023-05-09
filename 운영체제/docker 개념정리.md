@@ -10,6 +10,19 @@
 ### 구조
 <img src="./images/docker 구조.png" width="500">
 
+- 구조
+
+  - 도커의 구조는 크게 두 가지로 나누어진다. 
+
+  1. 클라이언트로서의 도커
+  2. 서버로서의 도커
+
+1. 서버 도커 
+   - 실제로 **컨테이너를 생성하고 실행하며 이미지를 관리하는 주체**는 서버도커이고, 이는 **dockerd** 프로세스로서 동작한다. 
+   - 도커 엔진은 외부에서 API 입력을 받아 도커 엔진의 기능을 수행하는데, 도커 프로세스가 실행되어 서버로서 입력을 받을 준비가 된 상태를 **도커 데몬**이라고 이야기 한다. 
+2. 클라이언트 도커 
+   - 도커 데몬은 API 입력을 받아 도커 엔진의 기능을 수행하는데, **이 API를 사용할 수 있도록 CLI(Command Line Interface)를 제공**하는 것이 도커 클라이언트이다. 
+
 1. **docker hub** 
    - window의 app store 같은 기능을 한다. 
    - docker에서 사용할 수 있는 기능(image)을 받을 수 있는 곳
@@ -27,32 +40,6 @@
 - cmd 창을 열고 `docker pull [가져올 image이름]` 의 형식으로 입력한다. 
 - docker 가 지원하고 있는 이미지는 [docker hub 공식 사이트](https://hub.docker.com/search?q=) 에 가면 볼 수 있다.
 - 입력하면 docker hub로부터 받은 image를 docker desktop(어플리케이션)을 통해 확인할 수있다. 
-### docker 관련 명령어 
-1. run 
-   1. 명령어 이용 
-      1. `docker run [image 이름]`
-   2. docker desktop 이용
-      1. 인터페이스 - image 목록 - run 하고싶은 image 옆에 run 버튼 클릭 
-2. stop 
-   1. `docker stop [container 이름 ]` 
-   2. 하지만 stop 했다고 해서 해당 컨테이너가 삭제되는것이 아니다. 
-   3. `docker ps -a ` 를 통해 컨테이너가 삭제되지 않은것을 확인할 수 있다. 
-3. 다시 run 
-   1. `docker start [container 이름]`
-4. log
-   1. conatiner의 log 동작을 확인하는 명령어
-   2. `docker logs -f [container 이름]`
-      - \-f 를 입력하면 연속적으로 들어오는 log를 끊김없이 볼 수 있다. 
-5. rm
-   1. container 를 삭제하고 싶을떄 사용한다. 
-   2. `docker rm [container 이름]`
-   3. 이떄 실행중인 container는 stop으로 멈춰야 삭제할 수 있다. 
-      1. 그냥 삭제하고 싶다면 rm 명령어 뒤에 `--force` 를 붙여준다.
-6. rmi
-   1. docker의 image를 삭제하는 방법
-   2. `docker rmi [image 이름]`
-   3. 연결되어있는 container가 있다면 --force 명령어를 붙여 삭제해준다. 
-      - 단 이렇게 삭제 시 연결되어있던 container가 삭제되지는 않는다. 
 ### docker host
 <img src="./images/docker host구조.png" width="700">
 
@@ -65,7 +52,26 @@
   - **따라서 특정한 포트로 들어오는 데이터 패킷을 다른 포트로 바꿔서 다시 전송해주는 작업이다.**
 - 호스트의 특정 포트로 연결 요청이 들어오면 연결되어있는 container 포트로 자동으로 연결해준다. 
 
+### 실행
+
+- 도커를 사용할 때 docker라는 명령어를 맨 앞에 붙여서 사용한다. 
+  - 그리고 실제 docker는 /usr/bin/docker에 위치하고 있다. 이는 'which docker' 명령어를 통해 docker의 위치를 확인할 수 있다. 
+  - 따라서 도커 명령어는 /usr/bin/docker에 위치한 파일을 통해 사용되고 있다. 
+- 하지만 실제 도커 엔진의 프로세스를 확인해보면 /usr/bin/dockerd 파일로 실행되는 것을 알 수 있다. 
+  - 이는 컨테이너나 이미지를 다루는 명령어는 /usr/bin**/docker**에서 실행되지만 도커 엔진의 프로세스는 /usr/bin/**dockerd** 파일로 실행되기 때문이다. 
+
+### 동작방법
+
+- 사용자가 docker로 시작하는 명령어를 입력하면 도커 클라이언트를 사용하는 것이며, 도커 클라이언트는 입력된 명령어를 로컬에 존재하는 도커 데몬에게 API로서 전달한다. 
+- 이때 도커 클라이언트는 /var/run/docker.sock에 위치한 유닉스 소켓을 통해 도커 데몬의 API를 호출한다. 
+- 예시
+  1. 사용자가 docker ps와 같은 도커 명령어를 입력
+  2. /usr/bin/docker는 /var/run/docker.sock 유닉스 소켓을 사용해 도커 데몬에게 명령어 전달
+  3. 도커 데몬은 이 명령어를 파싱하고 명령어에 해당하는 작업 수행
+  4. 수행 결과를 도커 클라이언트에 반환하고 사용자에게 결과 출력
+
 ### Container 수정방법
+
 1. docker desktop 이용
    1. container 창에서 실행중인 container의 CLI를 클릭한다. 
    2. 그럼 하나의 shell이 뜨는데 이곳에서 해당 container에 직접적으로 명령을 전달할 수 있다. 
@@ -89,3 +95,43 @@
   - \-v : 를 이용해 local desktop과 docker의 container를 연결할 수 있다. 
   - ' : '  : htdocs 파일과 docker의 htdocs파일을 연결하여 image를 container로 만든다. 
   - 따라서 해당 명령어를 통해 로컬에 있는 파일을 docker에서 구동할 수 있다. local에서 내용을 수정하면 docker에서도 연동되어 내용이 변경된다. 
+
+---
+
+### cmd에서 docker 명령어 사용시 에러 발생
+
+- This error may indicate that the docker daemon is not running
+
+  - 해당 에러는 일반적으로 **Docker 서비스가 실행 중이 아닌 경우에 발생**한다. 
+
+- 해결방법
+
+  1. **시도1 : docker 재실행**
+
+     - docker desktop을 재실행한다. 
+
+  2. **시도2 : docker Desktop에서 세팅 변경**
+
+     - docker Desktop의 설정 클릭 -> Genera -> '**Expose daemon on tcp://localhost:2375 without TLS' 부분 체크** 하기 
+
+       - TLS
+         - TLS 는 SSL의 업데이트 버전으로, 클라이언트와 서버간에 **핸드셰이크를 통해 인증**이 이루어진다. 
+         - 또한 **데이터 무결성**을 위해 데이터에 디지털 서명을 하여 데이터가 의도적으로 도착하기 전에 조작된 여부를 확인한다.
+         - 따라서 보안떄문에 사용하는 개념이다. 
+       - docker daemon
+         - 도커 프로세스가 실행되어 서버로서 입력을 받을 준비가 된 상태를 **도커 데몬**이라고 이야기 한다. 
+
+     - 나는 이 방법으로 해결됨. 아마도 docker 가 실행되야 하는데 실행 주체인 daemon이 TLS 로 되어있어 접근을 막은거 같음  
+
+       <img src="./images/docker 오류1.png" width="500">
+
+       <img src="./images/docker 오류2.png" width="500">
+
+  3. **시도3 : cmd에 명령어 입력**
+
+     - ```cmd
+       cd C:\Program Files\Docker\Docker
+       DockerCli.exe -SwitchDaemon
+       ```
+
+### 

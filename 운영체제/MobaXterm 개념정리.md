@@ -31,3 +31,19 @@
 ### 동작 화면 
 
 <img src="./images/mobaxterm이용방법2.png" width="600">
+
+## MobaXterm 에서 root 폴더 열람시 에러 발생 
+
+- SFTP error #3 permission denied
+
+  - 파일 권한의 문제였던거같음
+
+  - `chmod 777 root` 명령어를 통해 해결 
+
+    - 리눅스는 파일마다 허가권과 소유권이 존재하는데 이러한 권한을 변경할 수 있는 명령어가 chmod 이다. 
+    - 허가권은 총 10자리로 표현되며 제일 앞자리는 파일 유형을 나타낸다. 
+    - 대표적으로 - 는 파일, d는 디렉토리를 나타내고 r, w, x는 각각 read, write, excute 를 나타낸다. 
+
+    <img src="./images/mobaxterm error1.png" width="500">
+
+    <img src="./images/mobaxterm error2.png" width="500">
