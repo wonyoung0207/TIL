@@ -222,7 +222,20 @@ public int withdraw(int money) throws MyErrorException{// 해당 메소드 호�
   while(iterator.hashNext()){
       Customer c = iterator.next();
   }
+  
+  
+  // 3. LinkedHashMap 에 있는 forEach 사용
+  map.forEach((key, value) -> System.out.println(key + ": " + value));
   ```
+
+### Map 데이터 정렬
+
+```java
+// 시간순으로 Map 내용 정렬 
+LinkedHashMap<Integer, FileContent> sortedMap = resultMap.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.comparing( FileContent ::getStartTime)))
+        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue,
+                LinkedHashMap::new));
+```
 
 ---
 
