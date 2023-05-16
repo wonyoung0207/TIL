@@ -52,4 +52,19 @@ try {
 }
 ```
 
-## 
+### Stream 이용 LinkedHashMap
+
+```java
+LinkedHashMap<Integer, FileContent> sortedMap = resultMap.entrySet().stream()
+        .sorted(Map.Entry.comparingByValue(Comparator.comparing( FileContent ::getStartTime)))
+        .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (oldValue, newValue) -> oldValue,
+                LinkedHashMap::new));
+```
+
+1. **`(oldValue, newValue) -> oldValue`**은 `Collectors.toMap()` 메서드의 네 번째 매개변수로 전달되는 **람다 표현식**이다. 
+   - 이 람다 표현식은 **키 충돌**이 발생했을 때 **이전 값(`oldValue`)을 유지**하도록 지정하는 역할을 한다. 
+2. `LinkedHashMap::new`는 `Collectors.toMap()` 메서드의 다섯 번째 매개변수로 전달되는 매개변수 생성자 참조이다. 
+   - 이 부분은 수집된 맵의 구현체로서 **`LinkedHashMap`을 생성하는 역할**을 한다. 
+   - `LinkedHashMap`은 요소의 삽입 순서를 유지하기 때문에, 최종 맵에도 원본 순서가 유지된다. 
+3. 따라서, `Collectors.toMap()` 메서드의 네 번째 매개변수와 다섯 번째 매개변수를 사용하여 **키 충돌이 발생했을 때 이전 값으로 유지**하며, **순서가 유지되는 `LinkedHashMap`을 생성**한다. 
+
