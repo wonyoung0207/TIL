@@ -1,4 +1,13 @@
-# Spring 동작 방식 
+# Spring 동작구조
+
+<img src="./images/spring동작구조.png" width="500">
+
+- 파란색 테두리
+  - jsp, html, ModelAndVie 작업
+- 빨간색 테두리
+  - 원하는 쿼리를 이용해 데이터를 Access 해서 조회 및 작업 하는 곳 
+
+## Spring 동작 방식
 
 1. 웹 애플리케이션이 실행되면 Tomcat(WAS)에 의해 web.xml이 loading된다.
 2. web.xml에 등록되어 있는 ContextLoaderListener(Java Class)가 생성된다. ContextLoaderListener 클래스는 ServletContextListener 인터페이스를 구현하고 있으며, ApplicationContext를 생성하는 역할을 수행한다.
