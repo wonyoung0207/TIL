@@ -89,3 +89,25 @@
      <input type="number" min="0" max="9999">
      ```
 
+## input 태그 옵션 size와 maxlength 차이점
+
+### size
+
+- input 태그의 너비를 문자수 단위로 조절 
+  - input 태그의 **입력 필드 사이즈**를 조절할 떄 사용
+  - 텍스트 필드 , 비밀번호 필드 , 검색 필드와 같이 한 줄로 입력되는 필드에서 화면에 몇 글자까지 보여지게 할지 지정
+
+### maxlength
+
+- input 태그의 최대 입력 자릿수 ( type = number 에서는 동작 안함 ) 
+
+### 예제
+
+```html
+<form action="/examples/media/action_target.php" method="get">
+    주소 : <input type="text" name="address" size="40"><br>
+    우편번호 : <input type="text" name="zipcode" maxlength="5" size="5"><br>
+    <input type="submit">
+</form>
+```
+
