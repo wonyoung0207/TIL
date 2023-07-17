@@ -1,0 +1,74 @@
+## Vue js 규칙
+
+---
+
+### 규칙
+
+1. root 태그인 App.vue는 **싱글 컴포넌트** 이다. 
+
+   - root태그의 template 태그안는 하나의 태그 밑으로 구현해야한다
+
+     ```VUE
+     <template>
+     	<div>
+             /* 여기 안에 하위 태그 구현해야 함  */
+         </div>
+     	<div>
+             // 에러남. root의 template 태그는 단일태그로 이루어져 있어야한다. 
+         </div>
+     </template>
+     ```
+
+2. 컴포넌트 이름은 2단어 이상의 **`파스칼 케이스`** 로 만든다. 
+
+   - 컴포넌트와 기존 사용되는 태그를 구분하기 위해서 이렇게 쓴다. 
+
+     ```vue
+     <main> </main> 
+     <MyMain> </MyMain>
+     태그가 컴포넌트인지 아니면 기존 html 제공 태그인지 구분하기 위해 사용한다. 
+     ```
+
+3. import 할 경우 **파일 확장자**까지 써주는것이 좋다. 
+
+   - 확장자인 `html, vue` 를 써주지 않으면 깨질수도 있기 때문에 써주는것이 좋다. 
+
+     ```javascript
+     // 안좋은 예시 
+     import AppHeader from './components/AppHeader'
+     // 좋은 예시
+     import AppHeader from './components/AppHeader.vue'
+     ```
+
+4. 컴포넌트 단위 개발에서의 data 속성 
+
+   - 하나의 html 파일로 vue를 사용헀을 때는 `data : { }` 의 형태를 사용했었다. -> 객체로 사용 
+
+   - **하지만 컴포넌트 단위**로 vue 를 개발할때는 **`data : function() { } `** 의 형태를 사용한다. 
+
+   - 왜냐하면 **data를 객체**로 사용하게 되면 **하위의 컴포넌트**에서 **참조**하여 해당 **data를 공유및 사용**할 수 있게 된다. 
+
+     - 따라서 해당 컴포넌트 안에서만 사용할 수 있도록 함수화 시켜줘야한다. 
+
+     ```vue
+     <script> 
+         // 객체 기반 개발에서의 data 사용 
+     	new Vue({
+             data : { }
+         })
+         
+         // 컴포넌트 단위 개발에서의 data 사용 
+         export default {
+             data : function (){
+                 return ;
+             }
+         }
+     </script>
+     ```
+
+5. `{{     }}`을 사용한다. 
+
+   - 해당 문법을 사용해 **vue와 바인딩**하여 값을 표시할 수 있다. 
+   - 이때 `{{  }}` 안에는 간단한 javascript ( 삼항연산자 정도 )와 **vue의 인스턴스인 data, methods의 값**들이 들어갈 수 있다. 
+   - 생각할점은 javascript 에 어떤 내용을 넣을 것이냐이다. 
+     - **html태그**는 **화면만 신경**쓰고 값의 변화같은 **복잡한 로직**은 **JavaScript**에서 처리하는게 좋은 방법이다. 
