@@ -31,23 +31,29 @@
 
 - 예를들어 item의 값이 변경되었을 경우, 
 
-  1. key를 바인딩 하지 않는다면 
-     - vue는 현재 Dom에서 변경해야 할 부분인 item 의 값만 바꾸게 된다. 
-     - 이때 li 태그의 item 에따라 위치를 변경하는 이벤트가 발생한다면 
-     - item 과 함께 뒤에있는 input 태그가 같이 이동하지 않고 item 만 위치가 변경된다. 
-     - 즉, 반복문사용시 이 두개의 내용이 따로노는 상황이 발생할 수 있다. 
+  1. key를 바인딩하는 이유 
+     - 반복되는 태그들의 고유 key값이 없다면 반복문으로 함께 만들어진 태그가 함께 묶이지 않기 때문이다. 
+     - 이 경우 함께 만들어진 태그 중 하나의 태그를 삭제시키면 같이 삭제되는것이 아니라 해당 태그만 삭제되는 오류가 생긴다. 
+     - 이때  key값은 **html의 고유 속성이 아닌 vue가 사용하는 속성**이다. 
+     
+       - 따라서 **`v-bind:` 를 사용해서 key 값을 구현**해야 한다 .
   2. key를 바인딩한 경우
      - item과 input이 하나의 key 로 묶어 만약 item에 따라 위치가 변경되면 input도 함께 위치가 바뀐다. 
-
+  
   ```vue
   <li v-for="p in people" :key="item + '-' + item.age">
       {{item}} : <input type="number" /> 개
   </li>
+  
+  <li v-for="(goal, index) in goals" :key="goal" @click="removeGoal(index)" >
+     <p> {{ index }} - {{ goal }}  </p>
+     <input type="text" @click.stop>
+  </li>
   ```
-
+  
   - key 바인딩 하지 않았을 떄의 예시 
     - 앞에있는 item 값의 위치만 변경되고 input 태그의 값들은 위치가 변경되지 않는다. 
-
+  
   <img src="./images/in-place-path전략2.png" width="500">
 
 ### 결과
