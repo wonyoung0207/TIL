@@ -8,7 +8,7 @@
 
 ## Props 
 
-### 정의 
+### 정의
 
 - vue는 컴포넌트라는 것들의 집합으로 이루어진다. 
   - 따라서 상위 컴포넌트 - 하위 컴포넌트 의 구조를 가진다. 
@@ -39,6 +39,35 @@
     })
 </script>
 ```
+
+### props의 데이터 옵션
+
+- props를 받을 때 여러가지 옵션을 설정할 수 있다. 
+
+  - 값이 들어와서 뿌려질때 **에러를 발생하는 것이 아닌 console 창에 warnning 이라고 표시**해준다. 
+
+- 옵션 종류
+
+  1. 타입
+  2. 필수값 여부
+  3. 디폴트값
+  4. validation 체크
+
+  ```js
+  export default {
+      props : {
+          name : {
+            type : String, 
+            required : true,
+         	  default : '0',
+            validator : function(value){
+                return value ==='1' || value ==='0'
+            }  
+          },
+      }
+  }
+  ```
+
 
 ---
 
