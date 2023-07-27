@@ -31,6 +31,10 @@
 
 - index.js에 의해 빌드되는 파일로, 가장 상위에서 사용되는 App.vue를 생성하는 파일이다. 
 
+- **Vue 프로젝트는 main.js 파일을 먼저 로드하고 실행하도록 설정**되어있다. 
+
+- 이 파일에서 **`id=app` 이라는 vue파일을 mount (Dom에 부착 ) 한다.**
+
 - 해당 파일에서 다른 컴포넌트들을 불러와 render() 한다고 생각하면 된다. 
 
   ```html
@@ -45,7 +49,7 @@
   })
   ```
 
-### 싱글 파일 컴포넌트 
+### 싱글 파일 컴포넌트
 
 - 하나의 vue 파일 내에 html, javascript, css를 모두 구현한 vue 파일 
 
@@ -68,11 +72,20 @@ export default {
 
 ### App.vue
 
+- Vue 컴포넌트를 작성하게 한다. 
 - main.js에서 가장 먼저 불려지는 싱글 컴포넌트로, template, html, css 코드 모두가 있는 vue 파일이다. 
+- 싱글 컴포넌트로 , template, script, css로 나누니어 작성된다. 
+- main.js에서 등록한 컴포넌트의 이름을 이용해 template 태그안에 적어 컴포넌트를 포함시킨다. 
 
 ### package.json 파일
 
 - npm 으로 JavaScript 라이브러리를 설치하면 해당 파일에 추가가되어 버전관리를 돕는다. 
+
+- 프로젝트에서 사용하는 **패키지들**에 대한 정보
+
+- 시작시 실행되며 필요한 패키지들이 node_modules 에 추가된다. 
+
+- **따라서 `npm install` 하면 실행되어 필요한 의존성 패키지들이 node_modules 에 다운받아 진다.** 
 
 - 형태
 
@@ -111,3 +124,73 @@ export default {
     - 개발할때 보조해주는 라이브러리. 
     - 서버 배포할때 **배포되지 않는다**. 
     - 종류 : vue, webpack, js-compression 
+
+### public 폴더
+
+- vue 애플리케이션을 다루는 폴더
+- **index.html 에 있는 app을 mount 해서 vue 컴포넌트들을 삽입**한다. 
+
+### src 폴더
+
+- **모든 javascript 파일**을 가진 폴더
+
+
+
+## 3. vue 파일의 실행 순서
+
+1. .vue 파일의 컴포넌트 생성 후 `export default` 로 내보냄 (template 태그 안에는 해당 컴포넌트를 Dom에 삽입했을 떄 표시할 태그들을 나열한다.)
+
+   ```vue
+   <template>
+       <ul >
+           <li>
+               <h2>{{  friend.name  }}</h2>
+           </li>
+       </ul>
+   </template>
+   
+   <script>
+       export default {
+           data() {
+               return {
+               };
+           },
+           methods: {
+           }
+       };
+   </script>
+   ```
+
+2. main.js 에서 해당 컴포넌트를 import 한다. 
+
+3. import한 컴포넌트를 App.vue의 `#app` 에 컴포넌트로 등록 후 mount 한다. 
+
+   ```js
+   import App from './App.vue';
+   import FriendContact from './components/FriendContact.vue';
+   
+   const app = createApp(App);
+   app.component("friend-contact", FriendContact);
+   app.mount('#app');
+   ```
+
+4. App.vue의 template 태그 안에서 사용하고 싶은 위치에 해당 컴포넌트 이름을 넣는다. 
+
+   ```vue
+   <template>
+       <section>
+           <h2>
+               My friends
+           </h2>
+           <ul>
+               <friend-contact></friend-contact>
+               <friend-contact></friend-contact>
+           </ul>
+       </section>
+   </template>
+   ```
+
+
+
+
+
