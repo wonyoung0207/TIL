@@ -24,3 +24,11 @@
 - 예시: `userName`, `dateOfBirth`, `totalAmount`
 - 사용처 : JavaScript , Java, C++ 
 
+
+
+## 케밥 케이스 
+
+- 케밥의 꼬치를 생각하면 된다. 
+- 단어의 중간에 `-` 를 사용해 연결하는 스타일이다. 
+- 예시 : user-name , date-of-birth, total-amount
+- 사용처 : html 의 옵션 
