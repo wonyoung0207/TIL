@@ -64,3 +64,15 @@
    </div>
    ```
 
+### 축약어
+
+- ` v-slot : ` 을  `#` 으로 줄여 사용할 수 있다 .
+
+  ```vue
+  <div v-slot:"NyHeader"></div>
+  <div #NyHeader></div>
+  ```
+
+### $slots
+
+- $slots.MyHeader  로 해당 slot이 사용되는지 확인할 수 있다. 
