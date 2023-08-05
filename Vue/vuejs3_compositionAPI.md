@@ -1,41 +1,46 @@
-# vuejs 3 
-## Composition API
-### vue.js 3의 API 종류
-1. open API
+# vuejs 3  Composition API
 
-2. - 옵션의 data, methods 및 mounted 같은 객체를 사용하여 컴포넌트의 로직을 정의한다. 
+---
 
-3. composition API
-   - import해서 가져온 API 함수들을 사용하여 컴포넌트의 로직를 정의한다.
-   
-   - setup() { } : 해당 함수 안에서 수행된다. 
-   
-     ```vue
-     <template>
-     <div class="name" > {{ abc('wony') }} </div> // 함수이기 떄문에 () 를 붙여줘야한다.
-     <div class="name" > {{ abc(name) }} </div> // 함수를 호출  
-     </template>
-     
-     <script> 
-         export default {
-             setup() {
-                 const name = 'wony Test';
-                 const abc = (name) => { // 함수를 변수에 넣는다. 
-                     return 'hello' + name;
-                 };
-                 return {
-                     name,
-                     abc 
-                 };
-             }
-         }
-     </script>
-     
-     <style>
-         .name {
-             color : red;
-         }
-     </style>
+>
+
+## composition API
+
+- import해서 가져온 API 함수들을 사용하여 컴포넌트의 로직를 정의한다.
+
+- setup() { } : 해당 함수 안에서 수행된다. 
+
+  - **setup** 훅이 추가된 것을 볼 수 있는데 컴포지션 API를 사용하기 위한 진입점 즉, **초기화 지점**이다.
+  - 기존의 생명주기와 비교해보자면, beforeCreate 이전에 setup이 호출된다. 
+  
+  ```vue
+  <template>
+  <div class="name" > {{ abc('wony') }} </div> // 함수이기 떄문에 () 를 붙여줘야한다.
+  <div class="name" > {{ abc(name) }} </div> // 함수를 호출  
+  </template>
+  
+  <script> 
+      export default {
+          setup() {
+              const name = 'wony Test';
+              const abc = (name) => { // 함수를 변수에 넣는다. 
+                  return 'hello' + name;
+              };
+              return {
+                  name,
+                  abc 
+              };
+          }
+      }
+  </script>
+  
+  <style>
+      .name {
+          color : red;
+      }
+  </style>
+  
+
 ## Vue v3 에서 바뀐점
 1. template 태그안에서 모든 태그를 하나의 태그로 묶어줘야 했었는데, vue3에서는 묶어주지 않아도 된다. 
 
