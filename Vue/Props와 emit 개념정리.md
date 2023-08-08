@@ -6,7 +6,7 @@
 
 <img src="./images/props와emit.png" width="400">
 
-## Props 
+## Props
 
 ### 정의
 
@@ -66,6 +66,94 @@
           },
       }
   }
+  ```
+
+## props 내리는 방법
+
+- 상위 컴포넌트 
+
+  ```vue
+  <template>
+  	<div>
+          <!-- 1. 개별 데이터로 props 내려주는 방법  -->
+          <learning-resource 
+             v-for ="res in storeResources" 
+             :key="res.id" 
+             :title="res.title" 
+             :description="res.description" 
+             :link="res.link"
+      	>
+      	</learning-resource>
+          
+          <!-- 2. 객체로 props 내려주는 방법 -->
+          <learning-resource
+             :resources="storeResources"
+         	>    
+      	</learning-resource>
+      </div>
+  </template>
+  
+  <script>
+  import LearningResource from './components/learning-resources/LearningResource.vue';
+  
+  export default{
+      components :{
+          LearningResource
+      }
+      data(){
+          return {
+           	storeResource : [
+                  {
+                      id : "a",
+                      title : "aTitle",
+                      description : "Text ...",
+                      link : "google.com"
+                  },
+                  {
+                      id : "b",
+                      title : "bTitle",
+                      description : "Text ...",
+                      link : "naver.com"
+                  }
+         		]   
+      	}
+      }
+  }
+  </script>
+  ```
+
+- 하위 컴포넌트 
+
+  ```vue
+  // 하위 컴포넌트 
+  <template>
+  	<!-- 1번방법 -->
+  	<div>
+          id : {{ id }}
+          titile : {{ title }}
+          description : {{ description }}
+          link : {{ link }}
+      </div>
+  
+  	<!-- 2번방법 -->
+      <div
+         v-for ="res in storeResources" 
+         :key="res.id" 
+         :title="res.title" 
+         :description="res.description" 
+         :link="res.link"
+      >
+      </div>
+  </template>
+  <script>
+  	export default{
+          // 1번방법 
+          props : ['id', 'title', 'description', 'link'];
+          
+          // 2번방법
+          props : ['resources'];
+      }
+  </script>
   ```
 
 
