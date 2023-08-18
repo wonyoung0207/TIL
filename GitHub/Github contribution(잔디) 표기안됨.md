@@ -36,8 +36,12 @@ git config user.email
 
 - 이번에는 변경하는 법입니다. github계정 이메일과 동일하게 바꿔주면 됩니다.
 
-```null
+```java
+// 전체 레포지토리 작성자 변경 
 git config --global user.email 바꿀@이메일주소.com
+
+// 해당 레포지토리의 작성자만 변경할 떄 사용
+git config --local user.email abc@gmail.com
 ```
 
 - 바뀐 이메일을 잘 바뀌었는지 확인만 해주면 끝
