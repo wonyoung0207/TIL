@@ -13,7 +13,6 @@
 
 ### 정의
 
-- 뷰 라이브러리를 이용하여 싱글 페이지 애플리케이션을 구현할 때 사용하는 라이브러리
 - 브라우저에서 JavaScript 로 URL의 변경사항을 관리하고 동일한 싱글 페이지 애플리케이션 상에 URL이 변경되거나 해당 URL을 기반으로 화면에 로드한다. 
 - 간단한 패키지를 설치해 사용할 수 있다. 
 
@@ -191,28 +190,3 @@ npm install vue-router
         ]
     });
     ```
-
-### 사용법
-
-```html
-<body>
-  <div id="app">
-    <div>
-      <router-link to="/login">Login</router-link>
-      <!--<a href="/login"> 로 표시되며 같은 의미를 가진다.  -->
-      <router-link to="/main">Main</router-link>
-    </div>
-    <router-view></router-view>
-  </div>
-</body>
-```
-
-1. **router-link** 
-   - \<a> 태그로 표시되는 태그로, 링크 부분을 나타낸다. 
-     - 따라서 **페이지 이동** 링크 태그로 생각하면 된다. 
-   - **VueRouter** 객체와 연결되어있어 VueRouter 객체의 **routers[] 배열**에 설정한 객체의 **path와 연결**된다. 
-2. **router-view**
-   - vue에 라우터가 연결되어있어야 사용할 수 있는 태그 
-   - 라우터에 연결되어있는 **컴포넌트가 표시되는 부분**
-     - 즉, **URL별**로 설정되어있는 **페이지(컴포넌트) 가 표시**되는 부분이다. 
-
