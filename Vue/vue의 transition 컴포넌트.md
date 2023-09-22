@@ -78,3 +78,92 @@
 
 ```
 
+### 이벤트
+
+##### 사용이유
+
+- 애니매이션 효과 발생시 처리하고 싶은 Javascript 로직을 실행할 수 있다. 
+- 즉, 애니매이션의 enter나 leave 시점에서 원하는 함수를 발생시킬 수 있다.
+
+##### 사용할 수 있는 이벤트
+
+1. befor-enter
+2. enter
+3. after-enter
+4. before-leave
+5. leave
+6. after-leave
+
+##### 사용 예시
+
+```vue
+<traisition>    
+    name="wony"
+    :css="false" // vue에 javascript만으로 동작한다고 알리는 것으로, css 를 찾는 수고로움을 덜 수 있다. 
+    @befor-enter = "beforeEnter"
+    @enter="enter"
+    @after-enter="afterEnter"
+    @before-leave="beforeLeave"
+    @leave="leave"
+    @after-leave="afterLeave"
+    
+    @enter-cancelled="" /* 이벤트가 끝났을 때마다 호출 된다. -> 기존 이벤트가 끝나고나서 다음 이벤트(애니매이션 효과)가 발생하게 하기위해 사용한다. */
+    @leave-cancelled=""
+</traisition>
+
+<script>
+methods: {
+    enter(el, done){
+        // el : 컴포넌트에 사용되는 엘리멘트 속성값
+        // done : 해당 이벤트가 완전히 끝났다고 알려주는 특이 함수 -> 이거 안쓰면 enter에서 준 효과가 끝나기 전에 after-enter가 실행됨 
+        let round = 1;
+        const interval = setInterval(function(){
+            el.style.opacity = round * 0.01;
+            round++;
+            if(round > 100) {
+                clearInterval(interval);
+                done(); // enter 이벤트가 끝났다는 것을 vue에 알려 enter-after 가 먼저 실행되는 것을 방지해준다. 
+            }
+        })
+    }
+	afterLeave(el){
+        
+    }
+}
+</script>
+```
+
+
+
+### transition-group
+
+#### 정의
+
+- transition 컴포넌트를 그룹형태로 사용할 수 있는 컴포넌트 이다. 
+
+##### 사용이유
+
+- 기존 trainsition컴포넌트는 하나의 자식 태그에만 애니매이션 효과를 적용할 수 있었다. 
+- 이때 transition-gruop 컴포넌트를 이용해 여러 태그에 애니매이션 효과를 적용할 수 있다. 
+
+##### 사용예시
+
+```vue
+<temaplate>
+    <!-- tag에는 어떤 엘리맨트가 오던 상관없지만, tag로 알려줘야 vue가 인식한다.  -->
+	<transition-group tag="ul" name="user-list"> 
+    	<li v-for="user in users" :key="user" @click="removeUser(user)"> </li>
+    </transition-group>
+    <div>
+        <button @click="addUser">
+            Add user
+        </button>
+    </div>
+
+</temaplate>
+```
+
+
+
+
+
