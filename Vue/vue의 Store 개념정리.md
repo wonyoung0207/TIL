@@ -3,6 +3,8 @@
 ---
 
 >[Vue - Store Docs](https://vuex.vuejs.org/guide/mutations.html#committing-mutations-in-components)
+>
+>[vuex getter - 캡틴장기효](https://joshua1988.github.io/web-development/vuejs/vuex-getters-mutations/)
 
 ## Store
 
@@ -24,11 +26,20 @@
 
 1. **State** ( 상태 )
    - 전역 변수로 사용될 변수값
-2. **mutation** ( 변이 )
+   - `$store.state.nummber`로 사용한다. 
+2. **Getter** 
+   - state의 반복되는 호출을 간략화 하기 위해 사용 
+   - computed 에서 사용됨 
+   - `$store.getter` 를 이용해 호출한다. 
+3. **mutation** ( 변이 )
    - 상태값을 변경하는 함수 같은존재 
    - Store의 상태 값은 Mutation(변의) 애 의해서만 변경되는 것이 좋다. 
+   - method에서 사용됨 
+   - `$store.commit('funcName')`을 통해 호출한다. 
+4. **Action** 
+   - 컴포넌트와 mutation 사이에 존재하는 객체 
 
-### State
+## State
 
 - Store의 핵심 요소로, 애플리케이션에서 관리해야할 중요한 **데이터**이다. 
 - 즉, **전역으로 사용하고자 할 데이터**가 State에 들어간다. 
@@ -97,11 +108,116 @@ export default {
 </script>
 ```
 
-### Mutation
+## Getter
+
+- Vuex 의 데이터를 접근할 때 중복된 코드로 반복호출하는것을 간략화 하기 위해 사용된다. 
+  -  여기서 주의할점은 getter를 사용하는 곳은 Method가 아닌 **Computed** 이다. 
+  -  따라서 Computed의 장점인 Caching 효과를 이용할 수 있다. 
+
+
+```vue
+<script> // getter 사용 안했을 경우 state 값 변경 방법 
+// App.vue
+computed: {
+  doubleCounter() {
+    return this.$store.state.counter * 2;
+  }
+},
+
+// Child.vue
+computed: {
+  doubleCounter() {
+    return this.$store.state.counter * 2;
+  }
+},
+</script>
+```
+
+```vue
+<script>// getter 사용 했을 경우 state 값 변경 방법 
+export const store = new Vuex.Store({
+  // ...
+  getters: {
+    getCounter: function (state) {
+      return state.counter;
+    }
+  }
+});
+
+// App.vue
+computed: {
+  doubleCounter() {
+    return this.$store.getters.getCounter; // 함수만 호출하면 됨 
+  }
+},
+
+// Child.vue
+computed: {
+  doubleCounter() {
+    return this.$store.getters.getCounter;
+  }
+},
+</script>
+```
+
+### getter의 이용 방법
+
+1. computed 에 직접 mapGetters imort 해서 사용
+
+   - 단점은 컴포넌트 자체에서 사용할 Computed 속성과 함께 사용하지 못하게 된다. 
+   - 따라서 2번 방법으로 많이 사용한다. 
+
+   ```vue
+   <!-- App.vue -->
+   <div id="app">
+     Parent counter : {{ getCounter }}
+     <!-- ... -->
+   </div>
+   <script>
+   // App.vue
+   import { mapGetters } from 'vuex'
+   
+   computed: mapGetters([
+     'getCounter'
+   ]),
+   </script>
+   ```
+
+2. ES6 의 문법을 통해 Computed에 선언해서 사용
+
+   ```vue
+   <script>
+   // App.vue
+   import { mapGetters } from 'vuex'
+   
+   computed: {
+     ...mapGetters([
+       'getCounter'
+     ]),
+     anotherCounter() {
+       // ...
+     }
+   }
+   </script>
+   ```
+
+### Getter 와 Mutations 차이점
+
+- **Mutations** 
+  1. 인자를 받아 Vuex 에 넘겨줄 수 있고
+  2. computed 가 아닌 methods 에 등록
+- **Gettter** 
+  1. 인자를 받아 vuex 의 store 로 넘길 수 없고
+  2. computed 와 함께 사용되야 한다. 
+     - methode 에서 사용 못함 
+
+## Mutation
 
 - 저장소의 핵심 요소로, **상태를 변경하는 함수**들을 보유하고 있는 객체이다. 
   - 즉, **저장소의 데이터들을 일정하게 변형하고 싶을 때 사용**되는 객체이다. 
 - Store의 상태 값은 Mutation(변의) 애 의해서만 변경되는 것이 좋다. 
+
+<img src="./images/vuex-mutations.png" width="500">
 
 #### 사용법
 
@@ -167,3 +283,8 @@ export default {
 }
 </script>
 ```
+
+### Mutations 와 Actions 의 차이점 
+
+- Mutations 동기적 로직을 정의
+  - Actions 는 비동기적 로직을 정의
