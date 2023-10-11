@@ -30,7 +30,7 @@
 2. **Getter** 
    - State의 값을 변경하는것이 아닌 가공할 때 사용  
    - computed 에서 사용됨 
-   - `$store.getter` 를 이용해 호출한다. 
+   - `$store.getters['GetterName']` 를 이용해 호출한다. 
 3. **mutation** ( 변이 )
    - State 값을 변경할때 사용 
    - Store의 상태 값은 Mutation(변의) 애 의해서만 변경되는 것이 좋다. 
