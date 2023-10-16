@@ -26,7 +26,18 @@
 
 ### 관련 명령어
 
-1. `git stash drop `
+1. `git stash & git stash save`
+
+   - 현재 디렉토리에서 변경된 내용으로 stash 생성
+
+   - 사용하면 현재 working directory는 깨끗해진다. 
+
+     ```git
+     $ git stash 
+     $ git stash save 
+     ```
+
+2. `git stash drop `
 
    - 가장 최근의 stash 삭제 
 
@@ -35,7 +46,7 @@
      Dropped refs/stash@{0} (716b4e839729443a935b7e15b6398c5cee152e49
      ```
 
-2. `git stash list`
+3. `git stash list`
 
    - 현재 stash에 저장된 목록을 보여준다. 
 
@@ -45,25 +56,44 @@
      stash@{1}: stash 저장1
      ```
 
-3. `git stash show stash@{0}`
+4. `git stash show stash@{0}`
 
    - 임시 변경사항(`stash@{0}`)의 내용을 확인할 수 있다. 
 
-4. `git stash apply`
+5. `git stash apply`
 
    - `git stash pop` 명령어와 비슷한 기능으로, stash를 꺼내오지만 목록에서 삭제하지 않는다. 
    - 즉, pop으로 하면 해당 stash를 꺼내온 후 drop으로 삭제하는것과 같지만, apply는 꺼내온 후 목록에서 stash를 삭제하지 않아 그대로 남아있는것을 볼 수 있다. 
 
-5. `git stash -k`
+6. `git stash -k`
 
    - 스테이지에 올라간 파일 (git add) 을 제외하고 stash에 저장한다. 
    - 즉, `git stash`는 `git add` 명령어를 실행해 스테이지로 옮긴 파일이건 아니건 모두 임시 저장하는것이 디폴트이다. 
      - 이때 `-k`(`--keep-index`) 옵션을 사용하면 스테이징 단계에 있는 파일은 제외하고 임시 저장할 수 있다. 
 
-6. `git stash clear`
+7. `git stash clear`
 
    - stash 스택의 모든 변경사항을 한번에 삭제한다. 
 
-7. `git stash branch new-branch-name`
+8. `git stash branch new-branch-name`
 
    - 새로운 브랜치를 만들고 stash된 내용을 `pop`한다.
+
+9. 특정 파일의 변경 사항만 stash에 저장 
+
+   ```
+   git stash push <파일 이름>
+   ```
+
+### 발생 문제 
+
+1. stash pop 했을 때, stash에 기록한 파일과 현재 디렉토리의 변경 파일이 충돌 
+   - 즉, stash 저장했을 때의 시점과 현재 디렉토리 변경 시점이 달라 파일 충돌이 일어난다. 
+   - 충돌나면 stash 의 기록이 pop 되지 않고, merge할건지 먼저 뭍는다. ( stash 기록 안사라짐 )
+   - 해결방법
+     1. `git reset --merge`
+        - merge 가 일어난 파일에서 merge할 파일의 변경 내용을 지운다. 
+        - 즉, 현재 디렉토리의 내용만 남기고 merge 충돌 나는 부분을 지운다. 
+     2. `git checkout -f`
+        - 작업 디렉토리를 강제로 이전 커밋의 상태로 되돌린다. 
+        - 이 명령어는 변경된 내용을 무시하고 작업 디렉토리를 특정 커밋의 상태로 덮어쓴다. 따라서 이 명령어를 사용하면 모든 **변경 사항이 삭제되므로 사용하기 전에 주의**해야한다. 
