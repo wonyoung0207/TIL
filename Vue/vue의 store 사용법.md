@@ -81,3 +81,42 @@
 
 
 
+---
+
+### store get/set 반복 줄이는 방법
+
+```js
+// 로그인 사용자 데이터 
+export default {
+  namespaced: true,
+  state: {
+    userId: null,
+    siteId: null,
+    userNm: null,
+    authorId: null,
+    role: null,
+    ability: null,
+    extras: null,
+  },
+  getters: {
+    // 동적 속성을 사용하여 여러 상태의 값을 가져오기
+    getUserState: (state) => (key) => {
+      return state[key];
+    },
+  },
+  mutations: {
+    // 동적 속성을 사용하여 여러 상태를 한 번에 업데이트
+    setUserState(state, payload) {
+      state[payload.key] = payload.value;
+    },
+  },
+  actions: {},
+};
+```
+
+### store get/set 호출
+
+```js
+this.$store.getters['userData/getUserState']('userId'));
+```
+
