@@ -155,3 +155,37 @@ app.mount('#app')
 
 
 
+### not Fount 페이지 처리
+
+```js
+import { createRouter, createWebHistory } from 'vue-router';
+
+const router = createRouter({
+    history : 'createWebHistory',
+    routers : [
+		{ path : '/login', name : 'loginPage' component : null,
+		{ path : '/', name : 'main', component : null, 
+         	beforEnter(to, from, next ){
+        		if(localstorage.getItem('userData') != null){
+    				next({name : "coache"});
+				}else{
+                    next({name : "loginPage"}); // 라우터의 이름으로 페이지를 호출 한다. 
+                }
+        }};
+		{ path : '/coaches', name : 'coache', component : null}
+		{ path : '/coaches:id', name : 'coacheId' component : null, 
+            children : [
+			{path : 'context' , name : 'coacheContext' component : null }, // 주소 : /coaches/c1/context
+         	]
+		},
+		{ path : ':/notFound(.*)', name : 'notFound' , component : null } 
+        // ':/' 다음에 오는 값은 사용자가 정함. notFound 가 아닌 a 로 정해도 됨 
+        // () 안에는 정규식이 온다. 
+		{ path : '/coaches:id', name : 'coacheId',
+            component : () => import("@/views/abc.vue"), // 컴포넌트를 import 하지않고 절대주소로 연결도 가능
+    ]
+})
+```
+
+
+
