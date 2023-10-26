@@ -124,7 +124,7 @@
   })
   ```
 
-### 6. 스크롤 위치 기억 라우터 
+### 6. 스크롤 위치 기억 라우터
 
 - [공식 문서](https://router.vuejs.org/guide/advanced/scroll-behavior.html)
 
@@ -162,4 +162,57 @@
   1. 사용자가 페이지를 새로고침하지 않고 다른 라우트로 이동하면, 새 페이지의 스크롤 위치를 반환한다. 
   2. 사용자가 이전 페이지에서 뒤로 가기를 누르면 이전 스크롤 위치를 반환한다. 
   3. 사용자가 처음 페이지로 접근하거나 저장된 스크롤 위치가 없는 경우 페이지 상단으로 스크롤한다. 
+
+### 7. 매개변수에 함수 전달
+
+- 매개변수로 함수를 전달해 호출된 곳에서 넘겨준 함수를 실행한다. 
+
+```js
+// router의 index.js 파일  
+// jwt 호출하는 곳 
+import jwt from '../libs/jwt'
+
+jwt.validToken(
+      () => {
+        // jwt.js의 validToken 에서 success() 함수 호출시 실행
+        var auth = storage.get("auth");
+        checkAuth(to, from, next, auth); // 사용자 권한 체크
+      },
+      async () => {
+        // jwt.js의 validToken 에서 failure() 함수 호출시 실행
+        // 로그인 되어있다면 실행
+        if (userData.authentication == true) {
+          // 로그인 사용자 정보 초기화
+          localStorage.removeItem("userData");
+          store.commit("userData/INIT_USER_DATA");
+          Vue.$cookies.remove("hasToken");
+        } else {
+          return next({ name: "auth-login" });
+        }
+        return next({ name: "auth-login" });
+      }
+    );
+```
+
+```js
+// jwt.js 파일 
+import axios from './axios'
+
+export default {
+    validToken : function(success, failure) {
+        axios.get('auth')
+        .then(res => {
+            if(res.data.success) {
+              if (success != null) success(); // 매개변수로 넘어온 success()함수 호출
+            } else {
+                this.refreshToken(success, failure);
+            }
+        }).catch(() => {
+          if (failure != null) failure(); // 매개변수로 넘어온 failure()함수 호출
+        });
+    },
+}
+```
+
+
 
