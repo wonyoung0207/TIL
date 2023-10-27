@@ -79,11 +79,23 @@
 
    - 새로운 브랜치를 만들고 stash된 내용을 `pop`한다.
 
-9. 특정 파일의 변경 사항만 stash에 저장 
+9. `git stash push`
+
+   - 특정 파일의 변경 사항만 stash에 저장 
 
    ```
    git stash push <파일 이름>
    ```
+
+10. `save --include-untracked` 
+
+   - 새로 생성한 파일도 stash 에 저장해주는 기능 
+
+   ```bash 
+   git stash save --include-untracked -m 'message wony'
+   ```
+
+   
 
 ---
 
