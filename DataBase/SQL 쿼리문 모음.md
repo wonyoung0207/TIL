@@ -96,3 +96,17 @@
   SELECT TO_DATE('20210421', 'YYMMDD') FROM dual;
   ```
 
+## Interval 
+
+- 시간 더하기 빼기에 이용 
+
+- 예시 
+
+  ```sql 
+  -- postgresql 기준 쿼리 
+  -- 하루전날 날짜 출력 
+  select now() - Interval '1 day'
+  SELECT TO_DATE('20210421', 'YYMMDDHHmm') - interval '3 hour' FROM dual;
+  ```
+
+  
