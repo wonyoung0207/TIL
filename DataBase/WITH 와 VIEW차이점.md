@@ -10,7 +10,7 @@
 
 ### 특징 
 
-- 한번 만들어 놓으면 DROP 할때까지 없어지지 않는다. 
+- **한번 만들어 놓으면 DROP 할때까지 없어지지 않는다.** 
 
 ### 장점
 
@@ -56,6 +56,8 @@ update empavgsal set salavg = salavg+10;
 ### 사용법
 
 ```sql
+-- 예시 1
+
 -- 반복해서 사용할 수 있음 
 WITH EXAMPLE1 AS ( -- 첫번째 Table
 SELECT 'EX1' A FROM DUAL 
@@ -69,6 +71,36 @@ SELECT A FROM EXAMPLE1 -- 첫번째 가상 테이블 바로 사용 가능
 )
  
 SELECT * FROM EXAMPLE2
+
+-- 예시 2
+with max_detect_time as
+(
+    select max(detect_time) as detect_time 
+    from state
+    where 
+        <![CDATA[
+            detect_time >= now() - interval '2 day'
+        ]]>
+)
+SELECT
+    e.id,
+    coalesce( s.state, '1' ) as state,
+    e.tech 
+FROM
+    (
+        SELECT id,state
+        FROM state
+        where 
+            <![CDATA[
+                detect_time <= (select detect_time from max_detect_time)
+                and 
+                detect_time >= (select detect_time from max_detect_time) - interval '3 min' 
+            ]]>	
+        GROUP BY id, state 
+    )s
+right JOIN
+    etable e
+ON s.id = e.id;
 ```
 
 ---
