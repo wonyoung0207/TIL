@@ -109,4 +109,75 @@
   SELECT TO_DATE('20210421', 'YYMMDDHHmm') - interval '3 hour' FROM dual;
   ```
 
+
+## row_number()
+
+- 각 행에 대해 순서를 지정하는 데 사용한다. 
+
+- 분석함수의 일종으로, 주로 over() 와 함께 쓰인다. 
+
+- 예시
+
+  ```sql
+  -- 직업을 기준으로 그룹화 
+  -- 직군(job) 별 급여(sal)가 낮은 순으로 순번을 표시
+  SELECT empno
+      , ename
+      , job
+      , sal
+      , ROW_NUMBER() OVER(PARTITION BY job ORDER BY sal) AS rn
+  FROM emp
+  WHERE job IN ('MANAGER', 'SALESMAN')
+  ORDER BY job
+  ```
+
+
+## partition by 
+
+- 데이터를 파티션으로 나누는 데 사용
+
+- 주로 over() 안에 사용되며, group By 와 비슷하게 동작한다. 
+
+- 예시
+
+  ```sql
+  -- 직업을 기준으로 그룹화 
+  -- 직업별 급여의 Max값만 표시 
+  SELECT empno
+   , ename
+   , job
+   , sal
+   , ROW_NUMBER() OVER(PARTITION BY job ORDER BY sal) AS rn
+  FROM emp
+  WHERE job IN ('MANAGER', 'SALESMAN')
+  ORDER BY job
+  ```
+
+
+## rank()
+
+- 순위를 나타낼 때 표시
+
+- 분석함수의 일종으로, 주로 over() 와 함께 사용된다. 
+
+- `row_number()` vs `rank()` 
+
+  - row_number() 는 행의 순서를 매겨주는 함수로, order by 에 의해서 결과가 달라진다. 
+  - rank()는 기준을 가지고 순위를 매기고 **같은값이 있다면 동일한 순서**로 나타낸다. 
+
+- 예시 
+
+  ```sql
+  -- RANK 함수를 사용하여 순위를 부여할 때는 동일한 급여(sal)인 경우 동일한 순위를 표시한
+  SELECT empno
+   , ename
+   , job
+   , sal
+   , RANK() OVER(PARTITION BY job ORDER BY sal) AS rnk
+  FROM emp
+  WHERE job IN ('MANAGER', 'SALESMAN')
+  ORDER BY job
+  ```
+
   
+
