@@ -177,19 +177,22 @@
        - 생성만 원하면 create
      - **-i(interactive), -t(Pseudo-tty)**
        - 실행된 Bash Shell에 입력 및 출력을 할 수 있음
+       - -i: 사용자가 입출력 할 수 있는 상태
+       - -t: 가상 터미널 환경을 에뮬레이션 하겠다.
+       - -d: 컨테이너를 일반 프로세스가 아닌 데몬프로세스로 실행하여 프로세스가 끝나도 유지되도록 한다.(백그라운드)
      - **--name**
        - 컨테이너의 이름을 직접 지정 like 닉네임
      - **/bin/bash**
        - centos 안의 /bin/bash 실행
-
+   
    - docker container 삭제 
-
+   
      ```cmd
      $ docker rm containerName
      ```
-
+   
    - docker image 삭제 
-
+   
      ```cmd
      $ docker rmi containerName
      ```
