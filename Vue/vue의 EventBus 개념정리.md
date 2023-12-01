@@ -19,7 +19,7 @@
 
 ### 사용예시
 
-```vue
+```js
 // 이벤트버스 생성
 var EventBus = new Vue()
 
