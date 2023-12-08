@@ -1,4 +1,4 @@
-# Scheduler 어노테이션
+# Scheduled 어노테이션
 
 ---
 
@@ -6,11 +6,12 @@
 >
 >[참고 사이트2](https://dev-coco.tistory.com/176)
 
-## @Scheduler
+## @Scheduled
 
 ### 정의 
 
 - 
+  Spring Boot에서 @Scheduled 어노테이션을 사용하면 일정한 시간 간격으로, 혹은 특정 시간에 코드가 실행되도록 설정할 수 있다.
 
 ### CRON 규칙
 
