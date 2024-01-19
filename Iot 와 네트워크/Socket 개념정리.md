@@ -64,6 +64,8 @@
 4. 소켓 닫기 
    -  통신이 완료되면 클라이언트와 서버는 소켓을 닫아 연결을 종료
 
+<img src="./images/socket동작방식.png" width=500>
+
 ### 사용방법
 
 1. Client와 Server 두군데에서 socket 을 생성한다. 
