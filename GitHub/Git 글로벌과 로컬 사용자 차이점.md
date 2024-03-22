@@ -30,3 +30,14 @@
   git config user.email "이메일" 
   ```
 
+### 설정된 계정 삭제 
+
+```bash
+# global
+git config --unset --global user.name
+git config --unset --global user.email
+
+# local
+git config --unset user.name
+git config --unset user.email
+```
