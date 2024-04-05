@@ -157,11 +157,20 @@
       1. [내가 원했던 기능 예시](https://discourse.threejs.org/t/is-it-possible-to-subdivide-a-box3helper/6720/2)
       2. [사용 예시](interactive)
    2. Threejs의 [boxHelper](https://threejs.org/docs/index.html?q=boxhel#api/en/helpers/BoxHelper) 와 [box3](https://threejs.org/docs/index.html?q=box#api/en/math/Box3)를 이용하면 된다. 
-   3. 
+
+   
 
    
 
    ## 7. 건물 표출
+
+   - bingMap 이용 
+
+     <img src="./images/지도_건물_도로연결_bingmap.png" width="800">
+
+   - StreetMap 이용 
+
+     <img src="./images/지도_건물_도로연결_streetmap.png" width="800">
 
    ### 필요 과정 
 
@@ -293,7 +302,10 @@
    1. 빛에서 멀어질수록 크기가 증가하는 원뿔을 따라 한 방향의 **단일 지점**에 방출
 
       1. 즉, 빛을 특정 지점에만 비출때 사용한다. 
+
       2. 예를들어, 극장 무대를 생각하면 쉽다. 극장에서 주인공만을 비출때 사용되는 빛이라고 생각하면 된다. 
+
+         <img src="./images/카메라시점과빛시점동일.png" width="700">
 
    2. 예시
 
@@ -418,26 +430,31 @@
 
    
 
-   ## NASA EarthData
+   
 
-   1. userName
-      1. metabuild 
-   2. Password
-      1. DigitalTwin2@
-   3. [QGIS다운로드](https://qgis.org/ko/site/forusers/download.html#)
-   4. https://search.earthdata.nasa.gov/
-   5. https://github.com/orabazu/threejs-dem-visualizer
-   6. https://app.geotiff.io/
-   7. [3차원 하늘 공간 만드는 방법](https://www.youtube.com/watch?v=Gew0bBaaJ38)
-   8. 14138513.69, 4506697.86 => 효령로 208 좌표 
-   9. [geo-three 라이브러리 예시](https://codesandbox.io/p/sandbox/taste-of-the-geo-three-47c4n6?file=%2Fsrc%2FApp.tsx%3A70%2C21)
+   ---
 
-   ## 프로젝트 버전
+   # 기타 자료 
+
+   ## 1. NASA EarthData
+
+   1. [QGIS다운로드](https://qgis.org/ko/site/forusers/download.html#)
+   2. https://search.earthdata.nasa.gov/
+   3. https://github.com/orabazu/threejs-dem-visualizer
+   4. https://app.geotiff.io/
+   5. [3차원 하늘 공간 만드는 방법](https://www.youtube.com/watch?v=Gew0bBaaJ38)
+   6. [geo-three 라이브러리 예시](https://codesandbox.io/p/sandbox/taste-of-the-geo-three-47c4n6?file=%2Fsrc%2FApp.tsx%3A70%2C21)
+
+   
+
+   ## 2. 프로젝트 버전
 
    1. "three": "^0.117.1", => geo-three 때문에 0.120.0 으로 버전 업 
    2. vue 2
 
-   ## LOD level 이 존재
+   
+
+   ## 3. LOD level 이 존재
 
    - 건물 그릴때 레벨이 존재. 
    - 높아질수록 건물의 디자인이 세밀하게 변경됨 
@@ -445,6 +462,6 @@
 
    
 
-   ## QGIS x,y,z Tiles 추가 방법 
+   ## 4. QGIS x,y,z Tiles 추가 방법 
 
    1. [참고 사이트](https://blog.naver.com/PostView.nhn?blogId=hongun7&logNo=221706999707)
