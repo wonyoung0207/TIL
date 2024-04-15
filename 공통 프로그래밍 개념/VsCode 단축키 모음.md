@@ -49,3 +49,9 @@
       2. `/**` 입력 
    2. 한줄 주석 
       1. Ctrl + '/'
+
+9. log 생성 툴
+
+   1. Extensions 에서 plug-in 으로 'turbo console log' 인스톨
+   2. 기존 shorcut key : 'ctrl + alt + L'
+      1. 사용하고 싶은 shorcut key 로 바꿔서 이용 
