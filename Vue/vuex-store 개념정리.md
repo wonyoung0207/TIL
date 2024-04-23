@@ -311,6 +311,9 @@ export default {
                 type : 'increment',
                 value : 10,
             })
+            
+            // 방법3 ( 인터페이스 )
+            this.$store.commit('verticalMenu/UPDATE_EVENT_POPUP_TIMER', Number(this.eventPopupTimer));
         }
     },
 }
