@@ -2,7 +2,11 @@
 
 ---
 
+>[롬복 에러 참고 사이트1](https://luvris2.tistory.com/411)
 >
+>[롬복 에러 참고 사이트2](https://dev-comsj.tistory.com/entry/STS-gradle-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-lombok-%EC%84%A4%EC%B9%98getset%EB%A9%94%EC%86%8C%EB%93%9C-log%EC%97%90%EB%9F%AC%ED%95%B4%EA%B2%B0)
+>
+>[롬복 에러 참고 사이트3](https://m.blog.naver.com/daka1122/222837239050)
 
 ## 발생 에러 
 
@@ -63,7 +67,7 @@ java.lang.Error: Unresolved compilation problem: The method builder() is undefin
 
   
 
-## 해결 방법
+## 해결 방법1
 
 1. build.gradle 의 lombok 내용 수정 
 
@@ -92,3 +96,49 @@ java.lang.Error: Unresolved compilation problem: The method builder() is undefin
    ```
 
    
+
+## 해결 방법2
+
+- [Lombok.jar 파일 다시 연결](https://dev-comsj.tistory.com/entry/STS-gradle-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-lombok-%EC%84%A4%EC%B9%98getset%EB%A9%94%EC%86%8C%EB%93%9C-log%EC%97%90%EB%9F%AC%ED%95%B4%EA%B2%B0)
+
+1. 다음 사이트에서 lombok 다운로드
+
+   1. [lombok 다운로드](https://projectlombok.org/download)
+
+2. Lombok.jar 파일이 있는 위치로 이동 후 관리자 권한으로 CMD 명령어 입력 
+
+   1. 관리자 권한이 아닌경우 에러 발생할 수 있음. 
+
+      ```js
+      java -jar lombok.jar
+      ```
+
+3. Project Lombok - Installer 
+
+   1. 명령어 입력시 롬복 인스톨러가 실행된다. 
+   2. IDE 도구를 선택하기 위해서 `Specify Location...` 을 선택 
+   3. Eclipse 나 STS4  파일 위치로 이동해 exe 파일을 선택 후 추가 
+
+4. Lombok 설치 확인 
+
+   1. IDE 도구 (Eclipse or STS4) 위치로 이동 한다. 
+   2. 해당 경로에 `Lombok.jar ` 의 설치를 확인한다. 
+
+5. Clean 
+
+   1. IDE 도구에서 새로운 Lombok으로 인식이 되지 않았을 수 있기 때문에 Clean 진행 
+   2. `Project -> Clean` 으로 진행하면 된다. 
+
+
+
+## 해결 방법3
+
+- `ini파일에 lombok.jar 파일 추가` 또는 `빌드 패스에 lombok.jar 파일 추가` 하는 방법이 있다. 
+- 위 방법을 적용하고 `IDE 툴 재실행 -> Project Clean -> Refresh Gradle Project `
+
+
+
+## 해결 방법4
+
+- [STS4.exe / STS.ini 파일이 아닌 STS4c.exe 파일로 선택](https://luvris2.tistory.com/411)
+- 다른 사람의 경우 STS4.exe 파일이 아닌 STS4c.exe 파일에 lombok을 연결해 해결됐다고 한다.
