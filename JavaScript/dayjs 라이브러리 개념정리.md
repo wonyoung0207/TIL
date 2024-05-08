@@ -36,6 +36,11 @@ npm install dayjs
   - `DD`: 일 (01부터 31까지)
   - `HH`: 시간 (00부터 23까지, 24시간 형식)
   - `mm`: 분 (00부터 59까지)
+- subtract(숫자, 타입) 
+  - 이전 시간을 구하는 메소드 
+  - 타입에는 month, day 등등이 올 수 있다. 
+  - 주의할점은 subtract으로 설정하지 않은 값은 자동으로 00 으로 설정된다. 
+    - 즉, `dayjs().subtract(7, "day")` 의 경우 시간, 분 부분은 자동으로 00:00 으로 설정된다. 
 
 ```js
 // Day.js 라이브러리 로드
@@ -59,6 +64,18 @@ console.log(date1.format('YYYY/MM/DD')); // "2024/04/20"
 
 // 현재 시간 표시 
 console.log(dayjs().format("YYYY-MM-DD HH:mm") );
+
+// 현재 시간으로부터 7일전 Date
+dayjs().subtract(7, "day");
+
+// 현재 시간으로부터 7일전의 자정(00:00:00)의 Date
+dayjs().subtract(7, "day").startOf('day').format("YYYY-MM-DD HH:mm");
+
+// 현재 시간에서 오늘 마지막 시간의 Date
+dayjs().endOf('day').format("YYYY-MM-DD HH:mm");
+
+// 현재 시간으로부터 7일전 12시 30분의 Date
+dayjs().subtract(7, "day").set("hour", 12).set("minute", 30);
 
 // 날짜 계산 (1주 후)
 const nextWeek = date1.add(1, 'week');
