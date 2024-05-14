@@ -191,7 +191,6 @@
       1. position.addSample(시간, location)
 4. QGIS 이용 차량 이동 경로 데이터 추출
    1. `qgis -> 공간 처리 박스 툴 -> random 검색 -> 선을따라 랜덤한 점 생성` 
-   2. 
 
 
 
