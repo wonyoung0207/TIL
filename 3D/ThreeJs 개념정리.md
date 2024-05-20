@@ -32,6 +32,77 @@
   1. WebGL은 Low레벨이기 때문에 도형 하나 만들려면 많은 코드가 필요하다. 
   2. 이때 더 쉽게 만들 수 있도록 도와주는것이 Three.js이다. 
 
+---
+
+## geo-three 라이브러리 
+
+> [geo-three 깃허브](https://github.com/tentone/geo-three?tab=readme-ov-file)
+
+### 1. 정의 
+
+1. three.js를 사용하여 지도를 표시하는 라이브러리이다. 
+2. 타일 기반으로 지리 데이터를 전 세계 규모로 시각화할 수 있다.
+
+### 2. provider
+
+1. 지도 서비스 제공 업체를 객체로 가진다. 
+   1. 제공 업체 : [BingMaps](https://www.microsoft.com/en-us/maps), [GoogleMaps](https://developers.google.com/maps/documentation), [HereMaps](https://developer.here.com/), [MapBox](https://docs.mapbox.com/api/), [MapTiler](https://www.maptiler.com/), [OpenMapTiles](https://openmaptiles.org/), [OpenStreetMaps](https://www.openstreetmap.org/)
+   2. OpenStreetMaps, BingMaps 같은 몇몇 provider 만 제외하고 모두 계정에 따른 API 를 발급받아야 한다. 
+2. 생성된 Provider 마다 요구되는 매개변수와 사용되는 형태가 달라진다.
+
+### 3. 사용법
+
+```js
+// 1. 타일 제공업체에 대한 객체 생성 
+var provider = new OpenStreetMapsProvider();
+// var provider = new geoThree.BingMapsProvider();
+
+// 2. provider 객체 이용해 타일 제공 업체에 따른 mapView 생성
+var map = new MapView(MapView.PLANAR, provider); // PLANAR : 평면 지도 
+
+// 3. threejs의 scene에 지도 표출 
+scene.add(map);
+```
+
+### 4. 좌표계 
+
+1.  [EPSG:900913](https://epsg.io/900913) 
+
+2. threejs에서 사용되는 좌표계와 호환될 수 있도록 위경도 좌표계인 WGS84 를 X,Y,Z 좌표로 변환하는 메소드를 제공한다. 
+
+   ```js
+   var coords = Geo.UnitsUtils.datumsToSpherical(40.940119, -8.535589);
+   controls.target.set(coords.x, 0, -coords.y);
+   ```
+
+### 5. Tile (타일)
+
+1. 지도는 타일 정보로 되어있어, 프로세스 시작시 로드된다. 
+
+   1. 확대/축소를 통해 십자가 모양의 rays를 통해 tile 정보를 가져오게 된다. 
+   2. rays의 수는 는 MapView subdivisionRays 속성을 사용하여 구성 가능하다. 
+
+2. 타일 좌표는 zoom 레벨에 따라 제공업체로 부터 타일로 나눠서 가져오게 된다. 
+
+   1. LOD Control을 이용해 가까운 노드는 세분화되고 멀리 있는 노드는 단순화한다.
+
+   ```js
+   // openStreetMap 의 예시 
+   image.src = "https://a.tile.openstreetmap.org/" + zoom + "/" + x + "/" + y + ".png";
+   
+   // zoom : 5, x : 27, y : 12 위치의 tile 정보를 가져와 LOD Control을 통해 표시 부분을 세분화 및 단순화 한다. 
+   'https://a.tile.openstreetmap.org/5/27/12' 
+   ```
+
+### 6. 예제 
+
+1. [Sandbox](https://tentone.github.io/geo-three/examples/providers.html)
+2. [Globe](https://tentone.github.io/geo-three/examples/transition.html)
+
+
+
+---
+
 # Three.js
 
 ## 1. 정의
