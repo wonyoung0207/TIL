@@ -60,6 +60,10 @@
 
 2. 설치가 완료되면 아래 명령어를 사용하여 생성한다. 
 
+   1. 3DTile로 바꾸려면 "EPSG:2154" 인 geojson 이 필요하다. 
+   2. 3DTile의 좌표계는 "EPSG:4978" 이다. 
+   3. 즉, 3DTile를 만들기 위해선 EPSG:2154 인 GeoJson파일이 필요하고, 3DTile로 변환할 때 좌표계 변환이 필요한데 "EPSG:4978" 로 해주면 된다.
+
    <img src="./images/3dtiles생성1.png" width="700">
 
    ```cmd
@@ -72,7 +76,10 @@
    2. https://github.com/VCityTeam/py3dtilers/tree/master/py3dtilers/GeojsonTiler
    3. 결과 값을 확인하면 tileset.json 과 tiles 폴더가 생성된 것을 확인한다. 
 
+
 <img src="./images/3dtiles생성2.png" width="700">
+
+<img src="./images/3dtiles생성3.png" width="700">
 
 
 
