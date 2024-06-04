@@ -68,6 +68,9 @@ netstat
 # 특정 포트를 검색 
 netstat –ano | find “port번호” 
 
+# 사용중인 포트 죽이기 
+# f : 강제 죽이기 
+taskkill /f /pid “port번호” 
 
 ```
 
