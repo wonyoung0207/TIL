@@ -29,7 +29,7 @@
 
 ## getElementsByClassName 
 
-1. `getElementsByClassName`는 지정된 클래스를 가진 모든 요소를 가져온다. 
+1. `getElementsByClassName`는 지정된 클래스를 가진 **모든 요소**를 가져온다. 
 
 2. **반환값**
 

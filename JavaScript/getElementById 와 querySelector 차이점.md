@@ -27,7 +27,11 @@
 2. 문법
 
    ```js
-   document.querySelector(selectors);
+   // 단일(처음) 태그 가져오기 
+   const elements = document.querySelector(selectors);
+   
+   // 여러 태그 가져오기 
+   const elements = document.querySelectorAll('.dummyClass');
    ```
 
 3. 특징
