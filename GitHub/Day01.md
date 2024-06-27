@@ -16,6 +16,9 @@
      - 복구 : git reset
      - 협업 : git clone, git pull, git branch, git merge
    - Git을 이용해서 분산 버전을 관리한다.
+     - git 은 VCS 중 하나의 프로그램일 뿐이다. 
+     - VCS ( Version Control System )
+
    - 자료를 공유하면서 포트폴리오로도 사용할 수 있다.
    - git은 내 컴퓨터 안에서 실행되는 버전 관리 프로그램이다.
 
