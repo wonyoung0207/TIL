@@ -1,4 +1,4 @@
-# DB 사용자 정의 함수 
+# SQL 사용자 정의함수,트리거,프로시저 차이점
 
 ---
 
@@ -144,5 +144,4 @@ UPDATE TABLE_NAME
 SET COL_1 = TEST_FUNC(COL_2)
 WHERE COL_2 = '20201031';
 ```
-
 
