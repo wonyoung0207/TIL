@@ -101,7 +101,7 @@
      docker save -o ubu_sa2.tar ubu2_image
      ```
 
-<img src="./images/docker 명령어 관계도.png" width="400"
+<img src="./images/docker 명령어 관계도.png" width="700">
 
 ### import & load
 
