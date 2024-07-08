@@ -13,13 +13,13 @@
 
 ## 사용방법
 
-### 1-1. 브랜치 생성 
+### 1. 브랜치 생성 
 
 1. 먼저 기능개발에 필요한 브랜치를 만들어야한다. 
 2. 브랜치의 생성은 기준 브랜치에서 분리해야하며, 브랜치의 이름은 규칙에 따라 `feature/branch-name` 의 형태로 만든다. 
 3. 이때 주의할점이 **로컬**에서만 브랜치가 생성되는것이 아닌 GitHub나GitLab 의 **레포지토리 자체에 브랜치**가 생성될 수 있도록 만들어야 한다. 
 
-### 1-2. 원격 저장소에서 브랜치 생성한 경우 
+##### 1-1. 원격 저장소에서 브랜치 생성한 경우 
 
 1. 원격 저장소에서 브랜치 생성
 
@@ -54,7 +54,7 @@
 
    <img src="./images/github_Create_branch7.png" width="500">
 
-### 1-3. 로컬에서 브랜치 생성한 경우 
+##### 1-2. 로컬에서 브랜치 생성한 경우 
 
 1. 로컬에서 브랜치 생성
    1. `checkout` 이나 `branch` 명령어를 통해 브랜치 생성 
@@ -69,20 +69,41 @@
    2. `feature/branch-name` 브랜치를 원격 저장소(`origin`)에 푸시하고, 로컬 브랜치를 원격 브랜치와 연결한다.
    3. 위의 명령어를 사용하면 이후 `git push` 또는 `git pull` 명령어를 사용할 때 브랜치 이름을 생략할 수 있다. 
 
-### 2. Merge Request 
+### 2. 기준 브랜치와 동기화 
 
-1. 분리해온 브랜치의 최신을 땡겨와 기능개발이 완료된 브랜치에 적용 시킨다. 
+1. 분리의 기준이 된 브랜치에서 변경사항이 있을 수 있기 때문에 병합 전 동기화 해주는 과정이 필요하다. 
+   1. 분리해온 브랜치의 최신을 땡겨와 기능개발이 완료된 브랜치에 적용 시킨다. 
+   2. 바로 병합하지 않는 이유는 머지할때 충돌이 나는것을 방지하기 위해서이다. 
+2. 이때 동기화에 사용할 수 있는 방법은 크게 2가지가 있다. 
+   1. **merge** : 지정 브랜치의 내용을 현재 브랜치로 병합 
+   2. **rebase** : 다른 브랜치에서 작업한 내용을 내 브랜치 위로 이동
 
-   1. 바로 병합하지 않는 이유는 왜냐하면 머지할때 충돌이 나는것을 방지하기 위해서이다. 
+##### 2-1. 병합 (Merge) 예제
 
-      ```bash
-      git fetch origin 
-      git merge {branch명}
-      ```
+```bash
+git checkout feature/branch-test # feature/branch-test 브랜치로 이동(switch)
+git merge main # feature/branch-test 브랜치로 main브랜치의 변경사항 가져오기 
+```
 
-   <img src="./images/merge_request0.png" width="700">
+##### 2-2. 재배치 (Rebase) 예제
 
-2. 기능개발 및 push 
+```bash
+git checkout feature/branch-test # feature/branch-test 브랜치로 이동(switch)
+git rebase main # feature/branch-test 브랜치의 변경사항 위로 main브랜치의 변경사항 올리기 ( 가져오기 ) 
+```
+
+##### 2-3. 최종 사용 명령어 
+
+```bash
+git fetch origin # 원격 저장소의 최신 변경사항 내려받기 
+git merge {branch명} # 현재 브랜치에 기준 브랜치 변경사항 병합
+```
+
+<img src="./images/merge_request0.png" width="700">
+
+### 3. Merge Request 
+
+1. 기능개발 및 push 
 
    1. 기능을 개발하고 commit & push 를 진행한다. 
 
@@ -92,7 +113,7 @@
       git push -u origin feature/branch-name
       ```
 
-3. 기능개발이 끝나고 변경사항을 기존 분리해온 브랜치로 병합한다. 
+2. 기능개발이 끝나고 변경사항을 기존 분리해온 브랜치로 병합한다. 
 
    1. push 가 완료됐으면 `pull requests` 를 통해 관리자에게 머지를 요청한다. 
    2. 이때 bash 브랜치는 분리해온 브랜치이고, compare 은 기능개발한 브랜치 이다. 
