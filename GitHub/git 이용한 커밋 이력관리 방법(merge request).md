@@ -97,6 +97,7 @@ git rebase main # feature/branch-test 브랜치의 변경사항 위로 main브�
 ```bash
 git fetch origin # 원격 저장소의 최신 변경사항 내려받기 
 git merge {branch명} # 현재 브랜치에 기준 브랜치 변경사항 병합
+git pull origin {기준 branch명} # 이 명령어가 더 좋음 ( origin 브랜치와 local 브랜치를 구분해 주기 때문에 )
 ```
 
 <img src="./images/merge_request0.png" width="700">
