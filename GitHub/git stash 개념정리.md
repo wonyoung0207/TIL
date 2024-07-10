@@ -23,6 +23,10 @@
       2. 변경 사항을 임시로 저장하는 명령어 
    2. git stash pop 
       1. 임시 변경사항을 꺼내오는 명령어
+3. 주의할 점
+   1. git stash는 Git으로 버전 관리를 하고 있는 파일들에 수정 내용을 임시로 저장하기 때문에, 새롭게 생성된 파일을 저장되지 않는다.
+   2. 새롭게 생성된 파일도 함께 임시저장하고 싶다면, git add로 새롭게 생성된 파일들을 Git으로 관리하도록 한 후, git stash를 통해 저장해야 한다. 
+
 
 ### 관련 명령어
 
@@ -32,7 +36,7 @@
 
    - 사용하면 현재 working directory는 깨끗해진다. 
 
-     ```git
+     ```bash
      $ git stash 
      $ git stash save 
      ```
@@ -41,7 +45,7 @@
 
    - 가장 최근의 stash 삭제 
 
-     ```java
+     ```bash
      $ git stash drop
      Dropped refs/stash@{0} (716b4e839729443a935b7e15b6398c5cee152e49
      ```
@@ -50,7 +54,7 @@
 
    - 현재 stash에 저장된 목록을 보여준다. 
 
-     ```java
+     ```bash
      $ git stash list
      stash@{0}: stash 저장2 // stash@{0} 식으로 스택에 저장됨 
      stash@{1}: stash 저장1
@@ -81,13 +85,13 @@
 
 9. `git stash push`
 
-   - 특정 파일의 변경 사항만 stash에 저장 
+   - stash 에 저장 
 
-   ```
-   git stash push <파일 이름>
+   ```bash
+   git stash push -m '메시지 작성'
    ```
 
-10. `save --include-untracked` 
+10. `git stash save --include-untracked` 
 
    - 새로 생성한 파일도 stash 에 저장해주는 기능 
 
