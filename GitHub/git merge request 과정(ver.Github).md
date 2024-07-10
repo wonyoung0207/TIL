@@ -1,14 +1,15 @@
-# Git 이용한 커밋 이력관리 방법(merge request)
+# Git  merge request 과정 
 
 ---
 
->
+>[squash 참고 사이트](https://velog.io/@bang9dev/Squash-merge-%EA%B0%80-%ED%95%84%EC%9A%94%ED%95%9C-%EC%9D%B4%EC%9C%A0)
 
 ## 사용이유
 
-1. 협업에 있어 commit 을 관리하는것은 중요하다. 
+1. Git을 이용한 커밋 이력관리 방법에 사용된다. 
+2. 협업에 있어 commit 을 관리하는것은 중요하다. 
    1. 어떤 사람이 어느 부분을 고쳤고, 어떤 내용이 추가되었는지 확인이 필요하다. 
-2. 하나의 기능을 만들 떄 여러 commit 기록으로 인해 보기가 불편하다. 
+3. 하나의 기능을 만들 떄 여러 commit 기록으로 인해 보기가 불편하다. 
    1. 따라서 이력을 관리해 하나의 기능에 어떤 부분들이 달라졌는지 쉽게 파악할 수 있도록 만드는것이 좋다. 
 
 ## 사용방법
@@ -159,3 +160,18 @@ git pull origin {기준 branch명} # 이 명령어가 더 좋음 ( origin 브랜
    ```
 
    
+
+---
+
+## GitLab 이용 Merge Request
+
+gitlab_MergeRequest1
+
+gitlab_MergeRequest2
+
+gitlab_MergeRequest3
+
+gitlab_MergeRequest4
+
+gitlab_MergeRequest5
+
