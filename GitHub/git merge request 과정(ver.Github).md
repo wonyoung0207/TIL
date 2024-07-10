@@ -159,19 +159,4 @@ git pull origin {기준 branch명} # 이 명령어가 더 좋음 ( origin 브랜
    git branch -d feature/branch-test
    ```
 
-   
-
----
-
-## GitLab 이용 Merge Request
-
-gitlab_MergeRequest1
-
-gitlab_MergeRequest2
-
-gitlab_MergeRequest3
-
-gitlab_MergeRequest4
-
-gitlab_MergeRequest5
 

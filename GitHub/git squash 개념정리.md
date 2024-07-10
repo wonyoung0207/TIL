@@ -34,7 +34,7 @@
          1. 즉, 분홍색 point 가 모든 commit 기록이고, 초록색 point가 모든 commit 기록이 합처져 새로 생성된 commit 기록이다. 
          2. 따라서 분홍색 point 의 전체 변경 내용이 초록색 commit 으로 되어 병합된다. 
 
-      <img src="../../../git_squash2.png" width="700">
+      <img src="./images/git_squash2.png" width="700">
 
    1. branch 삭제 o , squash 적용 o
 
