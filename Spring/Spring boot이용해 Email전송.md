@@ -96,7 +96,60 @@
       implementation 'net.jodah:expiringmap:0.5.10'
       ```
 
-2. EmailService 제작 
+2. 사용할 SMTP 계정 연결 
+
+   1. SMTP 를 제공하는 플랫폼의 Email 서버를 이용하는 방식이다. 
+
+   2. 따라서 email.host 를 해당 플랫폼의 smtp 와 연결해야한다. 
+
+   3. 여기서는 Google 의 SMTP 와 gradle 을 사용하기 때문에 `application.properties`설정으로 smtp 와 계정 설정을 진행한다. 
+
+      ```properties
+      # Gmail SMTP 서버 주소
+      email.host=smtp.gmail.com
+      email.port=587
+      email.username=user@gmail.com
+      # google 계정 App Password 
+      email.password=[google 계정 App Password]
+      email.from=[user@gmail.com]
+      
+      # # Gmail SMTP 서버 주소
+      # spring.mail.host=smtp.gmail.com
+      # spring.mail.port=587
+      # spring.mail.username=user@gmail.com
+      # spring.mail.password=userPassword
+      # # TLS 연결 활성화 여부
+      # spring.mail.properties.mail.smtp.starttls.enable=true 
+      # spring.mail.properties.mail.smtp.starttls.required=true
+      # # SMTP 인증 사용 여부
+      # spring.mail.properties.mail.smtp.auth=true
+      ```
+
+3. 구글 SMTP 설정
+
+   1. 구글의 SMTP 를 사용하기 위해선 `앱 비밀번호` 를 사용하는 것이 좋다. 
+   2. 왜냐하면 사용자 Email 의 비밀번호 노출을 피할 수 있기 때문이다. 
+      1. 구글의 2단계 인증을 사용하는 경우에만 `앱 비밀번호` 를 사용해 사용자의 Password를 숨길 수 있다. 
+
+   3. 설정 방법은 [Google 계정 도움말](https://support.google.com/accounts/answer/185833#zippy=%2C%EC%95%B1-%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8%EA%B0%80-%ED%95%84%EC%9A%94%ED%95%9C-%EC%9D%B4%EC%9C%A0) 에서 방법을 찾을 수 있다. 
+      1. `구글 계정 -> 2단계 인증 등록 -> 앱 비밀번호 생성 -> 생성된 비밀번호 email.password에 적용`
+      2. [google 앱 비밀번호 생성](https://myaccount.google.com/apppasswords)
+
+4. noreply 적용
+
+   1. 발신자의 Email을 noreply 로 변경할 수 있다. 
+
+      1. noreply란, 이메일의 송신만 할 뿐 재전송에 대한 답변을 안한다는 약속같은 것이다. 
+
+   2. 하지만 Google 을 사용한다면 보안정책으로 인해 noreply@gmail.com 처럼 수신자의 이메일을 변경할 수 없다. 
+
+      1. Gmail의 보안 정책에 따라 이메일 발신자의 주소가 항상 인증된 사용자의 이메일 주소로 설정되기 때문임
+
+      ```java
+      htmlEmail.setFrom("noreply@example.com", "NoReply");
+      ```
+
+5. EmailService 제작 
 
    1. Controller 다음에 오는 Service를 통해 Email을 전송하게 된다. 
 
@@ -128,7 +181,7 @@
       }
       ```
 
-3. RESTful API 를 통해 Controller 호출
+6. RESTful API 를 통해 Controller 호출
 
    1. Email 전송 Controller 호출
 
