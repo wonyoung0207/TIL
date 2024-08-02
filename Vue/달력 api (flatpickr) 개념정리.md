@@ -107,3 +107,46 @@ flatPickrConfig: {
 
 
 
+---
+
+## 다국어 처리 
+
+```js
+import { Korean } from "flatpickr/dist/l10n/ko.js"; // locale 에 설정하기 위해서 flatpickr 파일에서 ko 를 가져와야 한다. 
+
+
+flatPickrConfig: {
+    mode: "range",
+    locale: this.$i18n.locale == "ko" ? Korean : null, // 영문 버전이 default 이기 때문에 null 로 설정해주면 된다. 
+    enableTime: true,
+    // time_24hr : true, // 오전, 오후 없어짐
+    allowInput: false, // 사용자 직접 입력 막기
+    // allowInput: true,
+    // time_24hr: true,
+    dateFormat: "Y-m-d H:i",
+    maxDate: new Date(),
+    defaultHour: [5, 10],
+    defaultDate: new dayjs().format("YYYY-MM-DD HH:mm"),
+    plugins: [
+      new ConfirmDatePlugin({
+        confirmIcon: "",
+        confirmText: "OK", // 달력 버튼
+        showAlways: true,
+        theme: "light", // or "dark"
+      }),
+    ],
+},
+    
+// locale 을 변경할 경우 실행 
+setUpdateDate() {
+    if (this.$i18n.locale == 'ko') {
+        this.flatPickrConfig.locale = Korean
+    this.dateSeparator = ' ~ '
+    } else {
+    	this.flatPickrConfig.locale = null
+    	this.dateSeparator = ' to '
+    }
+    this.mergeDate = `${this.searchStartDate}${this.dateSeparator}${this.searchEndDate}`; // 기간
+},
+```
+
