@@ -109,6 +109,10 @@ app.mount('#app')
        
        // 쿼리와 함께 사용, 결과는 /register?plan=private 이다. 
        router.push({ path: 'register', query: { plan: 'private' }})
+       
+       // 새창 열기 
+       window.open(this.$router.resolve({ name: 'dashboard' }).href, '_blank'); // 새창에서 router 표출 
+       this.$router.go(-1); // 현재 브라우저 이동 중지 
        ```
 
   2. **replace( )** 
@@ -118,9 +122,9 @@ app.mount('#app')
   3. **go( )** 
 
      - `window.history.go(n)`와 비슷하게 동작하는 것으로, 숫자만큼 뒤로가기, 앞으로가기를 진행한다. 
-
+  
      - 브라우저 히스토리에서 앞 또는 뒤로 이동할 수 있게 한다. 
-
+  
        ```js
        // 한 단계 앞으로. history.forward()와 같다.
        this.$router.go(1)
@@ -147,9 +151,9 @@ app.mount('#app')
   6. **path** 
 
      - 현재 경로 확인
-
+  
   7. params
-
+  
      - 동적 router를 사용할 때 사용되며, ( : ) 를 이용해 동적 URL을 표시한다. 
      - `this.$router.params.teamId` 에서 teamId 가 동적 URL로 설정되어있는 부분이다. 
 
