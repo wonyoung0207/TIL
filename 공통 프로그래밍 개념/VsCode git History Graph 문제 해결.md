@@ -24,7 +24,8 @@
 2. vs code 의 설정값 확인 
 
    1. **source control** 에 의한 문제인것을 파악 
-   2. `scm : show history graph` 설정값으로 변경 가능여부 확인 
+   2. 참고 사이트 : [vs code 공식 홈페이지-incooming / outcomming changes](https://code.visualstudio.com/docs/sourcecontrol/overview#_incoming-and-outgoing-changes)
+   3. `scm : show history graph` 설정값으로 변경 가능여부 확인 
 
    <img src="./images/git_history_issue2.png" width="600">
 
