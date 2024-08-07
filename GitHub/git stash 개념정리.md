@@ -85,10 +85,12 @@
 
 9. `git stash push`
 
-   - stash 에 저장 
+   - **특정파일 stash 에 저장** 
 
    ```bash
-   git stash push -m '메시지 작성'
+   git stash push -m '메시지 작성' '절대경로 또는 상대경로 아용해 파일타입까지 기재' # 여러개인경우 ' ' 띄어쓰기로 구분 
+   
+   git stash push -m "대시보드 새창열기 및 #제거" src/@core/layouts/layout-vertical/components/vertical-nav-menu/components/vertical-nav-menu-items/VerticalNavMenuItems.vue src/router/routes/routerMenu.js src/navigation/vertical/menu.js
    ```
 
 10. `git stash save --include-untracked` 
