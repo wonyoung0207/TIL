@@ -76,6 +76,7 @@
    
    // 올바른 방법
    logger.info("Request URI: {}", request.getRequestURI());
+   logger.info("attributes : {} , value :  {}", attributeName , attributeValue);
    ```
 
    

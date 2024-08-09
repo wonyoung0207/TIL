@@ -53,23 +53,31 @@
        };
        ```
 
-2. @Service
+2. @SuppressWarnings("deprecation")
+
+   1. 자바 코드에서 특정 경고 메시지를 억제(suppress)하기 위해 사용
+      1. 다양한 경고 유형을 무시할때 사용함 
+
+   2. 예시로, @SuppressWarnings("deprecation")는 `deprecation` 메시지에 대한 경고를 무시한다는 의미 
+      1. 즉, @Deprecated 과 같은 의미로 사용할 수 있다. 
+
+3. @Service
 
    - 비지니스 로직이 들어가는 Service로 사용되는 클래스임을 명시하는 어노테이션
    - **Service의 역할은 Dao가 DB에서 받아온 데이터를 전달받아 가공**하는 것
 
-3. @Resource
+4. @Resource
 
-4. @Repository
+5. @Repository
 
    - **DAO class**와 **DataBase에 접근하는 method를 가지고 있는 Class에서 쓰인다.**
    - DB연동 작업을 하는 클래스인 DAO에 특화된 어노테이션으로, 해당 클래스에서 발생하는 DB 관련 예외를 spring의 DAOException으로 전환할 수 있는 장점이 있다. 
 
-5. @Autowired
+6. @Autowired
 
    - Bean을 주입받기 위해 사용한다. 
 
-6. @RequestMapping
+7. @RequestMapping
 
    - 요청 들어온 URI의 요청과 Annotation value 값이 일치하면 해당 클래스나 메소드가 실행된다. 
 
@@ -120,7 +128,7 @@
        }
        ```
 
-7. @RequestParam
+8. @RequestParam
 
    - URL에 전달되는 파라미터를 메소드의 인자와 매칭시켜, 파라미터를 받아서 처리할 수 있는 Annotation이다.
 
@@ -141,7 +149,7 @@
        }
        ```
 
-8. @Component
+9. @Component
 
    - 생성한 Class를 Spring의 Bean으로 등록할 때 사용하는 Annotation이다. 
 
@@ -159,6 +167,13 @@
          }
      }
      ```
+
+10. @Configuration 
+
+   - Spring이 해당 클래스를 설정 클래스로 인식하도록 한다. 
+   - 역할: `@Configuration` 어노테이션은 클래스를 스프링의 IoC 컨테이너에 의해 관리되는 빈 정의 소스로 표시
+   - 사용 목적: 애플리케이션 컨텍스트를 설정하고 구성하는 데 사용됩니다. 이를 통해 XML 설정 파일을 대체하거나 함께 사용할 수 있다. 
+   - 스프링 프레임워크의 핵심 설정 방식 중 하나로, 애플리케이션 컨텍스트를 프로그래밍 방식으로 설정하는 데 사용되어 애플리케이션 설정을 명확하고 안전하게 관리할 수 있게 한다. 
 
 ### Spring 어노테이션 컨테이너 등록
 
