@@ -207,5 +207,25 @@
   ) AS position;
   ```
 
-  
+
+## 서브쿼리 값이 존재하는지 확인 
+
+1. 특정 사용자가 활동 로그를 남긴적이 있는지 확인해, 활동 로그 있는 경우 'Active',  없다면 'Inactive' 로 표시 
+2. 단순히 서브쿼리가 결과를 반환하는지 여부만 확인하기 때문에 `Select 1` 을 사용한다. 
+3. 서브쿼리 결과가 존재하면**(`EXISTS`가 `TRUE`)** `'Active'`를 반환하고, 존재하지 않으면**(`EXISTS`가 `FALSE`)** `'Inactive'`를 반환합니다.
+
+```sql
+SELECT 
+    U.USER_ID,
+    U.USER_NAME,
+    CASE WHEN EXISTS ( -- 존재하는지 확인 
+            SELECT 1 
+            FROM TB_USER_LOGS L
+            WHERE L.USER_ID = U.USER_ID
+          ) THEN 'Active' -- 서브쿼리 결과 존재한다면 실행
+         ELSE 'Inactive' -- 서브쿼리 결과 존재 안한다면 실행 
+    END AS USER_STATUS
+FROM 
+    TB_USERS U;
+```
 
