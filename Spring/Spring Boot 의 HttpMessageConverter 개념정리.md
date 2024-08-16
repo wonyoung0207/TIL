@@ -39,6 +39,21 @@
    1. 그리고, 적절한 `HttpMessageConverter`를 선택한다. 
 2. HTTP 응답을 생성할 때는 `Accept` 헤더를 참고하여 클라이언트가 수용할 수 있는 형식으로 응답을 생성한다. 
 
+## 의존성 추가 
+
+```xml
+<!-- Maven -->
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+```
+
+```java
+// gradle
+implementation 'org.springframework.boot:spring-boot-starter-web'
+```
+
 ## 동작예시
 
 ### Webconfig.java
