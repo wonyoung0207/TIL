@@ -41,7 +41,9 @@ setTimeout(() => {
 2. `clearInterval(intervalId)`
 
    1. `intervalId`: 중지할 인터벌의 ID(`setInterval`로 반환된 ID).
-
+   1. `clearInterval` 함수는 전달된 `intervalId`가 `undefined`이거나 `null`이면 아무 작업도 하지 않고 무시한다. 
+   1. 따라서 안전하게 호출할 수 있으며, 이미 중지된 인터벌이거나 존재하지 않는 인터벌에 대해 `clearInterval`을 호출해도 문제가 생기지 않는다.
+   
    ```JS
    let count = 0;
    
@@ -56,5 +58,5 @@ setTimeout(() => {
      console.log('카운트 중지');
    }, 10000);
    ```
-
+   
    
