@@ -17,6 +17,10 @@
 2. computed() 를 이용해 함수로 처리 
    - 이 방법이 더 권장된다. 
    - 왜냐하면 가독성이 좋아지기 때문에 -> 나중에는 html코드를 많이 보는게 아닌 javascript 코드를 많이 봄 
+3. **다중 클래스 적용** 
+   1. `col-12 mt-2 mb-2 p-2` 클래스는 계속 적용
+   2. `bcardHeightClass` 는 `bcardHeightTF`값에 따라 적용 
+
 
 ### 사용법
 
@@ -28,6 +32,10 @@
         <!-- 방법 2 -->
         <p v-bind:class="{ errorTextColor }"></p>
     </div>
+    
+    <!-- 방법 3 -->
+	<b-card v-if="showRideState" :class="['col-12 mt-2 mb-2 p-2',{bcardHeightClass : bcardHeightTF}]" no-body>
+    
 </body>
 <script>
 new vue({
@@ -42,5 +50,8 @@ new vue({
     }
 })
 </script>
+
+
+
 ```
 
