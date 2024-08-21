@@ -3,6 +3,10 @@
 ---
 
 >[참고 유튜브](https://www.youtube.com/watch?v=Q27PGBYmHNA)
+>
+>[참고 사이트1](https://velog.io/@zinna_1109/Toy-Project-Swagger-Bearer-Token%EC%84%A4%EC%A0%95)
+>
+>[참고 사이트2](https://bugoverdose.github.io/development/swagger-auth-tutorial/)
 
 ## Swagger 
 
@@ -19,6 +23,30 @@
 1. 사용하고 있는 Server(백엔드) 에 어노테이션으로 Swagger 를 이용해야 한다. 
 2. Swagger 어노테이션을 이용해 어려가지 정보를 기입해야한다. 
    1. 따라서 소스 코드에 관리해야할게 많아진다는 단점이 있다. 
+
+### 주의할점
+
+1. **인증 API Key 필요** 
+   1. API 호출에 인증이 필요하다면 API 인증 Key 값을 넣어줘야 한다. 
+   2. 인증값이 있어야 해당 운영 서버로 API Call 을 할 수 있기 때문이다. 
+2. 인증값
+   1. 인증값에는 사용 인증방법마다 앞에 넣어줘야 하는 값이 다르다. 
+   2. 나같은 경우, JWT Token 을 사용했으므로 앞에 `Bearer` 를 붙여줬다. 
+      1. 토큰을 입력하고 Authorize 버튼을 누르면 API에 대한 모든 요청이 HTTP 헤더에 토큰이 자동으로 포함된다.
+   3. 예시 : Bearer [JwtToken]
+
+### Bearer Token이란?
+
+1. Bearer = 소유자
+2. 토큰을 전송하는 방식 중에 하나
+3. HTTP 인증 프로토콜 중에 하나로 클라이언트가 서버의 자원에 접근하고자 할 때 헤더에 Bearer token을 포함하여 요청하여 인증을 받는다
+4. 일반적으로 OAuth나 JWT와 같은 프레임워크에서 사용된다
+
+### JWT란?
+
+1. 특정한 형식의 토큰을 정의하는 표준
+2. Json web token : Json 포맷을 이용하여 사용자에 대한 속성을 저장하는 Web Token
+3. Header, Payload, Signature의 3 부분으로 구성되며 각 부분은 Base64로 인코딩되어 표현된다 각 부분은 `.`을 구분자로 사용
 
 ### Swagger 어노테이션 적용 예시 
 
@@ -106,6 +134,8 @@
 ### 스웨거 허브 웹사이트
 
 <img src="./images/swagger_web1.png" width="700">
+
+<img src="./images/swagger_web1-1.png" width="400">
 
 <img src="./images/swagger_web2.png" width="700">
 
