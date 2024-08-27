@@ -2,8 +2,6 @@
 
 ---
 
-
-
 ## IT관련 개념 정리
 
 1. [Java](https://github.com/wonyoung0207/TIL/tree/master/Java)
@@ -14,12 +12,18 @@
 6. [DataBase](https://github.com/wonyoung0207/TIL/tree/master/DataBase)
 7. [Iot 네트워크](https://github.com/wonyoung0207/TIL/tree/master/Iot%20%EC%99%80%20%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC)
 8. [Spring](https://github.com/wonyoung0207/TIL/tree/master/Spring)
-9. [Vue.js 2](https://github.com/wonyoung0207/TIL/tree/master/Vue)
+9. [Vue.js](https://github.com/wonyoung0207/TIL/tree/master/Vue)
 10. [Cloud](https://github.com/wonyoung0207/TIL/tree/master/Cloud)
 11. [운영체제](https://github.com/wonyoung0207/TIL/tree/master/%EC%9A%B4%EC%98%81%EC%B2%B4%EC%A0%9C)
 12. [인공지능AI](https://github.com/wonyoung0207/TIL/tree/master/%EC%9D%B8%EA%B3%B5%EC%A7%80%EB%8A%A5AI)
 13. [코딩테스트](https://github.com/wonyoung0207/TIL/tree/master/%EC%BD%94%EB%94%A9%ED%85%8C%EC%8A%A4%ED%8A%B8)
 14. [공통 프로그래밍 개념](https://github.com/wonyoung0207/TIL/tree/master/%EA%B3%B5%ED%86%B5%20%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D%20%EA%B0%9C%EB%85%90)
+
+### 자격증
+
+1. [정보처리 기사](https://github.com/wonyoung0207/TIL/tree/master/%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EA%B8%B0%EC%82%AC)
+2. [네트워크 관리사 2급](https://github.com/wonyoung0207/TIL/tree/master/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%20%EA%B4%80%EB%A6%AC%EC%82%AC2%EA%B8%89)
+3. [지능형 홈 관리사](https://github.com/wonyoung0207/TIL/tree/master/%EC%A7%80%EB%8A%A5%ED%98%95%20%ED%99%88%20%EA%B4%80%EB%A6%AC%EC%82%AC)
 
 ### 배웠던 프로그래밍 언어
 
@@ -44,8 +48,6 @@
 
 - [MQTT 통신 Project](https://github.com/wonyoung0207/IOT-NetWork/tree/master/MQTT%20%ED%86%B5%EC%8B%A0%EC%9D%84%20%EC%9D%B4%EC%9A%A9%ED%95%9C%20%EC%84%9C%EC%82%AC%EC%B6%94%EC%B2%9C%EB%8F%84%EC%84%9C)
 - [리눅스이용한 프로세스 통신 Project](https://github.com/wonyoung0207/IOT-NetWork/tree/master/Signal%EC%9D%B4%EC%9A%A9%ED%95%9C%20%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%20%ED%86%B5%EC%8B%A0)
-
-
 
 ## MultiCampus
 
