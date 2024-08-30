@@ -2,7 +2,7 @@
 
 ---
 
->
+>[테스트 진행한 레포지토리](https://github.com/wonyoung0207/git_test_repository)
 
 ## 발생이유
 
@@ -80,22 +80,42 @@
 
       <img src="./images/orphan/orphan_branch_test8.png" width="900">
 
-#### 4. 진행시 궁금했던 부분 정리 
+## 진행시 궁금했던 부분 정리 
 
-1. merge 후 기준 브랜치 아닌 병합된 브랜치 이동한 경우 
+#### 1. merge 후 기준 브랜치 아닌 병합된 브랜치 이동한 경우 
 
-   1. 기준 브랜치인 `a 브랜치(orphan_test1)`  가 아닌 `b 브랜치(orphan_test1_sub)` 의 커밋 기록으로 `b 브랜치` 를 되돌린 경우 
+1. 기준 브랜치인 `a 브랜치(orphan_test1)`  가 아닌 `b 브랜치(orphan_test1_sub)` 의 커밋 기록으로 `b 브랜치` 를 되돌린 경우 
 
-   2. merge 된 분기는 합쳐져 있지만, `b 브랜치` 의 기록은 그 이전으로 돌아가 있기 때문에 `b 브랜치` 는 머지의 영향을 받지 않는다. 
+2. merge 된 분기는 합쳐져 있지만, `b 브랜치` 의 기록은 그 이전으로 돌아가 있기 때문에 `b 브랜치` 는 머지의 영향을 받지 않는다. 
 
-   3. 즉, 이동 후 커밋하면 밑의 캡쳐처럼 합쳐졌던 git 그래프에서 분기처럼 다시 `b 브랜치` 분기로 쭉 진행되는것을 볼 수 있다. 
+3. 즉, 이동 후 커밋하면 밑의 캡쳐처럼 합쳐졌던 git 그래프에서 분기처럼 다시 `b 브랜치` 분기로 쭉 진행되는것을 볼 수 있다. 
 
-      <img src="./images/orphan/orphan_branch_test10-7.png" width="900">
+   <img src="./images/orphan/orphan_branch_test10-7.png" width="900">
 
-2. 브랜치 이동 
+### 2. 브랜치 이동 
 
-   1. 현재 브렌치와 `git branch --force 브랜치` 명령어에서 사용한 브랜치가 같은 경우 명령어가 싫행되지 않는다. 
+1. 현재 브렌치와 `git branch --force 브랜치` 명령어에서 사용한 브랜치가 같은 경우 명령어가 싫행되지 않는다. 
 
-   2. 즉, 다른 브랜치로 switch 하고 `git branch --force 브랜치`  명령어를 사용해야 한다. 
+2. 즉, 다른 브랜치로 switch 하고 `git branch --force 브랜치`  명령어를 사용해야 한다. 
 
-      <img src="./images/orphan/orphan_branch_test10-6.png" width="900">
+   <img src="./images/orphan/orphan_branch_test10-6.png" width="900">
+
+### 3. 삭제된 커밋 내용 
+
+1. 커밋 기록을 삭제했을 때 해당 커밋 기록이 정말로 remote 저장소에서 삭제되었는지에 대한 내용
+
+2. **결론먼저 말하자면, 놀랍게도 남아있다고 한다. ( 커밋 해쉬 코드로.... )**
+
+   1. **하지만 삭제하면 깃 히스토리상 지워지기 때문에 삭제 전 해쉬 코드를 먼저 복사해놔야 한다.** 
+
+3. 깃 히스토리 상에서는 보이지 않지만, 해당 레포지토리에서 url 에 `커밋 해쉬 코드` 로 삭제된 커밋 내용을 볼 수 있음 
+
+   ```bash
+   # url 이용 커밋 로그 확인 방법 
+   https://github.com/[유저이름]/[레포지토리 이름]/commit/[커밋 해쉬 코드]
+   
+   # 커밋 로그 확인 방법
+   https://github.com/wonyoung0207/git_test_repository/commit/d10e264aa9f728719
+   ```
+
+   <img src="./images/orphan/orphan_branch_test11.png" width="900">
