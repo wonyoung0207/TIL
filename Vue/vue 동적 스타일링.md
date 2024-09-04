@@ -18,8 +18,17 @@
    - `:class="['demo',boxAClass]"`
 3. 변수와 직접적인 바인딩 이용 
    - `:class="{ activeBox : boxCSelected }"`
+4. 동적 Style 이용
+   - class가 아닌 style 도 동적으로 css 를 적용할 수 있다. 
+   - `:style="['',{height : computedMapHeight}]"`
+5. **style 과 class 이용** 
+   - 동적 class 를 적용하는 것으로는 여러 상황에서 스타일을 적용시키기가 쉽지 않다. 
+     - **또한 사용하다보니 `:style=""` 의 방법에 디폴트 옵션과 같이 사용시 동적 옵션만 적용되는 문제있다는 것을 발견**했다. 
+     - 즉, `:style="['width : 100px; ',{height : computedMapHeight}]"`  사용시 width 스타일이 적용되지 않는 문제가 발생함. 
+     - 이때 사용할 수 있는것이, 동적으로 style 과 class 를 이용하는 것이다. 
+   - `:style="['',{height : computedMapHeight}]" :class="{activeBox : boxSelectd}"`
 
-### 예시 
+### 동적 class 사용 예시 
 
 ```html
 <section id="styling">
@@ -61,6 +70,44 @@ const app = Vue.createApp({
 });
 app.mount('#styling');
 </script>
+```
+
+### 동적 style 과 class 사용 예시 
+
+```vue
+<l-map ref="map" 
+  :zoom="zoom" 
+  :center="[lat, long]" 
+  :options="{ attributionControl: false }" 
+  :minZoom="13" 
+  :style="['',{height : computedMapHeight}]"
+  class="defaultMapClass"
+  @ready="onResize"
+  @click="addMarker"
+>
+</l-map>
+
+<script>
+computed : {
+    // map 높이 동적 변경 
+    computedMapHeight(){
+      if(this.activeMapClass == "CarCall"){
+        return "700px";
+      }else if(this.activeMapClass == "CarRide"){
+        return "600px";
+      }else{
+        return "400px";
+      }
+    }
+  },
+</script>
+    
+<style lang="scss" scoped>
+.defaultMapClass{
+  z-index: 2; 
+  border-radius : 1.428rem;
+}    
+</style>
 ```
 
 
