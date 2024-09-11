@@ -21,6 +21,8 @@ git checkout <branch_name>
 
 ```bash
 git checkout -b <new_branch_name>
+git checkout -b new-branch-name origin/feature-branch
+
 
 # 예시 원격 저장소의 staging1 브랜치를 로컬 브랜치 staging2 라는 이름으로 가져온 후 staging2로 브랜치 변경 
 git checkout -b staging2 origin/staging1

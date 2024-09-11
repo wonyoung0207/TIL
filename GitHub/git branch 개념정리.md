@@ -135,7 +135,11 @@ git push origin 로컬branch명:원격branch명
 5. 원격 브랜치 가져오기 
 
    ```bash
+   # checkout 사용
+   git checkout -b develop origin/develop
+   
+   # fetch 사용 
    git fetch origin '원격의 가져올 branch명':'로컬로 가져올때의 branch명'
    ```
-
+   
    
