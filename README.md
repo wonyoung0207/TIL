@@ -21,9 +21,10 @@
 
 ### 자격증
 
-1. [정보처리 기사](https://github.com/wonyoung0207/TIL/tree/master/%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EA%B8%B0%EC%82%AC)
-2. [네트워크 관리사 2급](https://github.com/wonyoung0207/TIL/tree/master/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%20%EA%B4%80%EB%A6%AC%EC%82%AC2%EA%B8%89)
-3. [지능형 홈 관리사](https://github.com/wonyoung0207/TIL/tree/master/%EC%A7%80%EB%8A%A5%ED%98%95%20%ED%99%88%20%EA%B4%80%EB%A6%AC%EC%82%AC)
+1. [정보처리 기사](https://github.com/wonyoung0207/TIL/tree/master/자격증/%EC%A0%95%EB%B3%B4%EC%B2%98%EB%A6%AC%EA%B8%B0%EC%82%AC)
+2. [네트워크 관리사 2급](https://github.com/wonyoung0207/TIL/tree/master/자격증/%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%81%AC%20%EA%B4%80%EB%A6%AC%EC%82%AC2%EA%B8%89)
+3. [지능형 홈 관리사](https://github.com/wonyoung0207/TIL/tree/master/자격증/%EC%A7%80%EB%8A%A5%ED%98%95%20%ED%99%88%20%EA%B4%80%EB%A6%AC%EC%82%AC)
+4. [IoT 지식능력검정](https://github.com/wonyoung0207/TIL/tree/master/%EC%9E%90%EA%B2%A9%EC%A6%9D/IoT%20%EC%A7%80%EC%8B%9D%EB%8A%A5%EB%A0%A5%EA%B2%80%EC%A0%95)
 
 ### 배웠던 프로그래밍 언어
 
