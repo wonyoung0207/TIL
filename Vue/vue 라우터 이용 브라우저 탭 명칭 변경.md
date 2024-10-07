@@ -100,7 +100,7 @@ router.push = function push(location) {
 
 router.beforeEach((to, _, next) => {
   // 페이지 이름 설정 
-  if(to.meta.breadcrumb[0]){
+  if(to.meta.breadcrumb && to.meta.breadcrumb[0]){
     let mainTitle = to.meta.breadcrumb[0].text ;  // 메인 페이지 명
     let subTitle = to.meta.pageTitle; // 서브 페이지 명
     const pageTitle = mainTitle + " > " + subTitle + " | KATECH - 5G 실증 통합운영 시스템";
