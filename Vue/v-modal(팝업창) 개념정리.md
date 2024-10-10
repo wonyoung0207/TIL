@@ -1,4 +1,4 @@
-# $bvModal
+# v-modal(팝업창) 개념정리
 
 ---
 
@@ -76,12 +76,16 @@ mounted() {
     hideHeaderClose
     no-close-on-backdrop
     no-close-on-esc
-  	:header-bg-variant="headerBgVariant"
-  	:header-text-variant="headerTextVariant"
+    :header-bg-variant="headerBgVariant"
+    :header-text-variant="headerTextVariant"
     :body-bg-variant="bodyBgVariant"
     :body-text-variant="bodyTextVariant"
     :footer-bg-variant="footerBgVariant"
     :footer-text-variant="footerTextVariant"
+	:hide-footer="true"  <!-- 취소 또는 확인 버튼 없애기 -->
+  	hide-footer
+	ok-only <!-- 확인 버튼만 표시 -->
+
 >
         
 <script>
