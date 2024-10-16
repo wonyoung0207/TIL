@@ -18,7 +18,7 @@
 ### 해결 방법
 
 1. 나같은 경우는 GSON 라이브러리를 사용해서 해결했다. 
-2. 먼저 Mybatis의 쿼리 결과인 JSON데이터 타입을 String으로 받았고, MVC의 Service 단에서 GJSON 라이브러리를 사용해 Map 형태로 변경해주었다. 
+2. 먼저 Mybatis의 쿼리 결과인 JSON데이터 타입을 String으로 받았고, MVC의 Service 단에서 GSON 라이브러리를 사용해 Map 형태로 변경해주었다. 
 
 
 
