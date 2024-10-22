@@ -41,3 +41,9 @@ npm install
 npm install --save --legacy-peer-deps
 ```
 
+## 라이브러리의 의존성 확인 
+
+```bash
+npm info timingsrc dependencies
+```
+
