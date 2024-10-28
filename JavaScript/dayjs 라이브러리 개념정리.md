@@ -90,5 +90,24 @@ const localizedDate = date1.locale('ko');
 console.log(localizedDate.format('YYYY년 MM월 DD일')); // "2024년 04월 20일"
 ```
 
+### UTC 포멧으로 변경 
+
+1. opensearch같이 Date의 형태가 KST 가 아닌 UTC 인경우 필요
+
+```js
+import dayjs from "dayjs";
+import utc from 'dayjs/plugin/utc'; // utc 플러그인을 import ( dayjs 를 install 하면 사용 가능 )
+dayjs.extend(utc); // dayjs에 utc 플러그인 추가해야함 ( 안하면 dayjs.utc 사용 못함 )
+
+// 그냥 날짜 포멧으로 변환 ( 결과 : 2024-10-17T02:23:32.093)
+let searchStartDt1 =  dayjs(this.Obj.startDt).format("YYYY-MM-DDTHH:mm:ss.SSS");
+
+// UTC로 변환 후 날짜 포멧으로 변경 ( 결과 : 2024-10-17T02:23:32.093Z)
+let searchStartDt = dayjs.utc(this.Obj.startDt, "YYYYMMDDHHmmssSSS").toISOString();
+
+// UTC로 변환 후 Timestamp 포멧으로 변경 ( 결과 : 1729131660921)
+let searchStartDt = dayjs.utc(this.Obj.startDt, "YYYYMMDDHHmmssSSS").valueOf();
+```
+
 
 
