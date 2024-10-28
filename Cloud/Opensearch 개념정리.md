@@ -130,8 +130,6 @@ let searchStartDt = dayjs.utc(this.vehicleObj.startDt, "YYYYMMDDHHmmssSSS").valu
 
 ##### 2. 검색어로 조회시 "분석 필드 or 비분석 필드" 인지에 따라 결과값이 다르다. 
 
-1. 
-
 ### Query 구조
 
 1. 크게 **검색 조건(query)**과 **집계(aggregations)** 로 나뉜다. 
@@ -189,6 +187,24 @@ let searchStartDt = dayjs.utc(this.vehicleObj.startDt, "YYYYMMDDHHmmssSSS").valu
         "format": "yyyy-MM-dd'T'HH:mm:ss"  // 날짜 형식
       }
     }
+  }
+}
+```
+
+#### 1-2 wildcard
+
+1. 문자열 필드에서 특정 패턴을 찾을 때 사용한다. 
+2. 일반적으로 `*`(별표)와 `_`(언더스코어)를 사용해 문자열 내 위치와 개수에 맞는 문자를 찾는다. 
+   1. , `*` : 여러 문자에 대응
+   2. `_` :  한 글자에만 대응
+3. 대소문자를 구별한다. 
+
+```js
+{
+  "wildcard": {
+    "productCode": "ABC*123" // "ABC123", "ABCD123", "ABCXYZ123" 등의 값인 경우 모두 조회
+    "ipAddress": "192.168.1.*" // 192.168.1.1", "192.168.1.100" 등 192.168.1.로 시작하는 모든 IP 주소를 조회
+    "videoFilePath": "*20241025175500_20241025180000*" // "20241025175500_20241025180000" 문자열이 포함된 모든 문서를 조회
   }
 }
 ```
