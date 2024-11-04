@@ -71,6 +71,7 @@ mounted() {
     centered
     :title="propTitle"
     @ok="onBtnOk"
+ 	@hidden="onCloseModal" <!-- 모달 닫힐때 무조건 실행 -->
     @cancel="onBtnCancel"
     size="customSize" <!-- 이렇게 prop 이용해 모달 사이즈 커스텀할 수 있음 -->
     hideHeaderClose
@@ -84,8 +85,7 @@ mounted() {
     :footer-text-variant="footerTextVariant"
 	:hide-footer="true"  <!-- 취소 또는 확인 버튼 없애기 -->
   	hide-footer
-	ok-only <!-- 확인 버튼만 표시 -->
-
+	ok-only <!-- 확인 버튼만 표시(만약 "닫기"만 남기고 싶은경우에는 ok-title과 @ok 를 cancle 만 적용 후 cancle 삭제)-->
 >
         
 <script>
