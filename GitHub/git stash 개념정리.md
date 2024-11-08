@@ -95,13 +95,24 @@
 
 10. `git stash save --include-untracked` 
 
-   - 새로 생성한 파일도 stash 에 저장해주는 기능 
+    1. 새로 생성한 파일도 stash 에 저장해주는 기능 
 
-   ```bash 
-   git stash save --include-untracked -m 'message wony'
-   ```
+    ```bash
+    git stash save --include-untracked -m 'message wony'
+    ```
 
-   
+11. `git stash push --keep-index`
+
+    1. 스테이징된 파일을 그대로 두고, 스테이징되지 않은 파일만 stash로 보낸다. 
+
+    ```bash  
+    git add "원하는 파일"
+    git stash push --keep-index # staging에 있는 코드 말고 모든 코드가 stash로 들어감 
+    ```
+
+    
+
+
 
 ---
 
