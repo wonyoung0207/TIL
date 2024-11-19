@@ -51,14 +51,18 @@
    current:    A - B - X - Y
    ```
 
-3. `git pull --rebase origin main`를 실행하면:
+3. **`git pull --rebase origin main`**를 실행하면:
 
    1. 로컬 브랜치의 커밋 `X - Y`를 임시로 저장하고, `origin/main`의 커밋 `A - B - C`를 현재 브랜치에 가져온다. 
    2. 이후 로컬 커밋 `X - Y`를 `C` 커밋 뒤에 추가
    3. **즉, 가져올 브랜치를 rebase(기본 베이스로 변경) 하고 그 위에 로컬 브랜치의 변경사항을 올린다.** 
 
-   ```
-   결과: A - B - C - X - Y
+   ```bash
+   # 명령어
+   git pull --rebase origin main
+   
+   # 결과
+   A - B - C - X - Y
    ```
 
 ---
