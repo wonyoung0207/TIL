@@ -52,8 +52,15 @@
 
 ## REST ful
 
-- **REST**는 **아키텍처 스타일**을 의미하고, **RESTful**은 그 아키텍처 스타일을 따라 구현된 **웹 서비스**를 나타냅니다. 
-- RESTful 웹 서비스는 REST의 원칙을 따르면서, URI(Uniform Resource Identifier)를 통해 리소스를 표현하고, HTTP 메서드를 사용하여 리소스에 대한 CRUD(Create, Read, Update, Delete) 작업을 수행하는 웹 서비스를 의미
+- 개념
+  - **REST**는 **아키텍처 스타일**을 의미하고, **RESTful**은 그 아키텍처 스타일을 따라 구현된 **웹 서비스**를 나타냅니다. 
+
+- 예시
+  - **RESTful 하게 구현된 SW이다. == HTTP 메소드와 URI 를 통해 자원과 HTTP 기능을 최대한 활용한 SW이다** 
+
+- 정리
+  - RESTful 웹 서비스는 REST의 원칙을 따르면서, URI(Uniform Resource Identifier)를 통해 리소스를 표현하고, HTTP 메서드를 사용하여 리소스에 대한 CRUD(Create, Read, Update, Delete) 작업을 수행하는 웹 서비스를 의미한다. 
+
 
 ---
 
