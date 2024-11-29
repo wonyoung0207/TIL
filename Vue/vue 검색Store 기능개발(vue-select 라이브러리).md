@@ -35,7 +35,7 @@
 
 ## 결과화면 
 
-<img src="./images/검색Store1.png" width="300"><img src="./images/검색Store2.png" width="300">
+<img src="./images/검색Store1.png" width="300"><img src="../../../../%EA%B2%80%EC%83%89Store2.png" width="300"><img src="./images/검색Store3.png" width="300">
 
 ## 코드
 
@@ -88,10 +88,30 @@ setup(props, context) {
 }
 </script>
 
-<style scope >
+<style scope > /* 지역 css 설정  */
 .small-select{
   height: 2.142rem;
   font-size: 0.857rem;
+}
+</style>
+
+<style lang="scss"> /* vue-select 라이브러리 때문에 전역 css에 설정 */
+.vs__selected-options {
+  white-space: nowrap ;
+  overflow: hidden ;
+  display: flex; // flex container 부모 
+}
+
+.vs__selected-options span {
+  flex: 1; // vs_search 제외한 나머지 공간 차지 
+  white-space: nowrap ;
+  overflow: hidden ;
+  text-overflow: ellipsis ;
+  display: block ;
+}
+
+.vs__search {
+  flex: 0 ; // 요소 콘텐츠 크기만큼 공간 차지
 }
 </style>
 ```
@@ -119,3 +139,98 @@ export default {
 }
 ```
 
+
+
+## 문제해결
+
+##### 문제점
+
+1. 문제점 1
+   1. 선택한 내용의 Text가 selectBox 넘어가면 글자가 줄바꿈 되서 Selectbox 높이 증가 되는문제발생
+2. 문제점 2
+   1. 클래스 적용해도 적용 안되는 문제 발생 
+3. 문제점 3
+   1. 위의 내용 해결 후에도 vs__search 로 인해 줄바꿈 되는 문제 발생 
+
+##### 1번 해결방법
+
+1. CSS 이용해 `text-overflow:ellipsis` 로 해결 
+
+   ```html
+   <style lang="scss" scoped>
+   .vs__selected-options {
+     white-space: nowrap ;
+     overflow: hidden ;
+   }
+   
+   .vs__selected-options span {
+     white-space: nowrap ;
+     overflow: hidden ;
+     text-overflow: ellipsis ;
+     display: block ;
+   }
+   </stlye>
+   ```
+
+##### 2번 해결방법
+
+1. 라이브러리 사용으로 인해 CSS의 scope 적용 안되는 문제임
+
+   1. 언제 전역 스타일을 고려해야 할까?
+      - 외부 라이브러리나 플러그인을 사용하는 경우.
+      - 스타일이 자식 컴포넌트 또는 외부 DOM 요소에 적용되어야 하는 경우.
+      - 스타일이 재사용 가능하거나 전역적으로 적용되어야 하는 경우.
+
+2. 전역 설정으로 해결 
+
+   ```css
+   <style lang="scss">
+   .vs__selected-options {
+     white-space: nowrap ;
+     overflow: hidden ;
+   }
+   
+   .vs__selected-options span {
+     white-space: nowrap ;
+     overflow: hidden ;
+     text-overflow: ellipsis ;
+     display: block ;
+   }
+   </stlye>
+   ```
+
+##### 3번 해결방법
+
+1. DevTool을 보니 `vs__selected-options` 밑에는 `vs__selected`와 `vs__search` 가 있었다.
+
+   1. 따라서 `vs__selected` 의 span 내용만 `overflow:hidden` 으로 한다고 해도 `vs__search` 로 인해 줄바꿈이 되고있었다. 
+
+2. `display : flex` 를 이용해 `vs__selected`와 `vs__search` 의 영역을 동적으로 설정해주었다. 
+
+   ```html
+   <style>
+   .vs__selected-options {
+     white-space: nowrap ;
+     overflow: hidden ;
+     display: flex; // flex container 부모 
+     // text-overflow: ellipsis ;
+     // max-width: 100% ;
+   }
+   
+   .vs__selected-options span {
+     flex: 1; // vs_search 제외한 나머지 공간 차지 
+     white-space: nowrap ;
+     overflow: hidden ;
+     text-overflow: ellipsis ;
+     display: block ;
+     // max-width: 75%;
+   }
+   
+   .vs__search {
+     flex: 0 ; // 요소 콘텐츠 크기만큼 공간 차지
+     // flex: 0은 요소가 가용 공간을 확장하거나 축소하지 않도록 하지만, 그 크기는 콘텐츠의 크기나 지정된 width, height에 의존하도록 함
+   }
+   </style>
+   ```
+
+   
