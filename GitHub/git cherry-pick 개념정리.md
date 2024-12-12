@@ -44,7 +44,7 @@ git cherry-pick <commit-hash>
    2. 이때 git log 는 현재 commit 되어있는 브랜치에서 진행해야 한다. (브랜치 별로 commit log 가 있기 때문)
 
       ```bash
-      git log 10 # 위에 10개만 봄
+      git log -n 5 # 위에 5개만 봄
       
       # commit 해시 
       commit 54da1dsadfkjjsdjflsdkjf
@@ -70,4 +70,20 @@ git cherry-pick <commit-hash>
       ```bash
       git cherry-pick 54da1dsadfkjjsdjflsdkjf
       ```
+
+4. 기존 커밋 삭제 
+
+   1. `cherry-pick` 은 기존 commit 기록을 복사하는것이기 때문에 기존 commit 기록이 남아있게 된다. 
+
+      1. 즉, 잘못 commit 한 브랜치로 이동해 해당 커밋 기록을 삭제하면 된다. 
+
+   2. 이때 reset 명령어를 사용하는데, 뒤에 적은 `commit-hash`  이후의 내용들을 모두 다 삭제한다. 
+
+      1. 예를들어 a -> b -> c -> d -> e -> f 커밋이 존재할 때, c의 `commit-hash` 를 입력하면 c 이후의 d,e,f 기록이 삭제되고 현재 코드의 히스토리 위치가 c로 이동한다. 
+
+      ```bash
+      git reset --hard <commit-hash>
+      ```
+
+      
 
