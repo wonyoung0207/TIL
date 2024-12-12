@@ -129,7 +129,6 @@ isValidEmailAddress(email: string): boolean {
 ### 논리연산자의 특이한 사용 
 
 - or 연산자 ( || ) : 첫번째 값이 존재하면 첫번째 값을 리턴함. 그렇지 않다면 2번쨰 값 리턴 
-  - 
 - and 연산자 ( && ) : 두개의 값이 모두 true이면 가장 마지막값을 리턴함 .
   - 둘 중 하나라도 false면 false를 리턴한다. 
 
