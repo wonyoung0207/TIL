@@ -46,4 +46,3 @@ if(numOrstr instanceof Array){
 
 ```
 
-### 

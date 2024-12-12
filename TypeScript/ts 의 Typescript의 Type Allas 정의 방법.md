@@ -1,4 +1,4 @@
-# Typescript의 타입 정의 방법
+# Typescript의 Type Allas 정의 방법
 
 ---
 
@@ -12,6 +12,24 @@
 - 새로운 타입을 정의하는 방법은 크게 2가지이다. 
   1. Type Allas
   2. interface
+
+## 스타일 가이드
+
+1. type Allas 에서 타입설정 시 뒷부분엔 세미콜론(`;`)을 사용하는 것을 권장
+
+2. `type`이나 `interface`를 정의할 때, **`;`(세미콜론)**과 **`,`(콤마)**는 모두 사용할 수 있다. 
+
+   ```
+   export type styleMenu = {
+     title: string;           // 문자열
+     value: string;           // 문자열
+     layer: string;           // 문자열
+     imagery: {               // 객체 형태
+       show: boolean;         // `show`는 반드시 boolean 값
+     };
+     bgImage: File;           // 이미지 파일 (예: PNG 파일)
+   };
+   ```
 
 ### 사용법
 
@@ -66,3 +84,27 @@ getItemCounts() : ItemCouns{
     let mouseEvent = event as MouseEvent;
   }
   ```
+
+## 옵셔널 프로퍼티 
+
+1. 인터페이스에서 사용하는 `옵셔널 프로퍼티` 방법을 type allas 에서도 사용할 수있다. 
+2. `?` 를 사용하면 선택속성으로, 값이 들어오지 않아도 오류가 발생하지 않는다. 
+
+```ts
+type User = {
+  name: string;         // 필수 속성
+  age?: number;         // 선택 속성
+};
+```
+
+##### 주의할점
+
+1. 타입 안전성을 위해 옵셔널 속성에 접근할 때는 항상 존재 여부를 확인해야한다. 
+
+2. 왜냐하면 `undefined` 상태일 수 있기 때문이다. 
+
+   ```js
+   const showImagery = menu1.imagery?.show ?? false; // imagery가 없으면 기본값 false
+   ```
+
+   
