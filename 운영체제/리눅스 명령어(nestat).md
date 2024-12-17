@@ -46,7 +46,7 @@
 
 ### 상태값 
 
-<img src="./images/netstat.png" width="500"
+<img src="./images/netstat.png" width="500">
 
 | 상태            | 내용                                                         |
 | --------------- | ------------------------------------------------------------ |
@@ -66,11 +66,12 @@
 netstat
 
 # 특정 포트를 검색 
-netstat –ano | find “port번호” 
+netstat -ano | find "port번호"       # 간단한 검색
+netstat -ano | findstr "port번호"    # 정교한 검색
 
 # 사용중인 포트 죽이기 
 # f : 강제 죽이기 
 taskkill /f /pid “port번호” 
-
+kill -9 140239
 ```
 
