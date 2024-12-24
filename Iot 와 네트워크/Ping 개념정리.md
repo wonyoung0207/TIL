@@ -1,4 +1,8 @@
-## Ping (Paket Internet Groper)
+# Ping (Paket Internet Groper)
+
+---
+
+>
 
 ### 정의
 
@@ -42,3 +46,18 @@
    - ping 명령에서 -a 옵션을 주면 ping 수행시 **도메인의 ip주소를 확인할수 있는 옵션**이다. 
 
      <img src="./images/ping이용방법4.png" width="500">
+
+## ping 과 RTT 관계 
+
+1. Ping
+   1. 유틸리티( 측정 도구 )
+   2. RTT를 측정하기 위한 가장 기본적인 툴 
+   3. 특정 Host에 대한 RTT 를 측정할 목적으로 사용됨 
+   4. 동작 방법
+      1. `Echo Request` 를 송신측으로 전송 ( 내용물은 그냥 `ABCDE....` 같은 문자열)
+      2. 받은 곳은 `Echo Reply` 를 날려 응답 ( 내용물은 Request 한것과 동일한 내용 )
+2. RTT ( Round Trip Time )
+   1. **Ping 으로 소요된 시간** 
+   2. 즉, 클라이언트 요청 후 서버의 응답을 받은 전체 시간을 뜻한다. 
+   3. **ICMP 프로토콜** 사용함 
+   4. Dos 공격용으로 악용되기도 한다.   
