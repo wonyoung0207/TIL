@@ -1,20 +1,24 @@
-## Proxy 구조 (Socket Stream의 파일수준 필터링)
+# Proxy 구조 (Socket Stream의 파일수준 필터링)
 
-##### 형태
+---
+
+>
+
+## 형태
 
 1. Proxy(Server) + Socket + Stream
 
-##### 데이터 단위 
+## 데이터 단위 
 
 1. Socket Stream
 
-##### 개념
+## 개념
 
 1. Application 수준에서 동작
 2. Socket + Stream 의 파일 데이터 필터링 
 3. **즉, User Mode , App, Proxy, Socket Stream 을 하나로 묶어 외우면 좋다.** 
 
-##### 우회(외부 Proxy)
+## 우회(외부 Proxy)
 
 1. 외부 Proxy
    1. Proxy 서버를 이용해 우회하여 Web Server에 접속할 때 사용한다. 
@@ -28,7 +32,7 @@
 
 <img src="./images/Proxy 우회 구조.jpg" width="700">
 
-##### 보호와 감시 (내부 Proxy)
+## 보호와 감시 (내부 Proxy)
 
 1. 내부 Proxy 
    1. **내부 및 외부의 요청을 감시**할 때 사용한다. 
@@ -39,7 +43,7 @@
 
 <img src="./images/Proxy의 보호와 감시.jpg" width="700">
 
-##### 서버 보호 (Reverse Proxy)
+## 서버 보호 (Reverse Proxy)
 
 1. Reverse Proxy
    1. **서버 보호를 위해 여러계층의  Proxy 서버가 존재**하는 구조 
@@ -51,7 +55,7 @@
 
 <img src="./images/Reverse Proxy 구조.jpg" width="700">
 
-##### 로컬 암호화 분석 
+## 로컬 암호화 분석 
 
 1. Fiddler 
    1. **로컬단위에서 HTTPS를 분석**하는 도구 
