@@ -71,3 +71,28 @@
 
 - **URL**은 프로토콜인 https와 페이지 주소를 함께 포함한 ‘https://github.com/wonyoung0207/TIL/’ 이다.  
 - 여기서 **URN**은 ‘/wonyoung0207/TIL/’ 이다. 
+
+# [URI 와 URL ]
+
+#### 1. URI
+
+1. Uniform Resource Identifier ( 자원 식별자 )
+2. Resource 는 자원으로, **하나의 File**이라고 생각하면 된다. 
+   1. 도메인 다음 `/` 로 구분되어 File의 경로가 나오는데, 이때 해당 경로 밑의 파일을 뜻하는 것이 Resource 이다. 
+
+3. URL 은 URL 에 포함되어있다. 
+
+#### 2. URL
+
+1. Uniform Resource Locator ( 자원 위치/경로 )
+
+#### 3. 형태 
+
+1. 구조
+   1. `Protocol://Address:PortNumber/Path(or filename)?Parameter=value&Parameter...`
+   2. `https://www.naver.com/course.do?cmd=search&search_keyword=Test`
+   3. `www.naver.com` 은 Domain Name으로, Host 에 대한 주소가 된다. 웹 통신은 거의다 Port를 80 으로 사용하기 때문에 생략이 가능하다. 
+   4. `Path`는 File의 경로를 나타낸다. 
+   5. `Parameter=value` 는 전송되는 데이터이다. 
+2. 즉, 
+   1. `https://www.test.co.kr/originpath/course.do?cmd=search&search` => `www.test.co.kr` 이 도메인이고, `?` 전까지가 파일의 경로 및 호출되는 파일이다.
