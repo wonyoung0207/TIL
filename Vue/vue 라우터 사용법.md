@@ -30,6 +30,7 @@ const router = ({
     routers : [// 표시할 페이지를 인자값으로 가진다. 
 		{ path : '/teams' , name : 'TeamPage', component : TeamList }, 
 		{ path : '/users' , name : 'UserPage',component : UserList }, 
+         { path : '/users/:id' , name : 'UserPage',component : UserList },  // /user/alice 와 user/wony 처럼 동적으로 URL을 받을 수 있다. 
     ],  
     linkActiveClass : 'active ', // 설정 안한다면 디폴트값인 'router-link-active' 로 설정된다. 
     meta : { componentAuth : true }, // router 사용할 수 있는 모든 곳에서 사용할 수 있는 데이터이다. 
@@ -59,6 +60,7 @@ app.mount('#app')
 <template>
 	<main>
 		<router-view></router-view>    
+        <!-- vue3 에서는 RouterView 태그 사용함 -->
 	</main>
 </template>
 ```
