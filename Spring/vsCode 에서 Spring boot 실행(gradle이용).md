@@ -64,7 +64,7 @@
    gradlew.bat bootRun  
    ```
 
-
+<img src="./images/vscode_SpringBoot실행.png" width="800">
 
 ## 빌드 및 실행 명령어 정리 
 
