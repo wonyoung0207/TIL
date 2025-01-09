@@ -60,7 +60,7 @@
 ```vue
 <template>
   <div>
-    <transition name="fade" mode="out-in">
+    <transition name="wony" mode="out-in">
       <!-- 애니메이션을 적용할 요소 -->
       <div class="box"></div>
     </transition>
@@ -68,10 +68,10 @@
 </template>
 
 <style>
-.fade-enter-active, .fade-leave-active {
+.wony-enter-active, .wony-leave-active {
   transition: opacity 0.5s;
 }
-.fade-enter, .fade-leave-to {
+.wony-enter, .wony-leave-to {
   opacity: 0;
 }
 </style>
