@@ -30,6 +30,15 @@ SELECT * FROM table1;
 -- 예시 2
 INSERT INTO table1 
 select * from table2 where col = 'value';
+
+-- 예시 3
+insert into 
+	tb_ids_camera_info (camera_id, camera_view_id, equip_id , name, "position"   ) 
+select 
+	equip_id , equip_view_id, equip_id , equip_id , "position" 
+from 
+	tb_ids_equip e
+where e.equip_id like '%CAM%';
 ```
 
 
