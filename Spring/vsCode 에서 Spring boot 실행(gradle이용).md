@@ -59,6 +59,8 @@
    ```bash
    # macOS / Linux 명령어 ( Bash, wsl, cmd 등등)
    ./gradlew bootRun  
+   # or
+   gradle bootrun
    
    # Windows 명령어 (powershell)
    gradlew.bat bootRun  
