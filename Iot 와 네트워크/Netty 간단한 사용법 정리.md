@@ -85,7 +85,7 @@
 ![img](https://gw.metabuild.co.kr/ekp/service/file/fileView?module=img&fileUrl=/images/000171&fileName=20240221170346302_ZUB3FIE9.png)
 
 1. 2개의 EventLoopGroup을 NioEventLoopGroup으로 생성. NioEventLoopGroup은 다중 이벤트 루프이고 서버측 애플리케이션을 구현할 때 우리는 보통 boss와 worker 두 가지로 나누어 구성.
-   1. boss는 연결을 수락하는 역할을 하고 해당 연결을 두번째 그룹에 등록해주고, worker는 이러한 연결에 대한 트래픽을 처리.
+   1. **boss는 연결을 수락**하는 역할을 하고 해당 연결을 두번째 그룹에 등록해주고, **worker는 이러한 연결에 대한 트래픽을 처리.**
 2. ServerBootstrap은 서버를 구성할 수 있게 해주는 도우미 클래스. 체인패턴을 통해 서버를 구성.
 3. 새로운 연결을 열 것이고 어떤 방식으로 열 것 인지를 정의. 예제에서는 NioServerSocketChannel을 사용할 것이라 정의.
 4. 연결이 수락되고 채널이 생성될 때 구성되는 디코더, 핸들러 등을 어떤 순서대로 파이프라인에 채울지 정의. ChannelInitializer는 이러한 설정을 사용자가 쉽게 할 수 있도록 제공되는 핸들러이고 예제에서는 ServerHandler을 사용.
