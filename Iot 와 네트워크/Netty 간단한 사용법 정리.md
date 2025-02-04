@@ -2,7 +2,9 @@
 
 ---
 
+>[네티 유저 가이드 예제코드](https://rahs.tistory.com/200)
 >
+>[네티 프로젝트 코드 Github](https://github.com/netty/netty)
 
 ## 정리
 
@@ -51,11 +53,40 @@
    ![img](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https://blog.kakaocdn.net/dn/yEhK2/btqHBRuUD2o/ijCfGliB3cD7LcwZe6Tz01/img.png)
 
 6. **PipeLine** : 이벤트 루프에서 이벤트를 받아 핸들러에 전달하는 역할
-   내부에 핸들러에 따라 결과가 달라지므로 순서 중요. Inboundhandler(들어오는 것을 처리), OutboundHandler(값을 내보낼 때 사용), DuplexHandler(양쪽 다 적용) 3가지 종류가 있음.
 
-   1. InboundHandler는 Bottom-Up 방식으로 먼저 넣은 핸들러부터 데이터를 처리하게 되고 OutboundHandler는 Top-down 방식으로 나중에 넣은 핸들러부터 데이터를 처리함.
+   1. **Pipeline 내부에 핸들러들이 추가되는 방식** ( PipeLine 안에 channelHandler가 있는 구조 )
+   2. 내부에 핸들러에 따라 결과가 달라지므로 순서 중요. (3가지 종류 존재)
+      1. Inboundhandler(들어오는 것을 처리)
+         1. **InboundHandler는 Bottom-Up 방식**으로 먼저 넣은 핸들러부터 데이터를 처리
+
+      2. OutboundHandler(값을 내보낼 때 사용)
+         1. **OutboundHandler는 Top-down 방식**으로 나중에 넣은 핸들러부터 데이터를 처리
+
+      3. DuplexHandler(양쪽 다 적용) 
+
+   3. `fireChannelRead(msg)`
+      1. **클라이언트 요청을 서버가 읽는(fire)** 상황
+      2. InBound에서 **다음 핸들러로 전달**하는 메소드 
+         1. 즉, 먼저 handler에 등록된 로직이 호출되고, 해당 로직 끝에 `fireChannelRead()` 를 이용해 다음 핸들러로 이벤트를 전달한다. 
+
+   4. `write(msg)` 
+      1. 서버가 데이터를 **클라이언트로 보내는(write) 상황** 이다. 
+      2. OutBound에서 **다음 핸들러로 전달**하는 메소드 
+         1. 즉, 나중에 등록된 outbound handler 부터 호출된다. 
+
+      3. 주의사항
+         1. `write()` 호출 후 반드시 `flush()`가 필요
+
 
 ![img](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https://blog.kakaocdn.net/dn/EN6fG/btqHLfuMOba/RY7O3U5BYp5Z9hHACgIqxK/img.png)
+
+## PipeLine의 역순처리
+
+- Netty는 **Pipeline의 흐름을 효율적으로 관리하기 위해 Outbound 이벤트는 역방향 처리**한다. 
+- 이는 데이터 출력이 마지막 등록된 핸들러부터 처리될 때 **더 직관적이고 성능이 최적화되기 때문**입니다.
+- 즉
+  - Inbound 이벤트는 앞에서 뒤로 순서대로 처리
+  - Outbound 이벤트는 뒤에서 앞으로 역순으로 처리
 
 ## 핵심 플로우 
 
@@ -64,9 +95,36 @@
 1. Netty의 흐름을 대략적으로 표현한 그림. Netty서버를 생성하고 이벤트 루프를 통해 이벤트를 감지,
 2. 개설된 채널을 통해 데이터가 넘어오고 파이프라인의 핸들러들을 거치며 로직에 따라 데이터를 처리.
 
+### ServerBootstrap  
+
+- `ServerBootstrap`은 **Netty 서버 초기화 및 설정을 위한 클래스**
+- **서버**가 클라이언트 요청을 수신하기 위해 **네트워크 채널을 생성하고 설정**
+  - 즉, 네티로 작성한 네트워크 프로그램이 시작할 때 가장 먼저 수행
+
+```java
+ServerBootstrap bootstrap = new ServerBootstrap(); // 네티 서버 초기화 
+bootstrap.group(bossGroup, workerGroup) // 이벤트 그룹 
+     .channel(NioServerSocketChannel.class) // 채널 타입 설정 
+     .childHandler(new ChannelInitializer<SocketChannel>() { // 클라이언트 소켓 설정 
+         @Override
+         protected void initChannel(SocketChannel ch) { 
+             ch.pipeline().addLast(new SimpleChannelInboundHandler<String>() {
+                 @Override
+                 protected void channelRead0(ChannelHandlerContext ctx, String msg) {
+                     System.out.println("Received: " + msg);
+                     ctx.writeAndFlush("Hello from Netty Server!");
+                 }
+             });
+         }
+     });
+```
+
 ## ChannelOption
 
-1. 개설된 채널에 대해 소켓의 동작방식을 사전에 정의된 옵션을 통해 정의할 수 있습니다. option()을 사용하면 서버 쪽 소켓에 대한 옵션을 의미하고 childOption()을 클라이언트 쪽 소켓에 대한 옵션을 의미.
+1. 개설된 채널에 대해 소켓의 동작방식을 사전에 정의된 옵션을 통해 정의할 수 있습니다. 
+   1. option()은 서버 쪽 소켓에 대한 옵션을 의미
+   2. childOption()을 클라이언트 쪽 소켓에 대한 옵션을 의미
+
 
 | 옵션명       | 설명                                            |
 | ------------ | ----------------------------------------------- |
@@ -92,6 +150,80 @@
 5. 소켓의 동작방식에 대한 사전에 정의된 옵션을 줄 수 있음. 예제의 SO_BACKLOG는 동시에 수용 가능한 소켓 연결 요청수에 대한 옵션.
 6. childOption()은 서버에 접속한 클라이언트 소켓에 대한 채널 옵션을 설정할 때 사용. SO_KEEPALIVE는 정해진 시간마다 keepalive packet을 전송하여 연결상태를 확인하는 옵션.
 7. 마지막으로 호스트와 포트를 지정해주고 서버를 구동
+
+## 예제코드
+
+```java
+import io.netty.bootstrap.ServerBootstrap;
+import io.netty.channel.*;
+import io.netty.channel.nio.NioEventLoopGroup;
+import io.netty.channel.socket.SocketChannel;
+import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.channel.ChannelOption;
+
+public class NettyServerExample {
+
+    public static void main(String[] args) throws InterruptedException {
+        // 이벤트 루프 그룹 생성
+        EventLoopGroup bossGroup = new NioEventLoopGroup(1); // 연결 수락 담당
+        EventLoopGroup workerGroup = new NioEventLoopGroup(); // 데이터 처리 담당
+
+        try {
+            ServerBootstrap bootstrap = new ServerBootstrap();
+
+            // Server 설정
+            bootstrap.group(bossGroup, workerGroup)
+                 .channel(NioServerSocketChannel.class) // 서버 소켓 채널 타입
+                 .handler(new LoggingHandler()) // 서버 소켓에 대한 핸들러
+                 .childHandler(new ChannelInitializer<SocketChannel>() { // 클라이언트 채널에 대한 핸들러
+                     @Override
+                     protected void initChannel(SocketChannel ch) {
+                         ChannelPipeline pipeline = ch.pipeline();
+                         pipeline.addLast(new SimpleServerHandler());
+                     }
+                 });
+                .option(ChannelOption.SO_BACKLOG, 128) // 서버 소켓 옵션 설정 -> 연결 대기 큐 크기 설정
+                .childOption(ChannelOption.TCP_NODELAY, true) // 클라이언트 소켓 옵션 설정 -> 지연 없이 패킷 전송
+                .childOption(ChannelOption.SO_KEEPALIVE, true) // 클라이언트 소켓 옵션 설정 -> 연결 유지 활성화
+
+            // 서버 바인딩
+            ChannelFuture future = bootstrap.bind(8080).sync();
+            System.out.println("Server started on port 8080");
+
+            // 채널 종료 대기
+            future.channel().closeFuture().sync();
+
+        } finally {
+            bossGroup.shutdownGracefully();
+            workerGroup.shutdownGracefully();
+        }
+    }
+
+    // Server 소켓에 대한 로그 핸들러
+    static class LoggingHandler extends ChannelInboundHandlerAdapter {
+        @Override
+        public void channelActive(ChannelHandlerContext ctx) {
+            System.out.println("Server socket active");
+            ctx.fireChannelActive();
+        }
+    }
+
+    // 클라이언트 소켓 데이터 처리 핸들러
+    static class SimpleServerHandler extends ChannelInboundHandlerAdapter {
+        @Override
+        public void channelRead(ChannelHandlerContext ctx, Object msg) {
+            System.out.println("Received message: " + msg);
+            ctx.writeAndFlush("Hello from Netty Server!");
+        }
+
+        @Override
+        public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) {
+            cause.printStackTrace();
+            ctx.close();
+        }
+    }
+}
+```
 
 ## 관련개념정리
 
