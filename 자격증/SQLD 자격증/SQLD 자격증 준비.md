@@ -2,19 +2,37 @@
 
 ---
 
->[데이터자격검정 - 수험신청 사이트](https://www.dataq.or.kr/www/sub/a_04.do)
+>관련 사이트
 >
->[참고 유튜브1](https://www.youtube.com/shorts/sGfHF_BzRgw)
+>>  [카페 - 전문가 데이터 포럼 DP Forum](https://cafe.naver.com/sqlpd/13374)
+>>
+>> [데이터자격검정 - 수험신청 사이트](https://www.dataq.or.kr/www/sub/a_04.do)
 >
->[참고 유튜브2](https://www.youtube.com/watch?v=SoZOTt7UZI4&t=137s)
+>이론
 >
->[유튜브-어쩌다DBA(문제풀이 정리)](https://www.youtube.com/@opportunelydba/videos)
+>> [이론 정리 사이트](https://yurimac.tistory.com/40)
+>>
+>> [SQLD 요약정리 사이트](https://sy-log.tistory.com/entry/SQLD-%EC%9A%94%EC%95%BD-%EC%A0%95%EB%A6%AC-%EB%A7%81%ED%81%AC-%EB%AA%A8%EC%9D%8C-%ED%82%A4%EC%9B%8C%EB%93%9C-%EB%AA%A8%EC%9D%8C)
+>>
+>> [취미부자 돌멩이네 - SQLD 이론정리](https://m.blog.naver.com/ekf1121_/223481107906)
+>>
+>> [요약본 정리](https://yeees.tistory.com/227)
 >
->[유튜브 - 홍쌤(강의)](https://www.youtube.com/@hdatalab/videos)
+>유튜브
 >
->[이론 정리 사이트](https://yurimac.tistory.com/40)
+>> [참고 유튜브1](https://www.youtube.com/shorts/sGfHF_BzRgw)
+>>
+>> [참고 유튜브2](https://www.youtube.com/watch?v=SoZOTt7UZI4&t=137s)
+>>
+>> [유튜브-어쩌다DBA(문제풀이 정리)](https://www.youtube.com/@opportunelydba/videos)
+>>
+>> [유튜브 - 홍쌤(강의)](https://www.youtube.com/@hdatalab/videos)
 >
->[카페 - 전문가 데이터 포럼 DP Forum](https://cafe.naver.com/sqlpd/13374)
+>문제풀이
+>
+>> [CBT 비슷 문제풀이](https://quizeey.com/sqlp-developer)
+>>
+>> [이기적 - 문제풀이](https://cbt.youngjin.com/exam/index.php?no=73)
 
 ## 2025년도 실험 일정
 
