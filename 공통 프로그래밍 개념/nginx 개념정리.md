@@ -70,13 +70,13 @@ location /static/ {
 2. ✅**`index`가 동작하는 경우(디렉터리 호출)**
 
    1. 디렉토리 요청 시 `index.html` 반환
-      1. 요청: `http://localhost/smartids/console/`
-      2. 실제 반환 파일: `twin/smartids/console/index.html`
-      3. `smartids/console/`은 디렉토리이므로, `index.html`을 자동으로 찾아 제공
+      1. 요청: `http://localhost/dualPass/console/`
+      2. 실제 반환 파일: `wonyAPI/dualPass/console/index.html`
+      3. `dualPass/console/`은 디렉토리이므로, `index.html`을 자동으로 찾아 제공
 
    ```bash
-   location /smartids/console/ {
-       root twin;  
+   location /dualPass/console/ {
+       root wonyAPI;  
        index index.html;
    }
    ```
@@ -84,13 +84,13 @@ location /static/ {
 3. ❌ **`index`가 동작하지 않는 경우 (디렉터리 호출이 아니라 파일 호출이기 때문에) **
 
    1. 특정 파일 요청 시 `index` 무시됨
-      1. 요청: `http://localhost/smartids/console/somefile.html`
-      2. 실제 반환 파일: `twin/smartids/console/somefile.html` (파일이 존재하는 경우)
+      1. 요청: `http://localhost/dualPass/console/somefile.html`
+      2. 실제 반환 파일: `wonyAPI/dualPass/console/somefile.html` (파일이 존재하는 경우)
       3. 파일이 없으면? `404 Not Found`
 
    ```bash
-   location /smartids/console/ {
-       root twin;  
+   location /dualPass/console/ {
+       root wonyAPI;  
        index index.html;
    }
    ```
@@ -100,7 +100,7 @@ location /static/ {
    1. `index`는 **디렉토리를 요청했을 때 기본으로 제공할 파일**
       1. 특정 파일 요청 (`somefile.html`) 시에는 **index가 적용되지 않음**
    2. `try_files`는 특정파일 요청시 동작
-   3. 즉, `http://localhost/smartids/console/`으로 접속하면 `index.html`이 뜨지만, `http://localhost/smartids/console/somefile.html`을 요청하면 `somefile.html`을 직접 찾는 것
+   3. 즉, `http://localhost/dualPass/console/`으로 접속하면 `index.html`이 뜨지만, `http://localhost/dualPass/console/somefile.html`을 요청하면 `somefile.html`을 직접 찾는 것
 
 ## Backend API 호출
 
@@ -120,38 +120,38 @@ location /api/ {
 
 ##### 복수의 API 로드벨런싱
 
-1. `/twin/api/`로 시작하는 요청이 오면 **rewrite 적용**
-   1. 예) `twin/api/users` → `/twin/users`로 변경
+1. `/wonyAPI/api/`로 시작하는 요청이 오면 **rewrite 적용**
+   1. 예) `wonyAPI/api/users` → `/wonyAPI/users`로 변경
    2. 변경된 URL을 `http://backend` 서버로 전달
-   3. 최종 요청: `http://backend/twin/users`
-2. **`^~` → `/twin/api/`로 시작하는 모든 요청**을 가장 우선 처리
+   3. 최종 요청: `http://backend/wonyAPI/users`
+2. **`^~` → `/wonyAPI/api/`로 시작하는 모든 요청**을 가장 우선 처리
    1. `break` → 변경된 URL을 그대로 유지하고 `proxy_pass` 실행
 
 ```bash
-# http://localhost/twin/api/users 요청시 로드벨런싱 
-location ^~ /twin/api/ {
-    rewrite ^/twin/api/(.*)$ /twin/$1 break;
-    proxy_pass http://backend; # backend로 /twin/users 로 요청 
+# http://localhost/wonyAPI/api/users 요청시 로드벨런싱 
+location ^~ /wonyAPI/api/ {
+    rewrite ^/wonyAPI/api/(.*)$ /wonyAPI/$1 break;
+    proxy_pass http://backend; # backend로 /wonyAPI/users 로 요청 
 }
 ```
 
 ##### 리다이렉트
 
-1. 정확히 `/twin` 요청 들어오면 `/twin/` 으로 리다이렉트 
-   1. `=` 연산자는 **정확히 `/twin` 요청일 때만** 적용
+1. 정확히 `/wonyAPI` 요청 들어오면 `/wonyAPI/` 으로 리다이렉트 
+   1. `=` 연산자는 **정확히 `/wonyAPI` 요청일 때만** 적용
 
 ```bash
-# http://localhost/twin 호출시 리다이렉트
-location = /twin {
-    rewrite /twin /twin/ redirect; # http://localhost/twin/ 으로 다시 호출 
+# http://localhost/wonyAPI 호출시 리다이렉트
+location = /wonyAPI {
+    rewrite /wonyAPI /wonyAPI/ redirect; # http://localhost/wonyAPI/ 으로 다시 호출 
 }
 ```
 
-| `location` 설정 | 설명                                                 |
-| --------------- | ---------------------------------------------------- |
-| `/api/`         | `/api/`로 시작하는 요청을 `backend-server`로 전달    |
-| `= /twin`       | 정확히 `/twin`이면 `/twin/`로 리다이렉트             |
-| `^~ /twin/api/` | `/twin/api/`를 `/twin/`으로 바꾼 후 `backend`로 전달 |
+| `location` 설정    | 설명                                                       |
+| ------------------ | ---------------------------------------------------------- |
+| `/api/`            | `/api/`로 시작하는 요청을 `backend-server`로 전달          |
+| `= /wonyAPI`       | 정확히 `/wonyAPI`이면 `/wonyAPI/`로 리다이렉트             |
+| `^~ /wonyAPI/api/` | `/wonyAPI/api/`를 `/wonyAPI/`으로 바꾼 후 `backend`로 전달 |
 
 ## Nginx 설정 파일(`nginx.conf`) 블록 
 
@@ -207,22 +207,22 @@ http {
         location / {
             root /home/target;  # 정적 파일 제공 (실제 경로 /home/target/)
             index index.html;  # root 경로 밑에 있는 index.html을 반환 
-            try_files $uri $uri/ /smartids/dashboard/notFound.html;  
+            try_files $uri $uri/ /dualPass/dashboard/notFound.html;  
         }
         
-        # http://localhost/smartids/dashboard/ 호출시 로드벨런싱 ( 파일 찾기가 아니라 디렉토리 요청이기 때문에 index호출)
-        location /smartids/dashboard/ {
-			root twin;  # 디렉토리 경로 : twin/smartids/dashboard/ 경로의 하위에서 
+        # http://localhost/dualPass/dashboard/ 호출시 로드벨런싱 ( 파일 찾기가 아니라 디렉토리 요청이기 때문에 index호출)
+        location /dualPass/dashboard/ {
+			root wonyAPI;  # 디렉토리 경로 : wonyAPI/dualPass/dashboard/ 경로의 하위에서 
 			index index.html;
-			try_files $uri $uri/ smartids/dashboard/notFound.html;  # 만약 index.html 없다면 smartids/dashboard/notFound.html 파일로 대체 (/smartids/dashboard 하면 절대경로로 바뀜)
+			try_files $uri $uri/ dualPass/dashboard/notFound.html;  # 만약 index.html 없다면 dualPass/dashboard/notFound.html 파일로 대체 (/dualPass/dashboard 하면 절대경로로 바뀜)
 			charset utf-8;
 		}
 
-		# http://localhost/smartids/console/b.html 호출시 로드벨런싱
-		location /smartids/console/ {
-			root twin;  # 디렉토리 경로 : twin/smartids/console/ 경로의 하위에서 b.html 파일을 찾음 
+		# http://localhost/dualPass/console/b.html 호출시 로드벨런싱
+		location /dualPass/console/ {
+			root wonyAPI;  # 디렉토리 경로 : wonyAPI/dualPass/console/ 경로의 하위에서 b.html 파일을 찾음 
 			index index.html; # 파일요청이기 때문에 index 동작 x
-			try_files $uri $uri/ smartids/console/notFound.html;  # 찾는파일 없으면 smartids/console/notFound.html 파일로 대체
+			try_files $uri $uri/ dualPass/console/notFound.html;  # 찾는파일 없으면 dualPass/console/notFound.html 파일로 대체
 			charset utf-8;
 		}
 
@@ -232,15 +232,149 @@ http {
         }
         
         	
-		location = /twin { # /twin 요청이 들어오면 → /twin/로 리다이렉트
-			rewrite /twin /twin/ redirect;
+		location = /wonyAPI { # /wonyAPI 요청이 들어오면 → /wonyAPI/로 리다이렉트
+			rewrite /wonyAPI /wonyAPI/ redirect;
 		}
 		
-		location ^~ /twin/api/ { # /twin/api/users or /twin/api/equip 요청이 들어오면 로드벨런싱 
-			rewrite ^/twin/api/(.*)$ /twin/$1 break;
-			proxy_pass http://backend; # /twin/users/ or /twin/equip/ 으로 변경 후 backend 요청 
+		location ^~ /wonyAPI/api/ { # /wonyAPI/api/users or /wonyAPI/api/equip 요청이 들어오면 로드벨런싱 
+			rewrite ^/wonyAPI/api/(.*)$ /wonyAPI/$1 break;
+			proxy_pass http://backend; # /wonyAPI/users/ or /wonyAPI/equip/ 으로 변경 후 backend 요청 
 		}
     }
 }
+```
+
+## 멀티 프론트 적용 
+
+1. **두개의 서버** 프로세서를 NginX 로 띄운다
+2. port : 9999 
+   1. 프론트 표출 역할
+   2. `localhost:9999/dual/dashboard` 나 `localhost:9999/dual/console` 로 URL 을 치면 Nginx 가 잡아서  nginx 디렉토리에 있는 `wonyAPI/dual/dashboard or console/` 에 있는 파일을 보여준다. 
+3. port : 8888
+   1. 주로 API 콜을 Backend로 proxy 하는 역할 
+   2. `localhost:8888/wonyAPI/api/` 처럼 port 8888 로 오는 요청들을 잡아서 설정해놓은 대로 proxy 해줌. 
+
+
+```bash
+#user  nobody;
+worker_processes  1;
+
+#error_log  logs/error.log;
+#error_log  logs/error.log  notice;
+#error_log  logs/error.log  info;
+
+#pid        logs/nginx.pid;
+
+events {
+    worker_connections  1024;
+}
+
+
+http {
+
+	include       mime.types;
+    default_type  application/octet-stream;
+	
+	sendfile        on;
+
+    keepalive_timeout  65;
+	
+	upstream mediaserver {
+		server 127.0.0.1:5119 max_fails=3 fail_timeout=1s;
+		keepalive 1024;
+	}
+	
+	upstream backend {
+		server 127.0.0.1:5555 max_fails=3 fail_timeout=1s;
+		keepalive 1024;
+	}
+
+	server {
+        listen       9999;
+        server_name  localhost;
+
+		location /dual/dashboard/ {
+			root wonyAPI;  
+			index index.html;
+			try_files $uri $uri/ /dual/dashboard/notFound.html; 
+			charset utf-8;
+		}
+
+
+		location /dual/console/ {
+			root wonyAPI;  
+			index index.html;
+			try_files $uri $uri/ /dual/console/notFound.html;  
+			charset utf-8;
+		}
+	}
+
+	server {
+		listen       8888;
+		server_name  localhost;
+	
+		location = /wonyAPI {
+			rewrite /wonyAPI /wonyAPI/ redirect;
+		}
+		
+		location ^~ /wonyAPI/api/ {
+			rewrite ^/wonyAPI/api/(.*)$ /wonyAPI/$1 break;
+			proxy_pass http://backend;
+		}
+		# testProxy 요청을 127.0.0.1:9079로 프록시 패스
+		location /testProxy/ {
+			proxy_pass http://127.0.0.1:1234;
+			proxy_set_header Host $host;
+			proxy_set_header X-Real-IP $remote_addr;
+			proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+		}
+		
+		location ^~ /wonyAPI/relay/ {
+			proxy_pass http://backend;
+		}
+		
+		location ^~ /wonyAPI/websocket {
+			proxy_http_version 1.1;
+			proxy_set_header Upgrade $http_upgrade;
+			proxy_set_header Connection "upgrade";
+			proxy_set_header Host $host;
+			
+			proxy_pass http://backend;
+		}
+
+		location ^~ /netty {
+			proxy_http_version 1.1;
+			proxy_set_header Upgrade $http_upgrade;
+			proxy_set_header Connection "upgrade";
+			proxy_set_header Host $host;
+
+			# proxy_pass http://$server_addr:34048/wonyAPI/websocket;
+			proxy_pass http://localhost:34048/wonyAPI/websocket;
+		}
+
+		
+		location ^~ /webrtc_playnow {
+			proxy_http_version 1.1;
+			proxy_set_header Upgrade $http_upgrade;
+			proxy_set_header Connection "upgrade";
+			proxy_set_header Host $host;
+			
+			proxy_pass http://mediaserver;
+		}
+
+		location /wonyAPI/ {
+			rewrite ^/wonyAPI/(.*)$ /$1;
+		}
+
+    
+        error_page  404              /404.html;
+        error_page   500 502 503 504  /50x.html;
+        location = /50x.html {
+            root   html;
+        }
+	
+    }
+}
+
 ```
 
