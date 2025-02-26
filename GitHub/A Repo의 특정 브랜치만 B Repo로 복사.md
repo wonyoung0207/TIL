@@ -71,5 +71,6 @@ git branch -m feature-branch main
 ##### 5. B 레포로 푸시
 
 ```bash
+# B 레포에 브랜치 명이 존재하지 않아야한다. 만약 있다면 rebase 하라고함. 
 git push -u origin main
 ```
