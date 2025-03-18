@@ -172,6 +172,20 @@ location = /wonyAPI {
    3. `proxy_pass` (리버스 프록시)
       1. Nginx가 요청을 다른 서버로 전달하도록 설정
 
+##### 변수설정 set 과 map
+
+1. URL을 하나의 변수처럼 사용하고자 할 때 사용 
+   1. 유희할점은 전역, 지역 변수의 개념이 존재해 조심해야함 
+2. `set`을 `server` 내부 사용
+   1. `set`으로 설정된 `$TWIN_PATH`는 해당 `server` 블록 안에서만 유효
+   2. 다른 `server` 블록에서는 `$TWIN_PATH`를 사용할 수 없음
+   3. 즉, `server` 블록마다 개별적인 변수처럼 동작
+3. `set`을 `server` 외부 사용 ( http 밑에 사용 )
+   1. NGINX에서는 **`http` 블록에서 `set`을 사용할 수 없음.**
+   2. 즉, `set`은 `server`, `location`, `if` 블록 안에서만 동작함.
+   3. `http` 블록에서 공통 변수를 설정하려면 `map`을 사용해야 함.
+4.  **여러 `server` 블록에서 공통 변수를 사용하려면 `map`을 활용**
+
 ## Nginx 설정 파일(`nginx.conf`) 예시
 
 ```bash
