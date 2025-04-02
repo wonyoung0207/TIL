@@ -4,7 +4,7 @@
 
 >
 
-## 정리 
+## 최종 정리 (라이프사이클)
 
 1. UnrealWebRTCPlayer 객체 생성 
    1. 내부 설정 초기화 진행
@@ -15,16 +15,31 @@
    2. SDP/ICE 정보를 Unreal Media Server와 교환하는 통신 채널 (signaling)
 4. ws 연결 성공
    1. 미디어서버가 ws.onmessage() 통해 코덱정보, ICE 주소, 트랙 정보 등 Streaming에 필요한 값들을 ws 통해 넘겨줌
-   2. 중요한건 미디어 서버가 준다는것임 
+   2. 내부 state 값 1로 업데이트 
+   3. 중요한건 미디어 서버가 준다는것임 
 5. peer-connection 생성
    1. UnrealMediaServer의 streaming 을 받을 수 있도록 연결통로역할인 pc(RTCPeerConnection) 객체 생성 
    2. 미디어서버는 WebRTC 스트리밍 서버 (미디어 송출자)
    3. pc는 실제 미디어 데이터 송수신 주체(P2P 연결의 본체)
-6. SDP 생성
-   1. pc에 미디어서버가 준 정보 토대로 SDP생성
-7. WebRTC 연결 
+6. ws 으로 정보전송 (`createOffer`)
+   1. `createOffer()` 로 생성된 SDP를 미디어 서버로 ws.send() 통해 전송 
+
+7. 서버로부터 SDP, ICE 정보 수신
+   1. state값 1로 인해 호출
+   2. pc에 미디어서버가 준 정보 토대로 SDP생성
+      1. server의 SDP, ICEcandidate 를 pc에 설정 
+8. WebRTC 연결 
    1. SDP 이용해 "PC ----- MediaServer" 가 webRTC로 연결 
-8. Streaming시작 
+
+9. ws close
+   1. PC 커넥트 완료되면 ws.close() 호출 
+
+10. Streaming시작 
+    1. pc에 세팅된 SDP, ICE 이용해 미디어 서버와 Streaming 통신 시작
+    2. `ontrack` (미디어서버로부터 스트리밍 수신되면 호출) 에 의해 스트리밍 시작
+
+
+
 
 ##### websocket    VS   peer-connect
 
@@ -130,6 +145,9 @@ function gotRemoteStream(e) {
    2. 브라우저가 사용 가능한 코덱, 미디어 트랙, 네트워크 정보 등을 담은 **SDP Offer**를 생성
    3. 이걸 상대방에게 보내야 WebRTC 연결이 시작
 3. **즉, SDP 정보를 토대로 Offer 생성 후 미디어서버로 보내면 WebRTC 연결되서 Streaming 시작** 
+   1. `pc.createOffer()`만으로는 스트리밍이 시작되지 않음 
+   2. `onCreateOfferSuccess()` 에서 ws.send() 발생 
+
 4. `setLocalDescription()`
    1.  내 연결 계획(SDP)을 로컬 pc에 등록하는 작업
    2. 즉, webRTC로 스트리밍 하기전 pc에 준비동작 하는거로 이해하면됨 
