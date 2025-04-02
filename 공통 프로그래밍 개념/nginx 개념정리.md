@@ -172,6 +172,28 @@ location = /wonyAPI {
    3. `proxy_pass` (리버스 프록시)
       1. Nginx가 요청을 다른 서버로 전달하도록 설정
 
+##### Log 설정
+
+1. NGINX는 기본적으로 `logs/` 폴더가 없으면 로그 파일을 생성하지 않음.
+
+   1. 따라서 `logs/site1/` 및 `logs/site2/` 폴더를 미리 생성해야 함.
+
+   ```bash
+   server {
+       listen 34020;
+       server_name site2;
+   
+       access_log C:/nginx-logs/site2/access.log;
+       error_log C:/nginx-logs/site2/error.log;
+   
+       location / {
+           root $LOCAL_PATH/$SITE_ROOT;
+           index index.html;
+           charset utf-8;
+       }
+   }
+   ```
+
 ##### 변수설정 set 과 map
 
 1. URL을 하나의 변수처럼 사용하고자 할 때 사용 
@@ -185,6 +207,40 @@ location = /wonyAPI {
    2. 즉, `set`은 `server`, `location`, `if` 블록 안에서만 동작함.
    3. `http` 블록에서 공통 변수를 설정하려면 `map`을 사용해야 함.
 4.  **여러 `server` 블록에서 공통 변수를 사용하려면 `map`을 활용**
+
+##### include 사용 conf 불러오기 
+
+1. 절대 경로:
+   - `/etc/nginx/` (Linux)
+   - `C:\nginx\conf\` (Windows)
+   - `/usr/local/nginx/conf/` (기본 NGINX 설치 경로)
+2. 상대 경로:
+   - `include conf/nginx.conf;` → `nginx.exe`가 실행된 **현재 작업 디렉토리**에서 `conf/nginx.conf`를 찾음
+
+##### 사용자 계정 지정
+
+1.  `serviceaccount` 태그는 Windows 서비스 실행 시 사용할 사용자 계정을 설정하는 옵션
+
+2. 즉, 관리자 권한이 필요한 경우, 특정 계정을 사용하여 서비스가 실행되도록 설정 가능.
+
+   ```bash
+   <serviceaccount>
+       <username>Administrator</username>
+       <password>ajict@12</password>
+       <allowservicelogon>true</allowservicelogon>
+   </serviceaccount>
+   ```
+
+##### 자동실행 
+
+1. `onfailure` 태그는 서비스가 비정상적으로 종료될 경우 수행할 동작을 정의하는 설정
+
+2. 일반적으로 서비스 장애 발생 시 자동으로 재시작하도록 설정할 수 있음.
+
+   ```bash
+   # 서비스가 충돌하거나 비정상 종료되면 5초 후 자동으로 다시 시작
+   <onfailure action="restart" delay="5000"/>
+   ```
 
 ## Nginx 설정 파일(`nginx.conf`) 예시
 
