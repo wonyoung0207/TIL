@@ -73,21 +73,31 @@ fi
 ```makefile
 .PHONY: all frontend backend start install_modules clean
 
-# 프론트엔드 및 백엔드 의존성 설치
+# 프론트엔드 및 백엔드 의존성 설치 + NVM & Node.js 14 설정
 install_modules:
-	@echo "🚀 Installing frontend and backend dependencies..."
+	@echo "🚀 Installing NVM (if not installed)..."
+	curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.4/install.sh | bash || true
+
+	@echo "🔄 Sourcing NVM..."
+	bash -c 'export NVM_DIR="$$HOME/.nvm" && [ -s "$$NVM_DIR/nvm.sh" ] && . "$$NVM_DIR/nvm.sh" && \
+	echo "📥 Installing Node.js 14..." && nvm install 14 && \
+	echo "🚀 Using Node.js 14..." && nvm use 14 && \
+	echo "🌎 Setting Node.js 14 as default..." && nvm alias default 14'
+
+	@echo "📦 Installing frontend and backend dependencies..."
 	cd frontend && npm install --legacy-peer-deps
-	cd backend && gradle build
+
+
 
 # Gradle 설치 
 install_gradle:
-	sudo apt remove gradle
+	sudo apt remove -y gradle
 	curl -s "https://get.sdkman.io" | bash
-	source "$HOME/.sdkman/bin/sdkman-init.sh"
-	sdk version
-	sdk install gradle 7.6.1
-	sdk list gradle
-	gradle -v
+	bash -c "source $$HOME/.sdkman/bin/sdkman-init.sh && sdk version"
+	bash -c "source $$HOME/.sdkman/bin/sdkman-init.sh && sdk install gradle 7.6.1"
+	bash -c "source $$HOME/.sdkman/bin/sdkman-init.sh && gradle -v"
+	@echo "🚀 터미널 재실행 필요!!"
+
 
 # 자바 17 설치 
 install_java: 
@@ -101,18 +111,19 @@ run_frontend:
 
 # 백엔드 실행
 run_backend:
-	@echo "Starting backend..."
+	@echo "Starting dt backend..."
 	cd backend && gradle bootRun
 
 # 프론트 빌드	
 build_frontend : 
 	@echo "Build frontend..."
 	cd frontend && npm run build
+	@echo "✅ Build completed! Output directory: kleverTwin/frontend/twin"
 
 # 백엔드 빌드
-build_backend : 
+build_dt : 
 	@echo "Build Backend..."
-	cd backend && gradle build
+	cd backend && gradle clean build -x test
 
 # frontend와 backend를 동시에 실행
 # start:
@@ -120,12 +131,10 @@ build_backend :
 # 	wsl.exe -e bash -c "make frontend" 
 # 	wsl.exe -e bash -c "make backend" 
 
-
-
 # 프로젝트 정리 (빌드 결과물 삭제)
 clean:
 	@echo "🧹 Cleaning project..."
-	cd frontend && rm -rf node_modules && rm -rf dist
+	cd kleverTwin && rm -rf frontend/twin && rm -rf backend/dt/TrafficDigitalTwin.jar 
 	cd backend && gradle clean
 
 
