@@ -22,7 +22,9 @@
 1. 기존의 소켓 프로그래밍은 클라이언트가 접속하게 되면 스레드를 할당해야 하는데(1:1관계), 정말 많은 클라이언트가 접속을 하게 될 경우 그 숫자만큼 스레드를 생성해야 해서 리소스의 낭비로 이루어지고, 문맥 교환과 관련된 문제와 입력이나 출력 데이터에 관련한 무한 대기 현상이 발생하는 문제가 있었습니다. 이러한 네트워크 문제 때문에 개발된 방법이 자바의 NIO 방식(Non-Blocking Input Ouput)입니다.
 2. **NIO**(Non-blocking Input Ouput) ⇒ **비동기적 네트워크 통신**, 핵심으로는 네트워크 리소스 사용률을 세부적으로 제어하는 Non-Blocking 호출이 포함되어 있는 것으로, 내부적으로 시스템의 이벤트 통지 API를 이용해 논블록킹 소켓을 등록하면 해당 소켓의 정보를 확인할 수 있습니다.
 
-![img](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https://blog.kakaocdn.net/dn/ccLhoR/btqHA3CmwNH/KuKYT4KCqLkn5Md0dejjA0/img.png)
+<img src="./images/netty_NIO통신.png" width="500">
+
+
 
 - 위의 그림에서 Selector는 입출력을 하고 있는 Socket의 집합 상태를 확인하기 위해 이벤트 통지 API를 사용하기 때문에 클라이언트 당 스레드를 생성하지 않고, 필요할 때마다 스레드에게 통지를 하기 때문에 **비동기적인 통신 구조**를 갖출 수 있게 됩니다. 
 
@@ -50,9 +52,12 @@
 
 5. **EventLoop** : 연결의 수명주기 중 발생하는 이벤트를 처리하는 Netty의 핵심추상화를 정의. 이벤트가 발생할 때까지 대기하다가 이벤트가 발생하면 해당 이벤트를 처리할 수 있는 Handler에게 dispatch함.
 
-   ![img](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https://blog.kakaocdn.net/dn/yEhK2/btqHBRuUD2o/ijCfGliB3cD7LcwZe6Tz01/img.png)
 
-6. **PipeLine** : 이벤트 루프에서 이벤트를 받아 핸들러에 전달하는 역할
+
+
+<img src="./images/netty_eventloop동작방식.png" width="500">
+
+1. **PipeLine** : 이벤트 루프에서 이벤트를 받아 핸들러에 전달하는 역할
 
    1. **Pipeline 내부에 핸들러들이 추가되는 방식** ( PipeLine 안에 channelHandler가 있는 구조 )
    2. 내부에 핸들러에 따라 결과가 달라지므로 순서 중요. (3가지 종류 존재)
@@ -77,8 +82,9 @@
       3. 주의사항
          1. `write()` 호출 후 반드시 `flush()`가 필요
 
+<img src="./images/netty_channel구조.png" width="700">
 
-![img](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https://blog.kakaocdn.net/dn/EN6fG/btqHLfuMOba/RY7O3U5BYp5Z9hHACgIqxK/img.png)
+<img src="./images/netty_pipeline구조.png" width="700">
 
 ## PipeLine의 역순처리
 
@@ -90,7 +96,7 @@
 
 ## 핵심 플로우 
 
-![img](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https://blog.kakaocdn.net/dn/PWASk/btqHJpEmBF9/R3O3z2HcrDZhEDtZZQazG0/img.png)
+<img src="./images/netty_핵심플로우.png" width="700">
 
 1. Netty의 흐름을 대략적으로 표현한 그림. Netty서버를 생성하고 이벤트 루프를 통해 이벤트를 감지,
 2. 개설된 채널을 통해 데이터가 넘어오고 파이프라인의 핸들러들을 거치며 로직에 따라 데이터를 처리.
@@ -140,7 +146,7 @@ bootstrap.group(bossGroup, workerGroup) // 이벤트 그룹
 
 - 간단한 예제를 통해 어떠한 순서로 Netty서버를 구성하는지 알아보겠습니다.
 
-![img](https://gw.metabuild.co.kr/ekp/service/file/fileView?module=img&fileUrl=/images/000171&fileName=20240221170346302_ZUB3FIE9.png)
+<img src="./images/netty_예제서버구축.png" width="800">
 
 1. 2개의 EventLoopGroup을 NioEventLoopGroup으로 생성. NioEventLoopGroup은 다중 이벤트 루프이고 서버측 애플리케이션을 구현할 때 우리는 보통 boss와 worker 두 가지로 나누어 구성.
    1. **boss는 연결을 수락**하는 역할을 하고 해당 연결을 두번째 그룹에 등록해주고, **worker는 이러한 연결에 대한 트래픽을 처리.**
@@ -231,7 +237,7 @@ public class NettyServerExample {
 
    1. Netty는 java.nio.ByteBuffer를 업그레이드시킨 ByteBuf를 사용. 데이터 컨테이너이고 2개의 포인터로 3개의 영역으로 나뉨.
 
-      ![img](https://t1.daumcdn.net/thumb/R720x0.fpng/?fname=http://t1.daumcdn.net/brunch/service/user/2aeh/image/6NbeVQMaOkzESiI8_2mUrm9oLUM.png)
+      <img src="./images/netty_bytebuf구조.png" width="600">
 
    2. DiscardableBytes : 이미 읽은 데이터. 버릴 수 있음. Reader Index 이전 영역
 
