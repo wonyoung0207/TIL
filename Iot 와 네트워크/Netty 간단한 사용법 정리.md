@@ -100,6 +100,13 @@
 
 1. Netty의 흐름을 대략적으로 표현한 그림. Netty서버를 생성하고 이벤트 루프를 통해 이벤트를 감지,
 2. 개설된 채널을 통해 데이터가 넘어오고 파이프라인의 핸들러들을 거치며 로직에 따라 데이터를 처리.
+3. 즉, 
+   1. 클라이언트의 WebSocket 연결을 처음 받는 위치는:
+      1. `ChannelInitializer<SocketChannel>` 내부 → `initChannel()` 메서드
+
+   2. 실제로 메시지를 처리하는 곳은:
+      1. `SimpleChannelInboundHandler<TextWebSocketFrame>` 또는 BinaryFrame 기반 커스텀 핸들러
+
 
 ### ServerBootstrap  
 
