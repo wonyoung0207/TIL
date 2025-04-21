@@ -157,6 +157,15 @@ var model = { // 데이터로 사용할 값 생성
   - 이 과정에서 Vue는 각각의 단계에서, Vue를 사용하는 사람들을 위해 **훅(Hook)**을 할 수 있도록 API를 제공한다.
   - 일반적으로 많이 사용하는 종류로는 `beforeCreate`, `created`, `beforeMount`, `mounted`, `beforeUpdate`, `updated`, `beforeDestroy`, `destroyed`가 있다.
 
+### vue 인스턴스 초기화 순서
+
+1. `data` 정의
+2. `props` 해석
+3. `computed` 생성
+4. `methods` 등록
+5. `watch` 설정
+6. `created()` 실행
+
 ### vue 인스턴스
 
 - 컴포넌트를 new 를 이용해 생성한 경우 

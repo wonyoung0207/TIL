@@ -50,7 +50,31 @@
 - Store의 핵심 요소로, 애플리케이션에서 관리해야할 중요한 **데이터**이다. 
 - 즉, **전역으로 사용하고자 할 데이터**가 State에 들어간다. 
 
-#### 사용법
+#### 향상된 사용법 (더 좋은 방법 )
+
+- 헬퍼 이용
+
+```js
+import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
+// config : store의 모듈 
+// systemConfig : 
+
+export default {
+  computed: {
+    ...mapState("config", ["systemConfig"]),
+    ...mapGetters("config", ["getConfig"])
+  },
+  methods: {
+    ...mapActions("config", ["fetchConfig"]),
+    ...mapMutations("config", ["setConfig"])
+  }
+};
+
+// 사용방법
+this.getConfig; // 내부적으로 store.getters['config/getConfig'] 를 실행
+```
+
+#### 기본 사용법
 
 ```js
 // main.js 
