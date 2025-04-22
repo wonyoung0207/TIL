@@ -23,6 +23,11 @@
    1. 프로젝트 바로 밑에 `.env` 파일 생성 (파일 이름 없이 `.env` 으로하면 자동 인식됨) 
    2. `VUE_APP_(원하는변수명)` 으로 변수 설정 후 사용 
 
+| Vue CLI 버전   | `.env` 자동 인식            | 설명                                             |
+| -------------- | --------------------------- | ------------------------------------------------ |
+| Vue CLI 3 이상 | ✅ 네 (기본 지원)            | `.env`, `.env.production`, `.env.development` 등 |
+| Vue CLI 2      | ❌ 아니요 (직접 적용해야 함) | `dotenv` 직접 불러와서 적용 필요                 |
+
 
 ## 사용예제
 
@@ -49,3 +54,36 @@ VITE_API_URL=https://my-api-url.com
 const API_URL = import.meta.env.VITE_API_URL;
 ```
 
+
+
+## CLI 2에서 `.env` 사용 방법
+
+| 항목                            | 설명                                |
+| ------------------------------- | ----------------------------------- |
+| 자동으로 `.env` 파일 인식 ❌     | 반드시 `dotenv.config()` 필요       |
+| Vue 컴포넌트에서 사용하려면?    | `DefinePlugin`으로 명시적으로 주입  |
+| `VUE_APP_` prefix는 규칙이 아님 | CLI 2에선 자유롭게 이름 정해도 무관 |
+
+1. `dotenv` 패키지를 설치
+
+   ```bash
+   npm install dotenv --save
+   ```
+
+2. 루트에 `.env` 파일을 생성
+
+   ```js
+   VUE_APP_API_BASE_URL=http://localhost:3000/api
+   VUE_APP_MODE=development
+   ```
+
+3. 사용하고자 하는 곳에 명시적으로 불러옵니다 (예: `webpack.base.conf.js`, `main.js`, `api.js` 등):
+
+   - 이제 `process.env.VUE_APP_API_BASE_URL` 등으로 접근 가능 
+
+   ```js
+   // 예: main.js
+   require('dotenv').config();
+   
+   console.log(process.env.VUE_APP_API_BASE_URL);
+   ```
