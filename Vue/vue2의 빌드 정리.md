@@ -6,23 +6,58 @@
 
 ## 빌드 경로 설정
 
-- 빌드 실행 순서 
+##### 빌드 실행 순서 
 
-  ```bash
-  # Vue CLI 2인경우 
-  npm run build
-  → webpack-dev-server 실행
-  → webpack.dev.conf.js 로 Webpack 빌드 구성
-  → CopyWebpackPlugin 실행됨 (파일 복사)
-  → dev 서버 메모리 기반 번들 결과에 포함됨
-  ```
+```bash
+# Vue CLI 2인경우 
+npm run build
+→ webpack-dev-server 실행
+→ webpack.dev.conf.js 로 Webpack 빌드 구성
+→ CopyWebpackPlugin 실행됨 (파일 복사)
+→ dev 서버 메모리 기반 번들 결과에 포함됨
+```
 
-1. Vue CLI 2
-   1. `config/index.js` 경로에서 설정 
-   2. `.env` 이용시 변수명 마음대로지만 require 로 dotenv 패키지 가져와 사용해야함 
-2. Vue CLI 3
-   1. root 경로의 vue.config.js 통해 build 경로 설정 
-   2. `.env` 이용시 `VUE_APP_` 을 접두어로 사용해야함 
+##### Vue CLI 2
+
+1. `config/index.js` 경로에서 설정 
+
+2. `.env` 이용하려면 2가지 방법 존재 
+
+   <img src="./images/vue_cli2_빌드구조.png" width="200">
+
+   1. `config` 밑에 env 파일 이용
+
+      1. `npm run dev or npm run serve` 시 webpack 설정파일 안에서 `process.env` 에 대한 값을 주입함
+      2. 즉,  **Vue 앱이 실행되기 전에, 번들(JS 파일)을 생성하는 시점에** 주입된다. 
+
+   2. 패키지 
+
+      1. 변수명 마음대로지만 require 로 dotenv 패키지 가져와 사용해야함 
+
+         ```js
+         require('dotenv').config();
+         
+         const defaultBuildDir = process.env.BUILD_DIR || 'app/kleverTwin';
+         ```
+
+   3. 주로 `config` 밑에 `env.js` 를 사용함 
+
+3. 주의할 점 
+
+   1. `env.js` 파일에서 사용할 변수가 Text라면 `"'Text내용'"` 처럼 `' '` 안에 `" "` 를 넣어준 형태로 사용해야함 
+
+   2. 왜냐하면 webpack이 해당 변수를 문자가 아닌 코드로 넣어버리기 때문에 
+
+      ```js
+      module.exports = {
+        API_URL: '"http://localhost:3000"' // 큰따옴표 포함!
+      }
+      ```
+
+##### Vue CLI 3
+
+1. root 경로의 vue.config.js 통해 build 경로 설정 
+2. `.env` 이용시 `VUE_APP_` 을 접두어로 사용해야함 
 
 | 항목          | `assetsRoot`                             | `assetsPublicPath`                                     |
 | ------------- | ---------------------------------------- | ------------------------------------------------------ |
