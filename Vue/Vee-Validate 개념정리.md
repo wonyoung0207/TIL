@@ -197,6 +197,46 @@
      });
    ```
 
+#### 7. 매개변수 추가 
+
+1. `<validation-provider>`에서 `check_position:1.5`와 같이 넘김
+2. `params: ['max']`에 따라 VeeValidate는 문자열 `"1.5"`를 `max`로 파싱
+3. 내부에서 `validate(value, { max })`가 호출됨
+   1. 예: `validate('1.6', { max: '1.5' })`
+
+| 개념                       | 설명                                                         |
+| -------------------------- | ------------------------------------------------------------ |
+| `params: ['max']`          | 커스텀 rule이 받을 **매개변수의 이름**을 선언                |
+| `validate(value, { max })` | 첫 번째는 입력값, 두 번째는 `{ max: 넘긴값 }` 형태의 객체    |
+| 사용 방법                  | `<validation-provider :rules="check_position:someValue">`로 넘김 |
+
+```vue
+<validation-provider
+  name="position"
+  :rules="`required|check_position:${max}`"
+  v-slot="{ errors }"
+>
+```
+
+```js
+import { extend } from "vee-validate";
+extend("range_decimal", {
+  params: ['min', 'max'], // ✅ 파라미터 이름 정의
+  validate(value, { min, max }) {
+    const num = parseFloat(value);
+    if (isNaN(num)) {
+      return "숫자를 입력해주세요.";
+    }
+
+    if (num < parseFloat(min) || num > parseFloat(max)) {
+      return `값은 ${min} ~ ${max} 사이여야 합니다.`;
+    }
+
+    return true;
+  },
+});
+```
+
 ## 예시
 
 ```vue
