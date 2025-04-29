@@ -17,15 +17,40 @@
 
 <img src="././images/video영상컨트롤안됨문제2.png" width=700>
 
-## 브라우저의 비디오 스트리밍 단계
+## 브라우저의 비디오 재생 흐름
 
 브라우저는 Content-Type → Accept-Ranges → Content-Range 순서로 검사해서 비디오 스트리밍과 컨트롤을 결정한다.
 
 ```
-1. [브라우저 응답 받음] → Content-Type: video/mp4 ? → (O) → 
-2. 스트리밍 준비 → Accept-Ranges: bytes ? → (O) → 
-3. 탐색 요청 (Range) → Content-Range: bytes start-end/total ? → (O) → 
-4. 탐색 재생 가능
+[서버 응답 수신]
+       │
+       ▼
+[Content-Type 검사]
+       │
+       ├── (video/mp4, video/webm 등) → [스트리밍 준비]
+       │
+       └── (application/text 등) → [재생 실패] (끝)
+
+[스트리밍 준비 완료]
+       │
+       ▼
+[Accept-Ranges 검사]
+       │
+       ├── 있음 → [탐색(스크럽) 가능 준비]
+       │
+       └── 없음 → [전체 다운로드 후 재생] (탐색 제한 가능)
+
+[사용자 타임라인 조작]
+       │
+       ▼
+[브라우저 Range 요청 전송 (bytes=start-end)]
+       │
+       ▼
+[서버 Content-Range 응답 검사]
+       │
+       ├── 올바른 Content-Range 제공 → [부분 데이터 수신 → 탐색 성공]
+       │
+       └── Content-Range 없음/이상함 → [탐색 실패]
 ```
 
 ##### 1. Content-Type 검사
