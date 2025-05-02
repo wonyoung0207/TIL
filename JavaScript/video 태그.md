@@ -14,7 +14,7 @@
   playsinline 
   muted 
   controls 
-  :src="videoSrc1" 
+  :src="videoSrc1 || null"
   @canplay="onVideoCanplay($event)" 
   @progress="onProgress" 
   @waiting="onWaiting"
@@ -58,4 +58,29 @@
 ### Time Ranges (시간 범위)
 
 1. 비디오가 로드된 특정 구간의 데이터
+
 2. 버퍼링 및 시킹과 밀접한 관련이 있어 `video.buffered` 프로퍼티를 사용하여 비디오에서 어떤 시간이 버퍼링되어 있는지를 확인할 수 있다.  
+
+   
+
+---
+
+
+
+## 문제 발생
+
+##### 1. 비디오 태그 src 세팅 전 error 발생 문제 
+
+- 문제점
+  - 비디오를 다운로드 받고 태그 src에 넣어주는 로직이 있었다. 
+  - 이때 다운로드 완료전까지는 src 에 아무 값도 넣어주지 않아야하는데 Dom 에 비디오 태그가 생겼을 때부터 src 로드되어 태그의 `@error` 이벤트가 발생했다. 
+  - 따라서 로드 전까진 src 를 세팅하지 않아도 에러가 발생하면 안됐음
+- 해결방법
+  - src 바인딩에 null 처리 
+  - 브라우저는 `src=""`처럼 **빈 문자열**은 실제로 **잘못된 URL로 로드 시도**하지만,
+     **`null`이나 `undefined`는 로드 시도를 하지 않음**
+
+```js
+:src="videoSrc1 || null"
+```
+
