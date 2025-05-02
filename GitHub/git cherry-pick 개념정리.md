@@ -48,7 +48,7 @@ git cherry-pick <commit-hash>
       
       # commit 해시 
       commit 54da1dsadfkjjsdjflsdkjf
-      Author: 원영 안 <ahnwy27@metabuild.co.kr>
+      Author: 원영 안 <sdf@dfd.co.kr>
       Date:   Thu Dec 12 08:56:53 2024 +0900
       ```
 
