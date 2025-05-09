@@ -40,6 +40,8 @@
 
 ##### 예제 코드
 
+<img src="./images/api_cancle_network.png" width="900">
+
 ```js
 // api call 
 async downLoadF(event) {
@@ -117,6 +119,16 @@ onBtnCancel() {
 - Axios 요청이 `AbortController`에 의해 취소되면, Axios는 다음과 같은 에러 객체를 던져 response는 존재하지 않는다. 즉, `undefined` 상태가 된다.
   - 서버 응답이 오지 않은 상태(예: 요청 취소, 네트워크 오류 등)에서는 `response` 자체가 없다. 
   - cancle 한 api response 에 `undefined` 처리 추가해줘야함 (자동으로 api cancle 되면 try-catch문에 걸림)
+
+  ```js
+  // axios 의 interceptors.response.use() 에 해당 로직 포함해야함 
+  
+  //API cancel
+  if (!error.response){
+    return;
+  }
+  ```
+
 - 또한 Axios가 취소된 요청은 **명시적으로 `ERR_CANCELED`를 부여**한다. 
 
 ```js
