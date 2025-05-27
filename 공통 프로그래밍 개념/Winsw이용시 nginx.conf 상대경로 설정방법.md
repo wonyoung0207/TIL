@@ -2,6 +2,16 @@
 
 ---
 
+>
+
+## 정리
+
+1. winsw.xml 이용 모든 서비스 기준위치 : 
+   1. winswx.xml 
+2. nginx.conf 기준 위치 : 
+   1. winsw.xml 에 파라미터 `-p` 로 설정한 위치 
+   2. 즉, 나같은 경우는 `nginx.exe` 가 있는 위치 
+
 ## 1. 폴더 구조 예시
 
 ```
@@ -23,19 +33,27 @@ F:\window_git_project\app\
 
 ## 2. nginx 서비스 실행 옵션
 
+- 옵션 종류 
+  - **`-p <prefix>`** : nginx의 기준(base) 폴더(=prefix) 지정
+  - **`-c <conf파일>`** : 사용할 nginx.conf 파일 직접 지정
+  - 두 옵션을 함께 쓰면,
+    - **모든 상대경로는 -p로 지정한 prefix를 기준**으로 해석
+    - **nginx.conf의 위치는 -p 기준 상대경로 또는 절대경로**로 지정
+
 - WinSW 서비스 설정 예시:
+
     ```xml
     <executable>../nginx/nginx.exe</executable>
     <arguments>-p ../nginx</arguments>
     ```
 - 이 설정의 **작업 디렉토리 기준점**:  
-  
+
   - `winsw.xml`이 위치한 폴더 
     - (위 예시에서는 `...app\infra\winsw\`)
-  
+
   - `-p ../nginx` 
     - prefix는  `...app\infra\nginx\`  (nginx.conf 내의 **모든 상대경로 해석 기준**이 됨)
-  
+
 
 ---
 

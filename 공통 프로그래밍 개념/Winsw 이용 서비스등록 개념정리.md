@@ -60,3 +60,215 @@ winsw refresh → 서비스 업데이트(xml변경사항 적용)
 3. 주의할점
    1. 최신버전에서는 `workingdirectory` 태그 사용못함 
 
+## 서비스 제거(uninstall)
+
+1. **WinSW에서 `uninstall` 명령을 실행할 때는 `.xml` 내부의 `<id>` 값만 사용**
+
+   - 즉, **로그 설정, arguments, executable 등 나머지 설정은 전혀 사용하지 않는다.**
+
+2. 동작방식
+
+   1. `<id>` 값을 읽는다. 예: `<id>TrafficDigitalTwinNetty</id>`
+
+      ```cmd
+      winsw.exe uninstall service.xml
+      ```
+
+   2. 해당 **Windows 서비스 이름(ID)** 을 기준으로 서비스 제거 명령을 실행
+
+      ```
+      sc delete TrafficDigitalTwinNetty
+      ```
+
+   3. 종료. 다른 설정(`arguments`, `logpath`, `name`, `description`, ...)은 **무시**
+
+
+
+## 서비스 등록 자동화 bat
+
+```bat
+@echo off
+:: 관리자 권한 체크
+net session >nul 2>&1
+if %errorlevel% neq 0 (
+    echo This script needs to be run as Administrator.
+    echo Please approve the UAC prompt.
+    powershell -Command "Start-Process '%~f0' -Verb RunAs -WorkingDirectory '%CD%'"
+    exit /b
+)
+cd /d "%~dp0"
+setlocal enabledelayedexpansion
+
+REM ===== XML file list (You can modify here) =====
+set XML1=dt.xml
+set XML2=nginx.xml
+set XML3=socket.xml
+
+set ID1=
+set ID2=
+set ID3=
+
+call :get_id "%XML1%" ID1
+call :get_id "%XML2%" ID2
+call :get_id "%XML3%" ID3
+
+:main_menu
+cls
+echo ========================================
+echo        WinSW Service Menu
+echo ========================================
+echo.
+echo  1. Install service
+echo  2. Uninstall service
+echo  3. Start service
+echo  4. Stop service
+echo  9. Exit
+echo.
+set MENU=
+set /p MENU="Select menu number: "
+set TMPMENU=%MENU: =%
+if "%TMPMENU%"=="" (
+    echo Input is required. Please enter a menu number.
+    pause
+    goto main_menu
+) else if "%MENU%"=="1" (
+    set ACTION=install
+) else if "%MENU%"=="2" (
+    set ACTION=uninstall
+) else if "%MENU%"=="3" (
+    set ACTION=start
+) else if "%MENU%"=="4" (
+    set ACTION=stop
+) else if "%MENU%"=="9" (
+    exit /b
+) else (
+    echo Invalid input. Please select again.
+    pause
+    goto main_menu
+)
+
+:service_menu
+cls
+echo ========================================
+echo        Select service to manage (!ACTION!)
+echo ========================================
+echo.
+echo  0. All services (%XML1%, %XML2%, %XML3%)
+echo  1. %XML1%  (!ID1!)
+echo  2. %XML2%  (!ID2!)
+echo  3. %XML3%  (!ID3!)
+echo  9. Back to main menu
+echo.
+set SERVICE_NO=
+set /p SERVICE_NO="Select service number: "
+set TMPSERVICE=%SERVICE_NO: =%
+if "%TMPSERVICE%"=="" (
+    echo Input is required. Please enter a service number.
+    pause
+    goto service_menu
+) else if "%SERVICE_NO%"=="0" (
+    set ALLSERVICES=1
+) else if "%SERVICE_NO%"=="1" (
+    set ALLSERVICES=0
+    set XML=%XML1%
+    set SID=!ID1!
+) else if "%SERVICE_NO%"=="2" (
+    set ALLSERVICES=0
+    set XML=%XML2%
+    set SID=!ID2!
+) else if "%SERVICE_NO%"=="3" (
+    set ALLSERVICES=0
+    set XML=%XML3%
+    set SID=!ID3!
+) else if "%SERVICE_NO%"=="9" (
+    goto main_menu
+) else (
+    echo Invalid input. Please select again.
+    pause
+    goto service_menu
+)
+
+echo.
+
+REM ===================== 전체 서비스 실행 =====================
+if "%ALLSERVICES%"=="1" (
+    for %%I in (1 2 3) do (
+        set "XML=!XML%%I!"
+        set "SID=!ID%%I!"
+        if not defined XML (
+            REM 비어있으면 스킵
+            continue
+        )
+        call :do_action "!XML!" "!SID!" "!ACTION!"
+        echo.
+        echo ----------------------------------------
+        echo.
+    )
+    pause
+    goto main_menu
+) else (
+    call :do_action "!XML!" "!SID!" "!ACTION!"
+    echo.
+    pause
+    goto main_menu
+)
+
+REM ===================== 액션 수행 함수 ======================
+:do_action
+REM Args: %1=xml, %2=sid, %3=action
+set "XML=%~1"
+set "SID=%~2"
+set "ACTION=%~3"
+
+if "%ACTION%"=="install" (
+    echo [INFO]  Installing %XML% ...
+    winsw.exe install "%XML%"
+    if errorlevel 1 (
+        echo [ERROR]  Install failed for %XML%
+    ) else (
+        echo [OK]     Installed %XML%
+    )
+) else if "%ACTION%"=="uninstall" (
+    echo [INFO]  Uninstalling %SID% ...
+    winsw.exe uninstall "%XML%"
+    if errorlevel 1 (
+        echo [ERROR]  Uninstall failed for %SID%
+    ) else (
+        echo [OK]     Uninstalled %SID%
+    )
+) else if "%ACTION%"=="start" (
+    echo [INFO]  Starting %SID% ...
+    sc start "%SID%"
+    if errorlevel 1 (
+        echo [ERROR]  Start failed for %SID%
+    ) else (
+        echo [OK]     Started %SID%
+    )
+) else if "%ACTION%"=="stop" (
+    echo [INFO]  Stopping %SID% ...
+    sc stop "%SID%"
+    if errorlevel 1 (
+        echo [ERROR]  Stop failed for %SID%
+    ) else (
+        echo [OK]     Stopped %SID%
+    )
+)
+goto :eof
+
+REM =================== get_id 함수 (동일) ===================
+:get_id
+REM Args: %1=xml filename, %2=variable to store service ID
+setlocal
+set "result="
+for /f "usebackq delims=" %%I in (`findstr /r /c:"<id>.*</id>" %~1`) do (
+    set "line=%%I"
+    set "line=!line:<id>=!"
+    set "line=!line:</id>=!"
+    for /f "tokens=* delims=	 " %%A in ("!line!") do set "line=%%A"
+    set "result=!line!"
+)
+endlocal & set "%2=%result%"
+goto :eof
+
+```
+
