@@ -27,9 +27,9 @@
 
    ```bash
    # 형태 
-   netsh interface portproxy add v4tov4 listenport=<wsl 서버포트> listenaddress=<wsl 서버IP> connectport=<window에서 포워딩할 포트> connectaddress=<window에서 포워딩할 IP>
+   netsh interface portproxy add v4tov4 listenaddress=<Windows에서 열어둘 IP(예: 0.0.0.0 또는 Windows NIC IP)> listenport=<Windows에서 열어둘 포트> connectport=<WSL 서버가 실제로 듣고 있는 포트> connectaddress=<WSL 서버 IP>
    
-   # 172.28.7.160:6900 으로 요청이 온것을 포트포워딩 해서 WSL 에서 실행중인 0.0.0.0:9999 로 포워딩해준다.
+   # WSL 2 안의 웹 서버가 172.28.7.160:6900에서 동작 중이라면, Windows 전체(0.0.0.0)의 9999번 포트에서 들어오는 연결을 WSL의 6900번으로 포워딩
    netsh interface portproxy add v4tov4 listenport=9999 listenaddress=0.0.0.0 connectport=6900 connectaddress=172.28.7.160
    ```
 
