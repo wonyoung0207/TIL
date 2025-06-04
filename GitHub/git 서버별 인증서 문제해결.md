@@ -57,3 +57,18 @@ git config --global http."https://사내IP/".sslCAInfo "C:/GitLabCRT/server.crt"
 git config --global --list
 ```
 
+## 보안 무시 
+
+- | 옵션                              | 용도                        | 보안 영향 | 사용 권장     |
+  | --------------------------------- | --------------------------- | --------- | ------------- |
+  | http.allowInsecureProtocols true  | http(비암호화) 연결 허용    | **위험**  | 내부망/임시만 |
+  | http.https://.../.sslVerify false | 특정 호스트의 SSL 검사 무시 | **위험**  | 내부망/임시만 |
+
+```bash
+# http 프로토콜 비암호화 허용 (Git 2.37+)
+git config --global http.allowInsecureProtocols true
+
+# SSL 인증서 검증 비활성화 (해당 호스트에만 적용하려면 --global 빼고 URL 부분만 설정)
+git config --global http.https://<사내IP:port>/.sslVerify false
+```
+
