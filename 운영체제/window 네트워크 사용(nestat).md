@@ -1,4 +1,4 @@
-# 리눅스 명령어 nestat
+# window 네트워크 사용(nestat)
 
 > [참고 사이트1](https://byounghee.tistory.com/191)
 >
