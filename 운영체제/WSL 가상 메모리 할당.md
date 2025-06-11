@@ -37,7 +37,14 @@ swapFile=F:\\wsl\\image\\wsl-swap.vhdx # swap 으로 사용할 가상 공간 디
 - `.wslconfig` 수정 후에는 반드시 **WSL 전체를 재시작**해야 적용된다
 
   ```bash
+  # wsl 중지 
   wsl --shutdown
+  
+  # 모든 WSL 인스턴스 상태 보기
+  wsl --list --verbose
+  
+  # wsl 재시작 
+  wsl -d Ubuntu
   ```
 
 - swap 크기를 너무 크게 하면 디스크 공간을 많이 차지하고, I/O 병목이 생길 수 있다. 
