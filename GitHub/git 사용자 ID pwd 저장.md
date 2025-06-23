@@ -24,7 +24,6 @@
 
 ```bash
 # 1) credential.helper를 store로 설정 (운영체제 상관없이 작동)
-git config --global credential.helper manager
 git config --global credential.helper store
 
 # 2) 첫 인증 시도: 이때 자격증명이 ~/.git-credentials 파일에 저장됨
