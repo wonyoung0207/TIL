@@ -75,7 +75,18 @@ public class DefaultSearchParam {
 protected Integer pageNum;
 ```
 
+## ApiParam   vs   ApiModelProperty
 
+| 구분              | `@ApiParam`                                     | `@ApiModelProperty`                                    |
+| ----------------- | ----------------------------------------------- | ------------------------------------------------------ |
+| 제공 라이브러리   | `springfox-swagger2` (Swagger 2)                | `springfox-swagger2` (Swagger 2)                       |
+| 용도              | **메소드 파라미터 설명**                        | **DTO (모델) 필드 설명**                               |
+| 사용 위치         | Controller 메소드의 직접 파라미터               | DTO 클래스의 필드                                      |
+| Swagger UI 반영   | 메소드 파라미터 설명에 출력                     | Model schema 설명에 출력                               |
+| 내부 파싱 시점    | request parameter 매핑할 때 사용                | model schema 생성할 때 사용                            |
+| defaultValue 지원 | 있음 (`defaultValue`, `example` 등 일부 불안정) | 있음 (`example` 비교적 안정적)                         |
+| required 지원     | 있음                                            | 있음 (Swagger 문서용 표시, 실질 검증은 아님)           |
+| 실질 유효성 검증  | 안 함                                           | 안 함 (유효성 검증은 Bean Validation (@Min 등)이 담당) |
 
 ## 해결방법
 
