@@ -237,6 +237,46 @@ extend("range_decimal", {
 });
 ```
 
+##### 다국어 처리 적용 
+
+- 필드 name 을 이용해 에러 메시지 동적으로 적용할 수 있다. 
+- 또한 message 오브젝트를 이용해 정규화 결과 false 인 경우 에러 메시지를 컨트롤 할 수 있다. 
+
+```js
+// validations.js
+extend('required', {
+  validate: value => {
+    return value !== null && value !== undefined && String(value).trim() !== '';
+  },
+  message: (field) => i18n.t('validation_page.required', { _field_: field }) // false 인 경우 return 되는 메시지 (name 에 설정된 값으로 자동 메핑 해준다. ) 
+});
+
+
+// ko.json
+"validation_page" : {
+    "required": "{_field_}은(는) 필수 입니다.",
+}
+```
+
+```vue
+<validation-provider
+    :name="$t('equip_page.detector_id')"
+    rules="required|equipIdCheck"
+    v-slot="{ errors }"
+>
+    <b-form-input
+      autocomplete="off"
+      v-model="detectorInfo.equipId"
+      type="text"
+      :readonly="propType == 'update' ? true : false"
+      maxLength="40"
+    />
+    <small class="text-danger">{{ errors[0] }}</small>
+</validation-provider>
+```
+
+
+
 ## 예시
 
 ```vue
