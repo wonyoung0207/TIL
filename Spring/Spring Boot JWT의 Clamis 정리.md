@@ -40,8 +40,6 @@ import io.jsonwebtoken.Claims;
 - `Claims`는 **Map<String, Object>** 형태로 동작한다. 
 - 즉, **JWT 안에 들어 있는 데이터를 쉽게 꺼낼 수 있게 도와주는 객체**이다. 
 
-------
-
 ## 사용 예시
 
 ```java

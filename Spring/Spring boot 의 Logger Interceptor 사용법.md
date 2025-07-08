@@ -258,6 +258,43 @@
       }
       
       ```
+      
+      - 다중 intercepter 추가 
+      
+      ```java
+      @Configuration
+      public class WebMvcConfig implements WebMvcConfigurer {
+      
+          private final AuthInterceptor authInterceptor;
+          private final LoggingInterceptor loggingInterceptor;
+          private final LocaleInterceptor localeInterceptor;
+      
+          public WebMvcConfig(AuthInterceptor authInterceptor,
+                              LoggingInterceptor loggingInterceptor,
+                              LocaleInterceptor localeInterceptor) {
+              this.authInterceptor = authInterceptor;
+              this.loggingInterceptor = loggingInterceptor;
+              this.localeInterceptor = localeInterceptor;
+          }
+      
+          @Override
+          public void addInterceptors(InterceptorRegistry registry) {
+      
+              // 1. 로깅 인터셉터: 전체 요청 로깅
+              registry.addInterceptor(loggingInterceptor)
+                      .addPathPatterns("/**");
+      
+              // 2. 인증 인터셉터: /api/** 경로 보호
+              registry.addInterceptor(authInterceptor)
+                      .addPathPatterns("/api/**")
+                      .excludePathPatterns("/auth/**", "/swagger-ui/**");
+      
+              // 3. 언어 인터셉터: 특정 경로에서만 다국어 처리
+              registry.addInterceptor(localeInterceptor)
+                      .addPathPatterns("/international/**");
+          }
+      }
+      ```
    
    ---
    
@@ -305,4 +342,3 @@
           return ResponseEntity.ok(user);
       }
       ```
-   
