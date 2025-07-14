@@ -35,7 +35,7 @@ build-job:
     - ./gradlew clean build -x test
   artifacts:
     paths:
-      - build/libs/*.jar   # 빌드 결과물(JAR) 저장
+      - build/libs/*.jar   # 빌드 결과물(JAR) 저장 -> GitLab-Runner 의 vm 내부 경로 
 
 # 테스트 작업
 test-job:
