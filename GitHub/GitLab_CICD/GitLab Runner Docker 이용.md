@@ -86,7 +86,7 @@ docker exec -it gitlab-runner /bin/sh
 
 ## Docker Container 등록 방법
 
-##### 1. 단일 Docker 로 실행
+### 1. 단일 Docker 로 실행
 
 ```bash
 docker run -d --name gitlab-runner \
@@ -99,9 +99,10 @@ docker run -d --name gitlab-runner \
 - `/var/run/docker.sock`을 마운트
   -  job이 수행될 때 **Runner 내부에서 직접 도커 실행이 아니라, 외부 Docker 데몬을 호출하여 Job 컨테이너 생성**
 
-##### 2. Docker Compose 이용 실행 (여러 container 실행시 사용 추천)
+### 2. Docker Compose 이용 실행 (여러 container 실행시 사용 추천)
 
 ```bash
+#  GitLab 서버에 Runner 등록
 version: "3"
 
 services:
@@ -112,8 +113,8 @@ services:
     volumes:
       - './config:/etc/gitlab-runner'
       - '/var/run/docker.sock:/var/run/docker.sock'
+      - '/c/docker-mount:/output/build'
     command:
-      #- run
       - register
       - --non-interactive
       - --locked=false
@@ -131,13 +132,45 @@ networks:
   docker-network:
 ```
 
-##### compose 로 실행
+```yaml
+version: "3"
 
-- `up` : 해당 yml 파일 실행
+services:
+  gitlab-runner-1:
+    container_name: gitlab-runner-1
+    image: 'gitlab/gitlab-runner'
+    restart: always
+    volumes:
+      - './config:/etc/gitlab-runner'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - '/c/metabuild/backend/:/output/backend/'
+    command:
+      - run
+    environment:
+      - CI_SERVER_URL=http://[ip]:[port]
+      - REGISTRATION_TOKEN=[gitlab-runner registor token]
+    networks:
+      - docker-network
+
+networks:
+  docker-network:
+```
+
+##### docker-compose 실행
+
+- `up` : compose 로되어있는 container  실행
+- `down` : compose 로되어있는 container 삭제
 - `-d` : 백그라운드로 실행 ( 안하면 포그라운드라 계속 로그 출력되고 작업하려면 다른 편집기 켜야함 )
 
 ```bash
- docker compose -f docker-compose-register.yml up -d
+# GitLab 서버에 Runner 등록 (최초 1회)
+docker-compose -f docker-compose-register.yml up --abort-on-container-exit
+
+# 실행 
+docker-compose -f docker-compose-run.yml up -d
+
+ # 컨테이너 삭제
+docker compose -f docker-compose-register.yml down
 ```
 
 ## Build 파일 확인 
