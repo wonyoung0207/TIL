@@ -113,7 +113,7 @@ services:
     volumes:
       - './config:/etc/gitlab-runner'
       - '/var/run/docker.sock:/var/run/docker.sock'
-      - '/c/docker-mount:/output/build'
+      - '/mnt/c/docker-mount:/output/build' # windows 폴더 마운트
     command:
       - register
       - --non-interactive
