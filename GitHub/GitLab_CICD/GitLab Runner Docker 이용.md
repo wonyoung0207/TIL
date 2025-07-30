@@ -102,18 +102,18 @@ docker run -d --name gitlab-runner \
 ### 2. Docker Compose 이용 실행 (여러 container 실행시 사용 추천)
 
 ```bash
-#  GitLab 서버에 Runner 등록
+# docker-compose-register.yml
+#  docker 에 Runner 등록 
 version: "3"
 
 services:
-  gitlab-runner-1:
-    container_name: gitlab-runner-1
+  gitlab-runner-register:
+    container_name: gitlab-runner-register
     image: 'gitlab/gitlab-runner'
-    restart: always
     volumes:
       - './config:/etc/gitlab-runner'
       - '/var/run/docker.sock:/var/run/docker.sock'
-      - '/mnt/c/docker-mount:/output/build' # windows 폴더 마운트
+      - '/mnt/c/backend/:/output/backend/'
     command:
       - register
       - --non-interactive
@@ -122,6 +122,7 @@ services:
       - --executor=docker
       - --docker-image=docker:20-dind
       - --docker-volumes=/var/run/docker.sock:/var/run/docker.sock
+      - --docker-volumes=/mnt/c/backend:/output/backend
     environment:
       - CI_SERVER_URL=http://[ip]:[port]
       - REGISTRATION_TOKEN=[gitlab-runner registor token]
@@ -133,17 +134,20 @@ networks:
 ```
 
 ```yaml
+# docker-compose-run.yml
+# 등록한 Runner 를 실행 
+  
 version: "3"
 
 services:
-  gitlab-runner-1:
-    container_name: gitlab-runner-1
+  gitlab-runner-run:
+    container_name: gitlab-runner-run
     image: 'gitlab/gitlab-runner'
     restart: always
     volumes:
       - './config:/etc/gitlab-runner'
       - '/var/run/docker.sock:/var/run/docker.sock'
-      - '/c/metabuild/backend/:/output/backend/'
+      - '/mnt/c/backend/:/output/backend/'
     command:
       - run
     environment:
@@ -154,6 +158,7 @@ services:
 
 networks:
   docker-network:
+
 ```
 
 ##### docker-compose 실행
