@@ -98,10 +98,12 @@ backend-deploy:
 ##### 3. docker compose 실행 파일
 
 - job의 실행결과를 runner 의 컨테이너에 복사했다면 마운트를 이용해 원하는 경로로 파일 생성이 된다. 
-- 즉, **compose 실행시 runner 컨테이너의 특정 경로를 로컬의 특정 경로와 마운트** 해놓는다. 
+  - 즉, **compose 실행시 runner 컨테이너의 특정 경로를 로컬의 특정 경로와 마운트** 해놓는다. 
+  - GitLab Runner를 **실행(run)** 하기 위한 용도
+
 
 ```yml
-#  GitLab 서버에 Runner 등록
+#  GitLab 서버에 Runner 등록 용도
 version: "3"
 
 services:
@@ -131,26 +133,70 @@ networks:
   docker-network:
 ```
 
+```yml
+# docker container run 용도 
+version: "3"
+
+services:
+  gitlab-runner-run:
+    container_name: gitlab-runner-run
+    image: 'gitlab/gitlab-runner'
+    restart: always
+    volumes:
+      - './config:/etc/gitlab-runner'
+      - '/var/run/docker.sock:/var/run/docker.sock'
+      - '/mnt/c/metabuild/build/backend/:/output/backend/'
+      - '/mnt/c/metabuild/build/frontend/:/output/frontend/'
+    command:
+      - run
+    environment:
+      - CI_SERVER_URL=http://10.10.30.238:8980/
+      - REGISTRATION_TOKEN=glrt-ypLtGX5nK5v6paMzyPnm
+    networks:
+      - docker-network
+
+networks:
+  docker-network:
+
+```
+
 ##### 4. 로컬애서 파일 확인
 
 - 마운트된 파일을 로컬 경로에서 확인한다. 
 
 ## docker container 초기화 
 
-```
-docker stop gitlab-runner-run
-docker rm gitlab-runner-run
-docker rm gitlab-runner-register
+```bash
+# 삭제 
+docker compose -f docker-compose-run.yml down -v
+docker compose -f gitlab-runner-register.yml down -v
+
 docker rmi gitlab/gitlab-runner:latest
 ```
 
 ## Docker compose 실행
 
-```
+```bash
+# 실행 
 docker compose -f docker-compose-register.yml up -d --build
 docker compose -f docker-compose-run.yml up -d --build
 docker ps -al
 ```
+
+## 주의할점
+
+1. **컨테이너 삭제 시 볼륨이 사라지지 않음**
+
+   ```bash
+   docker rm my-container  # 볼륨은 남아있음
+   docker rm -v my-container  # Anonymous Volume만 같이 삭제
+   ```
+
+   **Named Volume은 명시적으로 지우지 않으면 계속 남아있음**
+
+   ```bash
+   docker volume rm my_volume
+   ```
 
 ## 설정파일별 역할
 
