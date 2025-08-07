@@ -3,6 +3,8 @@
 ---
 
 >[gitlab CI/CD YAML 문법 구조 Docs](https://docs.gitlab.com/ci/yaml/)
+>
+>[gitlab CI/CD 이미지별 Template](https://gitlab.com/gitlab-org/gitlab/-/tree/master/lib/gitlab/ci/templates)
 
 ##### GitLab은 CI/CD를 위한 통합 플랫폼으로서, 크게 다음과 같은 영역을 제공
 

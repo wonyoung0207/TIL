@@ -1,39 +1,67 @@
+# Docker Compose 볼륨 마운트 정리
 
+---
 
-## docker container 변경 사항 반영 방법
+>
 
-- 현재 디렉토리에 있는 `docker-compose-register.yml` 파일을 사용하려면 `-f` 옵션을 줘야 한다. 
+## 호스트와의 볼륨 마운트 필요한 이유
 
-```bash
-# container 삭제 
-docker-compose -f docker-compose-register.yml down
-docker rm gitlab-runner-register
+1. **컨테이너 간 파일 공유**
+   - Docker는 컨테이너끼리 직접 파일 시스템을 들여다보게 허용하지 않는다. 
+   - 대신, 호스트 레벨에 존재하는 **볼륨(volume)** 을 “공유 폴더”처럼 사용해서 파일을 주고받는다. 
+2. **캐시 지속성**
+   - Runner 컨테이너 자체 파일시스템에만 저장하면, 컨테이너 재시작 시 사라진다. 
+   - 볼륨으로 저장하면, Runner 컨테이너가 재시작되어도 캐시가 그대로 남아 있게된다. 
 
-# 이미지 삭제 
-docker rmi gitlab/gitlab-runner
-
-# container 생성
-docker-compose -f docker-compose-register.yml up -d --build
-
-# container 실행 
-docker-compose -f docker-compose-run.yml up -d --build
-```
-
-## runner config 파일 위치
-
-- gitlab-runner 의 container 안에 경로를 보면 config.toml 을 볼 수 있다. 
-  - 만약 compose 실행시 볼륨설정을 config 에도 했다면 wsl 이나 compose 실행 경로에 config 가 생성되어있는것을 확인할 수 있다. 
-- 주의할점
-  - docker-compose.yml 계속 실행하면 config.toml 에 컨테이너 실행시마다 config 쌓일 수 있음 
-
-```bash
-/etc/gitlab-runner/config.toml
-```
-
-## gitlab-runner 컨테이너의 빌드 파일 마운트 
+## 마운트 구조 
 
 - runner 에서 실행한 작업에 대해 빌드된 파일들을 windows 의 특정 경로로 복사하고 싶었다. 
-- 나는 다음 방법을 사용했다. 
+
+```
+┌──────────┐            ┌───────────────────┐           ┌───────────────────┐
+│   Host   │ ──(1)───▶ │ Runner Container  │ ──(2)──▶ │ Job Container     │
+│ (Docker) │           │  (/cache 마운트)  │           │  (node_modules/)  │
+└──────────┘           └───────────────────┘           └───────────────────┘
+```
+
+**(1) Host ↔ Runner Container**
+
+- `docker-compose.yml` 에 정의한 `gitlab_runner` 볼륨이 실제 호스트에 만들어진다. 
+- 이 볼륨을 Runner 컨테이너 경로로 마운트한다. 
+
+**(2) Runner Container ↔ Job Container**
+
+- Runner 설정(`config.toml`)의 `volumes = ["/cache"]` 에 따라, Job 컨테이너도 동일한 Docker 볼륨(`gitlab_runner_cache`)을 `/cache`로 마운트한다. 
+- 즉, 모든 Job 컨테이너는 같은 `/cache` 디렉토리를 보고, 데이터를 읽고 쓸 수 있다.
+
+## 파일별 볼륨 마운트 역할 
+
+1. **docker-compose.yml** 
+
+   - Host 와 Runner 컨테이너의 볼륨 설정 역할 
+   - `runner-cache` 라는 **named volume** 선언
+   - Runner 컨테이너에 `/cache` 마운트
+
+2. **config.toml**
+
+   - 
+   - Job 컨테이너에도 `/cache` 볼륨 마운트
+   - Runner에게 “캐시는 `/cache` 에서 읽고 쓰라” 고 지시
+
+3. **.gitlab-ci.yml**
+
+   ```yml
+   cache:
+     key: "$CI_PROJECT_NAME-$CI_COMMIT_REF_SLUG"
+     paths:
+       - node_modules/
+     policy: pull-push
+   ```
+
+   - Job 시작 전 `/cache/$KEY` 에서 캐시 복원 → `node_modules/` 채워지고
+   - Job 종료 후 `/cache/$KEY` 에 캐시 저장
+
+## 예제 코드 
 
 ##### 1. gitlab-ci.yml 파일 설정
 
@@ -163,53 +191,4 @@ networks:
 ##### 4. 로컬애서 파일 확인
 
 - 마운트된 파일을 로컬 경로에서 확인한다. 
-
-## docker container 초기화 
-
-```bash
-# 삭제 
-docker compose -f docker-compose-run.yml down -v
-docker compose -f gitlab-runner-register.yml down -v
-
-docker rmi gitlab/gitlab-runner:latest
-```
-
-## Docker compose 실행
-
-```bash
-# 실행 
-docker compose -f docker-compose-register.yml up -d --build
-docker compose -f docker-compose-run.yml up -d --build
-docker ps -al
-```
-
-## 주의할점
-
-1. **컨테이너 삭제 시 볼륨이 사라지지 않음**
-
-   ```bash
-   docker rm my-container  # 볼륨은 남아있음
-   docker rm -v my-container  # Anonymous Volume만 같이 삭제
-   ```
-
-   **Named Volume은 명시적으로 지우지 않으면 계속 남아있음**
-
-   ```bash
-   docker volume rm my_volume
-   ```
-
-## 설정파일별 역할
-
-1. `docker-compose.yml`의 `gitlab-runner-register` 컨테이너는 **"등록만" 수행**합니다.
-   - 이 컨테이너는 `register` 명령으로 `/etc/gitlab-runner/config.toml`을 생성할 뿐이고,
-   - 실질적인 **Job 실행 시점**에는 `config.toml`에 있는 `[[runners.docker.volumes]]`가 적용됩니다.
-2. 흐름
-   1. `gitlab-runner-register` 컨테이너 → `register` 명령 → `config.toml` 생성
-   2. `config.toml` 안의 `volumes = [...]` 설정은 이후 모든 CI Job에 **자동 반영**
-   3. 따라서 등록 시 `--docker-volumes`는 최소한만 적어도 되고, 핵심은 `config.toml`
-
-| 구성 요소                                   | 역할                                               | 설명                                     |
-| ------------------------------------------- | -------------------------------------------------- | ---------------------------------------- |
-| `docker-compose.yml`에서 `--docker-volumes` | 등록 시 컨테이너 안에 어떤 볼륨 설정을 넣을지 지정 | 즉시 사용됨 (예: `/var/run/docker.sock`) |
-| `config.toml`에서 `runners.docker.volumes`  | **CI Job 실행 시 마운트**할 경로 지정              | **이 설정이 실제 빌드 환경에서 사용됨**  |
 
