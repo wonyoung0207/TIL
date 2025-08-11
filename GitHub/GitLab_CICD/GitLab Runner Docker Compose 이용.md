@@ -101,44 +101,72 @@ docker run -d --name gitlab-runner \
 
 ### 2. Docker Compose 이용 실행 (여러 container 실행시 사용 추천)
 
+```toml
+concurrent = 4
+check_interval = 0
+connection_max_age = "15m0s"
+shutdown_timeout = 0
+
+[session_server]
+  session_timeout = 1800
+
+[[runners]]
+  name = "docker-compose-runner"
+  url = "http://[Your IP]"
+  id = 30
+  token = "[Gitlab Runner TOken]"
+  token_obtained_at = 2025-07-28T00:02:23Z
+  token_expires_at = 0001-01-01T00:00:00Z
+  executor = "docker"
+  cache_dir   = "/cache"     # ← 캐시 저장/복원 디렉토리 지정
+  [runners.cache]
+    Type = "directory"
+    Path = "/cache"
+    MaxUploadedArchiveSize = 0
+    [runners.cache.s3]
+    [runners.cache.gcs]
+  [runners.docker] # Job Container 설정
+    tls_verify   = false
+    image        = "alpine:3.19"
+    privileged   = true
+    volumes      = [
+      "/var/run/docker.sock:/var/run/docker.sock",
+      "/home/meta/git-runner/runner-cache:/cache",        	# Job 컨테이너 캐시 전용 볼륨 마운트(로컬호스트와 매핑)
+      "/mnt/c/metabuild/build/backend:/output/backend",		# build 파일 마운트  
+      "/mnt/c/metabuild/build/frontend:/output/frontend"
+    ]
+    shm_size     = 0
+```
+
 ```bash
 # docker-compose-register.yml
 #  docker 에 Runner 등록 
-version: "3"
-
 services:
   gitlab-runner-register:
     container_name: gitlab-runner-register
-    image: 'gitlab/gitlab-runner'
-    volumes:
-      - './config:/etc/gitlab-runner'
-      - '/var/run/docker.sock:/var/run/docker.sock'
-      - '/mnt/c/backend/:/output/backend/'
-    command:
-      - register
-      - --non-interactive
-      - --locked=false
-      - --name=p1
-      - --executor=docker
-      - --docker-image=docker:20-dind
-      - --docker-volumes=/var/run/docker.sock:/var/run/docker.sock
-      - --docker-volumes=/mnt/c/backend:/output/backend
+    image: gitlab/gitlab-runner:latest
+    restart: "no"
+    volumes: # Host 와 runner 컨테이너 간 연결 
+      - './config:/etc/gitlab-runner'               # Runner 설정 파일
+      - '/var/run/docker.sock:/var/run/docker.sock' # Docker-in-Docker
+    command: 
+      gitlab-runner register
+      --non-interactive
+      --url http://[Your Ip]
+      --registration-token $REGISTRATION_TOKEN
+      --executor docker
+      --docker-image alpine:3.19
+      --locked=false
+      --name p2
+      --docker-volumes /var/run/docker.sock:/var/run/docker.sock
+      --docker-volumes /cache                    # 캐시 경로(실제 바인드는 실행용 compose에서)
     environment:
-      - CI_SERVER_URL=http://[ip]:[port]
-      - REGISTRATION_TOKEN=[gitlab-runner registor token]
-    networks:
-      - docker-network
-
-networks:
-  docker-network:
+      - REGISTRATION_TOKEN=[Gitlab Runner Token]
 ```
 
 ```yaml
 # docker-compose-run.yml
 # 등록한 Runner 를 실행 
-  
-version: "3"
-
 services:
   gitlab-runner-run:
     container_name: gitlab-runner-run
@@ -147,18 +175,9 @@ services:
     volumes:
       - './config:/etc/gitlab-runner'
       - '/var/run/docker.sock:/var/run/docker.sock'
-      - '/mnt/c/backend/:/output/backend/'
+      - './runner-cache:/cache'                       # 캐시 전용 볼륨 (호스트 - Runner 컨테이너 볼륨 마운트)
     command:
       - run
-    environment:
-      - CI_SERVER_URL=http://[ip]:[port]
-      - REGISTRATION_TOKEN=[gitlab-runner registor token]
-    networks:
-      - docker-network
-
-networks:
-  docker-network:
-
 ```
 
 ##### docker-compose 실행
