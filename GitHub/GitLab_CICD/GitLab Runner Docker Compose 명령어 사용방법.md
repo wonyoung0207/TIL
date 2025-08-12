@@ -6,8 +6,11 @@
 
 ```bash
 # docker compose 삭제 
-docker compose -f docker-compose-run.yml down -v
-docker compose -f docker-compose-register.yml down -v
+docker compose -f docker-compose-run.yml down -v 
+docker compose -f docker-compose-register.yml down -v 
+
+# 볼륨 정리
+docker volume prune -f
 
 # 컨테이너 삭제 (볼륨 삭제 안됨)
 docker rm gitlab-runner-register
@@ -18,8 +21,8 @@ docker rmi gitlab/gitlab-runner:latest
 # docker compose 이용 container 생성
 # register : Gitlab runner 와 연결하기 위해 필요 
 # run: runner 컨테이너 실행 
-docker compose -f docker-compose-register.yml up -d --build 
-docker compose -f docker-compose-run.yml up -d --build 
+docker compose -f docker-compose-register.yml up -d
+docker compose -f docker-compose-run.yml up -d
 ```
 
 ## runner config 파일 위치

@@ -35,7 +35,7 @@
   - 작업별로 생성되어 GitLab에 저장되며 다운로드할 수 있습니다.
 - **캐시 **
   - **GitLab Runner가 설치된 위치에 저장된다.** .
-  - `cache:`는 **잡이 끝난 뒤** 러너가 `frontend/node_modules/`를 tar로 묶어 **러너의 캐시 디렉터리**(기본 `/cache`)에 저장한다. 
+  - `cache:`는 **잡이 끝난 뒤** 러너가 `frontend/node_modules/`를 tar로 묶어 **Job container의 캐시 디렉터리**(기본 `/cache`)에 저장한다. 
   - 캐시 작업(Push/Pull)은 GitLab Runner가 처리함
 
 ```
@@ -92,7 +92,11 @@ CI Job 컨테이너 (node:14.17-alpine) /cache
 
    - gitlab runner 와 연결하기 위한 파일  
 
-   - config.toml 을 볼륨 마운트 해준다. 
+   - Host 와 runner 컨테이너 간 연결 볼륨을 관리한다. 
+
+   - 만약 gitlab-runner 컨테이너에서 cache 를 사용하려면 여기에서 Host-runner container 간 볼륨마운트 설정을 해주면 된다. 
+
+   - `docker-volumes` 을 이용해 config.toml 에 직접 세팅해줄수도 있다. 
 
      ```yml
      services:
@@ -102,7 +106,7 @@ CI Job 컨테이너 (node:14.17-alpine) /cache
          restart: "no"
          volumes: # Host 와 runner 컨테이너 간 연결 
            - './config:/etc/gitlab-runner'               # Runner 설정 파일
-           - '/var/run/docker.sock:/var/run/docker.sock' # Docker-in-Docker
+           - '/var/run/docker.sock:/var/run/docker.sock' 
          command: 
            gitlab-runner register
            --non-interactive
@@ -113,7 +117,6 @@ CI Job 컨테이너 (node:14.17-alpine) /cache
            --locked=false
            --name p2
            --docker-volumes /var/run/docker.sock:/var/run/docker.sock
-           --docker-volumes /cache                    # 캐시 경로(실제 바인드는 실행용 compose에서)
          environment:
            - REGISTRATION_TOKEN=[runner Token]
      ```
@@ -133,7 +136,6 @@ CI Job 컨테이너 (node:14.17-alpine) /cache
          volumes:
            - './config:/etc/gitlab-runner'
            - '/var/run/docker.sock:/var/run/docker.sock'
-           - './runner-cache:/cache'                       # 캐시 전용 볼륨 (호스트 - runner 볼륨 마운트)
          command:
            - run
      ```
