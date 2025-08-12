@@ -466,8 +466,8 @@ services:
     command: 
       gitlab-runner register
       --non-interactive
-      --url http://10.10.30.238:8980/
-      --registration-token glrt-ypLtGX5nK5v6paMzyPnm
+      --url http://[IP:Port]/
+      --registration-token [token]
       --executor docker
       --docker-image alpine:3.19
       --locked=false
