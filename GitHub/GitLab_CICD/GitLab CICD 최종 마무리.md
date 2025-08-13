@@ -1,4 +1,7 @@
-## gitlab-ci.yml
+## .gitlab-ci.yml
+
+- repository 의 가장 최상단에 있는 파일로, gitlab runner 로 전달할 명령어를 설정하는 파일
+- staging 의 순서에 따라 Job 이 진행된다. 
 
 ```yml
 # 파이프라인 단계 정의
