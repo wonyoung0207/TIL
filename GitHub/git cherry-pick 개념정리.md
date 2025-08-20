@@ -45,6 +45,7 @@ git cherry-pick <commit-hash>
 
       ```bash
       git log -n 5 # 위에 5개만 봄
+      git log --oneline # 간단버전: 해쉬 및 text내용만 봄
       
       # commit 해시 
       commit 54da1dsadfkjjsdjflsdkjf
@@ -69,6 +70,9 @@ git cherry-pick <commit-hash>
 
       ```bash
       git cherry-pick 54da1dsadfkjjsdjflsdkjf
+      
+      # 연속 범위면: (abc1234 이후 ~ 현재 HEAD까지) 예시
+      git cherry-pick abc1234..HEAD
       ```
 
 4. 기존 커밋 삭제 
@@ -83,7 +87,10 @@ git cherry-pick <commit-hash>
 
       ```bash
       git reset --hard <commit-hash>
+      
+      # reset 후 push --force 해야 remote 에 있던 기록도 사라짐 
+      git push origin main --force-with-lease
       ```
-
+      
       
 
