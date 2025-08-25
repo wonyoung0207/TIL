@@ -98,8 +98,14 @@ docker compose -f docker-compose-run.yml down -v --remove-orphans
 
 - GitLab Runner 컨테이너의 설정값
 - `docker-compose-run.yml` 실행시 ./config/config.toml` 설정 기반으로 Runner 컨테이너가 실행됩니다.
-- **잡 컨테이너 마운트**는 여기서 제어합니다.
+- 병렬처리 
+  - PipeLine 에서 frontend, backend 에 대한 처리를 병렬처리로 빠르게 하기 위해 `concurrent` 설정을 넣었습니다. 
+  - 해당 설정으로 인해 더 빠르게 Build 결과를 낼 수 있습니다. 
+
+- **잡 컨테이너 마운트**는 [runners.docker] 에서 제어합니다.
   - [runners.docker] : 잡 컨테이너 설정값 
+  - volumes 설정에 대한 경로는 절대경로만 사용 가능 합니다. 
+    - 상대경로로 사용하면 기준이 틀려질 수 있습니다!
 
 > **중요**: 등록 명령에서 `--docker-volumes /cache`처럼 **컨테이너 경로만** 주지 마세요(익명/해시 볼륨 생성 원인).
 
@@ -112,6 +118,13 @@ docker compose -f docker-compose-run.yml down -v --remove-orphans
 - Stage에 따라 Job 이 실행되고 이때 GitLab Runner 가 익명 컨테이너를 별도 생산하여 Script 내용들을 실행한다. 
   - 이렇게 실행된 익명 컨테이너를 Job Container 라고 생각하면 됩니다. 
 
+##### 변수 
+
+- GitLab 제공 변수 말고도 보안을 위해 `GitLab Variables` 를 사용해 변수를 처리합니다. 
+- 예를들어, Telegram noti 에 필요한 token정보, Gitlab API 사용을 위한 Token 정보가 있습니다. 
+
+<img src="./images/gitlab-ci-variables목록.png" width="800">
+
 
 ##### 캐시 
 
@@ -120,6 +133,18 @@ docker compose -f docker-compose-run.yml down -v --remove-orphans
 - 저장 경로
   - 캐시는 로컬의 `/home/git-runner/runner-cache` 경로에 캐시값을 저장하고 불러와 사용합니다. 
   - 캐시 ID는 package-lock.json 의 해시값으로 만들어지고 관리됩니다. 
+
+##### 리뷰어 정보
+
+- Gitlab API 를 사용해 MR 리뷰어 대상 정보를 가져옵니다. 
+  - Gitlab API 이용하기 위해서는 권한이 있는 Personal Access Token 이 필요합니다. 
+
+- `프로필 -> Preferences -> Access Token` 에서 발급 받을 수 있다. 
+
+##### 주의할점
+
+- 등록 시 Visiblity 와 Flags 이다. 
+- 해당 설정으로 인해 CI/CD 동작시 값이 제대로 들어가지 않을 수 있다. 
 
 ##### 동작 파이프 라인 
 
