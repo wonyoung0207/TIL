@@ -20,7 +20,6 @@
 
 4. 라인 지우기 
 
-   - Ctrl + d
    - Ctrl + x 도 되는데, 이건 잘라내기임 
 
 5. 한줄씩 이동 
@@ -55,3 +54,7 @@
    1. Extensions 에서 plug-in 으로 'turbo console log' 인스톨
    2. 기존 shorcut key : 'ctrl + alt + L'
       1. 사용하고 싶은 shorcut key 로 바꿔서 이용 
+
+10. 같은 단어 선택 
+
+    1. `Ctrl + d` 계속 누를수록 밑으로 같은 변수값 찾아서 선택됨 
