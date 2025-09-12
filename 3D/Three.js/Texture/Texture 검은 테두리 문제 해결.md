@@ -54,7 +54,7 @@
 | **`map`**      | 오브젝트의 표면 색상/패턴을 정의하는 텍스처.  일반적으로 RGB 값을 사용하며, diffuse texture 라고도 불림. |
 | **`alphaMap`** | 오브젝트의 **투명도(알파 값)** 를 제어하는 텍스처.  RGB 색상은 무시되고, **흑백 값(밝기)** 으로 투명도가 결정됨.  흰색 = 불투명 / 검은색 = 투명 / 회색 = 반투명 |
 
-<img src="./images/texture테두리문제해결0.png" width="500">
+<img src="../images/texture테두리문제해결0.png" width="500">
 
 ##### 2. `alphaTest` 적용 
 
@@ -77,7 +77,7 @@ const material = new THREE.MeshStandardMaterial({
 })
 ```
 
-<img src="./images/texture테두리문제해결_alphaTest적용.png" width="500">
+<img src="../images/texture테두리문제해결_alphaTest적용.png" width="500">
 
 ##### 3. `depthTest: false`
 
@@ -92,7 +92,7 @@ const material = new THREE.MeshStandardMaterial({
 - 결론 
   - 사용 x -> 깊이 정보가 무시됨 
 
-<img src="./images/texture테두리문제해결1.png" width="500">
+<img src="../images/texture테두리문제해결1.png" width="500">
 
 ##### 4. `depthWrite: false`
 
@@ -127,4 +127,4 @@ const galaxyPoint = usePoint(
 )
 ```
 
-<img src="./images/texture테두리문제해결2.png" width="500">
+<img src="../images/texture테두리문제해결2.png" width="500">

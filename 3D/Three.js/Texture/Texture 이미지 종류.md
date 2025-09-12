@@ -4,7 +4,7 @@
 
 >[Poly Haven 사이트(Texture 무료 이용 사이트)](https://polyhaven.com/a/forrest_ground_01)
 
-<img src="./images/Texture이미지종류.png" width="300">
+<img src="../images/Texture이미지종류.png" width="300">
 
 ## 텍스처 종류별 역할 정리
 
