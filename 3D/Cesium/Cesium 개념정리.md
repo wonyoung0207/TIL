@@ -14,7 +14,7 @@
 
 ## Cesium 이란
 
-<img src="./images/Cesium이란.avif" width="600">
+<img src="../images/Cesium이란.avif" width="600">
 
 1. [공식 홈페이지의 Cesium 소개](https://cesium.com/learn/cesium-foundations/)
 2. Cesium은 WebGL을 기반으로 한 오픈 소스 플랫폼으로, 브라우저에서 고성능 3D 지리 정보 시각화를 가능하게 한다. 

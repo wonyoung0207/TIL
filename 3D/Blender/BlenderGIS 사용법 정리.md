@@ -19,9 +19,9 @@
 
 1. blender 의 File 목록 클릭 -> Preferences -> Add-Ons -> Install an add-on -> Blender GIS Zip 선택 후 install 
 
-<img src="./images/blender에gis추가0.png" width="700">
+<img src="../images/blender에gis추가0.png" width="700">
 
-<img src="./images/blender에gis추가1.png" width="700">
+<img src="../images/blender에gis추가1.png" width="700">
 
 ## 3. GIS 이용해 Map 추가 
 
@@ -32,33 +32,33 @@
    2. 단축키 `E * 3` 
       1. 해당지역 Fix
 
-<img src="./images/blender에gis추가3.png" width="700">
+<img src="../images/blender에gis추가3.png" width="700">
 
-<img src="./images/blender에gis추가2.png" width="700">
+<img src="../images/blender에gis추가2.png" width="700">
 
-<img src="./images/blender에gis추가4.png" width="700">
+<img src="../images/blender에gis추가4.png" width="700">
 
 ## 4. 지형높이 추가 
 
 1. Layout 탭 선택 -> gis -> Web geodata -> Get elevation (SRTM) -> Marine-geo.org GMRT 선택 
    1. get elevation 의 다른 Server는 API Key가 필요함 
 
-<img src="./images/gis에 지형추가1.png" width="700">
+<img src="../images/gis에 지형추가1.png" width="700">
 
-<img src="./images/gis에 지형추가2.png" width="400">
+<img src="../images/gis에 지형추가2.png" width="400">
 
-<img src="./images/blender에gis추가4.png" width="800">
+<img src="../images/blender에gis추가4.png" width="800">
 
 ## 5-1. Building 및 road 추가 
 
 1. Layout 탭 선택 -> gis -> Web geodata -> Get OSM -> Ways탭 -> 필요 요소 선택 후 OK 
    1. 여기서 `Elevation from object` 을 선택해야 **지형**에 맞게 요소가 추가된다. 
 
-<img src="./images/gis에 building추가1.png" width="800">
+<img src="../images/gis에 building추가1.png" width="800">
 
-<img src="./images/gis에 building추가2.png" width="400">
+<img src="../images/gis에 building추가2.png" width="400">
 
-<img src="./images/gis에 building추가3.png" width="800">
+<img src="../images/gis에 building추가3.png" width="800">
 
 ## 5-2 `too large extend` Error 
 
@@ -80,13 +80,13 @@
 
 1. 건물 object 선택 -> 오른쪽 상단의 `viewport shading` -> Cavity -> type을 screen 으로 변경 
 
-<img src="./images/gis에 building추가4.png" width="500">
+<img src="../images/gis에 building추가4.png" width="500">
 
 ### 개별 건물 높이 조절 
 
 1. 건물 object 선택 -> 편집모드 단축키 `Tab` -> Mode를 `Face Mode` 로 변경 -> 원하는 건물 표면 선택 후 조절 
 
-<img src="./images/gis에 building편집1.png" width="800">
+<img src="../images/gis에 building편집1.png" width="800">
 
 ## 7. 좌표계 설정 
 
@@ -116,9 +116,9 @@
 1. BlenderGIS -> Preferences -> Spatial Reference Systems -> Add -> Search체크 -> Query 에 추가할 좌표계 입력 (ex. EPSG:4326)
 2. 새 좌표계 추가된것은 BaseMap => CRS에서 확인 가능 
 
-<img src="./images/gis에 새로운 좌표계 추가1.png" width="700">
+<img src="../images/gis에 새로운 좌표계 추가1.png" width="700">
 
-<img src="./images/gis에 새로운 좌표계 추가2.png" width="700">
+<img src="../images/gis에 새로운 좌표계 추가2.png" width="700">
 
 ### GDAL연결 
 

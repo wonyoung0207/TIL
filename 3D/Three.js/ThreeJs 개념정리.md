@@ -125,7 +125,7 @@ scene.add(map);
 3. 우리나라
    1. 북위 37, 동경 127
 
-<img src="./images/위도,경도.png" width="700">
+<img src="../images/위도,경도.png" width="700">
 
 ## 3. 좌표체계 
 
@@ -244,11 +244,11 @@ scene.add(map);
 
 - bingMap 이용 
 
-  <img src="./images/지도_건물_도로연결_bingmap.png" width="800">
+  <img src="../images/지도_건물_도로연결_bingmap.png" width="800">
 
 - StreetMap 이용 
 
-  <img src="./images/지도_건물_도로연결_streetmap.png" width="800">
+  <img src="../images/지도_건물_도로연결_streetmap.png" width="800">
 
 ### 필요 과정 
 
@@ -383,7 +383,7 @@ scene.add(map);
 
    2. 예를들어, 극장 무대를 생각하면 쉽다. 극장에서 주인공만을 비출때 사용되는 빛이라고 생각하면 된다. 
 
-      <img src="./images/카메라시점과빛시점동일.png" width="700">
+      <img src="../images/카메라시점과빛시점동일.png" width="700">
 
 2. 예시
 
