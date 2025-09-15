@@ -32,6 +32,52 @@ mouse.x =  (event.clientX / window.innerWidth)  * 2 - 1;
 mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
 ```
 
+##  Raycaster 동작 원리
+
+- **시작점(origin)과 광선의 방향(direction)을 정해** 광선 객체를 생성한다.
+
+1. **Ray(광선) 정의**
+
+   - 시작점(origin) + 방향(direction)으로 무한 직선을 만든다. 
+
+   - 예제 코드:
+
+     ```js
+     const rayOrigin = new THREE.Vector3(-3, 0, 0) // 시작 좌표
+     const rayDirection = new THREE.Vector3(1, 0, 0) // x축 방향
+     rayDirection.normalize()
+     raycaster.set(rayOrigin, rayDirection)
+     ```
+
+   -  이 경우 `( -3, 0, 0 )` 에서 시작해서 **+X 방향**으로 뻗어나가는 광선이 된다. 
+
+2. **광선 발사**
+
+   - `raycaster.intersectObjects(objectsToTest)` 를 호출하면, **지정한 객체 배열과 교차하는지 검사**한다. 
+   - 교차점이 있으면 `intersects` 배열에 정보(거리, 좌표, 맞은 객체)가 들어간다. 
+
+3. 즉, 
+
+   - **Raycaster는** 시작점 + 방향으로 무한히 뻗는 광선을 만들어, 지정한 객체와 충돌 여부를 검사함.
+   - **normalize()는** 방향 벡터의 길이를 항상 1로 만들어 계산 안정성을 확보하는 단계.
+   - 즉, “광선을 제대로 쏘려면 방향 벡터를 단위 벡터로 만들어야 한다”는 뜻.
+
+## `normalize()` 의 의미
+
+- `rayDirection` 은 **방향을 나타내는 벡터**
+- 하지만 Raycaster 내부 계산은 “방향”만 필요하지 “길이”는 중요하지 않다. 
+- 예:
+  - `(10, 0, 0)` 도 +X 방향
+  - `(1, 0, 0)` 도 +X 방향
+- 하지만 길이가 다르면 **계산할 때 스케일링 문제가 생길 수 있음**
+- 그래서 `normalize()` 로 벡터의 길이를 항상 `1`로 맞춰주는게 일반적이다. 
+  - 즉, `rayDirection.normalize()` = “벡터를 방향만 유지한 채 길이 1로 만들어라"
+
+##### normalize() 를 안 하면?
+
+- 길이가 큰 벡터일 경우 → 거리 계산 시 불필요하게 곱해져 교차 지점 위치가 잘못 나올 수 있음
+- 길이가 작은 벡터일 경우 → 광선이 사실상 `0`에 가까워져서 계산 오류 가능
+
 ## 사용 순서
 
 1. **마우스 좌표 → NDC 변환**
