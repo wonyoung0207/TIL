@@ -30,6 +30,13 @@
 ```js
 mouse.x =  (event.clientX / window.innerWidth)  * 2 - 1;
 mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+// 만약 canvas가 전체화면이 아니라 특정 태그 안이라면 
+canvasRange = renderer.domElement.getBoundingClientRect()
+
+mouse.x = ((event.clientX - canvasRange.left) / canvasRange.width) * 2 - 1
+mouse.y = -((event.clientY - canvasRange.top) / canvasRange.height) * 2 + 1
+
 ```
 
 ##  Raycaster 동작 원리
