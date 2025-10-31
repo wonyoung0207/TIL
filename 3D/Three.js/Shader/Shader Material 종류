@@ -1,0 +1,63 @@
+# Shader Material 종류
+
+---
+
+>
+
+| 구분                    | `ShaderMaterial`                                             | `RawShaderMaterial`                      |
+| :---------------------- | ------------------------------------------------------------ | ---------------------------------------- |
+| Three.js 내장 상수/변수 | 자동 포함 (`projectionMatrix`, `modelViewMatrix`, `position` 등) | 직접 선언해야 함                         |
+| GLSL 버전               | 기본적으로 `#version 100` (WebGL1 스타일)                    | 직접 `#version 300 es` 등 명시 가능      |
+| 셰이더 코드 편의성      | Three.js에서 필요한 변수 자동 제공                           | 완전한 raw GLSL, 완전 수동 제어          |
+| 일반 용도               | 대부분의 커스텀 셰이더                                       | 고급/저수준 WebGL 실험, 완전 수동 셰이더 |
+| 코드 작성량             | 짧고 간결                                                    | 길고 복잡 (기초부터 다 작성해야 함)      |
+
+## 차이점 
+
+- `ShaderMaterial` : Three.js가 **기본 변수 자동 제공**
+- `RawShaderMaterial` : 수동제어 
+
+```glsl
+// ShaderMaterial (자동 추가)
+const material = new THREE.ShaderMaterial({
+  vertexShader: `
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  `,
+  fragmentShader: `
+    varying vec2 vUv;
+    void main() {
+      gl_FragColor = vec4(vUv, 0.0, 1.0);
+    }
+  `
+})
+    
+    
+// RawShaderMaterial (수동제어)
+const material = new THREE.RawShaderMaterial({
+  vertexShader: `
+    precision mediump float;
+    attribute vec3 position;
+    uniform mat4 projectionMatrix;
+    uniform mat4 modelViewMatrix;
+
+    void main() {
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  `,
+  fragmentShader: `
+    precision mediump float;
+    void main() {
+      gl_FragColor = vec4(1.0, 0.5, 0.2, 1.0);
+    }
+  `
+})
+
+```
+
+- 4여기서 사용한 변수들projectionMatrix`, `modelViewMatrix`, `position`, `uv`  직접 선언하지 않아도 자동으로 제공
+- 여기서는 `attribute`, `uniform`, `precision` 전부 **직접 선언해**
+
