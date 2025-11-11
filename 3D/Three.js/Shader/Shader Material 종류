@@ -58,6 +58,6 @@ const material = new THREE.RawShaderMaterial({
 
 ```
 
-- 4여기서 사용한 변수들projectionMatrix`, `modelViewMatrix`, `position`, `uv`  직접 선언하지 않아도 자동으로 제공
-- 여기서는 `attribute`, `uniform`, `precision` 전부 **직접 선언해**
+- 여기서 사용한 변수들 (`projectionMatrix`, `modelViewMatrix`, `position`, `uv` ) 직접 선언하지 않아도 자동으로 제공
+- `attribute`, `uniform`, `precision` 속성들만 **직접 선언**해 이용 가능 
 
