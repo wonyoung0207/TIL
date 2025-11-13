@@ -2,6 +2,39 @@
 
 
 
+# Vertex Shader 개념정리
+
+---
+
+>
+
+## mesh 와 Vertex Shader관계 
+
+- material이 geometry를 아는 게 아니라, draw 호출 시 렌더러가 geometry의 버퍼를 셰이더 attribute에 꽂아준다. 
+
+  - 즉, shader 는 material 에 붙지만 shader의 계산은 mesh 가 만들어지고 나서 호출되고 랜더러가 geometry의 정점 정보를 shader와 연결해준다. 
+
+  ```ts
+  geometry = new THREE.PlaneGeometry(2, 2, 512, 512)
+  
+  material = new THREE.ShaderMaterial({
+      vertexShader: glslVertexShader,
+      fragmentShader: glslFragmentShader,
+      uniforms:
+      {
+          uTime: { value: 0 },
+      }, 
+      // wireframe: true 
+  })
+  
+  oceanMesh = useCreateMesh(
+      geometry,
+      material,
+  )
+  ```
+
+  
+
 ## Vertex Shader 구조
 
 1. 세 개(`projectionMatrix`, `viewMatrix`, `modelMatrix`) 의 구조로 되어있다. 
@@ -34,3 +67,39 @@ screen-space position
 ```glsl
 gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1.0);
 ```
+
+## 정점과 Vertex Shader 와의 관계
+
+- Vertex Shader 는 각 정점마다 한번씩 호출되고 실행된다. 
+
+  - 즉, plane Geometry 가 10개의 정점으로 구성되어있다면 총 10번의 vertex Shader 가 호출되는것이다. 
+
+- 예를들어, 파도 모양을 만드는 vertex Shader 가 있다고 하자. 
+
+  - 여기서 파도의 높낮이는 elevation 값에 의해 정해진다. 
+    - modelPosition 은 현재 정점 하나를 **월드(World) 공간**으로 옮긴 결과이다. 
+    - `xyz(로컬 공간에서 넘어온 하나의 정점)`  + `modelMatrix(메시에 적용된 이동/회전/스케일)` 된 값이다. 
+  - `elevation` 값은 geometry의 정점 갯수 만큼 호출되어 계산된다. 
+    - 즉, 각각의 정점마다 다른 `elevation` 이 적용되는 것이다. 
+
+  ```glsl
+  void main()
+  {
+      vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+  
+      // 파도 Big 물결 모양  
+      float elevation = sin(modelPosition.x * uBigWavesFrequency.x + uTime * uBigWavesSpeed) *
+                        sin(modelPosition.z * uBigWavesFrequency.y + uTime * uBigWavesSpeed) *
+                        uBigWavesElevation;
+  
+  
+      modelPosition.y += elevation;
+  
+      vec4 viewPosition = viewMatrix * modelPosition;
+      vec4 projectedPosition = projectionMatrix * viewPosition;
+  
+      gl_Position = projectedPosition;
+  
+      vUv = uv;
+      vElevation = elevation;
+  }
