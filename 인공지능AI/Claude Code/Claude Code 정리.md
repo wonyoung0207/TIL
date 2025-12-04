@@ -6,7 +6,7 @@
 >
 >[클로드 코드 설치 방법 - 유튜브 챗과장](https://www.youtube.com/watch?v=J0IWxZXczxs)
 >
->[클로드 설치 방법](https://goddaehee.tistory.com/370)
+>[클로드 설치 방법 - 갓대희](https://goddaehee.tistory.com/370)
 >
 >[https://www.youtube.com/watch?v=xtvynO05AoA](클로드 사용방법 - 유튜브 챗과장)
 >
