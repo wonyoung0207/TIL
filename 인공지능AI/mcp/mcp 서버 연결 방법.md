@@ -10,11 +10,8 @@
 2. 클로드 코드 설정에 MCP 설정 추가 
    1. 리눅스
       1. `~/.config/claude/code.json` 경로에서 서버 등록
-      2. `~/.claude/settings.json` 또는 `~/.claude.json`
-
    2. window 
-      1. `%USERPROFILE%\.config\claude\code.json`
-
+      1. `C:/Users/userName/.claude/settings.json` 
 3. claude code 실행 → 자동 감지
 
 - MCP 서버는 **독립 실행형 작은 프로그램(서버)** 형태임
@@ -64,6 +61,7 @@ claude mcp add --transport http context7 https://mcp.context7.com/mcp
 ##### 서버 설치 
 
 ```cmd
+# npm 이용 
 npm install -g mcp-server-postgres
 
 # or @smithery 이용 
@@ -94,16 +92,26 @@ npx -y @smithery/cli@latest run mcp-server-postgres
 ##### 서버 설치 
 
 ```cmd
+# node 이용 
 npm install -g @modelcontextprotocol/server-github
+
+# Docker 이용 
+claude mcp add github -e GITHUB_PERSONAL_ACCESS_TOKEN=YOUR_GITHUB_PAT -- docker run -i --rm -e GITHUB_PERSONAL_ACCESS_TOKEN ghcr.io/github/github-mcp-server
 ```
 
 ##### 서버연결
 
+<img src="./images/claudeCode_github_local_server이용.png" width="600">
+
 ```json
+// claude code 로 서버 연결 
+claude mcp add github -e GITHUB_TOKEN=YOUR_GITHUB_PAT -- npx -y @modelcontextprotocol/server-github
+
+// claude desktop 이용 
 {
   "mcpServers": {
     "github": {
-      "command": "mcp-github",
+      "command": "mcp-server-github",
       "args": [
         "--token", "GITHUB_PERSONAL_ACCESS_TOKEN"
       ]
