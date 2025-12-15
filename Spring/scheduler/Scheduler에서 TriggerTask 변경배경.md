@@ -40,12 +40,13 @@ public class SimpleScheduledTask {
 }
 ```
 
-## `TriggerTask` 로 변경한 이유
+## `Trigger 기반 스케줄링` 으로 변경한 이유
 
 - **요구사항 변화:**
   - 새로운 스케줄 실행 시마다 **DB에서 최신 설정 값을 읽어** 매번 다른 `delay`(또는 interval)로 실행 주기를 조정해야 함.
 - **TriggerTask 특징:**
   - `TriggerTask` 는 **매 실행 시점마다 다음 실행 시각을 동적으로 계산** 가능
+    - **다음 실행 시점을 “코드로 직접 계산”해서 결정하는 방식**
   - DB 조회 결과나 로직에 따라 다음 실행 간격을 자유롭게 변경 가능
   - `TaskScheduler` 기반이므로, `fixedDelay` 와 동일하게 실행 중에만 스레드 점유.
     - 다음 예약 시에는 스레드 점유하지 않음
@@ -62,45 +63,99 @@ public class SimpleScheduledTask {
 - 요약:
   - DB 값 기반의 **실시간 주기 변경**이 필요하므로 고정값 기반인 `@Scheduled` 대신 **TriggerTask + SchedulingConfigurer** 구조로 전환.
 
-##### `TriggerTask` 예제 
+## `TriggerTask` 예제 
+
+##### 1. 스케쥴러 Config 설정
 
 ```java
-import org.springframework.context.annotation.Configuration;
-import org.springframework.scheduling.annotation.EnableScheduling;
-import org.springframework.scheduling.annotation.SchedulingConfigurer;
-import org.springframework.scheduling.config.ScheduledTaskRegistrar;
-
-import java.time.Instant;
-import java.util.Date;
-
 @Configuration
 @EnableScheduling
-public class DynamicTriggerTask implements SchedulingConfigurer {
+public class SchedulerConfig {
 
+    /** 기존 @Scheduled 전용 스케줄러 */
+    @Bean("defaultTaskScheduler")
+    @Primary // @Scheduled가 기본적으로 이걸 사용
+    public ThreadPoolTaskScheduler defaultTaskScheduler() {
+        ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
+        scheduler.setPoolSize(1);
+        scheduler.setThreadNamePrefix("default-scheduler");
+        scheduler.initialize();
+        return scheduler;
+    }
+
+    /** 동적 TriggerTask 전용 스케줄러 ( FileVerify Scheduler 전용 ) */
+    @Bean("fileverifyScheduler")
+    public ThreadPoolTaskScheduler fileverifyScheduler() {
+        ThreadPoolTaskScheduler scheduler = new ThreadPoolTaskScheduler();
+        scheduler.setPoolSize(2);
+        scheduler.setThreadNamePrefix("fileverifyScheduler");
+        scheduler.initialize();
+        return scheduler;
+    }
+}
+```
+
+##### 2. 스케쥴러 사용 Service
+
+```java
+@Service
+public class FileVerifySchedulerServiceImpl {
+
+    private final ThreadPoolTaskScheduler scheduler;
+    private final Map<String, ScheduledFuture<?>> scheduledTasks = new ConcurrentHashMap<>();
+    
+    // 생성자 
+    @Autowired
+    public FileVerifySchedulerServiceImpl(@Qualifier("fileverifyScheduler") ThreadPoolTaskScheduler scheduler) {
+        this.scheduler = scheduler;
+    }
+
+    
+    
     // 동적으로 바뀌는 delay (예: DB 조회 결과라고 가정)
     private long dynamicDelay = 3000; // 3초
 
-    @Override
-    public void configureTasks(ScheduledTaskRegistrar registrar) {
-        registrar.addTriggerTask(
-            // 실행할 작업 (Runnable)
-            () -> System.out.println("[TriggerTask] 실행 시간: " + System.currentTimeMillis()),
+    /** 새로운 스케줄(Task) 추가 */
+    private void startTask(String requestId) {
+            FileVerify verifyScheduleInfo = sendFileMapper.selectVerifyScheduleInfo(requestId);
 
-            // 다음 실행 시각 계산 (Trigger)
-            triggerContext -> {
-                // 실제로는 여기서 DB 조회해서 delay 갱신 가능
-                dynamicDelay = getDelayFromDB();  
-                Instant nextExecution = Instant.now().plusMillis(dynamicDelay);
-                return Date.from(nextExecution);
+            // 검증 정보 세팅 
+            VerifyScheduleUnitEnum unit = verifyScheduleInfo.getScheduleUnit();
+            int duration = verifyScheduleInfo.getScheduleDuration();
+            int repeatCount = verifyScheduleInfo.getScheduleRepeatCount();
+
+            // 검증 Rate 시간 계산 
+            Long delayMillis = calculateFixedDelay(unit, duration, repeatCount);
+
+            // 스케쥴링 반복 시작
+            ScheduledFuture<?> future = scheduler.schedule(
+                () -> runVerifySchedulerJob(requestId),
+                triggerContext -> {
+                    Date lastCompletionTime = triggerContext.lastCompletionTime();
+                    if (lastCompletionTime == null) {
+                        // 첫 실행
+                        return Date.from(Instant.now().plusMillis(delayMillis));
+                    }
+                    // 마지막 실행 완료 시간 기준으로 delayMillis 이후 재실행
+                    return Date.from(lastCompletionTime.toInstant().plusMillis(delayMillis));
+                }
+            );
+            scheduledTasks.put(requestId, future);
+            log.info("스케쥴러 등록... Task requestId = {}", requestId);
+        }
+    
+        /**
+         * 스케줄 중단 메서드
+         */
+        private void stopTask(String requestId) {
+            ScheduledFuture<?> future = scheduledTasks.remove(requestId);
+            if (future != null) {
+                future.cancel(false);
+                log.info("스케줄러 중단 완료: {}", requestId);
+            } else {
+                log.warn("중단할 스케줄러 없음: {}", requestId);
             }
-        );
-    }
-
-    // DB에서 delay 값 읽어온다고 가정
-    private long getDelayFromDB() {
-        // 예: DB값이 매 실행마다 3초 → 5초 → 2초 이런 식으로 바뀔 수 있음
-        return (long) (Math.random() * 5000) + 1000; // 1~6초 사이 랜덤
-    }
+        }
 }
 ```
 
