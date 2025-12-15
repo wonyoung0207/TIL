@@ -33,7 +33,7 @@
        - wonyoung-runner
    ```
 
-   <img src="C:\Users\meta\Desktop\git_repository\TIL\GitHub\GitLab_CICD\images\runner_settings.png" width="400">
+   <img src="./images/runner_settings.png" width="400">
 
 ```toml
 # Window버전의 GitLab-runner config.toml 설정
