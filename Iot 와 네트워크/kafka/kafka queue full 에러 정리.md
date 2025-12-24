@@ -55,7 +55,7 @@ log.info("topicName : {}, 남은 공간: {}" , topicName, remaining);
 1. ###  WebSocket 전송 큐의 overflow 대응
 
    ```java
-   java복사편집if (!msgQueue.offer(msg)) {
+   if (!msgQueue.offer(msg)) {
        msgQueue.clear(); // 또는 poll()로 오래된 것 제거
        msgQueue.offer(msg); // 마지막 메시지만 보냄
    }
