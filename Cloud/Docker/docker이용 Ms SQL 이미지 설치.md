@@ -6,13 +6,13 @@
 
 ### 1. docker 로 이미지 다운 
 
-   ```commend
+   ```bash
    docker pull mcr.microsoft.com/mssql/server:2019-latest
    ```
 
 ### 2. 다운받은 docker 이미지 실행  
 
-   ```commend
+   ```bash
    // 1. 형태
    docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=<사용자설정 PW>" -p 1433:1433 --name <사용자 지정 이름> -h <컨테이너 호스트 이름> -d mcr.microsoft.com/mssql/server:2019-latest
    
@@ -31,7 +31,7 @@
 
 ### 3. cmd에서 docker에 다운받은 Container( 여기선 mssql ) 에 접속
 
-   ```coomend
+   ```bash
    1. 형태
    docker exec -it <mssql-server> "bash"
    
@@ -42,7 +42,7 @@
 
 ### 4. sqlcmd 라는 파일을 이용해 MSSQL에 접속
 
-   ```commend
+   ```bash
    /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "<your password>"
    // /opt/mssql-tools/bin/sqlcmd => sqlcmd 있는 절대경로 똑같이 써줘야함 
    ```
@@ -64,7 +64,7 @@
 
    - 이때 **툴과 Ms SQL Database를 연결**해주기 위한 '**사용자 계정 생성** ' 과 ' **계정 권한 할당** ' 을 해줘야한다. 
 
-   ```
+   ```bash
    // 사용자 계정 생성
    1> CREATE LOGIN <user> WITH PASSWORD='<user password>'
    2> GO
@@ -90,7 +90,7 @@
 
   - 또는 비밀번호 변경을 통해 '!@#$' 부분 변경 
 
-    ```
+    ```bash
     > docker exec -it mssql-server /opt/mssql-tools/bin/sqlcmd -S > localhost -U SA -P '<yourNewPAssword1!>' -Q 'ALTER LOGIN SA WITH PASSWORD="<yourNewPAssword1!>"'
     ```
 
