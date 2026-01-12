@@ -24,7 +24,7 @@
 | **Merge Request Integration** | MR 생성시 자동 파이프라인 실행 및 코드리뷰 연동     |
 | **Monitoring (모니터링)**     | 배포된 환경을 모니터링 및 관리                      |
 
-# 🚀 **1. Pipeline (파이프라인)**
+# **1. Pipeline (파이프라인)**
 
 GitLab CI/CD의 핵심으로, 코드 커밋 또는 MR(Merge Request) 생성 시 자동으로 실행된다. 
 
@@ -64,7 +64,7 @@ deploy-job:
 
 ------
 
-# 🔨 **2. Jobs (작업)**
+# **2. Jobs (작업)**
 
 파이프라인 내 개별 작업으로, 한 단계 내에서도 여러 개의 작업을 병렬로 실행 가능하다. 
 
@@ -82,7 +82,7 @@ test-job2:
 
 ------
 
-# 📦 **3. Artifacts (아티팩트)**
+# **3. Artifacts (아티팩트)**
 
 CI 파이프라인 실행 결과 생성된 파일(JAR, 테스트 리포트 등)을 저장하여 나중에 활용 가능하도록 해준다. 
 
@@ -107,7 +107,7 @@ deploy-job:
 
 ------
 
-# 🌍 **4. Environments (환경)**
+# **4. Environments (환경)**
 
 각 단계(개발, 테스트, 운영)에 배포하고 관리하는 데 사용하는 개념
 
@@ -131,7 +131,7 @@ deploy-production:
 
 ------
 
-# ⚙️ **5. GitLab Runner (러너)**
+# **5. GitLab Runner (러너)**
 
 GitLab에서 **CI 작업을 실제로 수행하는 프로그램**으로, 서버나 컨테이너 환경에 설치된다. 
 
@@ -144,7 +144,7 @@ Runner는 별도의 임시 디렉토리에서 작업을 수행하게 된다. (�
 
 ------
 
-# 🔐 **6. Variables (환경변수)**
+# **6. Variables (환경변수)**
 
 파이프라인에서 환경변수나 민감한 정보를 관리할 수 있도록 지원합니다.
 
@@ -164,7 +164,7 @@ Runner는 별도의 임시 디렉토리에서 작업을 수행하게 된다. (�
 
 ------
 
-# ⏰ **7. Triggers & Schedule**
+# **7. Triggers & Schedule**
 
 - **Triggers**: 외부 시스템에서 API로 파이프라인 실행
 - **Schedule**: 주기적으로 파이프라인 자동 실행
@@ -177,7 +177,7 @@ CI/CD → Schedules → New schedule
 
 ------
 
-# 🔍 **8. Security & Quality**
+# **8. Security & Quality**
 
 GitLab은 코드 품질 및 보안을 검사하는 기능도 지원한다. 
 
@@ -194,7 +194,7 @@ include:
 
 ------
 
-# 🐳 **9. Container Registry**
+# **9. Container Registry**
 
 Docker 이미지 관리 및 배포를 지원하는 컨테이너 저장소를 제공
 
@@ -208,7 +208,7 @@ docker-build:
 
 ------
 
-# 📌 **10. MR(Merge Request) Integration**
+# **10. MR(Merge Request) Integration**
 
 Merge Request를 생성하면 CI/CD 파이프라인이 자동으로 실행되어, 코드 리뷰와 자동화 테스트를 병행한다. 
 
@@ -216,7 +216,7 @@ Merge Request를 생성하면 CI/CD 파이프라인이 자동으로 실행되어
 
 ------
 
-# 📈 **11. Monitoring & Metrics**
+# **11. Monitoring & Metrics**
 
 배포 후 운영 상태를 모니터링할 수 있도록 GitLab과 연계하여 모니터링 기능을 제공한다. 
 
