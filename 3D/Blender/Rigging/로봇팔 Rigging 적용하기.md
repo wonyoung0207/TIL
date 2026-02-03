@@ -67,8 +67,12 @@ Armature → Bone Roll → Recalculate Roll
 
 ##### 1. 3D Model 정규화 
 
-- `Ctrl + A` -> `Rotation & Scale`  을 통해 3D Model 의 기준을 초기화 한다. ( 위치 및 Rotation 으로 틀어진 값들을 0 으로 만듬)
+- `메쉬만 A (전체선택)-> Ctrl + A -> Rotation & Scale`  을 통해 3D Model 의 기준을 초기화 한다. ( 위치 및 Rotation 으로 틀어진 값들을 0 으로 만듬)
+  - “현재 로컬 축을 월드 축에 맞춰서 0으로 굳힌다” 는 뜻 (로컬축들이 글로벌 축으로 통일됨 )
+
 - 추후 Rigging 설정시 이상하게 회전하는 문제 및 크기 문제를 정규화해서 제대로 동작하게 하기 위함 
+
+<img src="./images/rigging-scale-rotation-apply.png" width="400">
 
 ##### 2. Bone 요소 추가
 
