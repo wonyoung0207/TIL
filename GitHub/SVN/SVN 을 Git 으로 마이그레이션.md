@@ -21,29 +21,46 @@ sudo apt install git-svn
 
 
 
+##### 2. 위치이동 
+
+- SVN 을 가져오기 위한 경로로 이동 
+- 이때 햇갈리지 않아야 하는게, git init 된 파일( remote repository 의 경로에서 실행하면 안된다!!)
+  - 왜냐하면 중복 `git init` 으로 인해 충돌될 가능성 있음 
+
+
+
 ##### 2. SVN 저장소 전체 히스토리 clone
 
 ```bash
 git svn clone SVN주소
-```
 
-- 또는 (trunk/branches/tags 구조일 때)
+# 특정 브랜치만 가져오기 
+git svn clone SVN주소/branch-name
 
-```bash
+# 모든 revision을 Git commit으로 변환
 git svn clone SVN주소 --stdlayout
 ```
 
-- 모든 revision을 Git commit으로 변환
-- SVN 히스토리 그대로 유지됨
+- 순서 
+  1. 새로운 디렉토리 생성
+  2. 내부에서 `git init` 실행 
+  3. SVN History 가져오기 
+  4. git-svn 메타데이터 생성
+
+- 정리 
+
+  - svn 기록을 원하는 경로의 git init 폴더로 가져옴 
+
+  - SVN 히스토리 그대로 유지됨
 
 
 
 ##### 3. 기본 브랜치 정리
 
-- SVN에서 가져온 브랜치를 `main` 으로 정리
+- SVN에서 가져온 브랜치 이름을 원하는 브랜치 명으로 변경
 
 ```bash
-git branch -m svn-server-init main
+git branch -m svn-server-init
 ```
 
 - 또는
@@ -69,10 +86,39 @@ git remote add origin GitLab주소
   - **main이 Protected면 보호 해제 필요**
 
 ```bash
-git push origin main --force
+git push origin [브랜치명] --force
 ```
 
+
+
+##### 6. main 위에 svn-server-init 올리기
+
+1. main 브랜치로 이동
+
+```bash
+git switch main
+```
+
+2. svn 브랜치 merge (unrelated history 허용)
+
+```bash
+git merge svn-server-init --allow-unrelated-histories
+```
+
+→ 서로 다른 Git 히스토리를 강제로 merge
+
+3. 충돌 해결 후 commit
+
+```bash
+git add .
+git commit
+```
+
+
+
 ---
+
+
 
 ## 결과
 
