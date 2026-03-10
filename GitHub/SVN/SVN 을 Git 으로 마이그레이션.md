@@ -86,6 +86,10 @@ git remote add origin GitLab주소
   - **main이 Protected면 보호 해제 필요**
 
 ```bash
+## 원하는 remote 브랜치로 push 
+git push origin [브랜치명]
+
+## main 으로 push 원하는 경우 
 git push origin [브랜치명] --force
 ```
 
