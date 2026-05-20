@@ -22,14 +22,25 @@
 ## 스마트 릴레이 모듈
 
 - 전기를 제어할 수 있도록 도와주는 모듈 단자 
-- 나같은경우는 zigbee 방식을 지원하는 "**AVATTO Tuya ZigBee 스마트 라이트 스위치 3Gang Module**" 를 사용했다. 
-  - 검색어 : **AVATTO Zigbee Tuya ZWSM16**
-  - [알리익스프레스 - AVATTO Tuya Zigbee](https://ko.aliexpress.com/item/1005006832397623.html?spm=a2g0o.order_list.order_list_main.42.6287140fIemPZk&gatewayAdapt=glo2kor)
-  - 중성선 X : ZWSM16-1 -> AVATTO Tuya ZigBee no Neutral wired
-  - 중성선 O : ZWSM16-W1 -> AVATTO Tuya Zigbee With Neutral
-  - '중성선(Neutral) 없음' 방식은 한국의 일반적인 아파트 스위치 박스(중성선 없이 핫선과 스위치선만 들어와 있는 환경)에서도 별도의 배선 공사 없이 바로 설치할 수 있다는 것이 큰 특징
 
-<img src="./images/스마트릴레이모듈_avatto.png" width="300">
+- 나같은경우는 zigbee 방식을 지원하는 "**중성선 필요 AVATTO Tuya ZigBee 스마트 라이트 스위치 3Gang Module**" 를 사용했다. 
+  - 검색어 : **AVATTO Zigbee Tuya ZWSM16-W1**
+  
+  - [알리익스프레스 - AVATTO Tuya Zigbee](https://ko.aliexpress.com/item/1005006832397623.html?spm=a2g0o.order_list.order_list_main.42.6287140fIemPZk&gatewayAdapt=glo2kor)
+  
+  - 중성선 X : ZWSM16-1 -> AVATTO Tuya ZigBee no Neutral wired
+  
+  - 중성선 O : ZWSM16-W1 -> AVATTO Tuya Zigbee With Neutral
+  
+  - '중성선(Neutral) 없음' 방식은 한국의 일반적인 아파트 스위치 박스(중성선 없이 핫선과 스위치선만 들어와 있는 환경)에서도 별도의 배선 공사 없이 바로 설치할 수 있다는 것이 큰 특징
+  
+    - 중선선 O
+  
+      <img src="./images/스마트릴레이모듈_avatto_중성선필요.png" width="200">
+  
+    - 중성선 X 
+  
+      <img src="./images/스마트릴레이모듈_avatto.png" width="200">
 
 ### 1. 단자별 역할 (L, L1, L2, L3, COM)
 
@@ -51,7 +62,25 @@
 
   - 즉, 사람이 스위치 누른 물리 신호를 이용해 전등을 켜고 끌수 있게 해줌 ( 이거 안하면 물리버튼 동작 X, Zigbee 신호로 조명은 킬 수 있음 )
 
-    <img src="./images/스마트릴레이모듈_avatto_Com연결.png" width="300">
+- L1 과 S1의 차이점 
+
+  - L1 (Load / 부하 단자) = "전등으로 가는 길"
+
+    - **역할:** 모듈이 스마트폰 명령을 받거나 수동 스위치 신호를 받아서 **실제 전등(부하)에 전기를 공급해 주는 출구**
+
+    - **특징:** 이 단자에는 220V의 실제 강한 전류가 흐르게된다. 모듈 내부의 전자 릴레이(스위치 역할)가 '딸깍' 하고 켜지면, 메인 핫선(L)의 전기가 L1$ 타고 천장에 있는 **전등으로 직접 흘러가 불을 밝힌다.**
+
+    - **연결 대상:** 천장 전등과 연결된 '스위치1 선'을 여기에 꽂아야 한다. 
+
+  - S1 (Switch / 신호 단자) = "리모컨(스위치) 신호 감지기"
+
+    - **역할:** 벽에 붙어 있는 **'물리적인 뚝딱이 스위치'가 켜졌는지 꺼졌는지 감지하는 단자**
+
+    - **특징:** 이 단자는 전등을 켜는 용도가 아닙니다. 모듈에게 **"주인님이 벽에 있는 스위치를 눌렀어!"라고 신호를 보내는 입력 장치**일 뿐입니다. 여기에 흐르는 전류는 아주 미세한 감지용 신호 전류이다. 
+
+    - **연결 대상:** 벽면에 붙는 **물리 스위치의 한쪽 구멍**과 연결
+
+  <img src="./images/스마트릴레이모듈_avatto_Com연결.png" width="300">
 
 - 물리 스위치 신호선 : IN 
 
