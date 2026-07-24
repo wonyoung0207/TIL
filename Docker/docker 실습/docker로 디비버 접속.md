@@ -1,0 +1,3 @@
+- [참고 사이트](https://oingdaddy.tistory.com/285)
+- docker에서 mssql 실행 후 해당 명령어로 로컬과 포트 연결  
+  - /opt/mssql-tools/bin/sqlcmd -S localhost -U SA -P "meta1234!@#$"
